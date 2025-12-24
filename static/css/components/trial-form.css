@@ -1,0 +1,24 @@
+/* Модальна форма на мобільних (використовує .modal з modal.css) */
+
+.trial-form__modal {
+  /* Наслідує .modal з modal.css */
+}
+
+.trial-form__modal .modal__content {
+  background: var(--color-bg);
+  border: 2px solid var(--color-primary);
+}
+
+.trial-form__modal .modal__title {
+  color: var(--color-primary);
+}
+
+/* Специфічні стилі для форми в хедері (десктоп) */
+.trial-form--desktop .form-group {
+  margin-bottom: 0;
+}
+
+.trial-form--desktop .form-group__input {
+  min-height: 44px;
+}
+

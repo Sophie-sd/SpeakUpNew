@@ -35,7 +35,7 @@
 }
 
 .message__text {
-  flex: 1;
+  flex: 1 0 0;
   margin: 0;
   color: var(--color-text);
   font-size: var(--font-size-base);
@@ -72,6 +72,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;

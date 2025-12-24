@@ -37,9 +37,10 @@ else
 fi
 
 # Правило 2: inline style="" заборонені (дублює HTMLHint, але для надійності)
+# Виняток: email шаблони можуть мати inline styles
 echo ""
 echo "🎨 [Rule 2] Checking for inline styles..."
-INLINE_STYLES=$(echo "$HTML_FILES" | xargs grep -n 'style="' 2>/dev/null || echo "")
+INLINE_STYLES=$(echo "$HTML_FILES" | grep -v '/emails/' | xargs grep -n 'style="' 2>/dev/null || echo "")
 if [ -n "$INLINE_STYLES" ]; then
   echo "❌ Inline styles found (forbidden):"
   echo "$INLINE_STYLES"

@@ -1,0 +1,70 @@
+{% load static %}
+
+{# Бігуча стрічка #}
+{% if running_line_text %}
+<div class="running-line" data-running-line>
+  <div class="running-line__content">
+    <span class="running-line__text">{{ running_line_text }}</span>
+    <span class="running-line__text">{{ running_line_text }}</span>
+    <span class="running-line__text">{{ running_line_text }}</span>
+  </div>
+</div>
+{% endif %}
+
+{# Хедер з логотипом та формою #}
+<div class="header-wrapper">
+  <header class="header">
+    <div class="header__logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+        <rect width="32" height="32" rx="8"/>
+      </svg>
+      SpeakUp
+    </div>
+
+    {# Форма для десктопу #}
+    <form class="trial-form trial-form--desktop" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="text" name="name" class="form-group__input" placeholder="Ім'я" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" name="phone" class="form-group__input" placeholder="+380" inputmode="tel" required>
+      </div>
+        <button type="submit" class="button--primary">Записатись</button>
+    </form>
+
+    {# Кнопка для мобільних #}
+    <button class="trial-form__trigger--mobile" type="button">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 2 9 12m0 0-7 7m7-7H2m7 0V5"/>
+      </svg>
+      Записатись на пробне заняття
+    </button>
+  </header>
+</div>
+
+{# Модальна форма для мобільних #}
+<div class="modal trial-form__modal">
+  <div class="modal__backdrop"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <h3 class="modal__title">Запис на пробний урок</h3>
+      <button class="modal__close" aria-label="Закрити">×</button>
+    </div>
+    <div class="modal__body">
+      <form class="trial-form" data-trial-form-mobile method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="mobile-name">Ім'я</label>
+          <input type="text" id="mobile-name" name="name" class="form-group__input" required>
+        </div>
+        <div class="form-group">
+          <label for="mobile-phone">Телефон</label>
+          <input type="tel" id="mobile-phone" name="phone" class="form-group__input" placeholder="+380" inputmode="tel" required>
+        </div>
+        <button type="submit" class="button--primary">Записатись</button>
+      </form>
+    </div>
+  </div>
+</div>
+

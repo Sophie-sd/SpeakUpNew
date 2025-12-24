@@ -1,5 +1,5 @@
 """
-Base settings for SpeakUp project.
+Base settings for CRM_Nice project.
 """
 import os
 from pathlib import Path
@@ -18,15 +18,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sitemaps',
     'apps.core',
-    'apps.leads',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -34,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'SpeakUp.urls'
+ROOT_URLCONF = 'CRM_Nice.urls'
 
 TEMPLATES = [
     {
@@ -47,14 +44,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.core.context_processors.seo_context',
-                'apps.leads.context_processors.running_line_context',
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'SpeakUp.wsgi.application'
+WSGI_APPLICATION = 'CRM_Nice.wsgi.application'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -106,39 +101,4 @@ CSRF_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Strict'
-
-# ========== SEO INFRASTRUCTURE ==========
-
-# Internationalization
-LANGUAGES = [
-    ('uk', 'Українська'),
-    ('ru', 'Русский'),
-]
-LOCALE_PATHS = [BASE_DIR / 'locale']
-
-# Caching для SEO context processor
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'seo-cache',
-        'OPTIONS': {
-            'MAX_ENTRIES': 1000,
-        }
-    }
-}
-
-# SEO Verification codes (з env або залишити порожніми)
-GOOGLE_SITE_VERIFICATION = os.getenv('GOOGLE_SITE_VERIFICATION', '')
-FACEBOOK_DOMAIN_VERIFICATION = os.getenv('FACEBOOK_DOMAIN_VERIFICATION', '')
-
-# Default OG image (відносний шлях від STATIC_URL)
-DEFAULT_OG_IMAGE = os.getenv('DEFAULT_OG_IMAGE', '/static/images/og-default.png')
-
-# Email (для dev - console):
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@speakup.com.ua')
-
-# Реклама (з .env):
-FACEBOOK_PIXEL_ID = os.getenv('FACEBOOK_PIXEL_ID', '')
-GA_MEASUREMENT_ID = os.getenv('GA_MEASUREMENT_ID', '')
 

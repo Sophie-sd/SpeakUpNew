@@ -1,0 +1,43 @@
+/* Бігуча стрічка (червоний дизайн) */
+.running-line {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-running-line);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform var(--transition-fast);
+}
+
+.running-line--hidden {
+  transform: translateY(-100%);
+}
+
+.running-line__content {
+  display: flex;
+  width: max-content;
+  animation: scroll-line 20s linear infinite;
+}
+
+.running-line__text {
+  padding: 0 2rem;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@keyframes scroll-line {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .running-line__content {
+    animation: none;
+  }
+}
+

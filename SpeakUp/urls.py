@@ -30,11 +30,14 @@ urlpatterns = [
 # i18n URLs (UK без префіксу, RU з /ru/)
 urlpatterns += i18n_patterns(
     path('', include('apps.core.urls')),
+    path('leads/', include('apps.leads.urls')),
     prefix_default_language=False,  # UK без префіксу
 )
 
 # Static/media files для DEBUG
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Використовуємо першу директорію з STATICFILES_DIRS для розробки
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
 

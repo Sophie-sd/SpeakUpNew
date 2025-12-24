@@ -42,16 +42,16 @@
   <meta property="og:title" content="{% block og_title %}SpeakUp{% endblock %}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
-  <meta property="og:description" content="{% block og_description %}{% block meta_description %}SpeakUp - Django HTMX Application{% endblock %}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}SpeakUp - Django HTMX Application{% endblock %}">
   <meta property="og:image" content="{% block og_image %}{{ default_og_image }}{% endblock %}">
   <meta property="og:site_name" content="SPEAK UP">
   <meta property="og:locale" content="{% if current_language == 'ru' %}ru_RU{% else %}uk_UA{% endif %}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% block og_title %}SpeakUp{% endblock %}">
-  <meta name="twitter:description" content="{% block og_description %}{% block meta_description %}SpeakUp - Django HTMX Application{% endblock %}{% endblock %}">
-  <meta name="twitter:image" content="{% block og_image %}{{ default_og_image }}{% endblock %}">
+  <meta name="twitter:title" content="{% block twitter_title %}SpeakUp{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}SpeakUp - Django HTMX Application{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}{{ default_og_image }}{% endblock %}">
 
   <!-- Rule 23: Preconnect для CDN -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
@@ -60,8 +60,16 @@
   <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
 
   <!-- Rule 24: CSS в правильному порядку -->
+  <link rel="stylesheet" href="{% static 'css/components/ios-safe.css' %}">
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/button.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/message.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/running-line.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/trial-form.css' %}">
   {% block extra_css %}{% endblock %}
 
   <!-- Rule 10: HTMX з defer -->
@@ -69,6 +77,8 @@
 
   <!-- Rule 10, 71: Власний JS з defer -->
   <script src="{% static 'js/main.js' %}" defer></script>
+  <!-- JS: ДОДАТИ новий app-init.js -->
+  <script src="{% static 'js/app-init.js' %}" type="module" defer></script>
   {% block extra_js %}{% endblock %}
 
   {# Structured Data (JSON-LD) #}
@@ -105,6 +115,9 @@
   {% endblock %}
 </head>
 <body>
+  <!-- Хедер та навігація -->
+  {% include 'components/header.html' %}
+
   <!-- Django messages -->
   {% if messages %}
     <div class="messages" aria-live="polite" aria-atomic="true">
@@ -121,6 +134,9 @@
   <main id="main-content">
     {% block content %}{% endblock %}
   </main>
+
+  <!-- Navigation знизу -->
+  {% include 'components/navigation.html' %}
 
   <!-- HTMX indicators -->
   <div id="htmx-indicator" class="htmx-indicator" aria-live="polite" aria-busy="true">

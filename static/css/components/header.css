@@ -1,0 +1,472 @@
+/* ===== ХЕДЕР (десктоп) ===== */
+.header-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+
+  /* Glassmorphism (червоний відтінок): */
+  background: var(--glass-white);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Форма в хедері (десктоп): */
+.trial-form--desktop {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex: 1 0 0;
+  align-items: center;
+}
+
+.trial-form--desktop .form-group {
+  margin: 0;
+  flex: 1 0 0;
+}
+
+.trial-form--desktop .form-group__input {
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+.trial-form--desktop .button--primary {
+  flex-shrink: 0;
+}
+
+/* Кнопка на мобільних: */
+.trial-form__trigger--mobile {
+  display: none;
+}
+
+/* ===== TELEGRAM-STYLE NAVIGATION (знизу) ===== */
+
+/* Десктоп (≥768px) */
+@media (width >= 768px) {
+  .header {
+    position: sticky; /* Safari fallback */
+    bottom: 20px;
+    z-index: 1000;
+    padding: var(--spacing-sm) 0;
+  }
+
+  .header__nav {
+    max-width: 900px;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .mobile-nav-container {
+    display: contents; /* Прозорий контейнер */
+  }
+}
+
+.mobile-nav-container {
+  position: sticky; /* Safari fallback */
+  bottom: calc(20px + var(--safe-area-bottom));
+  left: 0;
+  right: 0;
+  z-index: var(--z-menu-button);
+  display: contents; /* На десктопі розгортається */
+  padding: 0 var(--spacing-md);
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.header__nav {
+  position: sticky; /* Safari fallback */
+  bottom: calc(20px + var(--safe-area-bottom));
+
+  /* Glassmorphism (білий на темному): */
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-pill);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  list-style: none;
+  background: var(--color-gray-light);
+  border-radius: var(--radius-pill);
+  padding: var(--spacing-xs) var(--spacing-sm);
+
+  /* iOS safe area */
+  padding-left: max(var(--spacing-sm), var(--safe-area-left));
+  padding-right: max(var(--spacing-sm), var(--safe-area-right));
+  padding-bottom: max(8px, var(--safe-area-bottom));
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-clip: padding-box;
+  margin: 0;
+}
+
+.header__link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.header__link:hover,
+.header__link--active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header__link:hover {
+    background: var(--color-primary);
+  }
+}
+
+/* Бургер-меню (кнопка): */
+.burger-menu {
+  z-index: 1001;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  padding: 0;
+  background: var(--color-gray-light);
+  border-radius: var(--radius-pill);
+  display: none; /* Приховано на десктопі */
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  touch-action: manipulation;
+}
+
+.burger-menu__icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+  height: 18px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.burger-menu__line {
+  width: 100%;
+  height: 2px;
+  background: var(--color-white);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+/* Анімація перетворення в X */
+.burger-menu[aria-expanded="true"] .burger-menu__icon {
+  gap: 0;
+}
+
+.burger-menu[aria-expanded="true"] .burger-menu__line:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+}
+
+.burger-menu[aria-expanded="true"] .burger-menu__line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu[aria-expanded="true"] .burger-menu__line:nth-child(3) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transform-origin: center;
+}
+
+/* Overlay */
+.burger-menu__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+
+  /* Hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: opacity, visibility;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.burger-menu__overlay[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown меню */
+.burger-menu__dropdown {
+  position: fixed;
+  bottom: 0;
+  left: 36px;
+  right: 28px;
+  z-index: 1000;
+  background: var(--color-gray-light);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-normal),
+              opacity var(--transition-normal),
+              visibility var(--transition-normal);
+  max-height: 80vh;
+  overflow-y: auto;
+
+  /* Приховати scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  /* Початкова позиція (приховано) */
+  -webkit-transform: translateY(100%) translateZ(0);
+  transform: translateY(100%) translateZ(0);
+  -webkit-overflow-scrolling: touch;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity, visibility;
+  border: 1px solid var(--color-border-light);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.burger-menu__dropdown[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  -webkit-transform: translateY(0) translateZ(0);
+}
+
+.burger-menu__dropdown::-webkit-scrollbar {
+  display: none;
+}
+
+.burger-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.burger-menu__link {
+  display: block;
+  padding: var(--spacing-md);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.burger-menu__link:hover,
+.burger-menu__link:focus {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+@media (hover: hover) {
+  .burger-menu__link:hover {
+    background: var(--color-primary);
+  }
+}
+
+/* ===== МОБІЛЬНА ВЕРСІЯ (≤767px) ===== */
+@media (width <= 767px) {
+  /* Хедер стає вертикальним: */
+  .header {
+    flex-direction: column;
+    position: static;
+    border-radius: var(--radius-md);
+  }
+
+  /* Десктоп форма ховається: */
+  .trial-form--desktop {
+    display: none;
+  }
+
+  /* Мобільна кнопка з'являється: */
+  .trial-form__trigger--mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  /* Navigation стає grid: */
+  .mobile-nav-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    position: sticky; /* Safari fallback */
+    bottom: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom, 10px));
+    z-index: 1001;
+    width: 100%;
+    max-width: 100vw;
+    padding-left: max(10px, env(safe-area-inset-left, 10px));
+    padding-right: max(10px, env(safe-area-inset-right, 10px));
+
+    /* Hardware acceleration */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .header {
+    position: static; /* Всередині grid */
+    bottom: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .header__nav {
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: static;
+    bottom: 0;
+  }
+
+  .header__menu {
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+
+    /* Приховати scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .header__menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header__link {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Ховаємо деякі пункти на мобільних: */
+  .header__menu-item--mobile-hidden {
+    display: none;
+  }
+
+  /* Бургер з'являється: */
+  .burger-menu {
+    display: flex;
+    flex: 0 0 48px;
+    position: static;
+  }
+
+  .burger-menu__dropdown {
+    bottom: 90px; /* Вище header */
+  }
+}
+
+/* iOS Safari фікси */
+@supports (-webkit-touch-callout: none) {
+  .burger-menu__dropdown {
+    max-height: 80dvh; /* Dynamic viewport */
+    bottom: 0;
+    bottom: max(0px, env(safe-area-inset-bottom, 0px));
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  @media (width <= 767px) {
+    .burger-menu__dropdown {
+      bottom: max(90px, calc(90px + env(safe-area-inset-bottom, 0px)));
+      max-height: calc(100dvh - 90px - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+
+      /* Fallback для старих iOS */
+      max-height: calc(80vh - 90px);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @supports (height: 100dvh) {
+      .burger-menu__dropdown {
+        max-height: calc(100dvh - 90px - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+      }
+    }
+  }
+}
+
+/* Світла тема */
+[data-theme="light"] .burger-menu__dropdown {
+  background: rgba(0, 0, 0, 0.85);
+}

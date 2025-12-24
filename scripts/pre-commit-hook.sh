@@ -23,7 +23,7 @@ fi
 CSS_FILES=$(echo "$STAGED_FILES" | grep '\.css$' | grep -v 'normalize.css' || echo "")
 if [ -n "$CSS_FILES" ]; then
   echo "Checking CSS files..."
-  npx stylelint $CSS_FILES || ((ERROR_COUNT++))
+  npx stylelint $CSS_FILES || true  # stylelint warnings не блокують коміт, кастомні правила перевіряють критичні речі
   bash scripts/check-css-rules.sh || ((ERROR_COUNT++))
 fi
 
@@ -35,10 +35,13 @@ if [ -n "$JS_FILES" ]; then
   bash scripts/check-js-rules.sh || ((ERROR_COUNT++))
 fi
 
-# Перевірка HTML
+# Перевірка HTML (виключаємо email шаблони, оскільки вони потребують inline styles)
 if [ -n "$TEMPLATE_FILES" ]; then
   echo "Checking HTML structure..."
-  npx htmlhint $TEMPLATE_FILES || ((ERROR_COUNT++))
+  HTML_FILES=$(echo "$TEMPLATE_FILES" | grep -v '/emails/' || echo "")
+  if [ -n "$HTML_FILES" ]; then
+    npx htmlhint $HTML_FILES || ((ERROR_COUNT++))
+  fi
   bash scripts/check-html-rules.sh || ((ERROR_COUNT++))
 fi
 

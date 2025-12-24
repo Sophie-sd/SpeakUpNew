@@ -46,7 +46,7 @@ fi
 # Правило 4: Перевірка SECRET_KEY в коді
 echo ""
 echo "🔒 [Rule 4] Checking for hardcoded secrets..."
-SECRETS=$(echo "$PY_FILES" | xargs grep -nE 'SECRET_KEY\s*=\s*["\'](?!os\.environ)' 2>/dev/null || echo "")
+SECRETS=$(echo "$PY_FILES" | xargs grep -nE "SECRET_KEY[[:space:]]*=[[:space:]]*[\"']" 2>/dev/null | grep -v "os\.environ" || echo "")
 if [ -n "$SECRETS" ]; then
   echo "❌ Hardcoded SECRET_KEY found:"
   echo "$SECRETS"
