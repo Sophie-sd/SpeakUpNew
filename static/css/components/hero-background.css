@@ -52,13 +52,12 @@
 /* Speaky шар (поверх фону, під контентом) */
 .speaky-layer {
   position: fixed;
-  bottom: 0;
+  bottom: -15rem;
   left: 50%;
-  transform: translateX(-50%) translateZ(0);
   z-index: var(--z-speaky-layer, 0);
-  width: 300px;
+  width: 30rem; /* Fallback */
+  width: clamp(20rem, 30vw, 35rem);
   height: auto;
-  max-width: 40vw;
   pointer-events: none;
 
   /* Спільні стилі з hero-background */
@@ -138,8 +137,9 @@
 /* Мобільна версія */
 @media (width <= 767px) {
   .speaky-layer {
-    width: 200px;
-    max-width: 50vw;
+    width: 18rem; /* Fallback */
+    width: clamp(18rem, 50vw, 22rem);
+    bottom: -10rem;
   }
 
   .hero {
@@ -152,13 +152,6 @@
 
   .hero p {
     font-size: var(--font-size-base);
-  }
-}
-
-/* iOS фікси для Speaky */
-@supports (-webkit-touch-callout: none) {
-  .speaky-layer {
-    bottom: max(0px, env(safe-area-inset-bottom, 0px));
   }
 }
 

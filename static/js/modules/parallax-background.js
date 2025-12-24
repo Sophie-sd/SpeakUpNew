@@ -68,6 +68,14 @@ export class ParallaxBackground {
 
     // Початкове оновлення
     this.update();
+
+    // Для Speaky шару застосувати початковий offset одразу
+    this.layers.forEach(layer => {
+      if (layer.element.classList.contains('speaky-layer')) {
+        const initialOffset = -100;
+        layer.element.style.transform = `translateX(-50%) translateY(${initialOffset}px) translateZ(0)`;
+      }
+    });
   }
 
   setupIntersectionObserver() {
@@ -128,9 +136,12 @@ export class ParallaxBackground {
 
       const translateY = -(this.scrollY * effectiveSpeed);
 
-      // Для Speaky шару потрібно зберегти translateX для центрування
+      // Для Speaky шару потрібно зберегти translateX для центрування та додати початковий offset
       if (layer.element.classList.contains('speaky-layer')) {
-        layer.element.style.transform = `translateX(-50%) translateY(${translateY}px) translateZ(0)`;
+        // Початкова позиція -100px від низу
+        const initialOffset = -100;
+        const finalTranslateY = translateY + initialOffset;
+        layer.element.style.transform = `translateX(-50%) translateY(${finalTranslateY}px) translateZ(0)`;
       } else {
         // Для інших шарів стандартний transform
         layer.element.style.transform = `translateY(${translateY}px) translateZ(0)`;
