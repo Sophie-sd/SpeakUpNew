@@ -10,6 +10,11 @@ urlpatterns = [
     path('contacts', views.contacts, name='contacts'),
     path('testing', views.testing, name='testing'),
 
+    # Homepage content forms
+    path('submit-testimonial/', views.submit_testimonial, name='submit_testimonial'),
+    path('get-testimonial-form/', views.get_testimonial_form, name='get_testimonial_form'),
+    path('submit-consultation/', views.submit_consultation, name='submit_consultation'),
+
     # NEWS - ПЕРЕД catch-all! (КРИТИЧНО для SEO)
     path('news/', views.news_list, name='news_list'),
     path('news/<slug:slug>/', views.news_detail, name='news_detail'),

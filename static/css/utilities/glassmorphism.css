@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Glassmorphism Utilities - iOS 18+ стиль (оптимізовано для продуктивності)
+   ========================================================================== */
+
+/* ВЕЛИКІ елементи (секції) - з обмеженим blur та виразнішими тінями */
+.glass-section {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow-elevated);
+
+  /* Обмежений blur для великих секцій */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ДРІБНІ елементі (картки, кнопки) - з виразнішим blur та тінями */
+.glass-card {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow-elevated);
+
+  /* Збільшений blur для дрібних елементів */
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Темна версія */
+.glass-card--dark {
+  background: var(--glass-bg-dark);
+}
+
+/* Статична версія (для iOS fallback) */
+@supports not (backdrop-filter: blur(8px)) {
+  .glass-card {
+    background: var(--glass-bg-light);
+
+    /* Без blur, просто непрозорість */
+  }
+}
+
+/* Hardware acceleration (тільки під час анімації) */
+.glass-card--animating {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Adaptive blur: менше на iOS, більше на Desktop */
+@supports (-webkit-touch-callout: none) {
+  /* iOS */
+  .glass-card {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Desktop */
+  .glass-card {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Вимкнути blur при анімації (для продуктивності) */
+.glass-card.glass-card--animating {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+
+  /* Тимчасово показати статичний фон */
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Обмеження blur тільки для елементів < 500px */
+@media (width >= 500px) {
+  .glass-card {
+    max-width: 500px;
+  }
+}
+

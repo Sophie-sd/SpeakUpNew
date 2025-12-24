@@ -7,6 +7,13 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/components/hero-background.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/hero-section.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/achievements.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/advantages-carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/courses-accordion.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/testimonials.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/faq.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/consultation-form.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -40,13 +47,160 @@
 
 <!-- Шар 3: Контент (паралакс) -->
 <div class="hero-content" data-parallax-layer="content">
-  <section class="hero">
+  <!-- 1. Хіро секція -->
+  <section class="hero-section glass-section">
+    <div class="hero-section__header">
     <h1>SpeakUp тепер де завгодно</h1>
     <p>Ми переосмислили вивчення англійської</p>
-    <a href="{% url 'core:testing' %}" class="button button--primary">
-      Записатися на пробний урок
-    </a>
+    </div>
+
+    <div class="hero-section__cta">
+      <div class="hero-section__form glass-card">
+        {% include 'components/trial-form.html' with form=trial_form %}
+      </div>
+
+      <div class="hero-section__image">
+        <img src="{% static 'img/formsSpeaky.png' %}" alt="" loading="eager" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Досягнення -->
+  <section class="achievements glass-section" id="achievements">
+    <h2 class="section-title">Наші досягнення</h2>
+    <div class="achievements__grid">
+      {% for achievement in achievements %}
+      <div class="achievement-card glass-card" data-achievement-number="{{ achievement.number }}" data-achievement-suffix="{{ achievement.suffix|default:'' }}">
+        <span class="achievement-card__number">0{{ achievement.suffix|default:'' }}</span>
+        <span class="achievement-card__label">
+          {% if current_language == 'ru' and achievement.label_ru %}{{ achievement.label_ru }}{% else %}{{ achievement.label_uk }}{% endif %}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- 3. Переваги -->
+  <section class="advantages-carousel glass-section" id="advantages">
+    <h2 class="section-title">Наші переваги</h2>
+    <div class="advantages-carousel__container carousel-container">
+      {% for advantage in advantages %}
+      <div class="advantage-card glass-card carousel-item" data-advantage-id="{{ advantage.id }}">
+        <div class="advantage-card__front">
+          <h3 class="advantage-card__title">
+            {% if current_language == 'ru' and advantage.title_ru %}{{ advantage.title_ru }}{% else %}{{ advantage.title_uk }}{% endif %}
+          </h3>
+          <p class="advantage-card__text">
+            {% if current_language == 'ru' and advantage.front_text_ru %}{{ advantage.front_text_ru }}{% else %}{{ advantage.front_text_uk }}{% endif %}
+          </p>
+        </div>
+        <div class="advantage-card__back">
+          <p class="advantage-card__text">
+            {% if current_language == 'ru' and advantage.back_text_ru %}{{ advantage.back_text_ru }}{% else %}{{ advantage.back_text_uk }}{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- 4. Навчальні програми -->
+  <section class="courses-section glass-section" id="courses">
+    <h2 class="section-title">Навчальні програми</h2>
+    <div class="courses-section__grid">
+      {% for category in course_categories %}
+      <div class="course-category" data-category-slug="{{ category.slug }}">
+        <h3 class="course-category__title">{{ category.name_uk }}</h3>
+        <div class="course-accordion" data-accordion-container>
+          {% for course in category.courses.all %}
+            {% if course.is_active %}
+            <div class="course-accordion__item" data-accordion-item>
+              <button class="course-accordion__header" data-accordion-header>
+                <span class="course-accordion__title">
+                  {% if current_language == 'ru' and course.title_ru %}{{ course.title_ru }}{% else %}{{ course.title_uk }}{% endif %}
+                </span>
+                <span class="course-accordion__icon" aria-hidden="true">+</span>
+              </button>
+              <div class="course-accordion__content glass-card" data-accordion-content>
+                <p class="course-accordion__short-desc">
+                  {% if current_language == 'ru' and course.short_desc_ru %}{{ course.short_desc_ru }}{% else %}{{ course.short_desc_uk }}{% endif %}
+                </p>
+                <div class="course-accordion__detail">
+                  {% if current_language == 'ru' and course.detail_content_ru %}{{ course.detail_content_ru|safe }}{% else %}{{ course.detail_content_uk|safe }}{% endif %}
+                </div>
+                <a href="{{ course.get_absolute_url }}" class="button button--primary">Детальніше</a>
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- 5. Відгуки та FAQ -->
+  <section class="testimonials-section glass-section" id="testimonials">
+    <h2 class="section-title">Відгуки наших студентів</h2>
+    <div class="testimonials-carousel carousel-container">
+      {% for testimonial in testimonials %}
+      <div class="testimonial-card glass-card carousel-item">
+        <div class="testimonial-card__header">
+          <span class="testimonial-card__name">{{ testimonial.name }}</span>
+          <div class="testimonial-card__rating" aria-label="Рейтинг: {{ testimonial.rating }} з 5">
+            {% for i in "12345"|make_list %}
+              <span class="testimonial-card__star {% if forloop.counter <= testimonial.rating %}testimonial-card__star--active{% endif %}">★</span>
+            {% endfor %}
+          </div>
+        </div>
+        <p class="testimonial-card__text">{{ testimonial.text }}</p>
+        <time class="testimonial-card__date" datetime="{{ testimonial.created_at|date:'Y-m-d' }}">
+          {{ testimonial.created_at|date:'d.m.Y' }}
+        </time>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="button button--primary" id="testimonial-modal-trigger">Залишити відгук</button>
+  </section>
+
+  <section class="faq-section glass-section" id="faq">
+    <h2 class="section-title">Часті питання</h2>
+    <div class="faq-accordion" data-accordion-container>
+      {% for faq in faqs %}
+      <div class="faq-item glass-card" data-accordion-item>
+        <button class="faq-item__header" data-accordion-header>
+          <span class="faq-item__question">
+            {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
+          </span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__content" data-accordion-content>
+          <p>
+            {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- 6. Консультація -->
+  <section class="consultation-section glass-section" id="consultation">
+    <h2 class="section-title">Замовити консультацію</h2>
+    <div class="consultation-form glass-card">
+      {% include 'core/components/consultation_form.html' with form=consultation_form %}
+    </div>
   </section>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{% static 'js/modules/counter-animation.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/advantages-carousel.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/courses-accordion.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/testimonials-carousel.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/faq-accordion.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/consultation-form.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/testimonial-modal.js' %}" defer></script>
 {% endblock %}
 

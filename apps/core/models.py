@@ -2,6 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.translation import get_language
+from django.core.validators import RegexValidator, MaxValueValidator
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class BaseModel(models.Model):
@@ -66,4 +70,178 @@ class NewsArticle(BaseModel):
         lang = get_language()
         slug = self.slug_ru if lang == 'ru' and self.slug_ru else self.slug_uk
         return reverse('core:news_detail', kwargs={'slug': slug})
+
+
+# ============================================================================
+# Homepage Content Models
+# ============================================================================
+
+class Achievement(BaseModel):
+    """Досягнення SpeakUp з лічильниками"""
+    number = models.PositiveIntegerField(verbose_name="Число")
+    label_uk = models.CharField(max_length=100, verbose_name="Назва (UK)")
+    label_ru = models.CharField(max_length=100, blank=True, verbose_name="Назва (RU)")
+    suffix = models.CharField(max_length=10, blank=True, verbose_name="Суфікс", help_text="Наприклад: +, %")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+    is_active = models.BooleanField(default=True, verbose_name="Активний", db_index=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Досягнення"
+        verbose_name_plural = "Досягнення"
+
+    def __str__(self):
+        return f"{self.number}{self.suffix} {self.label_uk}"
+
+
+class Advantage(BaseModel):
+    """Переваги SpeakUp з flip картками"""
+    title_uk = models.CharField(max_length=100, verbose_name="Заголовок (UK)")
+    title_ru = models.CharField(max_length=100, blank=True, verbose_name="Заголовок (RU)")
+    front_text_uk = models.TextField(verbose_name="Текст спереду (UK)")
+    front_text_ru = models.TextField(blank=True, verbose_name="Текст спереду (RU)")
+    back_text_uk = models.TextField(verbose_name="Текст ззаду (UK)")
+    back_text_ru = models.TextField(blank=True, verbose_name="Текст ззаду (RU)")
+    icon = models.ImageField(upload_to='advantages/', blank=True, null=True, verbose_name="Іконка")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+    is_active = models.BooleanField(default=True, verbose_name="Активний", db_index=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Перевага"
+        verbose_name_plural = "Переваги"
+
+    def __str__(self):
+        return self.title_uk
+
+
+class CourseCategory(models.Model):
+    """Категорія курсів (Індивідуальні/Групові)"""
+    name_uk = models.CharField(max_length=100, verbose_name="Назва (UK)")
+    name_ru = models.CharField(max_length=100, blank=True, verbose_name="Назва (RU)")
+    slug = models.SlugField(unique=True, verbose_name="Slug")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Категорія курсів"
+        verbose_name_plural = "Категорії курсів"
+
+    def __str__(self):
+        return self.name_uk
+
+
+class Course(BaseModel):
+    """Навчальний курс"""
+    category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE, related_name='courses', verbose_name="Категорія")
+    title_uk = models.CharField(max_length=200, verbose_name="Назва (UK)")
+    title_ru = models.CharField(max_length=200, blank=True, verbose_name="Назва (RU)")
+    short_desc_uk = models.TextField(max_length=300, verbose_name="Короткий опис (UK)")
+    short_desc_ru = models.TextField(max_length=300, blank=True, verbose_name="Короткий опис (RU)")
+    detail_content_uk = models.TextField(verbose_name="Детальний контент (UK)")
+    detail_content_ru = models.TextField(blank=True, verbose_name="Детальний контент (RU)")
+    slug = models.SlugField(unique=True, verbose_name="Slug")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+    is_active = models.BooleanField(default=True, verbose_name="Активний", db_index=True)
+
+    class Meta:
+        ordering = ['category', 'order', 'id']
+        verbose_name = "Курс"
+        verbose_name_plural = "Курси"
+
+    def __str__(self):
+        return self.title_uk
+
+    def get_absolute_url(self):
+        return reverse('core:program_detail', kwargs={'slug': self.slug})
+
+
+class Testimonial(BaseModel):
+    """Відгуки клієнтів з модерацією"""
+    name = models.CharField(max_length=100, verbose_name="Ім'я")
+    text = models.TextField(max_length=500, verbose_name="Текст відгуку")
+    rating = models.PositiveSmallIntegerField(
+        default=5,
+        validators=[MaxValueValidator(5)],
+        verbose_name="Рейтинг",
+        help_text="Від 1 до 5"
+    )
+    is_published = models.BooleanField(default=False, verbose_name="Опубліковано", db_index=True)
+    moderated_at = models.DateTimeField(null=True, blank=True, verbose_name="Дата модерації")
+    moderated_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='moderated_testimonials',
+        verbose_name="Модератор"
+    )
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Відгук"
+        verbose_name_plural = "Відгуки"
+
+    def __str__(self):
+        return f"{self.name} - {self.created_at.strftime('%d.%m.%Y')}"
+
+
+class FAQ(BaseModel):
+    """Часті питання"""
+    question_uk = models.CharField(max_length=200, verbose_name="Питання (UK)")
+    question_ru = models.CharField(max_length=200, blank=True, verbose_name="Питання (RU)")
+    answer_uk = models.TextField(verbose_name="Відповідь (UK)")
+    answer_ru = models.TextField(blank=True, verbose_name="Відповідь (RU)")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+    is_active = models.BooleanField(default=True, verbose_name="Активний", db_index=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQ"
+
+    def __str__(self):
+        return self.question_uk
+
+
+class ConsultationRequest(BaseModel):
+    """Заявка на консультацію"""
+    phone_validator = RegexValidator(
+        regex=r'^\+380\d{9}$',
+        message="Номер має бути в форматі +380XXXXXXXXX"
+    )
+    phone = models.CharField(
+        max_length=13,
+        validators=[phone_validator],
+        verbose_name="Телефон"
+    )
+    prefers_messenger = models.BooleanField(default=False, verbose_name="Консультація в переписці")
+    messenger_choice = models.CharField(
+        max_length=20,
+        choices=[
+            ('whatsapp', 'WhatsApp'),
+            ('viber', 'Viber'),
+            ('telegram', 'Telegram')
+        ],
+        blank=True,
+        verbose_name="Месенджер"
+    )
+    # UTM tracking (як у TrialLesson)
+    utm_source = models.CharField(max_length=100, blank=True, verbose_name="UTM Source")
+    utm_medium = models.CharField(max_length=100, blank=True, verbose_name="UTM Medium")
+    utm_campaign = models.CharField(max_length=100, blank=True, verbose_name="UTM Campaign")
+    utm_content = models.CharField(max_length=100, blank=True, verbose_name="UTM Content")
+    utm_term = models.CharField(max_length=100, blank=True, verbose_name="UTM Term")
+    fbclid = models.CharField(max_length=200, blank=True, verbose_name="Facebook Click ID")
+    gclid = models.CharField(max_length=200, blank=True, verbose_name="Google Click ID")
+    referrer = models.URLField(max_length=500, blank=True, verbose_name="Referrer")
+    ip_address = models.GenericIPAddressField(null=True, blank=True, verbose_name="IP адреса")
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Заявка на консультацію"
+        verbose_name_plural = "Заявки на консультацію"
+
+    def __str__(self):
+        return f"{self.phone} - {self.created_at.strftime('%d.%m.%Y')}"
 

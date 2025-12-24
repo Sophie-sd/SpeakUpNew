@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Achievements Section - Досягнення з лічильниками
+   ========================================================================== */
+
+.achievements {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  contain: layout style;
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text);
+}
+
+.achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.achievement-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  text-align: center;
+  min-height: 150px;
+}
+
+.achievement-card__number {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+}
+
+.achievement-card__label {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Мобільна версія */
+@media (width <= 767px) {
+  .achievements {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+    max-width: var(--content-width-mobile);
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (width <= 480px) {
+  .achievements__grid {
+    grid-template-columns: 1fr;
+  }
+}
+

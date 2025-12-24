@@ -1,0 +1,34 @@
+{% load static %}
+<div class="consultation-form__form">
+  <form method="post" action="{% url 'core:submit_consultation' %}" hx-post="{% url 'core:submit_consultation' %}" hx-swap="outerHTML">
+    {% csrf_token %}
+    <div class="consultation-form__phone-section">
+      <div class="form-group">
+        {{ form.phone }}
+        {% if form.phone.errors %}
+          <span class="form-error">{{ form.phone.errors.0 }}</span>
+        {% endif %}
+      </div>
+      <div class="consultation-form__checkbox-wrapper">
+        {{ form.prefers_messenger }}
+        <label for="{{ form.prefers_messenger.id_for_label }}">{{ form.prefers_messenger.label }}</label>
+      </div>
+      <button type="submit" class="button button--primary button--full">
+        Замовити дзвінок
+      </button>
+    </div>
+
+    <div class="consultation-form__messenger-buttons">
+      <a href="#" class="consultation-form__messenger-button" data-messenger="whatsapp" aria-label="WhatsApp">
+        <span>💬</span>
+      </a>
+      <a href="#" class="consultation-form__messenger-button" data-messenger="viber" aria-label="Viber">
+        <span>💜</span>
+      </a>
+      <a href="#" class="consultation-form__messenger-button" data-messenger="telegram" aria-label="Telegram">
+        <span>✈️</span>
+      </a>
+    </div>
+  </form>
+</div>
+

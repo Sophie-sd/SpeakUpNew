@@ -1,0 +1,19 @@
+<form class="trial-form" method="post" action="{% url 'leads:submit_trial_form' %}" hx-post="{% url 'leads:submit_trial_form' %}" hx-swap="outerHTML">
+  {% csrf_token %}
+  <div class="form-group">
+    {{ form.name }}
+    {% if form.name.errors %}
+      <span class="form-error">{{ form.name.errors.0 }}</span>
+    {% endif %}
+  </div>
+  <div class="form-group">
+    {{ form.phone }}
+    {% if form.phone.errors %}
+      <span class="form-error">{{ form.phone.errors.0 }}</span>
+    {% endif %}
+  </div>
+  <button type="submit" class="button button--primary button--full">
+    Записатися на пробний урок
+  </button>
+</form>
+

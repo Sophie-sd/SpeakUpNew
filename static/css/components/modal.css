@@ -40,18 +40,29 @@
   z-index: var(--z-modal);
   width: 100%;
   max-width: 600px;
-  max-height: 90vh;
+  max-height: 90vh; /* Fallback */
+  max-height: 90dvh;
   overflow-y: auto;
   background-color: var(--color-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: var(--spacing-lg);
+  padding: max(var(--spacing-lg), env(safe-area-inset-top, 0px))
+           max(var(--spacing-lg), env(safe-area-inset-right, 0px))
+           max(var(--spacing-lg), env(safe-area-inset-bottom, 0px))
+           max(var(--spacing-lg), env(safe-area-inset-left, 0px));
   transform: scale(0.95);
   transition: transform var(--transition-base);
 }
 
 .modal--active .modal__content {
   transform: scale(1);
+}
+
+@media (width <= 767px) {
+  .modal__content {
+    max-width: 90vw;
+    max-width: min(90vw, var(--content-width-mobile));
+  }
 }
 
 .modal__header {

@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Advantages Carousel - Карусель переваг з flip картками
+   ========================================================================== */
+
+.advantages-carousel {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  contain: layout style;
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.advantages-carousel__container {
+  margin: 0 auto;
+  padding: var(--spacing-md) 0;
+}
+
+.advantage-card {
+  position: relative;
+  min-width: 280px;
+  width: 100%;
+  max-width: 320px;
+  min-height: 300px;
+  margin: 0 var(--spacing-md);
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.advantage-card__front,
+.advantage-card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-lg);
+  backface-visibility: hidden;
+  transition: transform 0.6s ease, opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.advantage-card__front {
+  transform: rotateY(0deg);
+}
+
+.advantage-card__back {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.advantage-card.flipped .advantage-card__front {
+  transform: rotateY(-180deg);
+  opacity: 0;
+}
+
+.advantage-card.flipped .advantage-card__back {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.advantage-card__title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.advantage-card__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Десктоп: 4 картки в ряд */
+@media (width >= 768px) {
+  .advantages-carousel__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .advantage-card {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+/* Мобільний: scroll-snap */
+@media (width <= 767px) {
+  .advantages-carousel {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+    max-width: var(--content-width-mobile);
+  }
+
+  .advantages-carousel__container {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--spacing-md);
+    overflow-x: auto;
+  }
+
+  .advantage-card {
+    flex: 0 0 calc(100% - var(--spacing-md) * 2);
+    scroll-snap-align: center;
+  }
+}
+
+/* Вимкнути flip при анімації для продуктивності */
+.advantage-card.glass-card--animating {
+  transform: translateZ(0);
+}
+

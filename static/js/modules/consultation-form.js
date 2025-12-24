@@ -1,0 +1,85 @@
+'use strict';
+
+/**
+ * Consultation Form - форма консультації з месенджерами
+ * Slide transition при виборі "консультація в переписці"
+ */
+function initConsultationForm() {
+  const formContainer = document.querySelector('.consultation-form');
+  const form = formContainer?.querySelector('.consultation-form__form') || formContainer;
+  if (!form) return;
+
+  const checkbox = form.querySelector('input[name="prefers_messenger"]');
+  const phoneSection = form.querySelector('.consultation-form__phone-section');
+  const messengerButtons = form.querySelector('.consultation-form__messenger-buttons');
+  const messengerChoiceInputs = form.querySelectorAll('input[name="messenger_choice"]');
+
+  if (!checkbox || !phoneSection || !messengerButtons) return;
+
+  // Обробка checkbox
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      formContainer.classList.add('consultation-form--messenger-mode');
+
+      // Показуємо вибір месенджера (якщо є)
+      messengerChoiceInputs.forEach(input => {
+        const formGroup = input.closest('.form-group');
+        if (formGroup) {
+          formGroup.classList.add('messenger-field');
+        }
+      });
+    } else {
+      formContainer.classList.remove('consultation-form--messenger-mode');
+
+      // Ховаємо вибір месенджера (якщо є)
+      messengerChoiceInputs.forEach(input => {
+        const formGroup = input.closest('.form-group');
+        if (formGroup) {
+          formGroup.classList.remove('messenger-field');
+        }
+      });
+    }
+  });
+
+  // Обробка кнопок месенджерів
+  const messengerButtonsList = messengerButtons.querySelectorAll('.consultation-form__messenger-button');
+  messengerButtonsList.forEach(button => {
+    button.addEventListener('click', function() {
+      const messenger = this.dataset.messenger;
+      if (!messenger) return;
+
+      // Встановлюємо вибраний месенджер
+      messengerChoiceInputs.forEach(input => {
+        if (input.value === messenger) {
+          input.checked = true;
+        }
+      });
+
+      // Формуємо URL для месенджера
+      const phone = form.querySelector('input[name="phone"]')?.value || '380931707867';
+      let url = '';
+
+      switch (messenger) {
+        case 'whatsapp':
+          url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}`;
+          break;
+        case 'viber':
+          url = `viber://chat?number=${phone.replace(/[^0-9]/g, '')}`;
+          break;
+        case 'telegram':
+          url = 'https://t.me/speakup_bot';
+          break;
+      }
+
+      if (url) {
+        // Відкриваємо у новій вкладці/додатку
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initConsultationForm);
+
+export default { initConsultationForm };
+

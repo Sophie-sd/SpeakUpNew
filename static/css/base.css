@@ -31,6 +31,24 @@
   --glass-black: rgba(0, 0, 0, 0.1);
   --glass-blur: blur(10px);
 
+  /* Glassmorphism colors (iOS 18+ стиль) */
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-bg-dark: rgba(0, 0, 0, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  /* Gradient overlays (замість blur для великих елементів) */
+  --glass-gradient-light: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  --glass-gradient-dark: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+
   /* Gray light для меню */
   --color-gray-light: rgba(255, 255, 255, 0.1);
 
@@ -69,6 +87,7 @@
   --z-background: -1;        /* НОВИЙ: для паралакс фону */
   --z-speaky-layer: 0;       /* Speaky персонаж */
   --z-content: 1;            /* Контент */
+  --z-section-content: 2;    /* Вище за hero-content (1) */
   --z-running-line: 998;
   --z-menu-overlay: 999;
   --z-menu: 1000;
@@ -86,6 +105,35 @@
   --transition-normal: 0.3s ease;
   --transition-base: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
+
+  /* Content width constraints */
+  --content-width-desktop: 70vw;
+  --content-width-mobile: 85vw;
+  --content-max-width: 1200px;
+
+  /* Enhanced spacing for sections */
+  --section-spacing-desktop: 4rem; /* 64px */
+  --section-spacing-mobile: 3rem; /* 48px */
+  --section-padding-desktop: 3rem; /* 48px */
+  --section-padding-mobile: 2rem; /* 32px */
+
+  /* Enhanced glassmorphism */
+  --glass-bg-elevated: rgba(255, 255, 255, 0.85);
+  --glass-border-elevated: rgba(255, 255, 255, 0.3);
+  --glass-shadow-elevated:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 16px 64px rgba(0, 0, 0, 0.12),
+    0 24px 96px rgba(0, 0, 0, 0.15);
+
+  /* Button enhancements */
+  --button-padding-v: 1rem; /* 16px */
+  --button-padding-h: 2rem; /* 32px */
+  --button-shadow: 0 4px 12px rgba(220, 20, 60, 0.25);
+  --button-shadow-hover: 0 6px 20px rgba(220, 20, 60, 0.35);
+
+  /* Form contrast */
+  --input-bg: rgba(255, 255, 255, 0.95);
+  --input-border: rgba(0, 0, 0, 0.2);
 }
 
 /* Dark mode support */
@@ -268,5 +316,21 @@ h1, h2, h3, h4, h5, h6 {
 .full-height {
   height: 100vh; /* Fallback */
   height: 100dvh;
+}
+
+/* Content width constraint utility */
+.content-constrained {
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+@media (width <= 767px) {
+  .content-constrained {
+    max-width: var(--content-width-mobile);
+  }
 }
 

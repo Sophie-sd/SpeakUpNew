@@ -52,11 +52,11 @@
 /* Speaky шар (поверх фону, під контентом) */
 .speaky-layer {
   position: fixed;
-  bottom: -15rem;
+  bottom: -45rem;
   left: 50%;
   z-index: var(--z-speaky-layer, 0);
   width: 30rem; /* Fallback */
-  width: clamp(20rem, 30vw, 35rem);
+  width: clamp(25rem, 30vw, 35rem);
   height: auto;
   pointer-events: none;
 
@@ -125,6 +125,7 @@
 }
 
 /* Reduced motion - використовує наявне глобальне правило з base.css */
+
 /* Але додаємо специфічне для фону */
 @media (prefers-reduced-motion: reduce) {
   .hero-background {

@@ -1,0 +1,38 @@
+{% load static %}
+<div class="modal modal--active" role="dialog" aria-modal="true" aria-labelledby="testimonial-modal-title">
+  <div class="modal__backdrop"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <h2 class="modal__title" id="testimonial-modal-title">Залишити відгук</h2>
+      <button type="button" class="modal__close" aria-label="Закрити модальне вікно">×</button>
+    </div>
+    <div class="modal__body">
+      <form method="post" action="{% url 'core:submit_testimonial' %}" hx-post="{% url 'core:submit_testimonial' %}" hx-swap="outerHTML">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.name }}
+          {% if form.name.errors %}
+            <span class="form-error">{{ form.name.errors.0 }}</span>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.text }}
+          {% if form.text.errors %}
+            <span class="form-error">{{ form.text.errors.0 }}</span>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.rating.id_for_label }}">Рейтинг</label>
+          {{ form.rating }}
+          {% if form.rating.errors %}
+            <span class="form-error">{{ form.rating.errors.0 }}</span>
+          {% endif %}
+        </div>
+        <button type="submit" class="button button--primary button--full">
+          Відправити відгук
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

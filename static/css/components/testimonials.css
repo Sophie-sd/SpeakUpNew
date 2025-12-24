@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Testimonials Section - Відгуки клієнтів
+   ========================================================================== */
+
+.testimonials-section {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  contain: layout style;
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonials-carousel {
+  margin: 0 auto var(--spacing-xl);
+  padding: var(--spacing-md) 0;
+}
+
+.testimonial-card {
+  min-width: 300px;
+  width: 100%;
+  max-width: 380px;
+  padding: var(--spacing-lg);
+  margin: 0 var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.testimonial-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.testimonial-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.testimonial-card__rating {
+  display: flex;
+  gap: 2px;
+  font-size: var(--font-size-lg);
+}
+
+.testimonial-card__star {
+  color: var(--color-border);
+}
+
+.testimonial-card__star--active {
+  color: #FFD700; /* Gold */
+}
+
+.testimonial-card__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  flex: 1 0 0;
+}
+
+.testimonial-card__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Десктоп: 3 картки */
+@media (width >= 768px) {
+  .testimonials-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .testimonial-card {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+/* Мобільний: scroll-snap */
+@media (width <= 767px) {
+  .testimonials-section {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+    max-width: var(--content-width-mobile);
+  }
+
+  .testimonials-carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--spacing-md);
+    overflow-x: auto;
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc(100% - var(--spacing-md) * 2);
+    scroll-snap-align: center;
+  }
+}
+

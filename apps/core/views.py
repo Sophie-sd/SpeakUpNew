@@ -1,13 +1,44 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.utils.translation import get_language
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from .seo_config import PROGRAMS, LOCATIONS, CITIES
-from .models import NewsArticle
+from .models import (
+    NewsArticle, Achievement, Advantage, CourseCategory, Course,
+    Testimonial, FAQ, ConsultationRequest
+)
+from .forms import TestimonialForm, ConsultationForm
+from apps.leads.forms import TrialLessonForm
 
 def index(request):
-    """Головна сторінка."""
-    return render(request, 'core/index.html')
+    """Головна сторінка з усіма секціями."""
+    lang = get_language()
+
+    # Вибір полів залежно від мови
+    def get_localized_field(obj, field):
+        if lang == 'ru' and hasattr(obj, f'{field}_ru'):
+            value = getattr(obj, f'{field}_ru', None)
+            if value:
+                return value
+        return getattr(obj, f'{field}_uk', '')
+
+    context = {
+        'achievements': Achievement.objects.filter(is_active=True).order_by('order'),
+        'advantages': Advantage.objects.filter(is_active=True).order_by('order'),
+        'course_categories': CourseCategory.objects.prefetch_related(
+            'courses'
+        ).filter(courses__is_active=True).distinct().order_by('order'),
+        'testimonials': Testimonial.objects.filter(is_published=True).order_by('-created_at')[:10],
+        'faqs': FAQ.objects.filter(is_active=True).order_by('order'),
+        'trial_form': TrialLessonForm(),
+        'consultation_form': ConsultationForm(),
+        'testimonial_form': TestimonialForm(),
+        'current_language': lang,
+    }
+    return render(request, 'core/index.html', context)
 
 def about(request):
     """Про нас."""
@@ -134,4 +165,76 @@ def news_detail(request, slug):
     }
 
     return render(request, 'core/news_detail.html', context)
+
+
+# ============================================================================
+# Homepage Content Views
+# ============================================================================
+
+@require_http_methods(["POST"])
+def submit_testimonial(request):
+    """Обробка форми відгуку з HTMX."""
+    form = TestimonialForm(request.POST)
+
+    if form.is_valid():
+        testimonial = form.save(commit=False)
+        testimonial.is_published = False  # Потребує модерації
+        testimonial.save()
+
+        # Повертаємо success message для HTMX
+        return render(request, 'core/components/testimonial_success.html', {
+            'message': 'Ваш відгук буде опубліковано після перевірки модератором'
+        })
+
+    # Якщо форма невалідна, повертаємо форму з помилками
+    return render(request, 'core/components/testimonial_form.html', {
+        'form': form
+    }, status=400)
+
+
+@require_http_methods(["GET"])
+def get_testimonial_form(request):
+    """Отримати форму відгуку для модального вікна."""
+    form = TestimonialForm()
+    return render(request, 'core/components/testimonial_form.html', {
+        'form': form
+    })
+
+
+@require_http_methods(["POST"])
+def submit_consultation(request):
+    """Обробка форми консультації з HTMX."""
+    form = ConsultationForm(request.POST)
+
+    if form.is_valid():
+        consultation = form.save(commit=False)
+
+        # Збираємо UTM параметри
+        consultation.utm_source = request.GET.get('utm_source', '') or request.POST.get('utm_source', '')
+        consultation.utm_medium = request.GET.get('utm_medium', '') or request.POST.get('utm_medium', '')
+        consultation.utm_campaign = request.GET.get('utm_campaign', '') or request.POST.get('utm_campaign', '')
+        consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
+        consultation.utm_term = request.GET.get('utm_term', '') or request.POST.get('utm_term', '')
+        consultation.fbclid = request.GET.get('fbclid', '') or request.POST.get('fbclid', '')
+        consultation.gclid = request.GET.get('gclid', '') or request.POST.get('gclid', '')
+        consultation.referrer = request.META.get('HTTP_REFERER', '')
+
+        # IP адреса
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            consultation.ip_address = x_forwarded_for.split(',')[0].strip()
+        else:
+            consultation.ip_address = request.META.get('REMOTE_ADDR')
+
+        consultation.save()
+
+        # Повертаємо success message
+        return render(request, 'core/components/consultation_success.html', {
+            'message': 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.'
+        })
+
+    # Якщо форма невалідна, повертаємо помилки
+    return render(request, 'core/components/consultation_form.html', {
+        'form': form
+    }, status=400)
 
