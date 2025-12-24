@@ -5,8 +5,8 @@
 .hero-section {
   display: flex;
   flex-direction: column;
-  max-height: 50vh; /* Fallback */
-  max-height: 50dvh;
+  max-height: 65vh; /* Fallback */
+  max-height: 65dvh;
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
   contain: layout style;
@@ -18,28 +18,38 @@
 }
 
 .hero-section__header {
-  margin-bottom: 1.5rem;
+
   text-align: center;
 }
 
 .hero-section__header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem); /* 40-56px */
   font-weight: 700;
-  margin-bottom: 1rem;
+
   line-height: 1.2;
 }
 
 /* Загальний клас для червоних акцентів */
 .text-accent,
 .hero-section__price-accent {
+  display: inline-block;
   color: var(--color-primary);
   font-weight: 700;
+  background-color: var(--color-white);
+  padding: 0.1em 0.1em;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Зелений акцент для "БЕЗКОШТОВНО" */
 .hero-section__free-accent {
+  display: inline-block;
   color: var(--color-success);
   font-weight: 700;
+  background-color: var(--color-white);
+  padding: 0.25em 0.5em;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-section__header p {
@@ -131,6 +141,13 @@
     max-width: 100%;
     justify-self: center;
     margin-right: 0;
+  }
+
+  /* Адаптивні капсули для акцентів на мобільних */
+  .hero-section__price-accent,
+  .hero-section__free-accent {
+    padding: 0.2em 0.4em;
+    font-size: 0.9em;
   }
 }
 

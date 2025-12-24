@@ -24,8 +24,13 @@
 
 /* Акцентний червоний колір (як у hero-section__price-accent) */
 .text-accent {
+  display: inline-block;
   color: var(--color-primary);
   font-weight: 700;
+  background-color: var(--color-white);
+  padding: 0.25em 0.5em;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Альтернативний варіант без font-weight */

@@ -35,36 +35,31 @@ export class BurgerMenu {
   }
 
   open() {
-    // iOS Safari: зберегти позицію скролу
+    // Зберегти позицію скролу
     this.scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
     if (this.scrollPosition > 0) {
       sessionStorage.setItem('burgerMenuScrollPosition', this.scrollPosition.toString());
     }
 
-    // Подвійний RAF для Safari
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        this.button.setAttribute('aria-expanded', 'true');
-        this.overlay.setAttribute('aria-hidden', 'false');
-        this.dropdown.setAttribute('aria-hidden', 'false');
+    this.button.setAttribute('aria-expanded', 'true');
+    this.overlay.setAttribute('aria-hidden', 'false');
+    this.dropdown.setAttribute('aria-hidden', 'false');
 
-        // Розрахунок ширини scrollbar
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    // Розрахунок ширини scrollbar
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-        // Блокування скролу
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100vw';
-        document.body.style.top = `-${this.scrollPosition}px`;
+    // Блокування скролу
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100vw';
+    document.body.style.top = `-${this.scrollPosition}px`;
 
-        if (scrollbarWidth > 0) {
-          document.body.style.paddingRight = `${scrollbarWidth}px`;
-        }
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
-        this.isOpen = true;
-      });
-    });
+    this.isOpen = true;
   }
 
   close() {
@@ -79,29 +74,15 @@ export class BurgerMenu {
     document.body.style.width = '';
     document.body.style.paddingRight = '';
 
-    // Подвійний requestAnimationFrame для iOS Safari
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          window.scrollTo({
-            top: this.scrollPosition,
-            behavior: 'auto'
-          });
-
-          // Додаткова перевірка для iOS
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-          if (isIOS) {
-            setTimeout(() => {
-              window.scrollTo({
-                top: this.scrollPosition,
-                behavior: 'auto'
-              });
-            }, 50);
-          }
-        }, 20);
+    // Відновити позицію скролу
+    if (this.scrollPosition !== undefined && this.scrollPosition !== null && this.scrollPosition >= 0) {
+      window.scrollTo({
+        top: this.scrollPosition,
+        behavior: 'auto'
       });
-    });
+    }
 
+    sessionStorage.removeItem('burgerMenuScrollPosition');
     this.isOpen = false;
   }
 }

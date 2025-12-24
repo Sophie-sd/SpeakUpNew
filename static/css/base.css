@@ -99,6 +99,12 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
 
+  /* Fixed menu heights */
+  --header-height: 80px;     /* Desktop header */
+  --nav-height: 70px;        /* Mobile navigation */
+  --z-header: 1000;          /* Top header */
+  --z-nav: 1000;             /* Bottom navigation */
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -331,6 +337,27 @@ h1, h2, h3, h4, h5, h6 {
 @media (width <= 767px) {
   .content-constrained {
     max-width: var(--content-width-mobile);
+  }
+}
+
+/* Fixed menu offset utility */
+.fixed-menu-offset {
+  padding-top: var(--header-height, 80px);
+  padding-bottom: var(--nav-height, 70px);
+}
+
+/* Main content offset for fixed menus */
+main#main-content {
+  /* Desktop: top padding for header, bottom for nav */
+  padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (width <= 767px) {
+  main#main-content {
+    /* Mobile: top padding for header, bottom for nav */
+    padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
   }
 }
 
