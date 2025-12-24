@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Hero Parallax Background - Оптимізовано для всіх платформ
+   ========================================================================== */
+
+.hero-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh; /* Fallback */
+  height: 120dvh; /* iOS Dynamic Viewport */
+  z-index: var(--z-background, -1);
+  overflow: hidden;
+  pointer-events: none; /* Важливо: не блокує кліки */
+
+  /* Hardware acceleration - використовуємо наявний паттерн з header.css */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* Явно вимикаємо blur якщо він застосовується через глобальні стилі */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+
+  /* will-change тільки коли активний - додається через JS */
+}
+
+/* Активний стан (додається через JS) */
+.hero-background--active {
+  will-change: transform;
+}
+
+.hero-background__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+
+  /* Запобігає мерехтінню на iOS - використовуємо наявний паттерн */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* Явно вимикаємо blur */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+}
+
+/* Speaky шар (поверх фону, під контентом) */
+.speaky-layer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateZ(0);
+  z-index: var(--z-speaky-layer, 0);
+  width: 300px;
+  height: auto;
+  max-width: 40vw;
+  pointer-events: none;
+
+  /* Спільні стилі з hero-background */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.speaky-layer--active {
+  will-change: transform;
+}
+
+.speaky-layer__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Контент над фоном */
+.hero-content {
+  position: relative;
+  z-index: var(--z-content, 1);
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh;
+}
+
+/* Hero секція (оновлення для index.html) */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.hero p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-muted);
+}
+
+/* iOS Safari специфічні фікси */
+@supports (-webkit-touch-callout: none) {
+  .hero-background {
+    height: 120dvh;
+
+    /* Fallback для iOS < 15 */
+    height: calc(var(--parallax-vh, 1vh) * 120);
+  }
+
+  .hero-content,
+  .hero {
+    min-height: 100dvh;
+    min-height: calc(var(--parallax-vh, 1vh) * 100);
+  }
+}
+
+/* Reduced motion - використовує наявне глобальне правило з base.css */
+/* Але додаємо специфічне для фону */
+@media (prefers-reduced-motion: reduce) {
+  .hero-background {
+    position: absolute;
+
+    /* transform буде видалений через JS */
+  }
+}
+
+/* Мобільна версія */
+@media (width <= 767px) {
+  .speaky-layer {
+    width: 200px;
+    max-width: 50vw;
+  }
+
+  .hero {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero p {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* iOS фікси для Speaky */
+@supports (-webkit-touch-callout: none) {
+  .speaky-layer {
+    bottom: max(0px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Reduced motion для Speaky */
+@media (prefers-reduced-motion: reduce) {
+  .speaky-layer {
+    position: absolute;
+  }
+}
+

@@ -1,9 +1,16 @@
 /* ===== ХЕДЕР (десктоп) ===== */
 .header-wrapper {
-  width: 100%;
-  max-width: 1200px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-menu-button);
+  display: contents; /* На десктопі розгортається */
+  padding: 0 var(--spacing-md);
   margin: 0 auto;
-  padding: var(--spacing-md);
+  max-width: 1200px;
+  box-sizing: border-box; /* Критично: padding враховується в ширину */
+  box-shadow: none;
 }
 
 .header {
@@ -11,13 +18,8 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md) var(--spacing-lg);
-
-  /* Glassmorphism (червоний відтінок): */
-  background: var(--glass-white);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-lg);
+  box-sizing: border-box; /* Критично: padding враховується в ширину */
+  box-shadow: none;
 }
 
 .header__logo {
@@ -35,11 +37,15 @@
   gap: var(--spacing-sm);
   flex: 1 0 0;
   align-items: center;
+  min-width: 0; /* Критично: дозволяє flex елементам стискатися */
+  box-sizing: border-box;
 }
 
 .trial-form--desktop .form-group {
   margin: 0;
   flex: 1 0 0;
+  min-width: 0; /* Критично: дозволяє flex елементам стискатися */
+  box-sizing: border-box;
 }
 
 .trial-form--desktop .form-group__input {
@@ -60,16 +66,21 @@
 
 /* Десктоп (≥768px) */
 @media (width >= 768px) {
+  .header-wrapper {
+    display: contents; /* Прозорий контейнер */
+  }
+
   .header {
-    position: sticky; /* Safari fallback */
-    bottom: 20px;
-    z-index: 1000;
-    padding: var(--spacing-sm) 0;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: none;
   }
 
   .header__nav {
     max-width: 900px;
     padding: 0 var(--spacing-sm);
+    box-shadow: none; /* Виправлення: прибрати зайву тінь на десктопі */
   }
 
   .mobile-nav-container {
@@ -87,6 +98,8 @@
   padding: 0 var(--spacing-md);
   margin: 0 auto;
   max-width: 1200px;
+  box-sizing: border-box; /* Критично: padding враховується в ширину */
+  box-shadow: none; /* Виправлення: прибрати зайву тінь */
 }
 
 .header__nav {
@@ -95,12 +108,13 @@
 
   /* Glassmorphism (білий на темному): */
   background: rgba(0, 0, 0, 0.8);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
+
+  /* Виправлення: видалено backdrop-filter щоб прибрати тінь */
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-pill);
   padding: var(--spacing-sm) var(--spacing-lg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Критично: padding враховується в ширину */
+  box-shadow: none; /* Виправлення: прибрати зайву тінь */
 }
 
 .header__menu {
@@ -170,6 +184,7 @@
   cursor: pointer;
   color: var(--color-white);
   touch-action: manipulation;
+  box-shadow: none; /* Критично: прибрати тінь */
 }
 
 .burger-menu__icon {
@@ -249,8 +264,8 @@
 .burger-menu__dropdown {
   position: fixed;
   bottom: 0;
-  left: 36px;
-  right: 28px;
+  left: max(10px, env(safe-area-inset-left, 10px));
+  right: max(10px, env(safe-area-inset-right, 10px));
   z-index: 1000;
   background: var(--color-gray-light);
   border-radius: var(--radius-lg);
@@ -263,6 +278,8 @@
               visibility var(--transition-normal);
   max-height: 80vh;
   overflow-y: auto;
+  box-sizing: border-box; /* Критично: padding враховується в ширину */
+  max-width: 100%; /* Запобігає виходу за межі */
 
   /* Приховати scrollbar */
   scrollbar-width: none;
@@ -276,8 +293,8 @@
   backface-visibility: hidden;
   will-change: transform, opacity, visibility;
   border: 1px solid var(--color-border-light);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
+
+  /* Виправлення: видалено backdrop-filter щоб прибрати прозорість */
 }
 
 .burger-menu__dropdown[aria-hidden="false"] {
@@ -326,11 +343,6 @@
 /* ===== МОБІЛЬНА ВЕРСІЯ (≤767px) ===== */
 @media (width <= 767px) {
   /* Хедер стає вертикальним: */
-  .header {
-    flex-direction: column;
-    position: static;
-    border-radius: var(--radius-md);
-  }
 
   /* Десктоп форма ховається: */
   .trial-form--desktop {
@@ -361,14 +373,37 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    position: sticky; /* Safari fallback */
+    position: sticky;
     bottom: 10px;
     bottom: max(10px, env(safe-area-inset-bottom, 10px));
     z-index: 1001;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%; /* Виправлення: 100% замість 100vw (не включає scrollbar) */
+    box-sizing: border-box; /* Критично: padding враховується в ширину */
     padding-left: max(10px, env(safe-area-inset-left, 10px));
     padding-right: max(10px, env(safe-area-inset-right, 10px));
+    overflow-x: hidden; /* Критично: запобігає горизонтальному скролу */
+
+    /* Hardware acceleration */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .header-wrapper {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%; /* Виправлення: 100% замість 100vw (не включає scrollbar) */
+    box-sizing: border-box;
+    padding-left: max(10px, env(safe-area-inset-left, 10px));
+    padding-right: max(10px, env(safe-area-inset-right, 10px));
+    padding-top: max(10px, env(safe-area-inset-top, 10px));
+    box-shadow: none;
+    overflow-x: hidden; /* Критично: запобігає горизонтальному скролу */
 
     /* Hardware acceleration */
     -webkit-transform: translateZ(0);
@@ -378,12 +413,17 @@
   }
 
   .header {
-    position: static; /* Всередині grid */
+    flex-direction: column;
+    position: static;
     bottom: auto;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     overflow: hidden;
+    margin: 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    box-shadow: none;
+    border-radius: var(--radius-md);
   }
 
   .header__nav {
@@ -394,6 +434,7 @@
     overflow: hidden;
     position: static;
     bottom: 0;
+    box-shadow: none; /* Виправлення: прибрати зайву тінь на мобільних */
   }
 
   .header__menu {
@@ -404,6 +445,8 @@
     min-width: 0;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box; /* Критично: padding враховується в ширину */
+    overflow-wrap: break-word; /* Дозволяє переносити довгі слова */
 
     /* Приховати scrollbar */
     scrollbar-width: none;
