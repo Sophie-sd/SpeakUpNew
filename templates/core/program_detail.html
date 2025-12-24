@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ program.title }} - SPEAK UP{% endblock %}
+{% block og_title %}{{ program.title }} - SPEAK UP{% endblock %}
+{% block meta_description %}{{ program.description }}{% endblock %}
+
+{% block content %}
+<main>
+  <h1>{{ program.title }}</h1>
+
+  <!-- Основний опис -->
+  <section>
+    <p>{{ program.description }}</p>
+    {% if program.full_content %}
+    <div>{{ program.full_content|linebreaks }}</div>
+    {% endif %}
+  </section>
+
+  <!-- Що входить -->
+  {% if program.includes %}
+  <section>
+    <h2>Що входить в курс</h2>
+    <ul>
+      {% for item in program.includes %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <!-- Переваги -->
+  {% if program.benefits %}
+  <section>
+    <h2>Переваги навчання</h2>
+    <ul>
+      {% for benefit in program.benefits %}
+      <li>{{ benefit }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>SpeakUp тепер де завгодно</h2>
+    <p>Ми переосмислили вивчення англійської - тепер онлайн зручніше</p>
+    <a href="{% url 'core:testing' %}?from={{ program.slug }}" class="btn-primary">
+      Записатися на безкоштовне тестування
+    </a>
+  </section>
+</main>
+{% endblock %}
+

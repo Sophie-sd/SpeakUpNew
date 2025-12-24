@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Новини та статті - SPEAK UP{% endblock %}
+{% block og_title %}Новини та статті - SPEAK UP{% endblock %}
+{% block meta_description %}Актуальні новини, корисні статті та поради з вивчення англійської мови від школи Speak Up{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Новини та статті</h1>
+
+  {% if page_obj %}
+    <section class="news-list">
+      {% for article in page_obj %}
+        <article class="news-item">
+          {% if article.featured_image %}
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title_uk }}" class="news-item__image">
+          {% endif %}
+
+          <div class="news-item__content">
+            <h2>
+              <a href="{{ article.get_absolute_url }}">{{ article.title_uk }}</a>
+            </h2>
+
+            <time datetime="{{ article.published_at|date:'Y-m-d' }}" class="news-item__date">
+              {{ article.published_at|date:"d.m.Y" }}
+            </time>
+
+            {% if article.meta_description_uk %}
+              <p class="news-item__excerpt">{{ article.meta_description_uk|truncatewords:30 }}</p>
+            {% endif %}
+
+            <a href="{{ article.get_absolute_url }}" class="news-item__link">Читати далі →</a>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+
+    <!-- Пагінація -->
+    {% if page_obj.has_other_pages %}
+      <nav class="pagination" aria-label="Навігація по сторінкам">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link">← Попередня</a>
+        {% endif %}
+
+        <span class="pagination__current">
+          Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="pagination__link">Наступна →</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <p>Статті будуть опубліковані найближчим часом.</p>
+  {% endif %}
+</main>
+{% endblock %}
+

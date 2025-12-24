@@ -1,0 +1,13 @@
+User-agent: *
+{% if debug %}
+Disallow: /
+{% else %}
+Disallow: /admin/
+Allow: /
+
+Crawl-delay: 1
+Clean-param: utm_source&utm_medium&utm_campaign&from
+
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
+{% endif %}
+

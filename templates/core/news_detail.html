@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} - SPEAK UP{% endblock %}
+{% block og_title %}{{ title }} - SPEAK UP{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block content %}
+<article class="news-article">
+  <header class="news-article__header">
+    <h1>{{ title }}</h1>
+
+    <time datetime="{{ article.published_at|date:'Y-m-d' }}" class="news-article__date">
+      {{ article.published_at|date:"d.m.Y" }}
+    </time>
+
+    {% if article.featured_image %}
+      <img src="{{ article.featured_image.url }}" alt="{{ title }}" class="news-article__featured-image">
+    {% endif %}
+  </header>
+
+  <div class="news-article__content">
+    {{ content|safe }}
+  </div>
+
+  <footer class="news-article__footer">
+    <nav class="news-article__nav">
+      <a href="{% url 'core:news_list' %}" class="news-article__back-link">← Повернутися до списку статей</a>
+    </nav>
+  </footer>
+</article>
+{% endblock %}
+

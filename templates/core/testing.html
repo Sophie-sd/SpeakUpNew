@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Тест рівня англійської - SPEAK UP{% endblock %}
+{% block og_title %}Тест рівня англійської - SPEAK UP{% endblock %}
+{% block meta_description %}Безкоштовний тест для визначення рівня англійської мови.{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Визначте свій рівень англійської</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="utm_source" value="{{ utm_source }}">
+
+    <p>Тест буде тут...</p>
+
+    <button type="submit" class="btn-primary">Почати тест</button>
+  </form>
+</main>
+{% endblock %}
+

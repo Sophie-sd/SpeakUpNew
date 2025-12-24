@@ -1,0 +1,1756 @@
+🚀 Початок імпорту news статей зі старого сайту
+   Старий сайт: https://speak-up.com.ua
+   Новий сайт: https://speak-up.com.ua
+
+📖 Читаю URL з файлу: /Users/olegbonislavskyi/Sites/SpeakUp/scripts/all_news_urls.txt
+   Знайдено 187 URL в файлі
+📋 Всього статей: 187
+   Вже імпортовано: 45
+   Потрібно імпортувати: 142
+
+
+[1/142] 
+============================================================
+Імпорт статті: /news/frazeologizmy-v-suchasnij-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/frazeologizmy-v-suchasnij-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/frazeologizmy-v-suchasnij-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Фразеологізми в сучасній англійській мові
+   UK URL: /news/frazeologizmy-v-suchasnij-anglijskij-movi/
+   RU URL: /ru/news/frazeologizmy-v-suchasnij-anglijskij-movi/
+
+[2/142] 
+============================================================
+Імпорт статті: /news/frazovi-diyeslova-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/frazovi-diyeslova-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/frazovi-diyeslova-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Фразові дієслова в англійській мові
+   UK URL: /news/frazovi-diyeslova-v-anglijskij-movi/
+   RU URL: /ru/news/frazovi-diyeslova-v-anglijskij-movi/
+
+[3/142] 
+============================================================
+Імпорт статті: /news/frazy-ta-czytaty-dlya-instagrama-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/frazy-ta-czytaty-dlya-instagrama-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/frazy-ta-czytaty-dlya-instagrama-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Фрази та цитати для інстаграма англійською мовою
+   UK URL: /news/frazy-ta-czytaty-dlya-instagrama-anglijskoyu-movoyu/
+   RU URL: /ru/news/frazy-ta-czytaty-dlya-instagrama-anglijskoyu-movoyu/
+
+[4/142] 
+============================================================
+Імпорт статті: /news/golosni-zvuky-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/golosni-zvuky-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/golosni-zvuky-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Голосні звуки в англійській мові
+   UK URL: /news/golosni-zvuky-v-anglijskij-movi/
+   RU URL: /ru/news/golosni-zvuky-v-anglijskij-movi/
+
+[5/142] 
+============================================================
+Імпорт статті: /news/govorymo-pro-teatr-anglijskoyu-analiz-pyes-ta-aktorskogo-mystecztva/
+============================================================
+Парсинг: https://speak-up.com.ua/news/govorymo-pro-teatr-anglijskoyu-analiz-pyes-ta-aktorskogo-mystecztva/
+Парсинг: https://speak-up.com.ua/ru/news/govorymo-pro-teatr-anglijskoyu-analiz-pyes-ta-aktorskogo-mystecztva/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Говоримо про театр англійською: аналіз п’єс та акторського мистецтва
+   UK URL: /news/govorymo-pro-teatr-anglijskoyu-analiz-pyes-ta-aktorskogo-mystecztva/
+   RU URL: /ru/news/govorymo-pro-teatr-anglijskoyu-analiz-pyes-ta-aktorskogo-mystecztva/
+
+[6/142] 
+============================================================
+Імпорт статті: /news/i-wish-ta-if-only-zagaduj-bazhannya-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/i-wish-ta-if-only-zagaduj-bazhannya-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/i-wish-ta-if-only-zagaduj-bazhannya-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: I wish та if only: загадуй бажання англійською
+   UK URL: /news/i-wish-ta-if-only-zagaduj-bazhannya-anglijskoyu/
+   RU URL: /ru/news/i-wish-ta-if-only-zagaduj-bazhannya-anglijskoyu/
+
+[7/142] 
+============================================================
+Імпорт статті: /news/imenniki-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/imenniki-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/imenniki-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Іменники в англійській мові
+   UK URL: /news/imenniki-v-angliyskiy-movi/
+   RU URL: /ru/news/imenniki-v-angliyskiy-movi/
+
+[8/142] 
+============================================================
+Імпорт статті: /news/instruktsiya-po-napisannyu-motivatsiynogo-lista-angliyskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/instruktsiya-po-napisannyu-motivatsiynogo-lista-angliyskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/instruktsiya-po-napisannyu-motivatsiynogo-lista-angliyskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Інструкція по написанню мотиваційного листа англійською
+   UK URL: /news/instruktsiya-po-napisannyu-motivatsiynogo-lista-angliyskoyu/
+   RU URL: /ru/news/instruktsiya-po-napisannyu-motivatsiynogo-lista-angliyskoyu/
+
+[9/142] 
+============================================================
+Імпорт статті: /news/kazky-dlya-ditej-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/kazky-dlya-ditej-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/kazky-dlya-ditej-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Казки для дітей англійською мовою
+   UK URL: /news/kazky-dlya-ditej-anglijskoyu-movoyu/
+   RU URL: /ru/news/kazky-dlya-ditej-anglijskoyu-movoyu/
+
+[10/142] 
+============================================================
+Імпорт статті: /news/kolory-anglijskoyu-movoyu-dlya-ditej/
+============================================================
+Парсинг: https://speak-up.com.ua/news/kolory-anglijskoyu-movoyu-dlya-ditej/
+Парсинг: https://speak-up.com.ua/ru/news/kolory-anglijskoyu-movoyu-dlya-ditej/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Кольори англійською мовою для дітей
+   UK URL: /news/kolory-anglijskoyu-movoyu-dlya-ditej/
+   RU URL: /ru/news/kolory-anglijskoyu-movoyu-dlya-ditej/
+
+📊 Проміжний звіт: імпортовано 10, пропущено 0, помилок 0
+
+[11/142] 
+============================================================
+Імпорт статті: /news/koly-vykorystovuvaty-everyday-ta-every-day/
+============================================================
+Парсинг: https://speak-up.com.ua/news/koly-vykorystovuvaty-everyday-ta-every-day/
+Парсинг: https://speak-up.com.ua/ru/news/koly-vykorystovuvaty-everyday-ta-every-day/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: КОЛИ ВИКОРИСТОВУВАТИ EVERYDAY ТА EVERY DAY?
+   UK URL: /news/koly-vykorystovuvaty-everyday-ta-every-day/
+   RU URL: /ru/news/koly-vykorystovuvaty-everyday-ta-every-day/
+
+[12/142] 
+============================================================
+Імпорт статті: /news/konstrukcziya-to-be-going-to/
+============================================================
+Парсинг: https://speak-up.com.ua/news/konstrukcziya-to-be-going-to/
+Парсинг: https://speak-up.com.ua/ru/news/konstrukcziya-to-be-going-to/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: КОНСТРУКЦІЯ «TO BE GOING TO»
+   UK URL: /news/konstrukcziya-to-be-going-to/
+   RU URL: /ru/news/konstrukcziya-to-be-going-to/
+
+[13/142] 
+============================================================
+Імпорт статті: /news/korysni-synonimy-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/korysni-synonimy-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/korysni-synonimy-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Корисні синоніми в англійській мові
+   UK URL: /news/korysni-synonimy-v-anglijskij-movi/
+   RU URL: /ru/news/korysni-synonimy-v-anglijskij-movi/
+
+[14/142] 
+============================================================
+Імпорт статті: /news/kosmetyka-anglijskoyu-movoyu-zbagachujte-svij-slovnyk-z-krasy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/kosmetyka-anglijskoyu-movoyu-zbagachujte-svij-slovnyk-z-krasy/
+Парсинг: https://speak-up.com.ua/ru/news/kosmetyka-anglijskoyu-movoyu-zbagachujte-svij-slovnyk-z-krasy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Косметика англійською мовою: Збагачуйте свій словник з краси
+   UK URL: /news/kosmetyka-anglijskoyu-movoyu-zbagachujte-svij-slovnyk-z-krasy/
+   RU URL: /ru/news/kosmetyka-anglijskoyu-movoyu-zbagachujte-svij-slovnyk-z-krasy/
+
+[15/142] 
+============================================================
+Імпорт статті: /news/krashhi-audioknygy-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/krashhi-audioknygy-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/krashhi-audioknygy-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Кращі аудіокниги англійською мовою
+   UK URL: /news/krashhi-audioknygy-anglijskoyu-movoyu/
+   RU URL: /ru/news/krashhi-audioknygy-anglijskoyu-movoyu/
+
+[16/142] 
+============================================================
+Імпорт статті: /news/krasivi-slova-v-angliyskiy-movi
+============================================================
+Парсинг: https://speak-up.com.ua/news/krasivi-slova-v-angliyskiy-movi
+Парсинг: https://speak-up.com.ua/ru/news/krasivi-slova-v-angliyskiy-movi
+📥 Завантаження зображень...
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/04/english.png: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/04/english.png
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Красиві слова в англійській мові
+   UK URL: /news/krasivi-slova-v-angliyskiy-movi/
+   RU URL: /ru/news/krasivi-slova-v-angliyskiy-movi/
+
+[17/142] 
+============================================================
+Імпорт статті: /news/krasyvi-czytaty-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/krasyvi-czytaty-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/krasyvi-czytaty-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Красиві цитати англійською мовою
+   UK URL: /news/krasyvi-czytaty-anglijskoyu-movoyu/
+   RU URL: /ru/news/krasyvi-czytaty-anglijskoyu-movoyu/
+
+[18/142] 
+============================================================
+Імпорт статті: /news/krayiny-ta-naczionalnosti-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/krayiny-ta-naczionalnosti-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/krayiny-ta-naczionalnosti-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Країни та національності англійською
+   UK URL: /news/krayiny-ta-naczionalnosti-anglijskoyu/
+   RU URL: /ru/news/krayiny-ta-naczionalnosti-anglijskoyu/
+
+[19/142] 
+============================================================
+Імпорт статті: /news/layfkhaki-z-pidgotovki-do-zno-z-angliyskoyi-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/layfkhaki-z-pidgotovki-do-zno-z-angliyskoyi-movi/
+Парсинг: https://speak-up.com.ua/ru/news/layfkhaki-z-pidgotovki-do-zno-z-angliyskoyi-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Лайфхаки з підготовки до ЗНО з англійської мови
+   UK URL: /news/layfkhaki-z-pidgotovki-do-zno-z-angliyskoyi-movi/
+   RU URL: /ru/news/layfkhaki-z-pidgotovki-do-zno-z-angliyskoyi-movi/
+
+[20/142] 
+============================================================
+Імпорт статті: /news/majster-klas-pravyla-napysannya-lystiv-zaproshen-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/majster-klas-pravyla-napysannya-lystiv-zaproshen-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/majster-klas-pravyla-napysannya-lystiv-zaproshen-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Майстер-клас: Правила написання листів-запрошень англійською
+   UK URL: /news/majster-klas-pravyla-napysannya-lystiv-zaproshen-anglijskoyu/
+   RU URL: /ru/news/majster-klas-pravyla-napysannya-lystiv-zaproshen-anglijskoyu/
+
+📊 Проміжний звіт: імпортовано 20, пропущено 0, помилок 0
+
+[21/142] 
+============================================================
+Імпорт статті: /news/minuliy-dokonaniy-trivaliy-chas-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/minuliy-dokonaniy-trivaliy-chas-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/minuliy-dokonaniy-trivaliy-chas-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Минулий доконаний тривалий час в англійській мові
+   UK URL: /news/minuliy-dokonaniy-trivaliy-chas-v-angliyskiy-movi/
+   RU URL: /ru/news/minuliy-dokonaniy-trivaliy-chas-v-angliyskiy-movi/
+
+[22/142] 
+============================================================
+Імпорт статті: /news/mizhnarodni-ispiti-z-angliyskoyi-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/mizhnarodni-ispiti-z-angliyskoyi-movi/
+Парсинг: https://speak-up.com.ua/ru/news/mizhnarodni-ispiti-z-angliyskoyi-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Міжнародні іспити з англійської мови
+   UK URL: /news/mizhnarodni-ispiti-z-angliyskoyi-movi/
+   RU URL: /ru/news/mizhnarodni-ispiti-z-angliyskoyi-movi/
+
+[23/142] 
+============================================================
+Імпорт статті: /news/modalni-dieslova-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/modalni-dieslova-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/modalni-dieslova-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Модальні дієслова в англійській мові
+   UK URL: /news/modalni-dieslova-v-angliyskiy-movi/
+   RU URL: /ru/news/modalni-dieslova-v-angliyskiy-movi/
+
+[24/142] 
+============================================================
+Імпорт статті: /news/motivuemo-sebe-vivchati-angliysku-movu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/motivuemo-sebe-vivchati-angliysku-movu/
+Парсинг: https://speak-up.com.ua/ru/news/motivuemo-sebe-vivchati-angliysku-movu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Мотивуємо себе вивчати англійську мову
+   UK URL: /news/motivuemo-sebe-vivchati-angliysku-movu/
+   RU URL: /ru/news/motivuemo-sebe-vivchati-angliysku-movu/
+
+[25/142] 
+============================================================
+Імпорт статті: /news/muzykalni-pidkazky-yak-vybraty-saundtrek-dlya-vyvchennya-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/muzykalni-pidkazky-yak-vybraty-saundtrek-dlya-vyvchennya-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/muzykalni-pidkazky-yak-vybraty-saundtrek-dlya-vyvchennya-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Музикальні підказки: Як вибрати саундтрек для вивчення англійської
+   UK URL: /news/muzykalni-pidkazky-yak-vybraty-saundtrek-dlya-vyvchennya-anglijskoyi/
+   RU URL: /ru/news/muzykalni-pidkazky-yak-vybraty-saundtrek-dlya-vyvchennya-anglijskoyi/
+
+[26/142] 
+============================================================
+Імпорт статті: /news/najefektyvnishi-igry-dlya-trenuvannya-leksyky/
+============================================================
+Парсинг: https://speak-up.com.ua/news/najefektyvnishi-igry-dlya-trenuvannya-leksyky/
+Парсинг: https://speak-up.com.ua/ru/news/najefektyvnishi-igry-dlya-trenuvannya-leksyky/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Найефективніші ігри для тренування лексики
+   UK URL: /news/najefektyvnishi-igry-dlya-trenuvannya-leksyky/
+   RU URL: /ru/news/najefektyvnishi-igry-dlya-trenuvannya-leksyky/
+
+[27/142] 
+============================================================
+Імпорт статті: /news/najkrashhi-knygy-dlya-vyvchennya-anglijskoyi-movy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/najkrashhi-knygy-dlya-vyvchennya-anglijskoyi-movy/
+Парсинг: https://speak-up.com.ua/ru/news/najkrashhi-knygy-dlya-vyvchennya-anglijskoyi-movy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Найкращі книги для вивчення англійської мови
+   UK URL: /news/najkrashhi-knygy-dlya-vyvchennya-anglijskoyi-movy/
+   RU URL: /ru/news/najkrashhi-knygy-dlya-vyvchennya-anglijskoyi-movy/
+
+[28/142] 
+============================================================
+Імпорт статті: /news/najkrashhi-serialy-dlya-vyvchennya-anglijskoyi-movy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/najkrashhi-serialy-dlya-vyvchennya-anglijskoyi-movy/
+Парсинг: https://speak-up.com.ua/ru/news/najkrashhi-serialy-dlya-vyvchennya-anglijskoyi-movy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Найкращі серіали для вивчення англійської мови
+   UK URL: /news/najkrashhi-serialy-dlya-vyvchennya-anglijskoyi-movy/
+   RU URL: /ru/news/najkrashhi-serialy-dlya-vyvchennya-anglijskoyi-movy/
+
+[29/142] 
+============================================================
+Імпорт статті: /news/nakazoviy-sposib-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/nakazoviy-sposib-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/nakazoviy-sposib-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Наказовий спосіб в англійській мові
+   UK URL: /news/nakazoviy-sposib-v-angliyskiy-movi/
+   RU URL: /ru/news/nakazoviy-sposib-v-angliyskiy-movi/
+
+[30/142] 
+============================================================
+Імпорт статті: /news/napysannya-adresy-anglijskoyu-pravyla-ta-pryklady/
+============================================================
+Парсинг: https://speak-up.com.ua/news/napysannya-adresy-anglijskoyu-pravyla-ta-pryklady/
+Парсинг: https://speak-up.com.ua/ru/news/napysannya-adresy-anglijskoyu-pravyla-ta-pryklady/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Написання адреси англійською: правила та приклади
+   UK URL: /news/napysannya-adresy-anglijskoyu-pravyla-ta-pryklady/
+   RU URL: /ru/news/napysannya-adresy-anglijskoyu-pravyla-ta-pryklady/
+
+📊 Проміжний звіт: імпортовано 30, пропущено 0, помилок 0
+
+[31/142] 
+============================================================
+Імпорт статті: /news/navychky-dlya-shvydkogo-vyvchennya-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/navychky-dlya-shvydkogo-vyvchennya-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/navychky-dlya-shvydkogo-vyvchennya-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Навички для швидкого вивчення англійської
+   UK URL: /news/navychky-dlya-shvydkogo-vyvchennya-anglijskoyi/
+   RU URL: /ru/news/navychky-dlya-shvydkogo-vyvchennya-anglijskoyi/
+
+[32/142] 
+============================================================
+Імпорт статті: /news/naykraschi-igri-dlya-povtorennya-leksiki
+============================================================
+Парсинг: https://speak-up.com.ua/news/naykraschi-igri-dlya-povtorennya-leksiki
+Парсинг: https://speak-up.com.ua/ru/news/naykraschi-igri-dlya-povtorennya-leksiki
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Найкращі ігри для повторення лексики
+   UK URL: /news/naykraschi-igri-dlya-povtorennya-leksiki/
+   RU URL: /ru/news/naykraschi-igri-dlya-povtorennya-leksiki/
+
+[33/142] 
+============================================================
+Імпорт статті: /news/naykraschi-multfilmi-angliyskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/naykraschi-multfilmi-angliyskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/naykraschi-multfilmi-angliyskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Найкращі мультфільми англійською мовою
+   UK URL: /news/naykraschi-multfilmi-angliyskoyu-movoyu/
+   RU URL: /ru/news/naykraschi-multfilmi-angliyskoyu-movoyu/
+
+[34/142] 
+============================================================
+Імпорт статті: /news/negatyvni-pytannya-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/negatyvni-pytannya-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/negatyvni-pytannya-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Негативні питання в англійській мові
+   UK URL: /news/negatyvni-pytannya-v-anglijskij-movi/
+   RU URL: /ru/news/negatyvni-pytannya-v-anglijskij-movi/
+
+[35/142] 
+============================================================
+Імпорт статті: /news/nuloviy-artikl-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/nuloviy-artikl-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/nuloviy-artikl-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Нульовий артикль в англійській мові
+   UK URL: /news/nuloviy-artikl-v-angliyskiy-movi/
+   RU URL: /ru/news/nuloviy-artikl-v-angliyskiy-movi/
+
+[36/142] 
+============================================================
+Імпорт статті: /news/o-halloween-na-angliyskom-yazyke
+============================================================
+Парсинг: https://speak-up.com.ua/news/o-halloween-na-angliyskom-yazyke
+Парсинг: https://speak-up.com.ua/ru/news/o-halloween-na-angliyskom-yazyke
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Про Halloween англійською мовою
+   UK URL: /news/o-halloween-na-angliyskom-yazyke/
+   RU URL: /ru/news/o-halloween-na-angliyskom-yazyke/
+
+[37/142] 
+============================================================
+Імпорт статті: /news/oksyumoron-v-anlijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/oksyumoron-v-anlijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/oksyumoron-v-anlijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: ОКСИМОРОН В АНЛІЙСЬКІЙ МОВІ
+   UK URL: /news/oksyumoron-v-anlijskij-movi/
+   RU URL: /ru/news/oksyumoron-v-anlijskij-movi/
+
+[38/142] 
+============================================================
+Імпорт статті: /news/opys-zovnishnosti-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/opys-zovnishnosti-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/opys-zovnishnosti-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Опис зовнішності англійською мовою
+   UK URL: /news/opys-zovnishnosti-anglijskoyu-movoyu/
+   RU URL: /ru/news/opys-zovnishnosti-anglijskoyu-movoyu/
+
+[39/142] 
+============================================================
+Імпорт статті: /news/osnovy-emoczijnoyi-vyraznosti-interjection-v-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/osnovy-emoczijnoyi-vyraznosti-interjection-v-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/osnovy-emoczijnoyi-vyraznosti-interjection-v-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Основи емоційної виразності: Interjection в англійській
+   UK URL: /news/osnovy-emoczijnoyi-vyraznosti-interjection-v-anglijskij/
+   RU URL: /ru/news/osnovy-emoczijnoyi-vyraznosti-interjection-v-anglijskij/
+
+[40/142] 
+============================================================
+Імпорт статті: /news/osnovy-pytalnyh-zajmennykiv-v-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/osnovy-pytalnyh-zajmennykiv-v-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/osnovy-pytalnyh-zajmennykiv-v-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Основи питальних займенників в англійській
+   UK URL: /news/osnovy-pytalnyh-zajmennykiv-v-anglijskij/
+   RU URL: /ru/news/osnovy-pytalnyh-zajmennykiv-v-anglijskij/
+
+📊 Проміжний звіт: імпортовано 40, пропущено 0, помилок 0
+
+[41/142] 
+============================================================
+Імпорт статті: /news/osoblivosti-konstruktsiyi-have-got-v-angliyskiy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/osoblivosti-konstruktsiyi-have-got-v-angliyskiy/
+Парсинг: https://speak-up.com.ua/ru/news/osoblivosti-konstruktsiyi-have-got-v-angliyskiy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Особливості конструкції have got в англійській мові
+   UK URL: /news/osoblivosti-konstruktsiyi-have-got-v-angliyskiy/
+   RU URL: /ru/news/osoblivosti-konstruktsiyi-have-got-v-angliyskiy/
+
+[42/142] 
+============================================================
+Імпорт статті: /news/otvechaem-na-vopros-kak-dela-na-anglyjskom
+============================================================
+Парсинг: https://speak-up.com.ua/news/otvechaem-na-vopros-kak-dela-na-anglyjskom
+Парсинг: https://speak-up.com.ua/ru/news/otvechaem-na-vopros-kak-dela-na-anglyjskom
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Відповідаємо на запитання “як справи” англійською мовою
+   UK URL: /news/otvechaem-na-vopros-kak-dela-na-anglyjskom/
+   RU URL: /ru/news/otvechaem-na-vopros-kak-dela-na-anglyjskom/
+
+[43/142] 
+============================================================
+Імпорт статті: /news/paradoks-v-anlijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/paradoks-v-anlijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/paradoks-v-anlijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: ПАРАДОКС В АНГЛІЙСЬКІЙ МОВІ
+   UK URL: /news/paradoks-v-anlijskij-movi/
+   RU URL: /ru/news/paradoks-v-anlijskij-movi/
+
+[44/142] 
+============================================================
+Імпорт статті: /news/past-continuous-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/past-continuous-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/past-continuous-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Past Continuous в англійській мові
+   UK URL: /news/past-continuous-v-angliyskiy-movi/
+   RU URL: /ru/news/past-continuous-v-angliyskiy-movi/
+
+[45/142] 
+============================================================
+Імпорт статті: /news/past-simple-ta-present-perfect-yak-obraty-idealnyj-chas-dlya-vzhyvannya/
+============================================================
+Парсинг: https://speak-up.com.ua/news/past-simple-ta-present-perfect-yak-obraty-idealnyj-chas-dlya-vzhyvannya/
+Парсинг: https://speak-up.com.ua/ru/news/past-simple-ta-present-perfect-yak-obraty-idealnyj-chas-dlya-vzhyvannya/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Past Simple та Present Perfect: Як обрати ідеальний час для вживання?
+   UK URL: /news/past-simple-ta-present-perfect-yak-obraty-idealnyj-chas-dlya-vzhyvannya/
+   RU URL: /ru/news/past-simple-ta-present-perfect-yak-obraty-idealnyj-chas-dlya-vzhyvannya/
+
+[46/142] 
+============================================================
+Імпорт статті: /news/pisni-na-urokakh-angliyskoyi-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pisni-na-urokakh-angliyskoyi-movi/
+Парсинг: https://speak-up.com.ua/ru/news/pisni-na-urokakh-angliyskoyi-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Пісні на уроках англійської мови
+   UK URL: /news/pisni-na-urokakh-angliyskoyi-movi/
+   RU URL: /ru/news/pisni-na-urokakh-angliyskoyi-movi/
+
+[47/142] 
+============================================================
+Імпорт статті: /news/podkasti-v-izuchenii-angliyskogo
+============================================================
+Парсинг: https://speak-up.com.ua/news/podkasti-v-izuchenii-angliyskogo
+Парсинг: https://speak-up.com.ua/ru/news/podkasti-v-izuchenii-angliyskogo
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: ПОДКАСТИ ЯК СПОСІБ ВИВЧАТИ АНГЛІЙСЬКУ
+   UK URL: /news/podkasti-v-izuchenii-angliyskogo/
+   RU URL: /ru/news/podkasti-v-izuchenii-angliyskogo/
+
+[48/142] 
+============================================================
+Імпорт статті: /news/podolaj-strah-vpevneno-govory-anglijskoyu-tehniky-dlya-vsih/
+============================================================
+Парсинг: https://speak-up.com.ua/news/podolaj-strah-vpevneno-govory-anglijskoyu-tehniky-dlya-vsih/
+Парсинг: https://speak-up.com.ua/ru/news/podolaj-strah-vpevneno-govory-anglijskoyu-tehniky-dlya-vsih/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Подолай страх, впевнено говори англійською: Техніки для всіх
+   UK URL: /news/podolaj-strah-vpevneno-govory-anglijskoyu-tehniky-dlya-vsih/
+   RU URL: /ru/news/podolaj-strah-vpevneno-govory-anglijskoyu-tehniky-dlya-vsih/
+
+[49/142] 
+============================================================
+Імпорт статті: /news/populyarni-anekdoty-anglijskoyu-movoyu-2/
+============================================================
+Парсинг: https://speak-up.com.ua/news/populyarni-anekdoty-anglijskoyu-movoyu-2/
+Парсинг: https://speak-up.com.ua/ru/news/populyarni-anekdoty-anglijskoyu-movoyu-2/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Популярні анекдоти англійською мовою
+   UK URL: /news/populyarni-anekdoty-anglijskoyu-movoyu-2/
+   RU URL: /ru/news/populyarni-anekdoty-anglijskoyu-movoyu-2/
+
+[50/142] 
+============================================================
+Імпорт статті: /news/pory-roku-misyaczi-dni-ta-chas-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pory-roku-misyaczi-dni-ta-chas-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/pory-roku-misyaczi-dni-ta-chas-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Пори року, місяці, дні та час англійською мовою
+   UK URL: /news/pory-roku-misyaczi-dni-ta-chas-anglijskoyu-movoyu/
+   RU URL: /ru/news/pory-roku-misyaczi-dni-ta-chas-anglijskoyu-movoyu/
+
+📊 Проміжний звіт: імпортовано 50, пропущено 0, помилок 0
+
+[51/142] 
+============================================================
+Імпорт статті: /news/poryadok-sliv-u-rechenni-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/poryadok-sliv-u-rechenni-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/poryadok-sliv-u-rechenni-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Порядок слів у реченні в англійській мові
+   UK URL: /news/poryadok-sliv-u-rechenni-v-angliyskiy-movi/
+   RU URL: /ru/news/poryadok-sliv-u-rechenni-v-angliyskiy-movi/
+
+[52/142] 
+============================================================
+Імпорт статті: /news/poshyreni-pomylky-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/poshyreni-pomylky-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/poshyreni-pomylky-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Поширені помилки в англійській мові
+   UK URL: /news/poshyreni-pomylky-v-anglijskij-movi/
+   RU URL: /ru/news/poshyreni-pomylky-v-anglijskij-movi/
+
+[53/142] 
+============================================================
+Імпорт статті: /news/pravila-zastosuvannya-zakinchennya-ing-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pravila-zastosuvannya-zakinchennya-ing-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/pravila-zastosuvannya-zakinchennya-ing-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Правила застосування закінчення “ing” в англійській мові
+   UK URL: /news/pravila-zastosuvannya-zakinchennya-ing-v-angliyskiy-movi/
+   RU URL: /ru/news/pravila-zastosuvannya-zakinchennya-ing-v-angliyskiy-movi/
+
+[54/142] 
+============================================================
+Імпорт статті: /news/pravyla-chytannya-anglijskyh-prygolosnyh/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pravyla-chytannya-anglijskyh-prygolosnyh/
+Парсинг: https://speak-up.com.ua/ru/news/pravyla-chytannya-anglijskyh-prygolosnyh/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Правила читання англійських приголосних
+   UK URL: /news/pravyla-chytannya-anglijskyh-prygolosnyh/
+   RU URL: /ru/news/pravyla-chytannya-anglijskyh-prygolosnyh/
+
+[55/142] 
+============================================================
+Імпорт статті: /news/pravyla-zaznachennya-chasu-anglijskoyu-porady-ta-pryklady/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pravyla-zaznachennya-chasu-anglijskoyu-porady-ta-pryklady/
+Парсинг: https://speak-up.com.ua/ru/news/pravyla-zaznachennya-chasu-anglijskoyu-porady-ta-pryklady/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Правила зазначення часу англійською: поради та приклади
+   UK URL: /news/pravyla-zaznachennya-chasu-anglijskoyu-porady-ta-pryklady/
+   RU URL: /ru/news/pravyla-zaznachennya-chasu-anglijskoyu-porady-ta-pryklady/
+
+[56/142] 
+============================================================
+Імпорт статті: /news/prikmetniki-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/prikmetniki-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/prikmetniki-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Прикметники в англійській мові
+   UK URL: /news/prikmetniki-v-angliyskiy-movi/
+   RU URL: /ru/news/prikmetniki-v-angliyskiy-movi/
+
+[57/142] 
+============================================================
+Імпорт статті: /news/pro-frukty-ta-ovochi-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pro-frukty-ta-ovochi-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/pro-frukty-ta-ovochi-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Про фрукти та овочі англійською
+   UK URL: /news/pro-frukty-ta-ovochi-anglijskoyu/
+   RU URL: /ru/news/pro-frukty-ta-ovochi-anglijskoyu/
+
+[58/142] 
+============================================================
+Імпорт статті: /news/pryama-ta-nepryama-mova-v-angliyskiy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/pryama-ta-nepryama-mova-v-angliyskiy/
+Парсинг: https://speak-up.com.ua/ru/news/pryama-ta-nepryama-mova-v-angliyskiy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Пряма та непряма мова в англійській
+   UK URL: /news/pryama-ta-nepryama-mova-v-angliyskiy/
+   RU URL: /ru/news/pryama-ta-nepryama-mova-v-angliyskiy/
+
+[59/142] 
+============================================================
+Імпорт статті: /news/prychyny-shhob-vyvchaty-anglijsku-movu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/prychyny-shhob-vyvchaty-anglijsku-movu/
+Парсинг: https://speak-up.com.ua/ru/news/prychyny-shhob-vyvchaty-anglijsku-movu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Причини щоб вивчати англійську мову
+   UK URL: /news/prychyny-shhob-vyvchaty-anglijsku-movu/
+   RU URL: /ru/news/prychyny-shhob-vyvchaty-anglijsku-movu/
+
+[60/142] 
+============================================================
+Імпорт статті: /news/reduce-reuse-recycle/
+============================================================
+Парсинг: https://speak-up.com.ua/news/reduce-reuse-recycle/
+Парсинг: https://speak-up.com.ua/ru/news/reduce-reuse-recycle/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: REDUCE, REUSE, RECYCLE
+   UK URL: /news/reduce-reuse-recycle/
+   RU URL: /ru/news/reduce-reuse-recycle/
+
+📊 Проміжний звіт: імпортовано 60, пропущено 0, помилок 0
+
+[61/142] 
+============================================================
+Імпорт статті: /news/riven-angliyskoyi-movi-advanced
+============================================================
+Парсинг: https://speak-up.com.ua/news/riven-angliyskoyi-movi-advanced
+Парсинг: https://speak-up.com.ua/ru/news/riven-angliyskoyi-movi-advanced
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівень англійської мови Advanced
+   UK URL: /news/riven-angliyskoyi-movi-advanced/
+   RU URL: /ru/news/riven-angliyskoyi-movi-advanced/
+
+[62/142] 
+============================================================
+Імпорт статті: /news/riven-angliyskoyi-movi-intermediate/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riven-angliyskoyi-movi-intermediate/
+Парсинг: https://speak-up.com.ua/ru/news/riven-angliyskoyi-movi-intermediate/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівень англійської мови Intermediate
+   UK URL: /news/riven-angliyskoyi-movi-intermediate/
+   RU URL: /ru/news/riven-angliyskoyi-movi-intermediate/
+
+[63/142] 
+============================================================
+Імпорт статті: /news/riven-angliyskoyi-proficiency-scho-tse/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riven-angliyskoyi-proficiency-scho-tse/
+Парсинг: https://speak-up.com.ua/ru/news/riven-angliyskoyi-proficiency-scho-tse/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівень англійської Proficiency: що це?
+   UK URL: /news/riven-angliyskoyi-proficiency-scho-tse/
+   RU URL: /ru/news/riven-angliyskoyi-proficiency-scho-tse/
+
+[64/142] 
+============================================================
+Імпорт статті: /news/riven-angliyskoyi-upper-intermediate/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riven-angliyskoyi-upper-intermediate/
+Парсинг: https://speak-up.com.ua/ru/news/riven-angliyskoyi-upper-intermediate/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівень англійської мови Upper-Intermediate
+   UK URL: /news/riven-angliyskoyi-upper-intermediate/
+   RU URL: /ru/news/riven-angliyskoyi-upper-intermediate/
+
+[65/142] 
+============================================================
+Імпорт статті: /news/riven-volodinnya-angliyskoyu-beginner/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riven-volodinnya-angliyskoyu-beginner/
+Парсинг: https://speak-up.com.ua/ru/news/riven-volodinnya-angliyskoyu-beginner/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівень володіння англійською мовою Beginner
+   UK URL: /news/riven-volodinnya-angliyskoyu-beginner/
+   RU URL: /ru/news/riven-volodinnya-angliyskoyu-beginner/
+
+[66/142] 
+============================================================
+Імпорт статті: /news/rivni-volodinnya-angliyskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/rivni-volodinnya-angliyskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/rivni-volodinnya-angliyskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Рівні володіння англійською мовою
+   UK URL: /news/rivni-volodinnya-angliyskoyu-movoyu/
+   RU URL: /ru/news/rivni-volodinnya-angliyskoyu-movoyu/
+
+[67/142] 
+============================================================
+Імпорт статті: /news/riznyczya-mizh-brytanskoyu-i-amerykanskoyu-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riznyczya-mizh-brytanskoyu-i-amerykanskoyu-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/riznyczya-mizh-brytanskoyu-i-amerykanskoyu-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Різниця між британською і американською англійською
+   UK URL: /news/riznyczya-mizh-brytanskoyu-i-amerykanskoyu-anglijskoyu/
+   RU URL: /ru/news/riznyczya-mizh-brytanskoyu-i-amerykanskoyu-anglijskoyu/
+
+[68/142] 
+============================================================
+Імпорт статті: /news/riznyczya-mizh-who-whom-i-whose/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riznyczya-mizh-who-whom-i-whose/
+Парсинг: https://speak-up.com.ua/ru/news/riznyczya-mizh-who-whom-i-whose/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Різниця між who, whom і whose
+   UK URL: /news/riznyczya-mizh-who-whom-i-whose/
+   RU URL: /ru/news/riznyczya-mizh-who-whom-i-whose/
+
+[69/142] 
+============================================================
+Імпорт статті: /news/riznyczya-mizh-will-i-to-be-going-to/
+============================================================
+Парсинг: https://speak-up.com.ua/news/riznyczya-mizh-will-i-to-be-going-to/
+Парсинг: https://speak-up.com.ua/ru/news/riznyczya-mizh-will-i-to-be-going-to/
+📥 Завантаження зображень...
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2024/08/be-going-to-vs-will-drag.jpg: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2024/08/be-going-to-vs-will-drag.jpg
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Різниця між “will” і “to be going to
+   UK URL: /news/riznyczya-mizh-will-i-to-be-going-to/
+   RU URL: /ru/news/riznyczya-mizh-will-i-to-be-going-to/
+
+[70/142] 
+============================================================
+Імпорт статті: /news/riznytsia-mizh-can-could-may
+============================================================
+Парсинг: https://speak-up.com.ua/news/riznytsia-mizh-can-could-may
+Парсинг: https://speak-up.com.ua/ru/news/riznytsia-mizh-can-could-may
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: РІЗНИЦЯ МІЖ CAN, COULD ТА MAY
+   UK URL: /news/riznytsia-mizh-can-could-may/
+   RU URL: /ru/news/riznytsia-mizh-can-could-may/
+
+📊 Проміжний звіт: імпортовано 70, пропущено 0, помилок 0
+
+[71/142] 
+============================================================
+Імпорт статті: /news/robota-zi-znannyam-angliyskoyi-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/robota-zi-znannyam-angliyskoyi-movi/
+Парсинг: https://speak-up.com.ua/ru/news/robota-zi-znannyam-angliyskoyi-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Робота зі знанням англійської мови
+   UK URL: /news/robota-zi-znannyam-angliyskoyi-movi/
+   RU URL: /ru/news/robota-zi-znannyam-angliyskoyi-movi/
+
+[72/142] 
+============================================================
+Імпорт статті: /news/robymo-komplimenty-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/robymo-komplimenty-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/robymo-komplimenty-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Робимо компліменти англійською мовою
+   UK URL: /news/robymo-komplimenty-anglijskoyu-movoyu/
+   RU URL: /ru/news/robymo-komplimenty-anglijskoyu-movoyu/
+
+[73/142] 
+============================================================
+Імпорт статті: /news/rody-imennyka-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/rody-imennyka-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/rody-imennyka-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Роди іменника в англійській мові
+   UK URL: /news/rody-imennyka-v-anglijskij-movi/
+   RU URL: /ru/news/rody-imennyka-v-anglijskij-movi/
+
+[74/142] 
+============================================================
+Імпорт статті: /news/rozmovy-pro-groshi-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/rozmovy-pro-groshi-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/rozmovy-pro-groshi-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Розмови про гроші англійською
+   UK URL: /news/rozmovy-pro-groshi-anglijskoyu/
+   RU URL: /ru/news/rozmovy-pro-groshi-anglijskoyu/
+
+[75/142] 
+============================================================
+Імпорт статті: /news/rozmovy-pro-modni-trendy-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/rozmovy-pro-modni-trendy-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/rozmovy-pro-modni-trendy-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Розмови про модні тренди англійською
+   UK URL: /news/rozmovy-pro-modni-trendy-anglijskoyu/
+   RU URL: /ru/news/rozmovy-pro-modni-trendy-anglijskoyu/
+
+[76/142] 
+============================================================
+Імпорт статті: /news/rozpovid-pro-misto-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/rozpovid-pro-misto-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/rozpovid-pro-misto-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Розповідь про місто англійською мовою
+   UK URL: /news/rozpovid-pro-misto-anglijskoyu-movoyu/
+   RU URL: /ru/news/rozpovid-pro-misto-anglijskoyu-movoyu/
+
+[77/142] 
+============================================================
+Імпорт статті: /news/scho-take-artikl-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/scho-take-artikl-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/scho-take-artikl-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Що таке артикль в англійській мові
+   UK URL: /news/scho-take-artikl-v-angliyskiy-movi/
+   RU URL: /ru/news/scho-take-artikl-v-angliyskiy-movi/
+
+[78/142] 
+============================================================
+Імпорт статті: /news/scho-take-pasivniy-stan-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/scho-take-pasivniy-stan-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/scho-take-pasivniy-stan-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Що таке пасивний стан в англійській мові
+   UK URL: /news/scho-take-pasivniy-stan-v-angliyskiy-movi/
+   RU URL: /ru/news/scho-take-pasivniy-stan-v-angliyskiy-movi/
+
+[79/142] 
+============================================================
+Імпорт статті: /news/sekrety-napysannya-nezabutnoyi-rozpovidi-pro-druga-anglijskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/sekrety-napysannya-nezabutnoyi-rozpovidi-pro-druga-anglijskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/sekrety-napysannya-nezabutnoyi-rozpovidi-pro-druga-anglijskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Секрети написання незабутньої розповіді про друга англійською
+   UK URL: /news/sekrety-napysannya-nezabutnoyi-rozpovidi-pro-druga-anglijskoyu/
+   RU URL: /ru/news/sekrety-napysannya-nezabutnoyi-rozpovidi-pro-druga-anglijskoyu/
+
+[80/142] 
+============================================================
+Імпорт статті: /news/shho-take-alternatyvni-pytannya-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/shho-take-alternatyvni-pytannya-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/shho-take-alternatyvni-pytannya-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Що таке альтернативні питання в англійській мові?
+   UK URL: /news/shho-take-alternatyvni-pytannya-v-anglijskij-movi/
+   RU URL: /ru/news/shho-take-alternatyvni-pytannya-v-anglijskij-movi/
+
+📊 Проміжний звіт: імпортовано 80, пропущено 0, помилок 0
+
+[81/142] 
+============================================================
+Імпорт статті: /news/shho-take-inversiya-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/shho-take-inversiya-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/shho-take-inversiya-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Що таке інверсія в англійській мові?
+   UK URL: /news/shho-take-inversiya-v-anglijskij-movi/
+   RU URL: /ru/news/shho-take-inversiya-v-anglijskij-movi/
+
+[82/142] 
+============================================================
+Імпорт статті: /news/shlyah-do-volodinnya-vyvchennya-anglijskoyi-za-rik/
+============================================================
+Парсинг: https://speak-up.com.ua/news/shlyah-do-volodinnya-vyvchennya-anglijskoyi-za-rik/
+Парсинг: https://speak-up.com.ua/ru/news/shlyah-do-volodinnya-vyvchennya-anglijskoyi-za-rik/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Шлях до володіння: Вивчення англійської за рік
+   UK URL: /news/shlyah-do-volodinnya-vyvchennya-anglijskoyi-za-rik/
+   RU URL: /ru/news/shlyah-do-volodinnya-vyvchennya-anglijskoyi-za-rik/
+
+[83/142] 
+============================================================
+Імпорт статті: /news/skilki-potribno-znati-sliv-schob-zagovoriti-angliyskoyu
+============================================================
+Парсинг: https://speak-up.com.ua/news/skilki-potribno-znati-sliv-schob-zagovoriti-angliyskoyu
+Парсинг: https://speak-up.com.ua/ru/news/skilki-potribno-znati-sliv-schob-zagovoriti-angliyskoyu
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Скільки потрібно знати слів, щоб заговорити англійською
+   UK URL: /news/skilki-potribno-znati-sliv-schob-zagovoriti-angliyskoyu/
+   RU URL: /ru/news/skilki-potribno-znati-sliv-schob-zagovoriti-angliyskoyu/
+
+[84/142] 
+============================================================
+Імпорт статті: /news/skilky-chasu-potribno-dlya-vyvchennya-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/skilky-chasu-potribno-dlya-vyvchennya-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/skilky-chasu-potribno-dlya-vyvchennya-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Скільки часу потрібно для вивчення англійської?
+   UK URL: /news/skilky-chasu-potribno-dlya-vyvchennya-anglijskoyi/
+   RU URL: /ru/news/skilky-chasu-potribno-dlya-vyvchennya-anglijskoyi/
+
+[85/142] 
+============================================================
+Імпорт статті: /news/skilky-chasu-potribno-shhob-pidvyshhyty-riven-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/skilky-chasu-potribno-shhob-pidvyshhyty-riven-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/skilky-chasu-potribno-shhob-pidvyshhyty-riven-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Скільки часу потрібно щоб підвищити рівень англійської
+   UK URL: /news/skilky-chasu-potribno-shhob-pidvyshhyty-riven-anglijskoyi/
+   RU URL: /ru/news/skilky-chasu-potribno-shhob-pidvyshhyty-riven-anglijskoyi/
+
+[86/142] 
+============================================================
+Імпорт статті: /news/skladni-imenniki-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/skladni-imenniki-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/skladni-imenniki-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Складні іменники в англійській мові
+   UK URL: /news/skladni-imenniki-v-angliyskiy-movi/
+   RU URL: /ru/news/skladni-imenniki-v-angliyskiy-movi/
+
+[87/142] 
+============================================================
+Імпорт статті: /news/sposoby-slovotvorennya-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/sposoby-slovotvorennya-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/sposoby-slovotvorennya-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Способи словотворення в англійській мові
+   UK URL: /news/sposoby-slovotvorennya-v-anglijskij-movi/
+   RU URL: /ru/news/sposoby-slovotvorennya-v-anglijskij-movi/
+
+[88/142] 
+============================================================
+Імпорт статті: /news/sposoby-vyrazhennya-podyaky-anglijskoyu-porady-ta-ideyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/sposoby-vyrazhennya-podyaky-anglijskoyu-porady-ta-ideyi/
+Парсинг: https://speak-up.com.ua/ru/news/sposoby-vyrazhennya-podyaky-anglijskoyu-porady-ta-ideyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Способи вираження подяки англійською: Поради та ідеї
+   UK URL: /news/sposoby-vyrazhennya-podyaky-anglijskoyu-porady-ta-ideyi/
+   RU URL: /ru/news/sposoby-vyrazhennya-podyaky-anglijskoyu-porady-ta-ideyi/
+
+[89/142] 
+============================================================
+Імпорт статті: /news/test-na-viznachennya-rivnya-angliyskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/test-na-viznachennya-rivnya-angliyskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/test-na-viznachennya-rivnya-angliyskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Тест на визначення рівня англійської мови
+   UK URL: /news/test-na-viznachennya-rivnya-angliyskoyi/
+   RU URL: /ru/news/test-na-viznachennya-rivnya-angliyskoyi/
+
+[90/142] 
+============================================================
+Імпорт статті: /news/top-10-tiktok-trendiv-dlya-navchannya-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/top-10-tiktok-trendiv-dlya-navchannya-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/top-10-tiktok-trendiv-dlya-navchannya-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Топ-10 TikTok-трендів для навчання англійської
+   UK URL: /news/top-10-tiktok-trendiv-dlya-navchannya-anglijskoyi/
+   RU URL: /ru/news/top-10-tiktok-trendiv-dlya-navchannya-anglijskoyi/
+
+📊 Проміжний звіт: імпортовано 90, пропущено 0, помилок 0
+
+[91/142] 
+============================================================
+Імпорт статті: /news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/
+============================================================
+Парсинг: https://speak-up.com.ua/news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/
+Парсинг: https://speak-up.com.ua/ru/news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/
+Помилка парсингу https://speak-up.com.ua/ru/news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/: 404 Client Error: Not Found for url: https://speak-up.com.ua/ru/news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Топ-5 способів перевірити рівень англійської: тести та оцінка
+   UK URL: /news/top-5-sposobiv-pereviryty-riven-anglijskoyi-testy-ta-oczinka/
+
+[92/142] 
+============================================================
+Імпорт статті: /news/top-perekladachiv-z-angliyskoyi-na-ukrayinsku/
+============================================================
+Парсинг: https://speak-up.com.ua/news/top-perekladachiv-z-angliyskoyi-na-ukrayinsku/
+Парсинг: https://speak-up.com.ua/ru/news/top-perekladachiv-z-angliyskoyi-na-ukrayinsku/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Топ перекладачів з англійської на українську
+   UK URL: /news/top-perekladachiv-z-angliyskoyi-na-ukrayinsku/
+   RU URL: /ru/news/top-perekladachiv-z-angliyskoyi-na-ukrayinsku/
+
+[93/142] 
+============================================================
+Імпорт статті: /news/transkriptsiya-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/transkriptsiya-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/transkriptsiya-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Транскрипція в англійській мові: просто про складне
+   UK URL: /news/transkriptsiya-v-angliyskiy-movi/
+   RU URL: /ru/news/transkriptsiya-v-angliyskiy-movi/
+
+[94/142] 
+============================================================
+Імпорт статті: /news/transport-anglijskoyu-osvoyennya-klyuchovyh-aspektiv/
+============================================================
+Парсинг: https://speak-up.com.ua/news/transport-anglijskoyu-osvoyennya-klyuchovyh-aspektiv/
+Парсинг: https://speak-up.com.ua/ru/news/transport-anglijskoyu-osvoyennya-klyuchovyh-aspektiv/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Транспорт англійською: Освоєння ключових аспектів
+   UK URL: /news/transport-anglijskoyu-osvoyennya-klyuchovyh-aspektiv/
+   RU URL: /ru/news/transport-anglijskoyu-osvoyennya-klyuchovyh-aspektiv/
+
+[95/142] 
+============================================================
+Імпорт статті: /news/u-yakomu-viczi-mozhna-pochynaty-vchyty-anglijsku/
+============================================================
+Парсинг: https://speak-up.com.ua/news/u-yakomu-viczi-mozhna-pochynaty-vchyty-anglijsku/
+Парсинг: https://speak-up.com.ua/ru/news/u-yakomu-viczi-mozhna-pochynaty-vchyty-anglijsku/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: У якому віці можна починати вчити англійську
+   UK URL: /news/u-yakomu-viczi-mozhna-pochynaty-vchyty-anglijsku/
+   RU URL: /ru/news/u-yakomu-viczi-mozhna-pochynaty-vchyty-anglijsku/
+
+[96/142] 
+============================================================
+Імпорт статті: /news/umovni-rechennya-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/umovni-rechennya-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/umovni-rechennya-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Умовні речення в англійській мові
+   UK URL: /news/umovni-rechennya-v-angliyskiy-movi/
+   RU URL: /ru/news/umovni-rechennya-v-angliyskiy-movi/
+
+[97/142] 
+============================================================
+Імпорт статті: /news/umovniy-sposib-v-angliyskiy-movi-scho-tse/
+============================================================
+Парсинг: https://speak-up.com.ua/news/umovniy-sposib-v-angliyskiy-movi-scho-tse/
+Парсинг: https://speak-up.com.ua/ru/news/umovniy-sposib-v-angliyskiy-movi-scho-tse/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Умовний спосіб в англійській мові
+   UK URL: /news/umovniy-sposib-v-angliyskiy-movi-scho-tse/
+   RU URL: /ru/news/umovniy-sposib-v-angliyskiy-movi-scho-tse/
+
+[98/142] 
+============================================================
+Імпорт статті: /news/utvorennya-prislivnikiv-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/utvorennya-prislivnikiv-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/utvorennya-prislivnikiv-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Утворення прислівників в англійській мові
+   UK URL: /news/utvorennya-prislivnikiv-v-angliyskiy-movi/
+   RU URL: /ru/news/utvorennya-prislivnikiv-v-angliyskiy-movi/
+
+[99/142] 
+============================================================
+Імпорт статті: /news/vazhlyvist-intonacziyi-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vazhlyvist-intonacziyi-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/vazhlyvist-intonacziyi-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Важливість інтонації в англійській мові
+   UK URL: /news/vazhlyvist-intonacziyi-v-anglijskij-movi/
+   RU URL: /ru/news/vazhlyvist-intonacziyi-v-anglijskij-movi/
+
+[100/142] 
+============================================================
+Імпорт статті: /news/vchymo-nepravylni-diyeslova-v-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vchymo-nepravylni-diyeslova-v-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/vchymo-nepravylni-diyeslova-v-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Вчимо неправильні дієслова в англійській
+   UK URL: /news/vchymo-nepravylni-diyeslova-v-anglijskij/
+   RU URL: /ru/news/vchymo-nepravylni-diyeslova-v-anglijskij/
+
+📊 Проміжний звіт: імпортовано 100, пропущено 0, помилок 0
+
+[101/142] 
+============================================================
+Імпорт статті: /news/vesnyani-idiomy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vesnyani-idiomy/
+Парсинг: https://speak-up.com.ua/ru/news/vesnyani-idiomy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: ВЕСНЯНІ ІДІОМИ
+   UK URL: /news/vesnyani-idiomy/
+   RU URL: /ru/news/vesnyani-idiomy/
+
+[102/142] 
+============================================================
+Імпорт статті: /news/vidpustka-anglijskoyu-movoyu-ta-yiyi-vydy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vidpustka-anglijskoyu-movoyu-ta-yiyi-vydy/
+Парсинг: https://speak-up.com.ua/ru/news/vidpustka-anglijskoyu-movoyu-ta-yiyi-vydy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Відпустка англійською мовою та її види
+   UK URL: /news/vidpustka-anglijskoyu-movoyu-ta-yiyi-vydy/
+   RU URL: /ru/news/vidpustka-anglijskoyu-movoyu-ta-yiyi-vydy/
+
+[103/142] 
+============================================================
+Імпорт статті: /news/vidriznyajte-good-ta-well-pravylno-ekspertni-porady-ta-pryklady/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vidriznyajte-good-ta-well-pravylno-ekspertni-porady-ta-pryklady/
+Парсинг: https://speak-up.com.ua/ru/news/vidriznyajte-good-ta-well-pravylno-ekspertni-porady-ta-pryklady/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Відрізняйте ‘good’ та ‘well’ правильно: Експертні поради та приклади
+   UK URL: /news/vidriznyajte-good-ta-well-pravylno-ekspertni-porady-ta-pryklady/
+   RU URL: /ru/news/vidriznyajte-good-ta-well-pravylno-ekspertni-porady-ta-pryklady/
+
+[104/142] 
+============================================================
+Імпорт статті: /news/vikoristovuemo-pravilno-dieprikmetnik-infinitiv-ta-gerundiy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vikoristovuemo-pravilno-dieprikmetnik-infinitiv-ta-gerundiy/
+Парсинг: https://speak-up.com.ua/ru/news/vikoristovuemo-pravilno-dieprikmetnik-infinitiv-ta-gerundiy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Використовуємо правильно дієприкметник, інфінітив та герундій
+   UK URL: /news/vikoristovuemo-pravilno-dieprikmetnik-infinitiv-ta-gerundiy/
+   RU URL: /ru/news/vikoristovuemo-pravilno-dieprikmetnik-infinitiv-ta-gerundiy/
+
+[105/142] 
+============================================================
+Імпорт статті: /news/volodinnya-slovnykom-krashhi-metody-dlya-efektyvnogo-vyvchennya-anglijskoyi-movy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/volodinnya-slovnykom-krashhi-metody-dlya-efektyvnogo-vyvchennya-anglijskoyi-movy/
+Парсинг: https://speak-up.com.ua/ru/news/volodinnya-slovnykom-krashhi-metody-dlya-efektyvnogo-vyvchennya-anglijskoyi-movy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Володіння словником: кращі методи для ефективного вивчення англійської мови
+   UK URL: /news/volodinnya-slovnykom-krashhi-metody-dlya-efektyvnogo-vyvchennya-anglijskoyi-movy/
+   RU URL: /ru/news/volodinnya-slovnykom-krashhi-metody-dlya-efektyvnogo-vyvchennya-anglijskoyi-movy/
+
+[106/142] 
+============================================================
+Імпорт статті: /news/vpevneno-vzhyvajte-some-ta-any-v-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vpevneno-vzhyvajte-some-ta-any-v-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/vpevneno-vzhyvajte-some-ta-any-v-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Впевнено вживайте ‘some’ та ‘any’ в англійській
+   UK URL: /news/vpevneno-vzhyvajte-some-ta-any-v-anglijskij/
+   RU URL: /ru/news/vpevneno-vzhyvajte-some-ta-any-v-anglijskij/
+
+[107/142] 
+============================================================
+Імпорт статті: /news/vpravy-dlya-rozmovnoyi-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vpravy-dlya-rozmovnoyi-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/vpravy-dlya-rozmovnoyi-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Вправи для розмовної англійської
+   UK URL: /news/vpravy-dlya-rozmovnoyi-anglijskoyi/
+   RU URL: /ru/news/vpravy-dlya-rozmovnoyi-anglijskoyi/
+
+[108/142] 
+============================================================
+Імпорт статті: /news/vybachennya-anglijskoyu-movoyu-vid-sorry-do-excuse-me/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vybachennya-anglijskoyu-movoyu-vid-sorry-do-excuse-me/
+Парсинг: https://speak-up.com.ua/ru/news/vybachennya-anglijskoyu-movoyu-vid-sorry-do-excuse-me/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Вибачення англійською мовою: від “sorry” до “excuse me”
+   UK URL: /news/vybachennya-anglijskoyu-movoyu-vid-sorry-do-excuse-me/
+   RU URL: /ru/news/vybachennya-anglijskoyu-movoyu-vid-sorry-do-excuse-me/
+
+[109/142] 
+============================================================
+Імпорт статті: /news/vydy-poshyrenyh-pomylok-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vydy-poshyrenyh-pomylok-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/vydy-poshyrenyh-pomylok-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Види поширених помилок в англійській мові
+   UK URL: /news/vydy-poshyrenyh-pomylok-v-anglijskij-movi/
+   RU URL: /ru/news/vydy-poshyrenyh-pomylok-v-anglijskij-movi/
+
+[110/142] 
+============================================================
+Імпорт статті: /news/vykorystovuyemo-soczialni-merezhi-dlya-vyvchennya-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vykorystovuyemo-soczialni-merezhi-dlya-vyvchennya-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/vykorystovuyemo-soczialni-merezhi-dlya-vyvchennya-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Використовуємо соціальні мережі для вивчення англійської
+   UK URL: /news/vykorystovuyemo-soczialni-merezhi-dlya-vyvchennya-anglijskoyi/
+   RU URL: /ru/news/vykorystovuyemo-soczialni-merezhi-dlya-vyvchennya-anglijskoyi/
+
+📊 Проміжний звіт: імпортовано 110, пропущено 0, помилок 0
+
+[111/142] 
+============================================================
+Імпорт статті: /news/vyvchennya-anglijskoyi-dlya-pochatkivcziv-rozpochaty-z-nulya/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vyvchennya-anglijskoyi-dlya-pochatkivcziv-rozpochaty-z-nulya/
+Парсинг: https://speak-up.com.ua/ru/news/vyvchennya-anglijskoyi-dlya-pochatkivcziv-rozpochaty-z-nulya/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Вивчення англійської для початківців: Розпочати з нуля
+   UK URL: /news/vyvchennya-anglijskoyi-dlya-pochatkivcziv-rozpochaty-z-nulya/
+   RU URL: /ru/news/vyvchennya-anglijskoyi-dlya-pochatkivcziv-rozpochaty-z-nulya/
+
+[112/142] 
+============================================================
+Імпорт статті: /news/vyvchyty-anglijsku-za-try-misyaczi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/vyvchyty-anglijsku-za-try-misyaczi/
+Парсинг: https://speak-up.com.ua/ru/news/vyvchyty-anglijsku-za-try-misyaczi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Вивчити англійську за три місяці
+   UK URL: /news/vyvchyty-anglijsku-za-try-misyaczi/
+   RU URL: /ru/news/vyvchyty-anglijsku-za-try-misyaczi/
+
+[113/142] 
+============================================================
+Імпорт статті: /news/yak-govoriti-pro-osin-angliyskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-govoriti-pro-osin-angliyskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-govoriti-pro-osin-angliyskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як говорити про осінь англійською
+   UK URL: /news/yak-govoriti-pro-osin-angliyskoyu/
+   RU URL: /ru/news/yak-govoriti-pro-osin-angliyskoyu/
+
+[114/142] 
+============================================================
+Імпорт статті: /news/yak-krasche-chitati-schob-rozumiti-angliysku/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-krasche-chitati-schob-rozumiti-angliysku/
+Парсинг: https://speak-up.com.ua/ru/news/yak-krasche-chitati-schob-rozumiti-angliysku/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як краще читати, щоб розуміти англійську
+   UK URL: /news/yak-krasche-chitati-schob-rozumiti-angliysku/
+   RU URL: /ru/news/yak-krasche-chitati-schob-rozumiti-angliysku/
+
+[115/142] 
+============================================================
+Імпорт статті: /news/yak-legko-vyvchyty-anglijsku-2/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-legko-vyvchyty-anglijsku-2/
+Парсинг: https://speak-up.com.ua/ru/news/yak-legko-vyvchyty-anglijsku-2/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як легко вивчити англійську?
+   UK URL: /news/yak-legko-vyvchyty-anglijsku-2/
+   RU URL: /ru/news/yak-legko-vyvchyty-anglijsku-2/
+
+[116/142] 
+============================================================
+Імпорт статті: /news/yak-legko-zapamyatovuvati-angliyski-slova/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-legko-zapamyatovuvati-angliyski-slova/
+Парсинг: https://speak-up.com.ua/ru/news/yak-legko-zapamyatovuvati-angliyski-slova/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як легко запам’ятовувати англійські слова
+   UK URL: /news/yak-legko-zapamyatovuvati-angliyski-slova/
+   RU URL: /ru/news/yak-legko-zapamyatovuvati-angliyski-slova/
+
+[117/142] 
+============================================================
+Імпорт статті: /news/yak-napysaty-dilovyj-lyst-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-napysaty-dilovyj-lyst-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-napysaty-dilovyj-lyst-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як написати діловий лист англійською мовою
+   UK URL: /news/yak-napysaty-dilovyj-lyst-anglijskoyu-movoyu/
+   RU URL: /ru/news/yak-napysaty-dilovyj-lyst-anglijskoyu-movoyu/
+
+[118/142] 
+============================================================
+Імпорт статті: /news/yak-napysaty-tvir-do-shkoly-anglijskoyu-movoyu-2/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-napysaty-tvir-do-shkoly-anglijskoyu-movoyu-2/
+Парсинг: https://speak-up.com.ua/ru/news/yak-napysaty-tvir-do-shkoly-anglijskoyu-movoyu-2/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як написати твір до школи англійською мовою?
+   UK URL: /news/yak-napysaty-tvir-do-shkoly-anglijskoyu-movoyu-2/
+   RU URL: /ru/news/yak-napysaty-tvir-do-shkoly-anglijskoyu-movoyu-2/
+
+[119/142] 
+============================================================
+Імпорт статті: /news/yak-navchyty-ditej-anglijskomu-alfavitu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-navchyty-ditej-anglijskomu-alfavitu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-navchyty-ditej-anglijskomu-alfavitu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як навчити дітей англійському алфавіту?
+   UK URL: /news/yak-navchyty-ditej-anglijskomu-alfavitu/
+   RU URL: /ru/news/yak-navchyty-ditej-anglijskomu-alfavitu/
+
+[120/142] 
+============================================================
+Імпорт статті: /news/yak-ne-zabuty-anglijsku-pid-chas-perervy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-ne-zabuty-anglijsku-pid-chas-perervy/
+Парсинг: https://speak-up.com.ua/ru/news/yak-ne-zabuty-anglijsku-pid-chas-perervy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як не забути англійську під час перерви
+   UK URL: /news/yak-ne-zabuty-anglijsku-pid-chas-perervy/
+   RU URL: /ru/news/yak-ne-zabuty-anglijsku-pid-chas-perervy/
+
+📊 Проміжний звіт: імпортовано 120, пропущено 0, помилок 0
+
+[121/142] 
+============================================================
+Імпорт статті: /news/yak-ne-zabuty-anglijsku-za-lito/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-ne-zabuty-anglijsku-za-lito/
+Парсинг: https://speak-up.com.ua/ru/news/yak-ne-zabuty-anglijsku-za-lito/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як не забути англійську за літо
+   UK URL: /news/yak-ne-zabuty-anglijsku-za-lito/
+   RU URL: /ru/news/yak-ne-zabuty-anglijsku-za-lito/
+
+[122/142] 
+============================================================
+Імпорт статті: /news/yak-obrati-kursi-angliyskoyi
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-obrati-kursi-angliyskoyi
+Парсинг: https://speak-up.com.ua/ru/news/yak-obrati-kursi-angliyskoyi
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як обрати курси англійської мови
+   UK URL: /news/yak-obrati-kursi-angliyskoyi/
+   RU URL: /ru/news/yak-obrati-kursi-angliyskoyi/
+
+[123/142] 
+============================================================
+Імпорт статті: /news/yak-opysaty-pogodu-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-opysaty-pogodu-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-opysaty-pogodu-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як описати погоду англійською мовою
+   UK URL: /news/yak-opysaty-pogodu-anglijskoyu-movoyu/
+   RU URL: /ru/news/yak-opysaty-pogodu-anglijskoyu-movoyu/
+
+[124/142] 
+============================================================
+Імпорт статті: /news/yak-podolaty-movnyj-baryer-u-rozmovi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-podolaty-movnyj-baryer-u-rozmovi/
+Парсинг: https://speak-up.com.ua/ru/news/yak-podolaty-movnyj-baryer-u-rozmovi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як подолати мовний бар’єр у розмові
+   UK URL: /news/yak-podolaty-movnyj-baryer-u-rozmovi/
+   RU URL: /ru/news/yak-podolaty-movnyj-baryer-u-rozmovi/
+
+[125/142] 
+============================================================
+Імпорт статті: /news/yak-podolaty-trudnoshhi-u-vyvchenni-anglijskoyi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-podolaty-trudnoshhi-u-vyvchenni-anglijskoyi/
+Парсинг: https://speak-up.com.ua/ru/news/yak-podolaty-trudnoshhi-u-vyvchenni-anglijskoyi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як подолати труднощі у вивченні англійської
+   UK URL: /news/yak-podolaty-trudnoshhi-u-vyvchenni-anglijskoyi/
+   RU URL: /ru/news/yak-podolaty-trudnoshhi-u-vyvchenni-anglijskoyi/
+
+[126/142] 
+============================================================
+Імпорт статті: /news/yak-pravilno-napisati-datu-i-chislo-angliyskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-pravilno-napisati-datu-i-chislo-angliyskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-pravilno-napisati-datu-i-chislo-angliyskoyu-movoyu/
+📥 Завантаження зображень...
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/04/test.png: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/04/test.png
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/1.jpg: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/1.jpg
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/4.jpg: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/4.jpg
+Помилка завантаження зображення https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/2.jpg: 404 Client Error: Not Found for url: https://speak-up.com.ua/wp-content/webp-express/webp-images/uploads/2023/06/2.jpg
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як правильно написати дату і число англійською мовою
+   UK URL: /news/yak-pravilno-napisati-datu-i-chislo-angliyskoyu-movoyu/
+   RU URL: /ru/news/yak-pravilno-napisati-datu-i-chislo-angliyskoyu-movoyu/
+
+[127/142] 
+============================================================
+Імпорт статті: /news/yak-pysaty-anglijskoyu-pravylno-bez-pomylok/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-pysaty-anglijskoyu-pravylno-bez-pomylok/
+Парсинг: https://speak-up.com.ua/ru/news/yak-pysaty-anglijskoyu-pravylno-bez-pomylok/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як писати англійською правильно без помилок?
+   UK URL: /news/yak-pysaty-anglijskoyu-pravylno-bez-pomylok/
+   RU URL: /ru/news/yak-pysaty-anglijskoyu-pravylno-bez-pomylok/
+
+[128/142] 
+============================================================
+Імпорт статті: /news/yak-vykorystovuvaty-diyeslova-was-were/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-vykorystovuvaty-diyeslova-was-were/
+Парсинг: https://speak-up.com.ua/ru/news/yak-vykorystovuvaty-diyeslova-was-were/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як використовувати дієслова was/were
+   UK URL: /news/yak-vykorystovuvaty-diyeslova-was-were/
+   RU URL: /ru/news/yak-vykorystovuvaty-diyeslova-was-were/
+
+[129/142] 
+============================================================
+Імпорт статті: /news/yak-vyslovyty-svoyi-pochuttya-anglijskoyu-movoyu-2/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-vyslovyty-svoyi-pochuttya-anglijskoyu-movoyu-2/
+Парсинг: https://speak-up.com.ua/ru/news/yak-vyslovyty-svoyi-pochuttya-anglijskoyu-movoyu-2/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як висловити свої почуття англійською мовою?
+   UK URL: /news/yak-vyslovyty-svoyi-pochuttya-anglijskoyu-movoyu-2/
+   RU URL: /ru/news/yak-vyslovyty-svoyi-pochuttya-anglijskoyu-movoyu-2/
+
+[130/142] 
+============================================================
+Імпорт статті: /news/yak-vyvchaty-anglijsku-za-serialamy-i-filmamy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-vyvchaty-anglijsku-za-serialamy-i-filmamy/
+Парсинг: https://speak-up.com.ua/ru/news/yak-vyvchaty-anglijsku-za-serialamy-i-filmamy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як вивчати англійську за серіалами i фільмами
+   UK URL: /news/yak-vyvchaty-anglijsku-za-serialamy-i-filmamy/
+   RU URL: /ru/news/yak-vyvchaty-anglijsku-za-serialamy-i-filmamy/
+
+📊 Проміжний звіт: імпортовано 130, пропущено 0, помилок 0
+
+[131/142] 
+============================================================
+Імпорт статті: /news/yak-vyvchyty-anglijsku-movu-v-domashnih-umovah/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-vyvchyty-anglijsku-movu-v-domashnih-umovah/
+Парсинг: https://speak-up.com.ua/ru/news/yak-vyvchyty-anglijsku-movu-v-domashnih-umovah/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як вивчити англійську мову в домашніх умовах?
+   UK URL: /news/yak-vyvchyty-anglijsku-movu-v-domashnih-umovah/
+   RU URL: /ru/news/yak-vyvchyty-anglijsku-movu-v-domashnih-umovah/
+
+[132/142] 
+============================================================
+Імпорт статті: /news/yak-ya-proviv-lito-tvir-angliyskoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-ya-proviv-lito-tvir-angliyskoyu/
+Парсинг: https://speak-up.com.ua/ru/news/yak-ya-proviv-lito-tvir-angliyskoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як я провів літо: твір англійською
+   UK URL: /news/yak-ya-proviv-lito-tvir-angliyskoyu/
+   RU URL: /ru/news/yak-ya-proviv-lito-tvir-angliyskoyu/
+
+[133/142] 
+============================================================
+Імпорт статті: /news/yak-ya-proviv-osinni-kanikuly-na-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-ya-proviv-osinni-kanikuly-na-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/yak-ya-proviv-osinni-kanikuly-na-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як я провів осінні канікули на англійській
+   UK URL: /news/yak-ya-proviv-osinni-kanikuly-na-anglijskij/
+   RU URL: /ru/news/yak-ya-proviv-osinni-kanikuly-na-anglijskij/
+
+[134/142] 
+============================================================
+Імпорт статті: /news/yak-ya-proviv-zymovi-kanikuly-na-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yak-ya-proviv-zymovi-kanikuly-na-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/yak-ya-proviv-zymovi-kanikuly-na-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Як я провів зимові канікули на англійській
+   UK URL: /news/yak-ya-proviv-zymovi-kanikuly-na-anglijskij/
+   RU URL: /ru/news/yak-ya-proviv-zymovi-kanikuly-na-anglijskij/
+
+[135/142] 
+============================================================
+Імпорт статті: /news/yaki-vydy-akczentiv-v-anglijskij-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/yaki-vydy-akczentiv-v-anglijskij-movi/
+Парсинг: https://speak-up.com.ua/ru/news/yaki-vydy-akczentiv-v-anglijskij-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Які види акцентів в англійській мові
+   UK URL: /news/yaki-vydy-akczentiv-v-anglijskij-movi/
+   RU URL: /ru/news/yaki-vydy-akczentiv-v-anglijskij-movi/
+
+[136/142] 
+============================================================
+Імпорт статті: /news/z-chogo-rozpochati-vivchennya-angliyskoyi-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/z-chogo-rozpochati-vivchennya-angliyskoyi-movi/
+Парсинг: https://speak-up.com.ua/ru/news/z-chogo-rozpochati-vivchennya-angliyskoyi-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: З чого розпочати вивчення англійської мови
+   UK URL: /news/z-chogo-rozpochati-vivchennya-angliyskoyi-movi/
+   RU URL: /ru/news/z-chogo-rozpochati-vivchennya-angliyskoyi-movi/
+
+[137/142] 
+============================================================
+Імпорт статті: /news/zakohuyemo-v-kyyiv-anglijskoyu-movoyu/
+============================================================
+Парсинг: https://speak-up.com.ua/news/zakohuyemo-v-kyyiv-anglijskoyu-movoyu/
+Парсинг: https://speak-up.com.ua/ru/news/zakohuyemo-v-kyyiv-anglijskoyu-movoyu/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Закохуємо в Київ англійською мовою
+   UK URL: /news/zakohuyemo-v-kyyiv-anglijskoyu-movoyu/
+   RU URL: /ru/news/zakohuyemo-v-kyyiv-anglijskoyu-movoyu/
+
+[138/142] 
+============================================================
+Імпорт статті: /news/zapitannya-v-angliyskiy-movi-yikhni-vidi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/zapitannya-v-angliyskiy-movi-yikhni-vidi/
+Парсинг: https://speak-up.com.ua/ru/news/zapitannya-v-angliyskiy-movi-yikhni-vidi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Типи питань в англійській мові
+   UK URL: /news/zapitannya-v-angliyskiy-movi-yikhni-vidi/
+   RU URL: /ru/news/zapitannya-v-angliyskiy-movi-yikhni-vidi/
+
+[139/142] 
+============================================================
+Імпорт статті: /news/zaproshuyemo-na-prygodu-vyvchennya-anglijskoyi-cherez-komiksy/
+============================================================
+Парсинг: https://speak-up.com.ua/news/zaproshuyemo-na-prygodu-vyvchennya-anglijskoyi-cherez-komiksy/
+Парсинг: https://speak-up.com.ua/ru/news/zaproshuyemo-na-prygodu-vyvchennya-anglijskoyi-cherez-komiksy/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Запрошуємо на пригоду: Вивчення англійської через комікси
+   UK URL: /news/zaproshuyemo-na-prygodu-vyvchennya-anglijskoyi-cherez-komiksy/
+   RU URL: /ru/news/zaproshuyemo-na-prygodu-vyvchennya-anglijskoyi-cherez-komiksy/
+
+[140/142] 
+============================================================
+Імпорт статті: /news/zaymenniki-v-angliyskiy-movi/
+============================================================
+Парсинг: https://speak-up.com.ua/news/zaymenniki-v-angliyskiy-movi/
+Парсинг: https://speak-up.com.ua/ru/news/zaymenniki-v-angliyskiy-movi/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Займенники в англійській мові
+   UK URL: /news/zaymenniki-v-angliyskiy-movi/
+   RU URL: /ru/news/zaymenniki-v-angliyskiy-movi/
+
+📊 Проміжний звіт: імпортовано 140, пропущено 0, помилок 0
+
+[141/142] 
+============================================================
+Імпорт статті: /news/znachennya-diyeslova-go-v-anglijskij/
+============================================================
+Парсинг: https://speak-up.com.ua/news/znachennya-diyeslova-go-v-anglijskij/
+Парсинг: https://speak-up.com.ua/ru/news/znachennya-diyeslova-go-v-anglijskij/
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: Значення дієслова Go в англійській
+   UK URL: /news/znachennya-diyeslova-go-v-anglijskij/
+   RU URL: /ru/news/znachennya-diyeslova-go-v-anglijskij/
+
+[142/142] 
+============================================================
+Імпорт статті: /news/zuchenie-anglijskogo-doma
+============================================================
+Парсинг: https://speak-up.com.ua/news/zuchenie-anglijskogo-doma
+Парсинг: https://speak-up.com.ua/ru/news/zuchenie-anglijskogo-doma
+📥 Завантаження зображень...
+🧹 Очищення HTML...
+✅ Статтю успішно імпортовано: ВИВЧЕННЯ АНГЛІЙСЬКОЇ МОВИ ВДОМА – ПЛЮСИ І МІНУСИ
+   UK URL: /news/zuchenie-anglijskogo-doma/
+   RU URL: /ru/news/zuchenie-anglijskogo-doma/
+
+============================================================
+✅ Імпорт завершено!
+   Успішно імпортовано: 142
+   Пропущено: 0
+   Помилок: 0
+   Всього в базі: 187
+============================================================

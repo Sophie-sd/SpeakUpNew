@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Онлайн курси англійської для жителів {{ location.district }} - SPEAK UP{% endblock %}
+{% block og_title %}Онлайн курси англійської для жителів {{ location.district }} - SPEAK UP{% endblock %}
+{% block meta_description %}Онлайн курси англійської від SPEAK UP для жителів {{ location.district }}. Раніше працювали офлайн, тепер онлайн зручніше.{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Онлайн курси англійської для жителів {{ location.district }}</h1>
+
+  <!-- Історія + Перехід онлайн -->
+  {% if location.seo_content %}
+  <section>
+    <div>{{ location.seo_content|linebreaks }}</div>
+  </section>
+  {% endif %}
+
+  <!-- Чому онлайн краще -->
+  {% if location.why_online %}
+  <section>
+    <h2>Чому онлайн формат зручніше?</h2>
+    <ul>
+      {% for reason in location.why_online %}
+      <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Почніть навчання сьогодні</h2>
+    <p>Безкоштовне тестування + персональний план навчання</p>
+    <a href="{% url 'core:testing' %}?from=school_{{ location.slug }}" class="btn-primary">
+      Пройти тест рівня
+    </a>
+  </section>
+</main>
+{% endblock %}
+

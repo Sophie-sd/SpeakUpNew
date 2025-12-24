@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{% if current_language %}{{ current_language }}{% else %}uk{% endif %}">
+<head>
+  <!-- Rule 17: lang attribute -->
+  <meta charset="UTF-8">
+
+  <!-- Rule 1, 2: viewport з viewport-fit=cover та interactive-widget=resizes-content -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+
+  <!-- Rule 25: CSRF token для HTMX -->
+  <meta name="csrf-token" content="{{ csrf_token }}">
+
+  <!-- SEO -->
+  <meta name="description" content="{% block meta_description %}SpeakUp - Django HTMX Application{% endblock %}">
+  <meta name="author" content="SpeakUp Team">
+
+  {# SEO: Verification codes #}
+  {% if google_site_verification %}
+  <meta name="google-site-verification" content="{{ google_site_verification }}">
+  {% endif %}
+  {% if facebook_domain_verification %}
+  <meta name="facebook-domain-verification" content="{{ facebook_domain_verification }}">
+  {% endif %}
+
+  {# SEO: Canonical #}
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% endif %}
+
+  {# SEO: Hreflang #}
+  {% if hreflang_urls %}
+    {% for hreflang in hreflang_urls %}
+    <link rel="alternate" hreflang="{{ hreflang.lang }}" href="{{ hreflang.url }}">
+    {% endfor %}
+  {% endif %}
+
+  <!-- Title -->
+  <title>{% block title %}SpeakUp{% endblock %}</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% block og_title %}SpeakUp{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
+  <meta property="og:description" content="{% block og_description %}{% block meta_description %}SpeakUp - Django HTMX Application{% endblock %}{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ default_og_image }}{% endblock %}">
+  <meta property="og:site_name" content="SPEAK UP">
+  <meta property="og:locale" content="{% if current_language == 'ru' %}ru_RU{% else %}uk_UA{% endif %}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block og_title %}SpeakUp{% endblock %}">
+  <meta name="twitter:description" content="{% block og_description %}{% block meta_description %}SpeakUp - Django HTMX Application{% endblock %}{% endblock %}">
+  <meta name="twitter:image" content="{% block og_image %}{{ default_og_image }}{% endblock %}">
+
+  <!-- Rule 23: Preconnect для CDN -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+
+  <!-- Rule 24: CSS в правильному порядку -->
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block extra_css %}{% endblock %}
+
+  <!-- Rule 10: HTMX з defer -->
+  <script src="https://unpkg.com/htmx.org@2.0.3" defer></script>
+
+  <!-- Rule 10, 71: Власний JS з defer -->
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+
+  {# Structured Data (JSON-LD) #}
+  {% block structured_data %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "SPEAK UP",
+    "alternateName": "Speak Up",
+    "url": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}",
+    "logo": "{{ default_og_image }}",
+    "description": "{% block structured_data_description %}Онлайн курси англійської мови від школи Speak Up. Для дорослих та дітей. Індивідуально та в групах.{% endblock %}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "UA",
+      "addressLocality": "Київ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+380931707867",
+      "contactType": "customer service",
+      "availableLanguage": ["Ukrainian", "Russian", "English"]
+    },
+    "sameAs": [
+      "https://speak-up.com.ua"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "category": "Education"
+    }
+  }
+  </script>
+  {% endblock %}
+</head>
+<body>
+  <!-- Django messages -->
+  {% if messages %}
+    <div class="messages" aria-live="polite" aria-atomic="true">
+      {% for message in messages %}
+        <div class="message message--{{ message.tags }}" role="alert">
+          <div class="message__text">{{ message }}</div>
+          <button type="button" class="message__close" aria-label="Закрити">×</button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Main content -->
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- HTMX indicators -->
+  <div id="htmx-indicator" class="htmx-indicator" aria-live="polite" aria-busy="true">
+    <span class="htmx-indicator__spinner"></span>
+    <span class="sr-only">Завантаження...</span>
+  </div>
+</body>
+</html>
+

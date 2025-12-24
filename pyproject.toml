@@ -1,0 +1,21 @@
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | env
+  | migrations
+  | node_modules
+  | staticfiles
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_gitignore = true
+

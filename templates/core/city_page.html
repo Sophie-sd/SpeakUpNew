@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Онлайн школа англійської - {{ city.name }} - SPEAK UP{% endblock %}
+{% block og_title %}Онлайн школа англійської - {{ city.name }} - SPEAK UP{% endblock %}
+{% block meta_description %}Онлайн курси англійської від SPEAK UP для жителів міста {{ city.name }}. Історія роботи в місті та досягнення.{% endblock %}
+
+{% block content %}
+<main>
+  <h1>Онлайн школа англійської - {{ city.name }}</h1>
+
+  <!-- Історія в місті -->
+  {% if city.seo_content %}
+  <section>
+    <div>{{ city.seo_content|linebreaks }}</div>
+  </section>
+  {% endif %}
+
+  <!-- Досягнення -->
+  {% if city.achievements %}
+  <section>
+    <h2>Наші досягнення в {{ city.name }}</h2>
+    <ul>
+      {% for achievement in city.achievements %}
+      <li>{{ achievement }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Приєднуйтесь до SpeakUp онлайн</h2>
+    <p>Та сама якість навчання, але зручніше</p>
+    <a href="{% url 'core:testing' %}?from=city_{{ city.slug }}" class="btn-primary">
+      Записатися на тестування
+    </a>
+  </section>
+</main>
+{% endblock %}
+

@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Button Component (BEM)
+   ========================================================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  min-height: 44px;
+  min-width: 44px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  touch-action: manipulation;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Hover effects only for devices with hover */
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Button variants */
+.button--primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.button--secondary {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.button--success {
+  background-color: var(--color-success);
+  color: #ffffff;
+}
+
+.button--error {
+  background-color: var(--color-error);
+  color: #ffffff;
+}
+
+.button--outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button--outline:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+}
+
+/* Button sizes */
+.button--sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+}
+
+.button--lg {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+/* Button full width */
+.button--full {
+  width: 100%;
+}
+

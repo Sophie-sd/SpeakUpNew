@@ -1,0 +1,16 @@
+<div class="modal modal--active" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__backdrop"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <h2 class="modal__title" id="modal-title">{% block modal_title %}Modal Title{% endblock %}</h2>
+      <button type="button" class="modal__close" aria-label="Закрити модальне вікно">×</button>
+    </div>
+    <div class="modal__body">
+      {% block modal_body %}{% endblock %}
+    </div>
+    <div class="modal__footer">
+      {% block modal_footer %}{% endblock %}
+    </div>
+  </div>
+</div>
+
