@@ -1,57 +1,138 @@
 /* ==========================================================================
-   Achievements Section - Досягнення з лічильниками
+   Achievements Section - Мінімалістичний дизайн з об'ємними лічильниками
    ========================================================================== */
 
 .achievements {
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  contain: layout style;
+  contain: layout style paint;
+  content-visibility: auto;
   width: 100%;
   max-width: min(var(--content-width-desktop), var(--content-max-width));
   margin-left: auto;
   margin-right: auto;
 }
 
-.section-title {
-  font-size: var(--font-size-3xl);
+.achievements .section-title {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
-  color: var(--color-white);
+  margin-bottom: 3rem;
 }
 
+/* Grid з 2 рядками: 4 в першому, 2 по центру в другому */
 .achievements__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 2rem;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
+  align-items: center;
 }
 
+/* Другий ряд - 2 елементи по центру (5-й та 6-й) */
+.achievement-card:nth-child(5) {
+  grid-column: 2 / 3;
+}
+
+.achievement-card:nth-child(6) {
+  grid-column: 3 / 4;
+}
+
+/* Мінімалістична картка без фонів */
 .achievement-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg);
   text-align: center;
-  min-height: 150px;
+  padding: 1.5rem 0.75rem;
 }
 
+/* Об'ємні цифри з товстими тінями - менші для 4 в ряд */
 .achievement-card__number {
-  font-size: var(--font-size-3xl);
-  font-weight: 700;
-  color: var(--color-primary);
+  font-size: clamp(2.5rem, 4vw, 2.64rem);
+  font-weight: 900;
+  color: #ffffff;
   display: block;
-  margin-bottom: var(--spacing-sm);
-  line-height: 1.2;
+  margin-bottom: 0.875rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    0 9px 18px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
+/* Текст під цифрами - більш виразний, менший для 4 в ряд, фіксована висота для вирівнювання */
 .achievement-card__label {
-  font-size: var(--font-size-base);
-  color: var(--color-white);
-  font-weight: 500;
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  max-width: 100%;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.01em;
 }
 
-/* Мобільна версія */
+/* Кнопка CTA */
+.achievements__cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-xl);
+  gap: 1rem;
+}
+
+.achievements__cta-text {
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Планшети - 2 в ряд */
+@media (width <= 1024px) {
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .achievement-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .achievement-card__number {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    margin-bottom: 0.875rem;
+  }
+
+  .achievement-card__label {
+    font-size: clamp(0.875rem, 1.3vw, 1rem);
+    font-weight: 600;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    min-height: 2.8em;
+  }
+
+  /* На планшетах другий ряд також 2 в ряд */
+  .achievement-card:nth-child(5),
+  .achievement-card:nth-child(6) {
+    grid-column: auto;
+  }
+}
+
+/* Мобільна версія - 2 в ряд */
 @media (width <= 767px) {
   .achievements {
     padding: var(--section-padding-mobile);
@@ -59,19 +140,73 @@
     max-width: var(--content-width-mobile);
   }
 
-  .achievements__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
+  .achievements .section-title {
+    margin-bottom: 2rem;
   }
 
-  .section-title {
-    font-size: var(--font-size-2xl);
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* На мобільних другий ряд також 2 в ряд */
+  .achievement-card:nth-child(5),
+  .achievement-card:nth-child(6) {
+    grid-column: auto;
+  }
+
+  .achievement-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .achievement-card__number {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    margin-bottom: 0.875rem;
+    text-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.5),
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      0 9px 18px rgba(0, 0, 0, 0.3),
+      0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .achievement-card__label {
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    min-height: 2.6em;
+  }
+
+  .achievements__cta {
+    margin-top: var(--spacing-lg);
   }
 }
 
+/* Малі мобільні - 1 в ряд */
 @media (width <= 480px) {
   .achievements__grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .achievement-card {
+    padding: 1rem 0.5rem;
+  }
+
+  .achievement-card__number {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+    margin-bottom: 0.75rem;
+    text-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.5),
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      0 6px 12px rgba(0, 0, 0, 0.3),
+      0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .achievement-card__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    min-height: 2.4em;
   }
 }
-

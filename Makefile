@@ -59,3 +59,4 @@ migrate:
 shell:
 	python manage.py shell
 
+

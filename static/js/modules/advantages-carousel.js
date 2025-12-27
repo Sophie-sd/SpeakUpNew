@@ -1,67 +1,113 @@
 'use strict';
 
-import { BaseCarousel } from './base-carousel.js';
-
 /**
- * Advantages Carousel - карусель переваг з flip картками
- * Використовує base-carousel + flip функціонал
+ * Advantages Carousel - flip картки з snap scroll
  */
 function initAdvantagesCarousel() {
-  const container = document.querySelector('.advantages-carousel__container');
-  if (!container) return;
+  const cards = document.querySelectorAll('.advantage-card');
 
-  // Ініціалізація базової каруселі
-  new BaseCarousel(container, {
-    itemsPerView: window.innerWidth <= 767 ? 1 : 4,
-    gap: 16,
-    lazyLoad: true,
-    keyboardNav: true
+  if (!cards.length) return;
+
+  // Встановлення динамічних фонів з data-атрибутів
+  cards.forEach(card => {
+    const bgElement = card.querySelector('.advantage-card__bg--dynamic');
+    if (bgElement) {
+      const bgUrl = bgElement.getAttribute('data-bg-image');
+      if (bgUrl) {
+        bgElement.style.backgroundImage = `url('${bgUrl}')`;
+      }
+    }
   });
 
-  // Flip функціонал для карток
-  const cards = container.querySelectorAll('.advantage-card');
-
+  // Flip функціонал
   cards.forEach(card => {
-    card.addEventListener('click', function() {
-      // Додаємо клас для анімації
-      this.classList.add('glass-card--animating');
-      this.classList.toggle('flipped');
+    const handleFlip = function() {
+      // Додати will-change для оптимізації анімації
+      card.classList.add('advantage-card--animating');
+      card.classList.toggle('flipped');
 
-      // Видаляємо клас після завершення анімації
+      // Видалити will-change після завершення анімації (0.6s)
       setTimeout(() => {
-        this.classList.remove('glass-card--animating');
+        card.classList.remove('advantage-card--animating');
       }, 600);
+    };
+
+    card.addEventListener('click', function(e) {
+      // Не flip якщо клік по посиланню або кнопці
+      if (e.target.closest('a, button')) return;
+
+      handleFlip();
     });
 
-    // Touch-friendly: мінімальна відстань для flip
+    // Touch-friendly для мобільних
     let touchStartX = 0;
     let touchStartY = 0;
+    let isSwiping = false;
 
     card.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      isSwiping = false;
+    }, { passive: true });
+
+    card.addEventListener('touchmove', (e) => {
+      const touchMoveX = e.touches[0].clientX;
+      const touchMoveY = e.touches[0].clientY;
+      const diffX = Math.abs(touchMoveX - touchStartX);
+      const diffY = Math.abs(touchMoveY - touchStartY);
+
+      // Визначаємо чи це свайп (горизонтальна прокрутка)
+      if (diffX > diffY && diffX > 10) {
+        isSwiping = true;
+      }
     }, { passive: true });
 
     card.addEventListener('touchend', (e) => {
+      // Якщо був свайп - не flip
+      if (isSwiping) return;
+
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
       const diffX = Math.abs(touchEndX - touchStartX);
       const diffY = Math.abs(touchEndY - touchStartY);
 
-      // Якщо рух переважно вертикальний - flip, якщо горизонтальний - scroll
-      if (diffY > diffX && diffY > 30) {
+      // Якщо рух мінімальний - це tap, робимо flip
+      if (diffX < 10 && diffY < 10) {
         e.preventDefault();
-        card.classList.add('glass-card--animating');
-        card.classList.toggle('flipped');
-        setTimeout(() => {
-          card.classList.remove('glass-card--animating');
-        }, 600);
+        handleFlip();
       }
     }, { passive: false });
   });
+
+  // Keyboard navigation для accessibility
+  cards.forEach((card, index) => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Картка переваги ${index + 1}. Натисніть для деталей`);
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip();
+      }
+    });
+  });
+
+  // Snap scroll indicator (опціонально)
+  const container = document.querySelector('.advantages-carousel__container');
+  if (container) {
+    // Smooth scroll на desktop при кліку по індикатору (якщо буде додано)
+    container.addEventListener('scroll', () => {
+      // Можна додати логіку для індикаторів прогресу
+    }, { passive: true });
+  }
 }
 
-document.addEventListener('DOMContentLoaded', initAdvantagesCarousel);
+// Ініціалізація
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAdvantagesCarousel);
+} else {
+  initAdvantagesCarousel();
+}
 
 export default { initAdvantagesCarousel };
-

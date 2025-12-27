@@ -20,3 +20,4 @@ document.addEventListener('DOMContentLoaded', initFAQAccordion);
 
 export default { initFAQAccordion };
 
+

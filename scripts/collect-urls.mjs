@@ -52,3 +52,4 @@ const urls = [
 writeFileSync('url-list.txt', urls.join('\n'), 'utf8');
 console.log(`✅ Зібрано ${urls.length} URL (54 сторінки x 2 мови = 108)`);
 
+

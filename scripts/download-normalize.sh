@@ -23,3 +23,4 @@ rm -f static/css/normalize.css.bak
 
 echo "✅ normalize.css downloaded successfully!"
 
+

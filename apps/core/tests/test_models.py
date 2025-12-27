@@ -10,3 +10,4 @@ class BaseModelTestCase(TestCase):
         # This is a placeholder test
         pass
 
+

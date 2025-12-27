@@ -5,7 +5,8 @@
 .testimonials-section {
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  contain: layout style;
+  contain: layout style paint; /* Ізоляція для продуктивності */
+  content-visibility: auto; /* Оптимізація для секцій поза viewport */
   width: 100%;
   max-width: min(var(--content-width-desktop), var(--content-max-width));
   margin-left: auto;

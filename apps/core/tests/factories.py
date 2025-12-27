@@ -8,3 +8,4 @@ Factory classes for creating test data.
 #     class Meta:
 #         model = YourModel
 
+

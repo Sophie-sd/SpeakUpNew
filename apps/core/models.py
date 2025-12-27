@@ -95,13 +95,22 @@ class Achievement(BaseModel):
 
 
 class Advantage(BaseModel):
-    """Переваги SpeakUp з flip картками"""
-    title_uk = models.CharField(max_length=100, verbose_name="Заголовок (UK)")
-    title_ru = models.CharField(max_length=100, blank=True, verbose_name="Заголовок (RU)")
-    front_text_uk = models.TextField(verbose_name="Текст спереду (UK)")
-    front_text_ru = models.TextField(blank=True, verbose_name="Текст спереду (RU)")
-    back_text_uk = models.TextField(verbose_name="Текст ззаду (UK)")
-    back_text_ru = models.TextField(blank=True, verbose_name="Текст ззаду (RU)")
+    """Переваги SpeakUp з новою структурою HEADER-BODY-FOOTER"""
+    # HEADER
+    title_uk = models.CharField(max_length=200, verbose_name="Заголовок (UK)")
+    title_ru = models.CharField(max_length=200, blank=True, verbose_name="Заголовок (RU)")
+    subtitle_uk = models.CharField(max_length=200, blank=True, verbose_name="Підзаголовок (UK)")
+    subtitle_ru = models.CharField(max_length=200, blank=True, verbose_name="Підзаголовок (RU)")
+    tag_uk = models.CharField(max_length=150, blank=True, verbose_name="Тег (UK)")
+    tag_ru = models.CharField(max_length=150, blank=True, verbose_name="Тег (RU)")
+
+    # FOOTER
+    footer_title_uk = models.CharField(max_length=200, blank=True, verbose_name="Заголовок футера (UK)")
+    footer_title_ru = models.CharField(max_length=200, blank=True, verbose_name="Заголовок футера (RU)")
+    footer_text_uk = models.TextField(blank=True, verbose_name="Текст футера (UK)")
+    footer_text_ru = models.TextField(blank=True, verbose_name="Текст футера (RU)")
+
+    # Загальні
     icon = models.ImageField(upload_to='advantages/', blank=True, null=True, verbose_name="Іконка")
     order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
     is_active = models.BooleanField(default=True, verbose_name="Активний", db_index=True)
@@ -113,6 +122,30 @@ class Advantage(BaseModel):
 
     def __str__(self):
         return self.title_uk
+
+
+class AdvantageItem(models.Model):
+    """Пункти переваги для секції BODY"""
+    advantage = models.ForeignKey(
+        Advantage,
+        on_delete=models.CASCADE,
+        related_name='items',
+        verbose_name="Перевага"
+    )
+    icon_emoji = models.CharField(max_length=20, blank=True, verbose_name="Емодзі іконки")
+    title_uk = models.CharField(max_length=100, blank=True, verbose_name="Заголовок (UK)")
+    title_ru = models.CharField(max_length=100, blank=True, verbose_name="Заголовок (RU)")
+    text_uk = models.TextField(verbose_name="Текст (UK)")
+    text_ru = models.TextField(blank=True, verbose_name="Текст (RU)")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Пункт переваги"
+        verbose_name_plural = "Пункти переваг"
+
+    def __str__(self):
+        return f"{self.advantage.title_uk} - {self.title_uk or 'Пункт'}"
 
 
 class CourseCategory(models.Model):

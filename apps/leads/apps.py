@@ -6,3 +6,4 @@ class LeadsConfig(AppConfig):
     name = 'apps.leads'
     verbose_name = 'Заявки на пробні уроки'
 
+

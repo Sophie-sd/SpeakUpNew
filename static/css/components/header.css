@@ -219,7 +219,6 @@
 
   /* Glassmorphism (білий на темному): */
   background: rgba(0, 0, 0, 0.8);
-
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-pill);
   padding: var(--menu-spacing-sm) var(--menu-spacing-lg);
@@ -257,6 +256,7 @@
   margin: 0;
   padding-left: 0;
   padding-inline-start: 0;
+
   /* Повне прибирання резервованого місця під маркери списку */
 }
 
@@ -548,14 +548,9 @@
     display: none;
   }
 
-  .trial-form__trigger--mobile {
-    display: flex;
-  }
-
   .header {
     flex-direction: column;
     position: static;
-    bottom: auto;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -573,6 +568,7 @@
   .mobile-nav-container .header {
     padding-left: 0;
     padding-right: 0;
+
     /* Вертикальний padding залишається: padding-top та padding-bottom з базового стилю */
   }
 
@@ -583,7 +579,6 @@
     margin: 0;
     overflow: hidden;
     position: static;
-    bottom: 0;
     box-shadow: none; /* Виправлення: прибрати зайву тінь на мобільних */
   }
 
@@ -609,6 +604,7 @@
     padding-inline-start: 0;
     padding-inline-end: 0;
     margin-left: 0;
+
     /* Вертикальний padding залишається для відступів зверху/знизу */
   }
 
@@ -766,17 +762,19 @@
   color: var(--color-success);
   font-weight: 600;
   font-size: var(--menu-font-base);
-  animation: successPulse 0.5s ease;
+  animation: success-pulse 0.5s ease;
 }
 
-@keyframes successPulse {
+@keyframes success-pulse {
   0% {
     opacity: 0;
     transform: scale(0.9);
   }
+
   50% {
     transform: scale(1.05);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -791,7 +789,7 @@
 
 [data-header-field].field-error {
   border-color: var(--color-error);
-  animation: fieldShake 0.4s ease;
+  animation: field-shake 0.4s ease;
 }
 
 /* Приховати стандартні повідомлення про помилки валідації для форми в хедері */
@@ -805,7 +803,7 @@
   outline: none;
 }
 
-@keyframes fieldShake {
+@keyframes field-shake {
   0%, 100% { transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
   20%, 40%, 60%, 80% { transform: translateX(4px); }

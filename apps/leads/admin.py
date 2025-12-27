@@ -35,3 +35,4 @@ class RunningLineTextAdmin(admin.ModelAdmin):
     list_display = ['text', 'is_active', 'order']
     list_editable = ['is_active', 'order']
 
+

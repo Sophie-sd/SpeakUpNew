@@ -325,6 +325,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-white);
 }
 
+/* Загальний стиль для заголовків секцій (як h1 в hero) */
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: 2rem;
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    0 9px 18px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
 /* ==========================================================================
    Utility Classes
    ========================================================================== */
@@ -379,14 +394,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Main content offset for fixed menus */
-main#main-content {
+.main-content {
   /* Desktop: top padding for header, bottom for nav */
   padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
   padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
 }
 
 @media (width <= 767px) {
-  main#main-content {
+  .main-content {
     /* Mobile: top padding for header, bottom for nav */
     padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
     padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));

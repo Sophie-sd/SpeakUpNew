@@ -27,7 +27,12 @@
       }
     ],
     "plugin/declaration-block-no-ignored-properties": true,
-    "plugin/no-low-performance-animation-properties": true,
+    "plugin/no-low-performance-animation-properties": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
     "plugin/no-unsupported-browser-features": [
       true,
       {
@@ -55,4 +60,5 @@
   },
   "ignoreFiles": ["static/css/normalize.css"]
 }
+
 

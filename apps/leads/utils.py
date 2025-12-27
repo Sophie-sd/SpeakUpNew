@@ -39,3 +39,4 @@ def send_trial_confirmation_email(lead, request):
         print(f"Email error: {e}")
         return False
 
+

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils import timezone
 from django.contrib import messages
 from .models import (
-    NewsArticle, Achievement, Advantage, CourseCategory, Course,
+    NewsArticle, Achievement, CourseCategory, Course,
     Testimonial, FAQ, ConsultationRequest
 )
 
@@ -53,12 +53,13 @@ class AchievementAdmin(admin.ModelAdmin):
     list_editable = ['order', 'is_active']
 
 
-@admin.register(Advantage)
-class AdvantageAdmin(admin.ModelAdmin):
-    list_display = ['title_uk', 'order', 'is_active']
-    list_filter = ['is_active']
-    search_fields = ['title_uk', 'title_ru']
-    list_editable = ['order', 'is_active']
+# Переваги додаються через код, не через адмін панель
+# @admin.register(Advantage)
+# class AdvantageAdmin(admin.ModelAdmin):
+#     list_display = ['title_uk', 'order', 'is_active']
+#     list_filter = ['is_active']
+#     search_fields = ['title_uk', 'title_ru']
+#     list_editable = ['order', 'is_active']
 
 
 @admin.register(CourseCategory)

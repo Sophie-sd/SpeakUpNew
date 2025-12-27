@@ -12,6 +12,7 @@
   z-index: var(--z-background, -1);
   overflow: hidden;
   pointer-events: none; /* Важливо: не блокує кліки */
+  contain: layout style paint; /* Ізоляція для продуктивності */
 
   /* Hardware acceleration - використовуємо наявний паттерн з header.css */
   -webkit-transform: translateZ(0);
@@ -59,6 +60,7 @@
   width: clamp(67rem, 30vw, 35rem);
   height: auto;
   pointer-events: none;
+  contain: layout style paint; /* Ізоляція для продуктивності */
 
   /* Спільні стилі з hero-background */
   -webkit-backface-visibility: hidden;
@@ -85,6 +87,7 @@
   min-height: 100dvh;
   max-height: 350vh;
   max-height: 320dvh;
+  contain: layout style; /* Ізоляція для продуктивності (без paint для скролу) */
 }
 
 /* iOS Safari специфічні фікси */

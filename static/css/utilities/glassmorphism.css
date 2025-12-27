@@ -7,6 +7,7 @@
   border: 1px solid var(--glass-border-elevated);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow-elevated);
+  contain: layout style paint; /* Ізоляція для продуктивності */
 
   /* Обмежений blur для великих секцій */
   -webkit-backdrop-filter: blur(6px);
@@ -19,6 +20,7 @@
   border: 1px solid var(--glass-border-elevated);
   border-radius: var(--radius-md);
   box-shadow: var(--glass-shadow-elevated);
+  contain: layout style paint; /* Ізоляція для продуктивності */
 
   /* Збільшений blur для дрібних елементів */
   -webkit-backdrop-filter: blur(14px);
@@ -46,12 +48,30 @@
   will-change: transform, opacity;
 }
 
-/* Adaptive blur: менше на iOS, більше на Desktop */
+/* Adaptive blur: менше на iOS та мобільних, більше на Desktop */
 @supports (-webkit-touch-callout: none) {
   /* iOS */
   .glass-card {
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
+  }
+
+  .glass-section {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Мобільні пристрої - зменшений blur для продуктивності */
+@media (width <= 767px) {
+  .glass-card {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-section {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
   }
 }
 
@@ -60,6 +80,11 @@
   .glass-card {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+  }
+
+  .glass-section {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
   }
 }
 

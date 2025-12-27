@@ -9,7 +9,7 @@
   max-height: 65dvh;
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  contain: layout style;
+  contain: layout style paint; /* Ізоляція для продуктивності */
   overflow: hidden;
   width: 100%;
   max-width: min(var(--content-width-desktop), var(--content-max-width));
@@ -20,15 +20,24 @@
 }
 
 .hero-section__header {
-
   text-align: center;
 }
 
 .hero-section__header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem); /* 40-56px */
   font-weight: 700;
-
   line-height: 1.2;
+  color: var(--color-white);
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    0 9px 18px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Виключити тіні з золотого акценту, щоб не конфліктувало з градієнтом */
+.hero-section__header h1 .hero-section__price-accent {
+  text-shadow: none;
 }
 
 /* Загальний клас для червоних акцентів */
@@ -47,20 +56,41 @@
   display: inline-block;
   font-weight: 700;
   background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-stroke: 3px var(--color-white);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  /* Легка анімація з filter замість background-position для кращої продуктивності */
   animation: glitter 3s ease-in-out infinite;
 }
 
 @keyframes glitter {
   0%, 100% {
-    background-position: 0% 50%;
+    filter: brightness(1) drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+    opacity: 1;
   }
+
   50% {
-    background-position: 100% 50%;
+    filter: brightness(1.2) drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
+    opacity: 0.95;
+  }
+}
+
+/* Вимкнути анімацію на мобільних для продуктивності */
+@media (width <= 767px) {
+  .hero-section__price-accent {
+    animation: none;
+    filter: brightness(1.1);
+  }
+}
+
+/* Вимкнути анімацію при prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section__price-accent {
+    animation: none;
   }
 }
 
@@ -132,6 +162,7 @@
 @supports (-webkit-touch-callout: none) {
   .hero-section__cta {
     margin-left: 15dvw;
+
     /* Fallback для iOS < 15 */
     margin-left: calc(var(--parallax-vh, 1vh) * 15);
   }

@@ -13,3 +13,4 @@ class IndexViewTestCase(TestCase):
         response = self.client.get(reverse('core:index'))
         self.assertEqual(response.status_code, 200)
 
+

@@ -27,7 +27,7 @@ def index(request):
 
     context = {
         'achievements': Achievement.objects.filter(is_active=True).order_by('order'),
-        'advantages': Advantage.objects.filter(is_active=True).order_by('order'),
+        'advantages': Advantage.objects.prefetch_related('items').filter(is_active=True).order_by('order'),
         'course_categories': CourseCategory.objects.prefetch_related(
             'courses'
         ).filter(courses__is_active=True).distinct().order_by('order'),

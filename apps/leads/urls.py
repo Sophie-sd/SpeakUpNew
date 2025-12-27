@@ -7,3 +7,4 @@ urlpatterns = [
     path('api/trial-form/', views.submit_trial_form, name='submit_trial_form'),
 ]
 
+
