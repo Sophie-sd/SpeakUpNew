@@ -101,3 +101,4 @@ if __name__ == '__main__':
     print(f"\n💾 URL збережено в scripts/all_news_urls.txt")
 
 
+

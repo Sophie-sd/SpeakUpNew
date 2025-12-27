@@ -36,3 +36,4 @@ class RunningLineTextAdmin(admin.ModelAdmin):
     list_editable = ['is_active', 'order']
 
 
+

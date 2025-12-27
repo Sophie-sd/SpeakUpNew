@@ -76,3 +76,4 @@ class RunningLineText(models.Model):
         return self.text[:50]
 
 
+

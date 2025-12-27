@@ -38,3 +38,4 @@ class NewsRedirectMiddleware:
         return response
 
 
+

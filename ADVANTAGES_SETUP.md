@@ -99,3 +99,4 @@ exec(open('add_advantages_full.py').read())
 2. Перевірте, що `-webkit-overflow-scrolling: touch` присутній
 3. Спробуйте на реальному пристрої (Safari Desktop != Safari iOS)
 
+

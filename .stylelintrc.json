@@ -58,7 +58,7 @@
     "alpha-value-notation": null,
     "declaration-block-no-redundant-longhand-properties": null
   },
-  "ignoreFiles": ["static/css/normalize.css"]
+  "ignoreFiles": ["static/css/normalize.css", "tests/violations/**/*.css"]
 }
 
 

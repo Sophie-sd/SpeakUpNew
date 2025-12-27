@@ -19,26 +19,26 @@ if [ -n "$TEMPLATE_FILES" ]; then
   bash scripts/check_template_tags.sh || ((ERROR_COUNT++))
 fi
 
-# Перевірка CSS
-CSS_FILES=$(echo "$STAGED_FILES" | grep '\.css$' | grep -v 'normalize.css' || echo "")
+# Перевірка CSS (виключаємо normalize.css та тестові файли)
+CSS_FILES=$(echo "$STAGED_FILES" | grep '\.css$' | grep -v 'normalize.css' | grep -v 'tests/violations/' || echo "")
 if [ -n "$CSS_FILES" ]; then
   echo "Checking CSS files..."
   npx stylelint $CSS_FILES || true  # stylelint warnings не блокують коміт, кастомні правила перевіряють критичні речі
   bash scripts/check-css-rules.sh || ((ERROR_COUNT++))
 fi
 
-# Перевірка JS
-JS_FILES=$(echo "$STAGED_FILES" | grep '\.js$' || echo "")
+# Перевірка JS (виключаємо тестові файли)
+JS_FILES=$(echo "$STAGED_FILES" | grep '\.js$' | grep -v 'tests/violations/' || echo "")
 if [ -n "$JS_FILES" ]; then
   echo "Checking JavaScript files..."
   npx eslint $JS_FILES || ((ERROR_COUNT++))
   bash scripts/check-js-rules.sh || ((ERROR_COUNT++))
 fi
 
-# Перевірка HTML (виключаємо email шаблони, оскільки вони потребують inline styles)
+# Перевірка HTML (виключаємо email шаблони та тестові файли, оскільки вони потребують inline styles)
 if [ -n "$TEMPLATE_FILES" ]; then
   echo "Checking HTML structure..."
-  HTML_FILES=$(echo "$TEMPLATE_FILES" | grep -v '/emails/' || echo "")
+  HTML_FILES=$(echo "$TEMPLATE_FILES" | grep -v '/emails/' | grep -v 'tests/violations/' || echo "")
   if [ -n "$HTML_FILES" ]; then
     npx htmlhint $HTML_FILES || ((ERROR_COUNT++))
   fi
