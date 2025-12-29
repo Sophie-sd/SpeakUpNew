@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Contacts Page - Сторінка контактів
+   ========================================================================== */
+
+/* Загальні стилі для glass-section на сторінці контактів */
+.contacts-page .glass-section {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.contacts-page {
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin: 0 auto;
+  padding: var(--section-padding-desktop);
+}
+
+/* Hero секція */
+.contacts-hero {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.contacts-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-md);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contacts-hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: var(--spacing-sm);
+}
+
+/* Контент контактів */
+.contacts-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  padding: var(--section-padding-desktop);
+}
+
+/* Секція контактів */
+.contacts-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.contacts-section__title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-sm);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.contacts-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Контактний елемент (телефон, email) */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.contact-item strong {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-white);
+  min-width: 60px;
+}
+
+.contact-item__link {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  display: inline-block;
+  min-width: fit-content;
+}
+
+.contact-item__link:hover,
+.contact-item__link:focus {
+  color: var(--color-primary-hover);
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--color-primary);
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(231, 30, 20, 0.2);
+}
+
+.contact-item__link:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Примітка про контакт */
+.contact-note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/* Графік роботи */
+.schedule-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.schedule-item__label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.schedule-item__value {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+/* Повідомлення про відсутність даних */
+.contacts-content > p {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-xl);
+}
+
+/* Адаптивність */
+@media (max-width: 767px) {
+  .contacts-page .glass-section {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+  }
+
+  .contacts-page {
+    padding: var(--section-padding-mobile);
+  }
+
+  .contacts-hero {
+    margin-bottom: 0;
+  }
+
+  .contacts-hero h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .contacts-hero__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .contacts-content {
+    gap: var(--spacing-lg);
+    padding: var(--section-padding-mobile);
+  }
+
+  .contacts-section__title {
+    font-size: 1.25rem;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-item strong {
+    min-width: auto;
+  }
+
+  .contact-item__link {
+    font-size: var(--font-size-base);
+    width: 100%;
+    text-align: center;
+  }
+
+  .schedule-item {
+    padding: var(--spacing-sm);
+  }
+
+  .schedule-item__value {
+    font-size: var(--font-size-base);
+  }
+
+  .contact-note {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Планшети */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contacts-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* Десктоп - двоколонковий layout */
+@media (min-width: 1024px) {
+  .contacts-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  .contacts-section {
+    min-height: 200px;
+  }
+}
+

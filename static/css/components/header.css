@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: var(--spacing-md);
   width: 100%;
   padding: 0 var(--spacing-md);
   padding-top: max(10px, env(safe-area-inset-top, 10px));
@@ -50,8 +51,8 @@
 }
 
 .header__menu--top .header__logo-image {
-  height: 5vh;
-  height: 5dvh;
+  height: 7vh;
+  height: 7dvh;
   width: auto;
   object-fit: contain;
 }
@@ -65,6 +66,71 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* Невидимі секції для балансування */
+.header__spacer--left,
+.header__spacer--right {
+  flex: 1 1 0;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Кругла кнопка Student Zone */
+.header__student-zone {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5vh;
+  width: 5dvh;
+  height: 5vh;
+  height: 5dvh;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 15px solid #1b1714;
+  box-shadow: inset 0 0 0 1px var(--color-white);
+  padding: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+  color: var(--color-white);
+  font-family: var(--font-family-base);
+  text-decoration: none;
+}
+
+.header__student-zone:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.header__student-zone:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.header__student-zone-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: calc(2vh * 0.5);
+  font-size: calc(2dvh * 0.5);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.header__student-zone-text span {
+  display: block;
+  line-height: 1;
+}
+
+.header__student-zone-text span:nth-child(2) {
+  color: var(--color-black);
 }
 
 /* Форма в хедері (десктоп): */
@@ -184,6 +250,18 @@
     margin: 0 auto;
   }
 
+  /* Кнопка Student Zone на десктопі - висота 1в1 з навігацією */
+  .header-wrapper {
+    align-items: stretch;
+  }
+
+  .header__student-zone {
+    align-self: stretch;
+    height: 100%;
+    width: 8.2%;
+    aspect-ratio: 1 / 1;
+  }
+
   .mobile-nav-container {
     position: fixed;
     bottom: 0;
@@ -196,6 +274,26 @@
     width: 100%;
     padding: 0 var(--spacing-md);
     padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    box-sizing: border-box;
+  }
+
+  .mobile-nav-container .header {
+    max-width: 900px;
+    width: auto; /* Замість width: 100% - щоб не розтягувався на весь контейнер */
+    flex: 0 1 auto; /* Дозволяє flex-контейнеру правильно центрувати */
+  }
+
+  /* Гарантуємо, що бургер-меню не впливає на центрування на десктопі */
+  .mobile-nav-container .burger-menu {
+    display: none !important;
+  }
+
+  /* Виправлення відступу праворуч - обмежуємо ширину .header__nav та вирівнюємо padding */
+  .mobile-nav-container .header__nav {
+    width: 100%;
+    max-width: 100%;
+    padding-left: var(--menu-spacing-lg);
+    padding-right: var(--menu-spacing-lg);
     box-sizing: border-box;
   }
 }
@@ -224,6 +322,28 @@
   padding: var(--menu-spacing-sm) var(--menu-spacing-lg);
   box-sizing: border-box;
   box-shadow: none;
+}
+
+/* Слайдер (червоний вовчок) - позиціонується відносно .header__nav */
+.header__menu-slider {
+  position: absolute;
+  top: var(--menu-spacing-sm);
+  left: var(--menu-spacing-sm);
+  height: calc(100% - calc(var(--menu-spacing-sm) * 2));
+  width: 0;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+/* Показуємо слайдер коли є активна кнопка */
+.header__nav:has(.header__link--active) .header__menu-slider {
+  opacity: 1;
 }
 
 /* Верхнє меню (як нижнє) */
@@ -278,7 +398,6 @@
   list-style: none;
   background: var(--color-gray-light);
   border-radius: var(--radius-pill);
-  padding: var(--menu-spacing-xs) var(--menu-spacing-sm);
   border: none;
   outline: none;
   box-shadow: none;
@@ -287,6 +406,8 @@
 }
 
 .header__link {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   padding: var(--menu-spacing-xs) var(--menu-spacing-sm);
@@ -298,17 +419,26 @@
   transition: all var(--transition-fast);
   white-space: nowrap;
   touch-action: manipulation;
+  background: transparent;
+  border: none;
 }
 
-.header__link:hover,
+.header__link-text {
+  position: relative;
+  z-index: 1;
+}
+
 .header__link--active {
   background: var(--color-primary);
+  border: 1px solid var(--color-white);
   color: var(--color-white);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .header__link:hover {
     background: var(--color-primary);
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
   }
 }
 
@@ -469,12 +599,14 @@
 .burger-menu__link:hover,
 .burger-menu__link:focus {
   background: var(--color-primary);
+  border: 1px solid var(--color-white);
   color: var(--color-white);
 }
 
 @media (hover: hover) {
   .burger-menu__link:hover {
     background: var(--color-primary);
+    border: 1px solid var(--color-white);
   }
 }
 
@@ -528,6 +660,13 @@
   .header-wrapper {
     padding-left: max(10px, env(safe-area-inset-left, 10px));
     padding-right: max(10px, env(safe-area-inset-right, 10px));
+  }
+
+  /* Приховати невидимі секції та кнопку Student Zone на мобільних */
+  .header__spacer--left,
+  .header__spacer--right,
+  .header__student-zone {
+    display: none;
   }
 
   .header__menu--top {
@@ -626,6 +765,11 @@
   .header__link {
     padding: var(--menu-size-xs) var(--menu-size-sm);
     font-size: var(--menu-font-xs);
+  }
+
+  /* Слайдер на мобільних: залишається видимим, але без hover ефектів */
+  .header__menu-slider {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   /* Ховаємо деякі пункти на мобільних: */

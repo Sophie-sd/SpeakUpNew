@@ -5,12 +5,12 @@
 /* CSS Custom Properties */
 :root {
   /* Colors - червоний дизайн */
-  --color-primary: #DC143C;
-  --color-primary-hover: #B8112E;
-  --color-primary-light: rgba(220, 20, 60, 0.1);
+  --color-primary: #e71e14;
+  --color-primary-hover: #b81810;
+  --color-primary-light: rgba(231, 30, 20, 0.1);
   --color-secondary: #6c757d;
   --color-success: #28a745;
-  --color-error: #DC143C;
+  --color-error: #e71e14;
   --color-warning: #ffc107;
   --color-info: #6c757d;
 
@@ -165,8 +165,8 @@
   /* Button enhancements */
   --button-padding-v: 1rem; /* 16px */
   --button-padding-h: 2rem; /* 32px */
-  --button-shadow: 0 4px 12px rgba(220, 20, 60, 0.25);
-  --button-shadow-hover: 0 6px 20px rgba(220, 20, 60, 0.35);
+  --button-shadow: 0 4px 12px rgba(231, 30, 20, 0.25);
+  --button-shadow-hover: 0 6px 20px rgba(231, 30, 20, 0.35);
 
   /* Form contrast */
   --input-bg: var(--color-white);
@@ -202,6 +202,10 @@ html {
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
+  
+  /* Запобігає зайвому скролу через fixed елементи */
+  height: auto;
+  min-height: 100%;
 }
 
 body {
@@ -233,6 +237,9 @@ body {
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
+  
+  /* Запобігає зайвому скролу через fixed елементи */
+  min-height: auto;
 }
 
 /* Rule 33: touch-action для інтерактивних елементів */
@@ -400,11 +407,53 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
 }
 
+/* Прибрати padding-bottom, якщо після main-content йде footer */
+.main-content:has(+ .footer) {
+  padding-bottom: 0;
+}
+
 @media (width <= 767px) {
   .main-content {
     /* Mobile: top padding for header, bottom for nav */
     padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
     padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
   }
+
+  .main-content:has(+ .footer) {
+    padding-bottom: 0;
+  }
+}
+
+/* Прибрати margin-bottom у останньої секції перед footer */
+/* Загальні правила для всіх секцій */
+.main-content > *:last-child > section:last-child,
+.main-content section:last-child,
+.main-content .glass-section:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Специфічно для hero-content (головна сторінка) */
+.hero-content > section:last-child,
+.hero-content .glass-section:last-child,
+.hero-content > section.consultation-section:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Специфічні правила для різних типів секцій з підвищеною специфічністю */
+.main-content .consultation-section:last-child,
+.hero-content .consultation-section:last-child,
+.main-content .faq-section:last-child,
+.hero-content .faq-section:last-child,
+.main-content .testimonials-section:last-child,
+.hero-content .testimonials-section:last-child,
+.main-content .achievements:last-child,
+.hero-content .achievements:last-child,
+.main-content .advantages-carousel:last-child,
+.hero-content .advantages-carousel:last-child,
+.main-content .courses-section:last-child,
+.hero-content .courses-section:last-child,
+.main-content .pricing-section:last-child,
+.hero-content .pricing-section:last-child {
+  margin-bottom: 0 !important;
 }
 

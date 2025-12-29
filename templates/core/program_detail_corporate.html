@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ program.title }} - SPEAK UP{% endblock %}
+{% block og_title %}{{ program.title }} - SPEAK UP{% endblock %}
+{% block meta_description %}{{ program.description }}{% endblock %}
+
+{% block content %}
+<!-- Фон (паралакс) -->
+<div class="corporate-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/corpBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/corpBackmob.png' %}">
+    <img
+      src="{% static 'img/corpBack.png' %}"
+      alt=""
+      class="corporate-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="corporate-content" data-parallax-layer="content">
+<main class="corporate-program-page">
+  <!-- Hero секція -->
+  <section class="corporate-hero glass-section">
+    <h1 class="corporate-hero__title">КОРПОРАТИВНА АНГЛІЙСЬКА</h1>
+    <p class="corporate-hero__subtitle">Організовуємо корпоративне навчання англійській мові у вас в офісі, на нашій території або в онлайн форматі</p>
+    <div class="corporate-hero__cta">
+      <p>Хочете отримати презентацію та персональну пропозицію щодо навчання співробітників?</p>
+      <p>Записуйтесь на консультацію</p>
+      <a href="#consultation-form" class="button button--primary">Записатися на консультацію</a>
+    </div>
+  </section>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <ol class="breadcrumbs__list">
+      <li><a href="{% url 'core:index' %}">Speak UP</a></li>
+      <li>Корпоративні</li>
+    </ol>
+  </nav>
+
+  <!-- Основний опис -->
+  <section class="corporate-intro glass-section">
+    <h2 class="section-title">Курс корпоративної англійської мови</h2>
+    <div class="corporate-intro__content">
+      <p>Вам потрібна корпоративна англійська? Ми раді співпрацювати з Вами в будь-який момент, а також врахувати всі Ваші побажання та особливості бізнесу для майбутнього вивчення англійської мови з нами.</p>
+      <p>Професійні курси корпоративної англійської мови від Speak Up відповідають індивідуальним вимогам бізнес-клієнтів. Ми орієнтовані на плідну співпрацю зі своїми корпоративними клієнтами, тому в першу чергу завжди враховуємо Ваші побажання. Наше завдання виправдати їх й дати Вам бажаний результат.</p>
+      <p>Пропозиція «Корпоративна англійська» адресована тим клієнтам, які зацікавлені в поглибленні знань англійської своїх співробітників, як в області загальної англійської, так і спеціалізованої, наприклад, Business English. {% if program.experience %}{{ program.experience }}{% endif %}</p>
+    </div>
+  </section>
+
+  <!-- Детальніше про курс -->
+  <section class="corporate-details glass-section">
+    <h2 class="section-title">ДЕТАЛЬНІШЕ ПРО КУРС</h2>
+    <div class="corporate-details__grid programs-grid">
+      {% if program.schedule %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">Розклад</h3>
+            <p class="program-card__description">Дізнайтеся про розклад занять та формат навчання</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for item in program.schedule %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.course_types %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">Види корпоративних курсів</h3>
+            <p class="program-card__description">Оберіть найбільш підходящий формат навчання</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for item in program.course_types %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.pricing_details %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">Оплата</h3>
+            <p class="program-card__description">Умови оплати та вартість навчання</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for item in program.pricing_details %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            {% if program.pricing_details %}
+            <blockquote class="corporate-details__quote">
+              <p>Вартість заняття – 500 грн<br>ТОВ "Стаді Сістемс Центр"</p>
+            </blockquote>
+            {% endif %}
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Програми навчання -->
+  <section class="corporate-programs glass-section">
+    <h2 class="section-title">Програми навчання</h2>
+    <p class="corporate-programs__intro">Speak Up пропонує три програми навчання для Ваших співробітників</p>
+
+    {% if program.programs %}
+    <div class="corporate-programs__grid programs-grid">
+      {% if program.programs.general_english %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.programs.general_english.title }}</h3>
+            <p class="program-card__description">{{ program.programs.general_english.description }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            {% if program.programs.general_english.features %}
+            <div class="program-card__includes">
+              <h4 class="program-card__subtitle">Особливості:</h4>
+              <ul class="program-card__list">
+                {% for feature in program.programs.general_english.features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--primary">Залишити заявку</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.programs.distant_learning %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.programs.distant_learning.title }}</h3>
+            <p class="program-card__description">{{ program.programs.distant_learning.description }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            {% if program.programs.distant_learning.target %}
+            <div class="program-card__includes">
+              <h4 class="program-card__subtitle">Ідеальне рішення для тих, хто:</h4>
+              <ul class="program-card__list">
+                {% for target in program.programs.distant_learning.target %}
+                <li>{{ target }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+            {% if program.programs.distant_learning.features %}
+            <div class="program-card__benefits">
+              <h4 class="program-card__subtitle">Особливості:</h4>
+              <ul class="program-card__list">
+                {% for feature in program.programs.distant_learning.features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--primary">Залишити заявку</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.programs.blended_learning %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.programs.blended_learning.title }}</h3>
+            <p class="program-card__description">{{ program.programs.blended_learning.description }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            {% if program.programs.blended_learning.components %}
+            <div class="program-card__includes">
+              <h4 class="program-card__subtitle">Змішане навчання англійській мові передбачає комбінацію:</h4>
+              <ul class="program-card__list">
+                {% for component in program.programs.blended_learning.components %}
+                <li>{{ component }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+            {% if program.programs.blended_learning.benefits %}
+            <div class="program-card__benefits">
+              <h4 class="program-card__subtitle">Переваги blended learning:</h4>
+              <ul class="program-card__list">
+                {% for benefit in program.programs.blended_learning.benefits %}
+                <li>{{ benefit }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--primary">Залишити заявку</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Чому саме Speak Up -->
+  <section class="corporate-why glass-section">
+    <h2 class="section-title">Чому саме Speak Up</h2>
+    {% if program.why_speak_up %}
+    <div class="corporate-why__grid programs-grid">
+      {% if program.why_speak_up.schedule_reporting %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.why_speak_up.schedule_reporting.title }}</h3>
+            <p class="program-card__description">Дізнайтеся більше про наші переваги</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <div class="program-card__includes">
+              {% for item in program.why_speak_up.schedule_reporting.content %}
+              <p>{{ item }}</p>
+              {% endfor %}
+            </div>
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.why_speak_up.teachers_payment %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.why_speak_up.teachers_payment.title }}</h3>
+            <p class="program-card__description">Дізнайтеся більше про наші переваги</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <div class="program-card__includes">
+              {% for item in program.why_speak_up.teachers_payment.content %}
+              <p>{{ item }}</p>
+              {% endfor %}
+            </div>
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.why_speak_up.training %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.why_speak_up.training.title }}</h3>
+            <p class="program-card__description">Дізнайтеся більше про наші переваги</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <div class="program-card__includes">
+              {% for item in program.why_speak_up.training.content %}
+              <p>{{ item }}</p>
+              {% endfor %}
+            </div>
+            <div class="program-card__actions">
+              <a href="#consultation-form" class="button button--secondary">Дізнатися подробиці</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Форма заявки -->
+  <section class="corporate-consultation glass-section" id="consultation-form">
+    <h3 class="corporate-consultation__title">Хочете отримати більше деталей щодо корпоративного навчання?</h3>
+    <p class="corporate-consultation__description">Залиште ваші контакти та з вами зв'яжеться наш менеджер для більш детальної консультації</p>
+    <div class="corporate-consultation__form glass-card">
+      <form method="post" action="{% url 'core:submit_consultation' %}" hx-post="{% url 'core:submit_consultation' %}" hx-swap="outerHTML">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Ваше ім'я*" required class="form-group__input">
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Електронна адреса" class="form-group__input">
+        </div>
+        <div class="form-group">
+          <input type="tel" name="phone" placeholder="+38 (___) ___-__-__" pattern="\+380\d{9}" required class="form-group__input">
+        </div>
+        <p class="form-group__note">Якщо у вас європейський номер:</p>
+        <div class="form-group">
+          <input type="tel" name="phone_eu" placeholder="+__ ___ ____ ___" class="form-group__input">
+        </div>
+        <button type="submit" class="button button--primary button--full">Відправити заявку</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Документальна гарантія -->
+  {% if program.guarantee %}
+  <section class="corporate-guarantee glass-section">
+    <h3 class="corporate-guarantee__title">{{ program.guarantee.title }}</h3>
+    <div class="corporate-guarantee__content">
+      {% for item in program.guarantee.content %}
+      <p>{{ item }}</p>
+      {% endfor %}
+    </div>
+    <a href="#consultation-form" class="button button--primary">Отримати консультацію</a>
+  </section>
+  {% endif %}
+
+  <!-- Компоненти навчальної системи -->
+  {% if program.components %}
+  <section class="corporate-components glass-section">
+    <h2 class="section-title">Компоненти навчальної системи</h2>
+    <div class="corporate-components__grid programs-grid">
+      {% if program.components.multimedia_lesson %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.multimedia_lesson.title }}</h3>
+            <p class="program-card__description">{{ program.components.multimedia_lesson.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.multimedia_lesson.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.components.group_class %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.group_class.title }}</h3>
+            <p class="program-card__description">{{ program.components.group_class.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.group_class.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.components.student_zone %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.student_zone.title }}</h3>
+            <p class="program-card__description">{{ program.components.student_zone.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.student_zone.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.components.workshops %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.workshops.title }}</h3>
+            <p class="program-card__description">{{ program.components.workshops.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.workshops.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.components.academic_progress %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.academic_progress.title }}</h3>
+            <p class="program-card__description">{{ program.components.academic_progress.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.academic_progress.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if program.components.phone_conversation %}
+      <div class="program-card glass-card" data-accordion-item>
+        <button class="program-card__header" data-accordion-header>
+          <div class="program-card__header-content">
+            <h3 class="program-card__title">{{ program.components.phone_conversation.title }}</h3>
+            <p class="program-card__description">{{ program.components.phone_conversation.subtitle }}</p>
+          </div>
+          <span class="program-card__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="program-card__content" data-accordion-content>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              {% for feature in program.components.phone_conversation.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- CTA тестування -->
+  <section class="corporate-testing glass-section">
+    <h2 class="section-title">ДІЗНАЙТЕСЯ СВІЙ РІВЕНЬ АНГЛІЙСЬКОЇ МОВИ ПРЯМО ЗАРАЗ</h2>
+    <p>Тест складається з 40 питань та займе 10-15 хвилин вашого часу</p>
+    <a href="{% url 'core:testing' %}?from={{ program.slug }}" class="button button--primary">Пройти тест</a>
+  </section>
+
+  <!-- Корпоративне навчання -->
+  <section class="corporate-training glass-section">
+    <h2 class="section-title">КОРПОРАТИВНЕ НАВЧАННЯ АНГЛІЙСЬКІЙ МОВІ</h2>
+    <div class="corporate-training__content">
+      <p>Бізнес-пропозиція від Speak Up підходить тим організаціям, які хочуть розвивати й вдосконалювати необхідні мовні навички своїх підлеглих.</p>
+      <p>Ми навчимо співробітників вашої компанії вільно говорити англійською мовою в ситуаціях, максимально наближеним до тих, з якими вони стикаються в своїй роботі. Основну увагу ми приділяємо розвитку навичок розмовної мови. У навчанні використовуємо методики і матеріали, які гарантують швидкі і стабільні результати.</p>
+
+      {% if program.skills %}
+      <p>Ось основні з найбільш вживаних в робочому середовищі:</p>
+      <ul class="corporate-training__skills">
+        {% for skill in program.skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if program.stages %}
+      <h3 class="corporate-training__stages-title">Пропозиція корпоративного навчання містить наступні етапи:</h3>
+      <ol class="corporate-training__stages">
+        {% for stage in program.stages %}
+        <li>{{ stage }}</li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+    </div>
+  </section>
+</main>
+</div>
+{% endblock %}
+

@@ -5,10 +5,11 @@ from django.core.paginator import Paginator
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.db import models
 from .seo_config import PROGRAMS, LOCATIONS, CITIES
 from .models import (
     NewsArticle, Achievement, Advantage, CourseCategory, Course,
-    Testimonial, FAQ, ConsultationRequest
+    Testimonial, FAQ, ConsultationRequest, ContactInfo
 )
 from .forms import TestimonialForm, ConsultationForm
 from apps.leads.forms import TrialLessonForm
@@ -25,6 +26,7 @@ def index(request):
                 return value
         return getattr(obj, f'{field}_uk', '')
 
+    faqs_list = list(FAQ.objects.filter(is_active=True).order_by('order'))
     context = {
         'achievements': Achievement.objects.filter(is_active=True).order_by('order'),
         'advantages': Advantage.objects.prefetch_related('items').filter(is_active=True).order_by('order'),
@@ -32,7 +34,10 @@ def index(request):
             'courses'
         ).filter(courses__is_active=True).distinct().order_by('order'),
         'testimonials': Testimonial.objects.filter(is_published=True).order_by('-created_at')[:10],
-        'faqs': FAQ.objects.filter(is_active=True).order_by('order'),
+        'faqs': faqs_list,
+        'faqs_column1': faqs_list[:4],
+        'faqs_column2': faqs_list[4:8],
+        'faqs_column3': faqs_list[8:12],
         'trial_form': TrialLessonForm(),
         'consultation_form': ConsultationForm(),
         'testimonial_form': TestimonialForm(),
@@ -46,7 +51,25 @@ def about(request):
 
 def contacts(request):
     """Контакти."""
-    return render(request, 'core/contacts.html')
+    lang = get_language()
+    contact_info = ContactInfo.objects.filter(is_active=True).first()
+
+    context = {
+        'contact_info': contact_info,
+        'current_language': lang,
+    }
+    return render(request, 'core/contacts.html', context)
+
+def faq(request):
+    """Сторінка з частими питаннями."""
+    lang = get_language()
+    faqs_list = list(FAQ.objects.filter(is_active=True).order_by('order'))
+
+    context = {
+        'faqs': faqs_list,
+        'current_language': lang,
+    }
+    return render(request, 'core/faq.html', context)
 
 def testing(request):
     """Тест рівня з UTM tracking."""
@@ -55,8 +78,78 @@ def testing(request):
     }
     return render(request, 'core/testing.html', context)
 
+def programs_list(request):
+    """Сторінка з усіма програмами, структурованими за категоріями."""
+    lang = get_language()
+
+    # Категорії програм
+    categories = {
+        'kids': {
+            'title': 'Діти та підлітки',
+            'title_ru': 'Дети и подростки',
+            'programs': []
+        },
+        'group': {
+            'title': 'Дорослі - Групові та онлайн програми',
+            'title_ru': 'Взрослые - Групповые и онлайн программы',
+            'programs': []
+        },
+        'individual': {
+            'title': 'Дорослі - Індивідуальні програми',
+            'title_ru': 'Взрослые - Индивидуальные программы',
+            'programs': []
+        },
+        'professional': {
+            'title': 'Профільні курси',
+            'title_ru': 'Профильные курсы',
+            'programs': []
+        },
+        'exams': {
+            'title': 'Підготовка до іспитів',
+            'title_ru': 'Подготовка к экзаменам',
+            'programs': []
+        },
+        'beginners': {
+            'title': 'Для початківців',
+            'title_ru': 'Для начинающих',
+            'programs': []
+        },
+    }
+
+    # Структуруємо програми за категоріями
+    for slug, program in PROGRAMS.items():
+        category_key = program.get('category', 'group')
+        if category_key not in categories:
+            category_key = 'group'  # fallback
+
+        # Вибрати переклад згідно з мовою
+        program_data = {
+            'slug': slug,
+            'title': program.get(f'title_{lang}', program['title']),
+            'description': program.get(f'description_{lang}', program['description']),
+            'price': program.get('price', {}),
+            'duration': program.get('duration', ''),
+            'badge': program.get('badge'),
+            'includes': program.get(f'includes_{lang}', program.get('includes', [])),
+            'benefits': program.get(f'benefits_{lang}', program.get('benefits', [])),
+            'url': f'/programs/{slug}',
+        }
+
+        categories[category_key]['programs'].append(program_data)
+
+    # Локалізуємо назви категорій
+    for category_key, category_data in categories.items():
+        category_data['title'] = category_data.get(f'title_{lang}', category_data['title'])
+
+    context = {
+        'categories': categories,
+        'current_language': lang,
+    }
+
+    return render(request, 'core/programs_list.html', context)
+
 def program_detail(request, slug):
-    """Сторінка програми (17 програм)."""
+    """Сторінка програми (26 програм)."""
     program = PROGRAMS.get(slug)
 
     if not program:
@@ -71,7 +164,88 @@ def program_detail(request, slug):
         'full_content': program.get(f'full_content_{lang}', program.get('full_content', '')),
         'includes': program.get(f'includes_{lang}', program.get('includes', [])),
         'benefits': program.get(f'benefits_{lang}', program.get('benefits', [])),
+        'price': program.get('price', {}),
+        'duration': program.get('duration', ''),
+        'badge': program.get('badge'),
     }
+
+    # Для корпоративної програми додаємо детальну інформацію
+    if slug == 'corporate':
+        corporate_data = program.get('schedule', {})
+        if corporate_data:
+            data['schedule'] = corporate_data.get(lang, corporate_data.get('uk', []))
+
+        corporate_data = program.get('course_types', {})
+        if corporate_data:
+            data['course_types'] = corporate_data.get(lang, corporate_data.get('uk', []))
+
+        corporate_data = program.get('pricing_details', {})
+        if corporate_data:
+            data['pricing_details'] = corporate_data.get(lang, corporate_data.get('uk', []))
+
+        # Програми навчання
+        programs_data = program.get('programs', {})
+        if programs_data:
+            data['programs'] = {}
+            for key, prog in programs_data.items():
+                data['programs'][key] = {
+                    'title': prog.get(f'title_{lang}', prog.get('title_uk', '')),
+                    'description': prog.get(f'description_{lang}', prog.get('description_uk', '')),
+                    'features': prog.get(f'features_{lang}', prog.get('features_uk', [])),
+                    'target': prog.get(f'target_{lang}', prog.get('target_uk', [])),
+                    'components': prog.get(f'components_{lang}', prog.get('components_uk', [])),
+                    'benefits': prog.get(f'benefits_{lang}', prog.get('benefits_uk', []))
+                }
+
+        # Чому саме Speak Up
+        why_data = program.get('why_speak_up', {})
+        if why_data:
+            data['why_speak_up'] = {}
+            for key, item in why_data.items():
+                data['why_speak_up'][key] = {
+                    'title': item.get(f'title_{lang}', item.get('title_uk', '')),
+                    'content': item.get(f'content_{lang}', item.get('content_uk', []))
+                }
+
+        # Етапи співпраці
+        stages_data = program.get('stages', {})
+        if stages_data:
+            data['stages'] = stages_data.get(lang, stages_data.get('uk', []))
+
+        # Навички
+        skills_data = program.get('skills', {})
+        if skills_data:
+            data['skills'] = skills_data.get(lang, skills_data.get('uk', []))
+
+        # Гарантія
+        guarantee_data = program.get('guarantee', {})
+        if guarantee_data:
+            data['guarantee'] = {
+                'title': guarantee_data.get(f'title_{lang}', guarantee_data.get('title_uk', '')),
+                'content': guarantee_data.get(f'content_{lang}', guarantee_data.get('content_uk', []))
+            }
+
+        # Компоненти
+        components_data = program.get('components', {})
+        if components_data:
+            data['components'] = {}
+            for key, comp in components_data.items():
+                data['components'][key] = {
+                    'title': comp.get(f'title_{lang}', comp.get('title_uk', '')),
+                    'subtitle': comp.get(f'subtitle_{lang}', comp.get('subtitle_uk', '')),
+                    'features': comp.get(f'features_{lang}', comp.get('features_uk', []))
+                }
+
+        # Досвід
+        experience_data = program.get('experience', {})
+        if experience_data:
+            data['experience'] = experience_data.get(lang, experience_data.get('uk', ''))
+
+        # Форма консультації
+        data['consultation_form'] = ConsultationForm()
+
+        # Використовуємо спеціальний шаблон для корпоративної програми
+        return render(request, 'core/program_detail_corporate.html', {'program': data})
 
     return render(request, 'core/program_detail.html', {'program': data})
 
@@ -109,11 +283,25 @@ def city_page(request, city):
 
     # Переклад
     lang = get_language()
+    city_name = city_data.get(f'name_{lang}', city_data['name'])
+    city_name_ru = city_data.get('name_ru', city_data['name'])
+
+    # Знайти локації в цьому місті
+    city_locations = []
+    for loc_slug, loc_data in LOCATIONS.items():
+        if loc_data.get('city') == city_name or loc_data.get('city_ru') == city_name_ru:
+            city_locations.append({
+                'slug': loc_slug,
+                'district': loc_data.get(f'district_{lang}', loc_data.get('district', '')),
+            })
+
     data = {
         'slug': city,
-        'name': city_data.get(f'name_{lang}', city_data['name']),
+        'name': city_name,
+        'name_ru': city_name_ru,
         'seo_content': city_data.get(f'seo_content_{lang}', city_data.get('seo_content', '')),
         'achievements': city_data.get(f'achievements_{lang}', city_data.get('achievements', [])),
+        'locations': city_locations,
     }
 
     return render(request, 'core/city_page.html', {'city': data})
@@ -167,6 +355,225 @@ def news_detail(request, slug):
     return render(request, 'core/news_detail.html', context)
 
 
+def feedback_list(request):
+    """Сторінка відгуків клієнтів."""
+    lang = get_language()
+    testimonials = Testimonial.objects.filter(is_published=True).order_by('-created_at')
+
+    # Статистика для intro
+    total_count = testimonials.count()
+    avg_rating = testimonials.aggregate(avg=models.Avg('rating'))['avg'] or 0
+    avg_rating = round(avg_rating, 1) if avg_rating else 0
+
+    # Пагінація
+    paginator = Paginator(testimonials, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'testimonials': page_obj,
+        'page_obj': page_obj,
+        'current_language': lang,
+        'total_count': total_count,
+        'avg_rating': avg_rating,
+    }
+    return render(request, 'core/feedback.html', context)
+
+
+def job_list(request):
+    """Сторінка вакансій."""
+    lang = get_language()
+
+    # Статичний контент вакансій (можна винести в модель пізніше)
+    vacancies = [
+        {
+            'title_uk': 'Дизайнер (віддалено)',
+            'title_ru': 'Дизайнер (удаленно)',
+            'description_uk': 'Шукаємо талановитого дизайнера для створення візуального контенту для нашої школи англійської мови.',
+            'description_ru': 'Ищем талантливого дизайнера для создания визуального контента для нашей школы английского языка.',
+            'requirements_uk': [
+                'Досвід роботи дизайнером від 2 років',
+                'Володіння Adobe Photoshop, Illustrator, Figma',
+                'Розуміння принципів UX/UI дизайну',
+                'Здатність працювати в команді та дотримуватися дедлайнів',
+                'Базове знання англійської мови'
+            ],
+            'requirements_ru': [
+                'Опыт работы дизайнером от 2 лет',
+                'Владение Adobe Photoshop, Illustrator, Figma',
+                'Понимание принципов UX/UI дизайна',
+                'Способность работать в команде и соблюдать дедлайны',
+                'Базовое знание английского языка'
+            ],
+            'responsibilities_uk': [
+                'Створення рекламних креативів для соціальних мереж',
+                'Розробка макетів для сайту та email-розсилок',
+                'Дизайн презентацій та навчальних матеріалів',
+                'Підтримка візуального стилю бренду'
+            ],
+            'responsibilities_ru': [
+                'Создание рекламных креативов для социальных сетей',
+                'Разработка макетов для сайта и email-рассылок',
+                'Дизайн презентаций и учебных материалов',
+                'Поддержка визуального стиля бренда'
+            ],
+            'conditions_uk': [
+                'Віддалена робота',
+                'Гнучкий графік',
+                'Конкурентна заробітна плата (обговорюється на співбесіді)',
+                'Професійний розвиток та навчання',
+                'Робота в дружній команді'
+            ],
+            'conditions_ru': [
+                'Удаленная работа',
+                'Гибкий график',
+                'Конкурентная заработная плата (обсуждается на собеседовании)',
+                'Профессиональное развитие и обучение',
+                'Работа в дружной команде'
+            ],
+        },
+        {
+            'title_uk': 'Таргетолог (віддалено)',
+            'title_ru': 'Таргетолог (удаленно)',
+            'description_uk': 'Шукаємо досвідченого таргетолога для налаштування та ведення рекламних кампаній в соціальних мережах.',
+            'description_ru': 'Ищем опытного таргетолога для настройки и ведения рекламных кампаний в социальных сетях.',
+            'requirements_uk': [
+                'Досвід роботи таргетологом від 1.5 років',
+                'Володіння Facebook Ads, Google Ads',
+                'Розуміння метрик та аналітики',
+                'Досвід роботи з освітніми проектами (перевага)',
+                'Здатність аналізувати дані та оптимізувати кампанії'
+            ],
+            'requirements_ru': [
+                'Опыт работы таргетологом от 1.5 лет',
+                'Владение Facebook Ads, Google Ads',
+                'Понимание метрик и аналитики',
+                'Опыт работы с образовательными проектами (преимущество)',
+                'Способность анализировать данные и оптимизировать кампании'
+            ],
+            'responsibilities_uk': [
+                'Налаштування та запуск рекламних кампаній',
+                'Ведення рекламних кампаній та оптимізація',
+                'Аналіз результатів та підготовка звітів',
+                'Робота з креативами та текстами'
+            ],
+            'responsibilities_ru': [
+                'Настройка и запуск рекламных кампаний',
+                'Ведение рекламных кампаний и оптимизация',
+                'Анализ результатов и подготовка отчетов',
+                'Работа с креативами и текстами'
+            ],
+            'conditions_uk': [
+                'Віддалена робота',
+                'Гнучкий графік',
+                'Конкурентна заробітна плата (обговорюється на співбесіді)',
+                'Бонусна система за результати',
+                'Професійний розвиток'
+            ],
+            'conditions_ru': [
+                'Удаленная работа',
+                'Гибкий график',
+                'Конкурентная заработная плата (обсуждается на собеседовании)',
+                'Бонусная система за результаты',
+                'Профессиональное развитие'
+            ],
+        },
+        {
+            'title_uk': 'Дизайнер рекламних креативів (віддалено)',
+            'title_ru': 'Дизайнер рекламных креативов (удаленно)',
+            'description_uk': 'Шукаємо креативного дизайнера для створення рекламних креативів та банерів для соціальних мереж та контекстної реклами.',
+            'description_ru': 'Ищем креативного дизайнера для создания рекламных креативов и баннеров для социальных сетей и контекстной рекламы.',
+            'requirements_uk': [
+                'Досвід роботи дизайнером від 1 року',
+                'Володіння Adobe Photoshop, Illustrator, After Effects (перевага)',
+                'Розуміння специфіки рекламних креативів',
+                'Здатність швидко створювати якісні макети',
+                'Креативність та увага до деталей'
+            ],
+            'requirements_ru': [
+                'Опыт работы дизайнером от 1 года',
+                'Владение Adobe Photoshop, Illustrator, After Effects (преимущество)',
+                'Понимание специфики рекламных креативов',
+                'Способность быстро создавать качественные макеты',
+                'Креативность и внимание к деталям'
+            ],
+            'responsibilities_uk': [
+                'Створення рекламних креативів для Facebook, Instagram, Google',
+                'Адаптація креативів під різні формати',
+                'Робота з брендбуком та підтримка стилю',
+                'Створення анімованих креативів (перевага)'
+            ],
+            'responsibilities_ru': [
+                'Создание рекламных креативов для Facebook, Instagram, Google',
+                'Адаптация креативов под разные форматы',
+                'Работа с брендбуком и поддержка стиля',
+                'Создание анимированных креативов (преимущество)'
+            ],
+            'conditions_uk': [
+                'Віддалена робота',
+                'Гнучкий графік',
+                'Конкурентна заробітна плата (обговорюється на співбесіді)',
+                'Робота з цікавими проектами',
+                'Швидкий кар\'єрний ріст'
+            ],
+            'conditions_ru': [
+                'Удаленная работа',
+                'Гибкий график',
+                'Конкурентная заработная плата (обсуждается на собеседовании)',
+                'Работа с интересными проектами',
+                'Быстрый карьерный рост'
+            ],
+        },
+    ]
+
+    context = {
+        'vacancies': vacancies,
+        'current_language': lang,
+    }
+    return render(request, 'core/job.html', context)
+
+
+def shares_list(request):
+    """Сторінка акцій та спеціальних пропозицій."""
+    lang = get_language()
+
+    # Статичний контент акцій (можна винести в модель пізніше)
+    promotions = [
+        {
+            'title_uk': 'Акція 1+1 = 4',
+            'title_ru': 'Акция 1+1 = 4',
+            'description_uk': 'Купуй 2 рівні англійської і ще 2 отримай в подарунок',
+            'description_ru': 'Покупай 2 уровня английского и еще 2 получи в подарок',
+            'details_uk': 'Спеціальна пропозиція: отримайте два рівні навчання за ціною одного. Ідеальна можливість швидко підвищити свій рівень англійської з максимальною економією.',
+            'details_ru': 'Специальное предложение: получите два уровня обучения по цене одного. Идеальная возможность быстро повысить свой уровень английского с максимальной экономией.',
+            'conditions_uk': [
+                'Акція діє на всі програми навчання',
+                'Можна придбати будь-які 2 рівні',
+                'Економія до 50% від вартості',
+                'Гарантія результату зберігається'
+            ],
+            'conditions_ru': [
+                'Акция действует на все программы обучения',
+                'Можно приобрести любые 2 уровня',
+                'Экономия до 50% от стоимости',
+                'Гарантия результата сохраняется'
+            ],
+            'how_to_get_uk': 'Щоб отримати знижку, просто зателефонуйте нам або заповніть форму на сайті. Наш менеджер допоможе підібрати оптимальну програму та розповість про всі деталі акції.',
+            'how_to_get_ru': 'Чтобы получить скидку, просто позвоните нам или заполните форму на сайте. Наш менеджер поможет подобрать оптимальную программу и расскажет обо всех деталях акции.',
+            'example_uk': 'Приклад: Якщо один рівень коштує 15,900 грн, то за акцією ви отримаєте 2 рівні за 15,900 грн замість 31,800 грн. Економія: 15,900 грн!',
+            'example_ru': 'Пример: Если один уровень стоит 15,900 грн, то по акции вы получите 2 уровня за 15,900 грн вместо 31,800 грн. Экономия: 15,900 грн!',
+            'valid_until_uk': 'Акція діє до кінця місяця',
+            'valid_until_ru': 'Акция действует до конца месяца',
+        },
+    ]
+
+    context = {
+        'promotions': promotions,
+        'current_language': lang,
+    }
+    return render(request, 'core/shares.html', context)
+
+
 # ============================================================================
 # Homepage Content Views
 # ============================================================================
@@ -213,11 +620,18 @@ def submit_consultation(request):
         consultation.utm_source = request.GET.get('utm_source', '') or request.POST.get('utm_source', '')
         consultation.utm_medium = request.GET.get('utm_medium', '') or request.POST.get('utm_medium', '')
         consultation.utm_campaign = request.GET.get('utm_campaign', '') or request.POST.get('utm_campaign', '')
-        consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
         consultation.utm_term = request.GET.get('utm_term', '') or request.POST.get('utm_term', '')
         consultation.fbclid = request.GET.get('fbclid', '') or request.POST.get('fbclid', '')
         consultation.gclid = request.GET.get('gclid', '') or request.POST.get('gclid', '')
         consultation.referrer = request.META.get('HTTP_REFERER', '')
+
+        # НОВИЙ КОД: Зберегти вибраний прайс-пакет
+        selected_pricing = request.POST.get('selected_pricing', '')
+        if selected_pricing:
+            # Зберігаємо в utm_content для трекінгу
+            consultation.utm_content = f"pricing:{selected_pricing}"
+        else:
+            consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
 
         # IP адреса
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

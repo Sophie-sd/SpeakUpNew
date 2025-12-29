@@ -70,6 +70,9 @@
   <link rel="stylesheet" href="{% static 'css/components/running-line.css' %}">
   <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
   <link rel="stylesheet" href="{% static 'css/components/trial-form.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/programs-list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/news.css' %}">
   <link rel="stylesheet" href="{% static 'css/utilities/carousel.css' %}">
   <link rel="stylesheet" href="{% static 'css/utilities/glassmorphism.css' %}">
   {% block extra_css %}{% endblock %}
@@ -132,10 +135,16 @@
     </div>
   {% endif %}
 
+  <!-- Parallax layers (поза main-content) -->
+  {% block parallax_layers %}{% endblock %}
+
   <!-- Main content -->
   <main class="main-content">
     {% block content %}{% endblock %}
   </main>
+
+  <!-- Footer -->
+  {% include 'components/footer.html' %}
 
   <!-- Navigation знизу -->
   {% include 'components/navigation.html' %}

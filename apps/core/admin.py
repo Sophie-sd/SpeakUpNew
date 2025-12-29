@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib import messages
 from .models import (
     NewsArticle, Achievement, CourseCategory, Course,
-    Testimonial, FAQ, ConsultationRequest
+    Testimonial, FAQ, ConsultationRequest, ContactInfo
 )
 
 
@@ -174,4 +174,40 @@ class ConsultationRequestAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    """Admin для управління контактною інформацією (синглтон)"""
+    list_display = ['phone_uk', 'phone_international', 'is_active', 'updated_at']
+    list_filter = ['is_active']
+    readonly_fields = ['created_at', 'updated_at']
+
+    fieldsets = (
+        ('Телефони', {
+            'fields': ('phone_uk', 'phone_international')
+        }),
+        ('Графік роботи (UK)', {
+            'fields': ('schedule_weekdays_uk', 'schedule_weekend_uk')
+        }),
+        ('Графік роботи (RU)', {
+            'fields': ('schedule_weekdays_ru', 'schedule_weekend_ru')
+        }),
+        ('Налаштування', {
+            'fields': ('is_active',)
+        }),
+        ('Системна інформація', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def has_add_permission(self, request):
+        """Дозволити створення тільки якщо немає активного запису"""
+        active_count = ContactInfo.objects.filter(is_active=True).count()
+        return active_count == 0
+
+    def has_delete_permission(self, request, obj=None):
+        """Дозволити видалення"""
+        return True
 

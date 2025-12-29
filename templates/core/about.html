@@ -1,13 +1,101 @@
 {% extends "base.html" %}
 
-{% block title %}Про нас - SPEAK UP{% endblock %}
-{% block og_title %}Про нас - SPEAK UP{% endblock %}
-{% block meta_description %}Школа англійської SPEAK UP - про нашу команду, методику та переваги навчання.{% endblock %}
+{% block title %}Про нас - Школа англійської мови SPEAK UP{% endblock %}
+{% block og_title %}Про нас - Школа англійської мови SPEAK UP{% endblock %}
+{% block meta_description %}Школа англійської мови SPEAK UP працює з 2006 року. 100,000+ випускників, 13 шкіл по Україні. Методика Blended Learning, сертифіковані викладачі, 100% письмова гарантія результату.{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "SPEAK UP",
+  "alternateName": "Speak Up",
+  "url": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}",
+  "logo": "{{ default_og_image }}",
+  "description": "Міжнародна мережа шкіл англійської мови. Працюємо з 2006 року, навчили понад 100,000 студентів.",
+  "foundingDate": "2006",
+  "numberOfEmployees": "500+",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "UA",
+    "addressLocality": "Київ"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380931707867",
+    "contactType": "customer service",
+    "availableLanguage": ["Ukrainian", "Russian", "English"]
+  },
+  "sameAs": [
+    "https://speak-up.com.ua"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ukraine"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
-<main>
-  <h1>Про школу SPEAK UP</h1>
-  <p>SpeakUp тепер де завгодно. Ми переосмислили вивчення англійської.</p>
+<main class="about-page">
+  <section class="about-hero glass-section">
+    <h1>Школа англійської мови SPEAK UP</h1>
+    <p class="about-hero__subtitle">SpeakUp тепер де завгодно. Ми переосмислили вивчення англійської.</p>
+  </section>
+
+  <section class="about-history glass-section">
+    <h2>Наша історія</h2>
+    <p>Speak Up – це міжнародна мережа шкіл англійської мови, яка працює в Україні з 2006 року. За ці роки ми навчили понад 100,000 студентів від дітей до дорослих людей, які вивчали англійську для навчання, кар'єри та просто для особистого розвитку.</p>
+    <p>Впродовж років праці ми відкрили 13 офісних шкіл в 6 містах України: Київ, Одеса, Дніпро, Кривий Ріг, Харків і Львів. Кожна локація приймала сотні студентів, які приходили на заняття після роботи чи школи.</p>
+    <p>Однак в 2023-2024 роках світ змінився, і ми вирішили змінитися разом з ним. Зараз Speak Up працює виключно в онлайн форматі. Чому ми це зробили? Статистика показала, що студенти, які займаються онлайн, досягають кращих результатів. Вони не втрачають час на дорогу, можуть займатися в комфортній обстановці, і мають більше гнучкості.</p>
+  </section>
+
+  <section class="about-methodology glass-section">
+    <h2>Методика навчання Blended Learning</h2>
+    <p>Наша авторська методика Blended Learning поєднує найкраще з обох світів: інтерактивні мультимедійні уроки, групові заняття з викладачем, індивідуальні консультації та розмовні клуби.</p>
+    <ul>
+      <li><strong>Multimedia Lesson</strong> – інтерактивні заняття для розвитку мовних навичок</li>
+      <li><strong>Group Class</strong> – заняття з викладачем в групах 1-10 учнів</li>
+      <li><strong>Student Zone 24/7</strong> – онлайн доступ до мультимедійних уроків з будь-якої точки планети</li>
+      <li><strong>Workshops</strong> – мовні практикуми з викладачем (Practical Skills, Conversation, Grammar, Club Activity)</li>
+      <li><strong>Phone Conversation Club</strong> – індивідуальні розмовні заняття по телефону</li>
+      <li><strong>Academic Progress Report</strong> – контроль прогресу в навчанні з гарантією результату</li>
+    </ul>
+  </section>
+
+  <section class="about-team glass-section">
+    <h2>Наша команда</h2>
+    <p>У Speak Up працюють сертифіковані викладачі з дипломами державного зразка, які володіють комунікативною методикою викладання. Наші викладачі-носії мови мають професійну освіту та досвід роботи зі студентами з усього світу.</p>
+    <p>Кожен викладач проходить спеціальну підготовку з методики Speak Up та регулярно підвищує свою кваліфікацію. Ми пишаємось нашою командою та тим, що вони допомагають тисячам студентів досягати своїх цілей.</p>
+  </section>
+
+  <section class="about-guarantee glass-section">
+    <h2>Гарантія результату</h2>
+    <p>Ми впевнені в ефективності нашої моделі навчання Blended Learning. Після кожного курсу ви здаєте тест на рівень володіння англійською мовою. Якщо ви пройшли курс, але здали тест менше ніж на 65% – то ми вас навчаємо на тому ж курсі безкоштовно, поки ваш рівень не дозволить успішно пройти тест.</p>
+    <p>Після кожного рівня – ви отримуєте сертифікат міжнародної школи Speak Up. Багато провідних українських та міжнародних компаній довіряють нашому сертифікату.</p>
+    <p><strong>100% письмова гарантія результату прописана в договорі.</strong></p>
+  </section>
+
+  <section class="about-achievements glass-section">
+    <h2>Наші досягнення</h2>
+    <ul>
+      <li>Понад 100,000 випускників за 18 років роботи</li>
+      <li>13 шкіл працювали в 6 містах України</li>
+      <li>Понад 5,000 активних студентів онлайн</li>
+      <li>Середній рейтинг 4.8/5 з понад 5,000 відгуків</li>
+      <li>Понад 90% студентів досягають своєї мети</li>
+      <li>100% письмова гарантія результату</li>
+    </ul>
+  </section>
+
+  <section class="about-cta glass-section">
+    <h2>Приєднуйтесь до SpeakUp</h2>
+    <p>Почніть свій шлях до вільного спілкування англійською мовою вже сьогодні!</p>
+    <a href="{% url 'core:testing' %}" class="button button--primary">Записатися на безкоштовне тестування</a>
+  </section>
 </main>
 {% endblock %}
 

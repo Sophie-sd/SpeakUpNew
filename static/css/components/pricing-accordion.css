@@ -1,0 +1,422 @@
+/* ==========================================================================
+   Pricing Section - Прайс-лист
+   ========================================================================== */
+
+.pricing-section {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Сітка 3 колонки */
+.pricing-section .pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Стовпчики */
+.pricing-section .pricing-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Заголовок категорії - стиль як section-title, але менший */
+.pricing-section .pricing-column__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 6px 12px rgba(0, 0, 0, 0.3);
+  min-height: calc(clamp(1.5rem, 3vw, 2rem) * 1.2 * 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Акордеони */
+.pricing-section .pricing-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.pricing-section .pricing-accordion__item {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* Варіанти */
+.pricing-section .pricing-accordion__item--featured {
+  border-color: rgba(100, 149, 237, 0.5);
+  border-width: 2px;
+}
+
+.pricing-section .pricing-accordion__item--premium {
+  border-color: rgba(255, 193, 7, 0.5);
+  border-width: 2px;
+}
+
+.pricing-section .pricing-accordion__item--sale {
+  border-color: rgba(76, 175, 80, 0.5);
+  border-width: 2px;
+}
+
+/* Заголовок акордеону */
+.pricing-section .pricing-accordion__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9);
+  transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-section .pricing-accordion__header:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.pricing-section .pricing-accordion__header:focus-visible {
+  outline: 2px solid rgba(100, 149, 237, 0.5);
+  outline-offset: -2px;
+}
+
+.pricing-section .pricing-accordion__title {
+  flex: 1;
+  line-height: 1.4;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+/* Badges */
+.pricing-section .pricing-accordion__badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.pricing-section .pricing-accordion__badge--premium {
+  background: rgba(255, 193, 7, 0.8);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.pricing-section .pricing-accordion__badge--sale {
+  background: rgba(76, 175, 80, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.pricing-section .pricing-accordion__badge:not(.pricing-accordion__badge--premium):not(.pricing-accordion__badge--sale) {
+  background: rgba(100, 149, 237, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Іконка */
+.pricing-section .pricing-accordion__icon {
+  font-size: var(--font-size-lg);
+  font-weight: 300;
+  color: rgba(100, 149, 237, 0.8);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  line-height: 1;
+}
+
+.pricing-section .pricing-accordion__item.accordion-item--open .pricing-accordion__icon {
+  transform: rotate(45deg);
+}
+
+/* Контент */
+.pricing-section .pricing-accordion__content {
+  padding: 0 var(--spacing-md);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.pricing-section .pricing-accordion__item.accordion-item--open .pricing-accordion__content {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+}
+
+/* Внутрішній контент */
+.pricing-section .pricing-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+}
+
+.pricing-section .pricing-content__desc {
+  font-size: var(--font-size-sm);
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.5;
+}
+
+.pricing-section .pricing-content__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Списки */
+.pricing-section .pricing-content__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pricing-section .pricing-content__list li {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 0, 0, 0.8);
+  padding-left: var(--spacing-sm);
+  position: relative;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.pricing-section .pricing-content__list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: rgba(100, 149, 237, 0.8);
+  font-weight: 600;
+}
+
+.pricing-section .pricing-content__note {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.4;
+  margin-top: var(--spacing-xs);
+}
+
+/* Тривалість */
+.pricing-section .pricing-content__duration {
+  font-size: var(--font-size-sm);
+  color: rgba(0, 0, 0, 0.9);
+  padding: var(--spacing-xs) 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Гарантія */
+.pricing-section .pricing-content__guarantee {
+  font-size: var(--font-size-xs);
+  color: rgba(76, 175, 80, 0.9);
+  padding: var(--spacing-xs) 0;
+  border-left: 2px solid rgba(76, 175, 80, 0.6);
+  padding-left: var(--spacing-sm);
+}
+
+/* Ціни */
+.pricing-section .pricing-content__prices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pricing-section .pricing-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--spacing-xs) 0;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.pricing-section .pricing-price--large {
+  padding: var(--spacing-sm) 0;
+}
+
+.pricing-section .pricing-price--discount {
+  padding-left: var(--spacing-sm);
+  border-left: 2px solid rgba(76, 175, 80, 0.6);
+}
+
+.pricing-section .pricing-price--sale {
+  padding-left: var(--spacing-sm);
+  border-left: 2px solid rgba(100, 149, 237, 0.6);
+}
+
+.pricing-section .pricing-price__label {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+}
+
+.pricing-section .pricing-price__value {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: rgba(100, 149, 237, 0.95);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pricing-section .pricing-price--large .pricing-price__value {
+  font-size: var(--font-size-lg);
+}
+
+.pricing-section .pricing-price__old {
+  font-size: var(--font-size-xs);
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: line-through;
+  margin-left: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+/* Таблиці */
+.pricing-section .pricing-content__prices-table {
+  margin-top: var(--spacing-sm);
+  overflow-x: auto;
+}
+
+.pricing-section .pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-sm);
+  font-size: 11px;
+}
+
+.pricing-section .pricing-table thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.pricing-section .pricing-table th {
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.pricing-section .pricing-table td {
+  padding: 6px 8px;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pricing-section .pricing-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Мобільна версія */
+@media (width <= 1024px) {
+  .pricing-section .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+}
+
+@media (width <= 767px) {
+  .pricing-section {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+    max-width: var(--content-width-mobile);
+  }
+
+  .pricing-section .pricing-column__title {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    margin-bottom: var(--spacing-md);
+    min-height: calc(clamp(1.25rem, 4vw, 1.75rem) * 1.2 * 2);
+  }
+
+  .pricing-section .pricing-accordion {
+    gap: var(--spacing-xs);
+  }
+
+  .pricing-section .pricing-accordion__header {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 12px;
+  }
+
+  .pricing-section .pricing-accordion__title {
+    font-size: 12px;
+  }
+
+  .pricing-section .pricing-accordion__badge {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+
+  .pricing-section .pricing-accordion__icon {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-section .pricing-accordion__item.accordion-item--open .pricing-accordion__content {
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
+  }
+
+  .pricing-section .pricing-content {
+    gap: 6px;
+  }
+
+  .pricing-section .pricing-content__desc {
+    font-size: 12px;
+  }
+
+  .pricing-section .pricing-content__list li {
+    font-size: 11px;
+    padding-left: 12px;
+  }
+
+  .pricing-section .pricing-price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .pricing-section .pricing-price__value {
+    font-size: var(--font-size-sm);
+  }
+
+  .pricing-section .pricing-price--large .pricing-price__value {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-section .pricing-table {
+    font-size: 10px;
+  }
+
+  .pricing-section .pricing-table th,
+  .pricing-section .pricing-table td {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}

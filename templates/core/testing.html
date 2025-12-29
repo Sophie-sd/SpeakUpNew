@@ -1,21 +1,68 @@
 {% extends "base.html" %}
 
-{% block title %}Тест рівня англійської - SPEAK UP{% endblock %}
-{% block og_title %}Тест рівня англійської - SPEAK UP{% endblock %}
-{% block meta_description %}Безкоштовний тест для визначення рівня англійської мови.{% endblock %}
+{% block title %}Безкоштовний тест рівня англійської мови - SPEAK UP{% endblock %}
+{% block og_title %}Безкоштовний тест рівня англійської мови - SPEAK UP{% endblock %}
+{% block meta_description %}Пройдіть безкоштовний онлайн-тест для визначення рівня англійської мови. 15-20 хвилин, результат одразу. Отримайте персональний план навчання.{% endblock %}
 
 {% block content %}
-<main>
-  <h1>Визначте свій рівень англійської</h1>
+<main class="testing-page">
+  <section class="testing-hero glass-section">
+    <h1>Безкоштовний тест для визначення рівня англійської мови</h1>
+    <p class="testing-hero__subtitle">Визначте свій поточний рівень англійської та отримайте персональний план навчання</p>
+  </section>
 
-  <form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="utm_source" value="{{ utm_source }}">
+  <section class="testing-info glass-section">
+    <h2>Про тест</h2>
+    <p>Наш безкоштовний тест допоможе вам точно визначити ваш поточний рівень англійської мови відповідно до міжнародних стандартів (CEFR: A1, A2, B1, B2, C1, C2).</p>
 
-    <p>Тест буде тут...</p>
+    <div class="testing-details">
+      <h3>Що оцінюється:</h3>
+      <ul>
+        <li><strong>Граматика</strong> – знання правил та їх застосування</li>
+        <li><strong>Лексика</strong> – запас слів та їх використання</li>
+        <li><strong>Читання</strong> – розуміння письмових текстів</li>
+        <li><strong>Аудіювання</strong> – сприйняття англійської на слух</li>
+      </ul>
 
-    <button type="submit" class="btn-primary">Почати тест</button>
-  </form>
+      <h3>Формат тесту:</h3>
+      <ul>
+        <li><strong>Тривалість:</strong> 15-20 хвилин</li>
+        <li><strong>Кількість питань:</strong> 30-40 завдань</li>
+        <li><strong>Формат:</strong> Множинний вибір, заповнення пропусків</li>
+        <li><strong>Результат:</strong> Отримаєте одразу після завершення</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="testing-benefits glass-section">
+    <h2>Переваги проходження тесту</h2>
+    <ul>
+      <li>✅ <strong>Точне визначення рівня</strong> – дізнайтеся свій поточний рівень англійської</li>
+      <li>✅ <strong>Персональний план</strong> – отримайте рекомендації щодо навчання</li>
+      <li>✅ <strong>Економія часу</strong> – не витрачайте час на матеріали, які вже знаєте</li>
+      <li>✅ <strong>Відстеження прогресу</strong> – проходьте тест регулярно, щоб бачити свій прогрес</li>
+      <li>✅ <strong>Безкоштовно</strong> – тест абсолютно безкоштовний, без прихованих платежів</li>
+    </ul>
+  </section>
+
+  <section class="testing-form-section glass-section">
+    <h2>Почніть тест зараз</h2>
+    <p>Заповніть форму нижче, щоб розпочати тестування. Після завершення ви отримаєте детальний звіт про свій рівень та рекомендації щодо навчання.</p>
+
+    <form method="post" class="testing-form glass-card">
+      {% csrf_token %}
+      <input type="hidden" name="utm_source" value="{{ utm_source }}">
+
+      <div class="form-note">
+        <p><strong>Примітка:</strong> Тест знаходиться в розробці. Наразі ви можете записатися на безкоштовну консультацію, де наші експерти допоможуть визначити ваш рівень та підберуть оптимальну програму навчання.</p>
+      </div>
+
+      <div class="testing-cta">
+        <a href="{% url 'core:contacts' %}" class="button button--primary">Записатися на консультацію</a>
+        <p class="testing-cta__note">Або зателефонуйте нам: <a href="tel:+380931707867">+380 93 170 78 67</a></p>
+      </div>
+    </form>
+  </section>
 </main>
 {% endblock %}
 

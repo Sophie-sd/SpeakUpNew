@@ -5,14 +5,17 @@ import { BaseAccordion } from './base-accordion.js';
 /**
  * FAQ Accordion - акордеон часті питання
  * Використовує base-accordion
+ * Підтримує кілька контейнерів (3 стовпчики)
  */
 function initFAQAccordion() {
-  const container = document.querySelector('.faq-accordion[data-accordion-container]');
-  if (!container) return;
+  // Ініціалізація акордеонів на сторінці FAQ
+  const accordionContainers = document.querySelectorAll('.faq-accordion[data-accordion-container]');
 
-  new BaseAccordion(container, {
-    closeOthers: true, // Закривати інші при відкритті одного
-    animationDuration: 300
+  accordionContainers.forEach(container => {
+    new BaseAccordion(container, {
+      closeOthers: true, // Закривати інші при відкритті одного
+      animationDuration: 300
+    });
   });
 }
 

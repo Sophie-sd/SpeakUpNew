@@ -5,6 +5,42 @@
 {% block og_title %}{{ title }} - SPEAK UP{% endblock %}
 {% block meta_description %}{{ meta_description }}{% endblock %}
 
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ title|escapejs }}",
+  "description": "{{ meta_description|escapejs }}",
+  "datePublished": "{{ article.published_at|date:'Y-m-d' }}",
+  "dateModified": "{{ article.updated_at|date:'Y-m-d' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "SPEAK UP"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SPEAK UP",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ default_og_image }}"
+    }
+  },
+  {% if article.featured_image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ article.featured_image.url }}"
+  },
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}"
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <article class="news-article">
   <header class="news-article__header">
@@ -27,9 +63,21 @@
     <nav class="news-article__nav">
       <a href="{% url 'core:news_list' %}" class="news-article__back-link">← Повернутися до списку статей</a>
     </nav>
+
+    <!-- Схожі статті -->
+    <section class="related-articles">
+      <h2>Схожі статті</h2>
+      <p>Можливо, вас також зацікавлять інші статті про вивчення англійської:</p>
+      <ul>
+        <li><a href="{% url 'core:news_list' %}">Всі статті</a></li>
+        <li><a href="{% url 'core:programs_list' %}">Програми навчання</a></li>
+        <li><a href="{% url 'core:faq' %}">Часті питання</a></li>
+      </ul>
+    </section>
   </footer>
 </article>
 {% endblock %}
+
 
 
 

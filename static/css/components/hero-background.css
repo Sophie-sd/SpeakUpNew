@@ -83,10 +83,6 @@
 .hero-content {
   position: relative;
   z-index: var(--z-content, 1);
-  min-height: 100vh; /* Fallback */
-  min-height: 100dvh;
-  max-height: 350vh;
-  max-height: 320dvh;
   contain: layout style; /* Ізоляція для продуктивності (без paint для скролу) */
 }
 
@@ -99,10 +95,6 @@
     height: calc(var(--parallax-vh, 1vh) * 120);
   }
 
-  .hero-content {
-    min-height: 100dvh;
-    min-height: calc(var(--parallax-vh, 1vh) * 100);
-  }
 }
 
 /* Reduced motion - використовує наявне глобальне правило з base.css */

@@ -4,6 +4,35 @@
 {% block og_title %}{{ program.title }} - SPEAK UP{% endblock %}
 {% block meta_description %}{{ program.description }}{% endblock %}
 
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "{{ program.title }}",
+  "description": "{{ program.description }}",
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "SPEAK UP",
+    "url": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}"
+  },
+  "courseCode": "{{ program.slug }}",
+  {% if program.price %}
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ program.price.base }}",
+    "priceCurrency": "UAH"
+  },
+  {% endif %}
+  {% if program.duration %}
+  "timeRequired": "{{ program.duration }}",
+  {% endif %}
+  "inLanguage": "{% if current_language == 'ru' %}ru{% else %}uk{% endif %}"
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <main>
   <h1>{{ program.title }}</h1>
@@ -40,6 +69,62 @@
   </section>
   {% endif %}
 
+  <!-- Для кого цей курс -->
+  {% if program.category %}
+  <section>
+    <h2>Для кого цей курс?</h2>
+    {% if program.category == 'kids' %}
+    <p>Цей курс ідеально підходить для дітей та підлітків, які хочуть вивчити англійську мову з нуля або покращити свої навички. Програма адаптована під вік та рівень знань дитини.</p>
+    {% elif program.category == 'individual' %}
+    <p>Індивідуальний курс ідеально підходить для тих, хто хоче максимального прогресу та персонального підходу. Викладач працює виключно з вами, адаптуючи програму під ваші потреби та цілі.</p>
+    {% elif program.category == 'group' %}
+    <p>Груповий курс підходить для тих, хто любить спілкуватися та навчатися в команді. Ви зможете практикувати англійську з іншими студентами та обмінюватися досвідом.</p>
+    {% elif program.category == 'exams' %}
+    <p>Цей курс призначений для тих, хто готується до міжнародних іспитів або ЗНО. Програма розроблена на основі реальних тестів та вимог екзаменаторів.</p>
+    {% else %}
+    <p>Цей курс підходить для всіх, хто хоче покращити свій рівень англійської мови та досягти своїх цілей.</p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <!-- Результати навчання -->
+  <section>
+    <h2>Результати навчання</h2>
+    <p>Після завершення курсу ви зможете:</p>
+    <ul>
+      {% if program.benefits %}
+        {% for benefit in program.benefits %}
+        <li>{{ benefit }}</li>
+        {% endfor %}
+      {% else %}
+      <li>Впевнено спілкуватися англійською мовою</li>
+      <li>Використовувати англійську в роботі та повсякденному житті</li>
+      <li>Розуміти англійську на слух та читати тексти</li>
+      <li>Писати професійні листи та документи</li>
+      {% endif %}
+    </ul>
+  </section>
+
+  <!-- Як проходить навчання -->
+  <section>
+    <h2>Як проходить навчання</h2>
+    <p>Навчання проходить в онлайн форматі з використанням нашої авторської методики Blended Learning:</p>
+    <ul>
+      <li><strong>Multimedia Lesson</strong> – інтерактивні мультимедійні уроки для самостійного вивчення</li>
+      <li><strong>Group Class</strong> – групові заняття з викладачем в групах 1-10 учнів</li>
+      <li><strong>Student Zone 24/7</strong> – онлайн доступ до всіх матеріалів з будь-якої точки планети</li>
+      <li><strong>Workshops</strong> – мовні практикуми з викладачем (розмовна практика, граматика, читання)</li>
+      <li><strong>Academic Progress Report</strong> – регулярний контроль прогресу з гарантією результату</li>
+    </ul>
+  </section>
+
+  <!-- Відгуки про програму -->
+  <section>
+    <h2>Відгуки про цю програму</h2>
+    <p>Дізнайтеся, що кажуть наші студенти про цю програму навчання:</p>
+    <a href="{% url 'core:feedback' %}" class="button button--secondary">Переглянути всі відгуки</a>
+  </section>
+
   <!-- CTA -->
   <section class="cta">
     <h2>SpeakUp тепер де завгодно</h2>
@@ -47,6 +132,17 @@
     <a href="{% url 'core:testing' %}?from={{ program.slug }}" class="btn-primary">
       Записатися на безкоштовне тестування
     </a>
+  </section>
+
+  <!-- Схожі програми -->
+  <section>
+    <h2>Схожі програми</h2>
+    <p>Можливо, вас також зацікавлять:</p>
+    <ul>
+      <li><a href="{% url 'core:program_detail' slug='individual' %}">Індивідуальні заняття</a></li>
+      <li><a href="{% url 'core:program_detail' slug='group' %}">Групові заняття</a></li>
+      <li><a href="{% url 'core:programs_list' %}">Всі програми навчання</a></li>
+    </ul>
   </section>
 </main>
 {% endblock %}

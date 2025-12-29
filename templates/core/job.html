@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Вакансії - SPEAK UP{% endblock %}
+{% block og_title %}Вакансії - SPEAK UP{% endblock %}
+{% block meta_description %}Відкриті вакансії в міжнародній мережі шкіл англійської мови Speak Up: дизайнер, таргетолог, креативник. Віддалена робота, гнучкий графік.{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {% for vacancy in vacancies %}
+    {
+      "@type": "JobPosting",
+      "title": "{{ vacancy.title_uk if current_language == 'uk' else vacancy.title_ru }}",
+      "description": "{{ vacancy.description_uk if current_language == 'uk' else vacancy.description_ru }}",
+      "employmentType": "FULL_TIME",
+      "workHours": "FLEXIBLE",
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "UA"
+        }
+      },
+      "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "UAH"
+      }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="job-page">
+  <section class="job-hero glass-section">
+    <h1>Вакансії</h1>
+    <p class="job-hero__subtitle">Приєднуйтесь до команди Speak Up та допомагайте тисячам студентів вивчати англійську мову</p>
+    <p>Speak Up – це міжнародна мережа шкіл англійської мови. З 2006 року ми навчили понад 100,000 студентів та продовжуємо розвиватися. Ми шукаємо талановитих та мотивованих людей, які хочуть змінювати життя людей через освіту.</p>
+  </section>
+
+  <section class="vacancies-list glass-section">
+    {% for vacancy in vacancies %}
+      <article class="vacancy-item glass-card">
+        <h2>{{ vacancy.title_uk if current_language == 'uk' else vacancy.title_ru }}</h2>
+        <p class="vacancy-description">{{ vacancy.description_uk if current_language == 'uk' else vacancy.description_ru }}</p>
+
+        {% if vacancy.requirements_uk %}
+        <div class="vacancy-section">
+          <h3>Вимоги:</h3>
+          <ul>
+            {% if current_language == 'uk' %}
+              {% for req in vacancy.requirements_uk %}
+              <li>{{ req }}</li>
+              {% endfor %}
+            {% else %}
+              {% for req in vacancy.requirements_ru %}
+              <li>{{ req }}</li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if vacancy.responsibilities_uk %}
+        <div class="vacancy-section">
+          <h3>Обов'язки:</h3>
+          <ul>
+            {% if current_language == 'uk' %}
+              {% for resp in vacancy.responsibilities_uk %}
+              <li>{{ resp }}</li>
+              {% endfor %}
+            {% else %}
+              {% for resp in vacancy.responsibilities_ru %}
+              <li>{{ resp }}</li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if vacancy.conditions_uk %}
+        <div class="vacancy-section">
+          <h3>Умови роботи:</h3>
+          <ul>
+            {% if current_language == 'uk' %}
+              {% for cond in vacancy.conditions_uk %}
+              <li>{{ cond }}</li>
+              {% endfor %}
+            {% else %}
+              {% for cond in vacancy.conditions_ru %}
+              <li>{{ cond }}</li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="job-benefits glass-section">
+    <h2>Переваги роботи в Speak Up</h2>
+    <ul>
+      <li>✅ Віддалена робота з будь-якої точки України</li>
+      <li>✅ Гнучкий графік роботи</li>
+      <li>✅ Конкурентна заробітна плата</li>
+      <li>✅ Професійний розвиток та навчання</li>
+      <li>✅ Робота в дружній та підтримуючій команді</li>
+      <li>✅ Можливість впливати на життя тисяч студентів</li>
+    </ul>
+  </section>
+
+  <section class="contact-section glass-section">
+    <h2>Як подати заявку</h2>
+    <p>Давай відкривати світ разом з Speak Up! Чекаємо на твоє резюме.</p>
+    <p>Надішліть резюме на: <a href="mailto:feedback@speak-up.com.ua">feedback@speak-up.com.ua</a></p>
+    <p>Або зателефонуйте нам: <a href="tel:+380931707867">+380 93 170 78 67</a></p>
+  </section>
+</main>
+{% endblock %}
+

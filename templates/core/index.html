@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Курси англійської онлайн - SPEAK UP{% endblock %}
-{% block og_title %}Курси англійської онлайн - SPEAK UP{% endblock %}
-{% block meta_description %}Онлайн курси англійської від школи Speak Up. Для дорослих та дітей. Індивідуально та в групах.{% endblock %}
+{% block title %}Онлайн курси англійської мови від 180 грн/год - SPEAK UP{% endblock %}
+{% block og_title %}Онлайн курси англійської мови від 180 грн/год - SPEAK UP{% endblock %}
+{% block meta_description %}Онлайн курси англійської від 180 грн/год від школи Speak Up. 100,000+ випускників, гарантія результату. Для дорослих та дітей. Безкоштовне тестування!{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/components/hero-background.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/hero-section.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/achievements.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/advantages-carousel.css' %}">
+{% if show_pricing_instead_of_courses %}
+<link rel="stylesheet" href="{% static 'css/components/pricing-accordion.css' %}">
+{% else %}
 <link rel="stylesheet" href="{% static 'css/components/courses-accordion.css' %}">
+{% endif %}
 <link rel="stylesheet" href="{% static 'css/components/testimonials.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/faq.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/consultation-form.css' %}">
@@ -19,7 +23,7 @@
 <link rel="preload" as="image" href="{% static 'img/2card.png' %}">
 {% endblock %}
 
-{% block content %}
+{% block parallax_layers %}
 <!-- Шар 1: Фон (паралакс) -->
 <div class="hero-background" data-parallax-layer="background" aria-hidden="true">
   <picture>
@@ -47,7 +51,9 @@
     loading="eager"
     decoding="async">
 </div>
+{% endblock %}
 
+{% block content %}
 <!-- Шар 3: Контент (паралакс) -->
 <div class="hero-content" data-parallax-layer="content">
   <!-- 1. Хіро секція -->
@@ -92,153 +98,227 @@
   <!-- 3. Переваги -->
   <section class="advantages-carousel glass-section" id="advantages">
     <h2 class="section-title">Наші переваги</h2>
-    <div class="advantages-carousel__container">
-      {% for advantage in advantages %}
-      <div class="advantage-card" data-advantage-id="{{ advantage.order }}">
+    <div class="advantages-carousel-wrapper">
+      <div class="advantages-carousel__container">
+        {% for advantage in advantages %}
+        <div class="advantage-card" data-advantage-id="{{ advantage.order }}">
 
-        <!-- ПЕРЕДНЯ СТОРОНА -->
-        <div class="advantage-card__front">
-          {% if advantage.order == 1 %}
-          <div class="advantage-card__bg advantage-card__bg--static-1"></div>
-          {% elif advantage.order == 2 %}
-          <div class="advantage-card__bg advantage-card__bg--static-2"></div>
-          {% elif advantage.order == 3 %}
-          <div class="advantage-card__bg advantage-card__bg--static-3"></div>
-          {% elif advantage.order == 4 %}
-          <div class="advantage-card__bg advantage-card__bg--static-4"></div>
-          {% elif advantage.order == 5 %}
-          <div class="advantage-card__bg advantage-card__bg--static-5"></div>
-          {% elif advantage.icon %}
-          <div class="advantage-card__bg advantage-card__bg--dynamic" data-bg-image="{{ advantage.icon.url }}"></div>
-          {% else %}
-          <div class="advantage-card__bg advantage-card__bg--fallback"></div>
-          {% endif %}
-          <div class="advantage-card__overlay"></div>
-          <div class="advantage-card__content">
-            <h3 class="advantage-card__title">
-              {% if current_language == 'ru' and advantage.title_ru %}{{ advantage.title_ru }}{% else %}{{ advantage.title_uk }}{% endif %}
-            </h3>
-            {% if advantage.subtitle_uk %}
-            <p class="advantage-card__subtitle">
-              {% if current_language == 'ru' and advantage.subtitle_ru %}{{ advantage.subtitle_ru }}{% else %}{{ advantage.subtitle_uk }}{% endif %}
-            </p>
+          <!-- ПЕРЕДНЯ СТОРОНА -->
+          <div class="advantage-card__front">
+            {% if advantage.order == 1 %}
+            <div class="advantage-card__bg advantage-card__bg--static-1"></div>
+            {% elif advantage.order == 2 %}
+            <div class="advantage-card__bg advantage-card__bg--static-2"></div>
+            {% elif advantage.order == 3 %}
+            <div class="advantage-card__bg advantage-card__bg--static-3"></div>
+            {% elif advantage.order == 4 %}
+            <div class="advantage-card__bg advantage-card__bg--static-4"></div>
+            {% elif advantage.order == 5 %}
+            <div class="advantage-card__bg advantage-card__bg--static-5"></div>
+            {% elif advantage.icon %}
+            <div class="advantage-card__bg advantage-card__bg--dynamic" data-bg-image="{{ advantage.icon.url }}"></div>
+            {% else %}
+            <div class="advantage-card__bg advantage-card__bg--fallback"></div>
             {% endif %}
-            <span class="advantage-card__hint">ⓘ Детальніше</span>
+            <div class="advantage-card__overlay"></div>
+            <div class="advantage-card__content">
+              <h3 class="advantage-card__title">
+                {% if current_language == 'ru' and advantage.title_ru %}{{ advantage.title_ru }}{% else %}{{ advantage.title_uk }}{% endif %}
+              </h3>
+              {% if advantage.subtitle_uk %}
+              <p class="advantage-card__subtitle">
+                {% if current_language == 'ru' and advantage.subtitle_ru %}{{ advantage.subtitle_ru }}{% else %}{{ advantage.subtitle_uk }}{% endif %}
+              </p>
+              {% endif %}
+              <span class="advantage-card__hint">ⓘ Детальніше</span>
 
-            {% if advantage.footer_title_uk %}
-            <div class="advantage-card__footer">
-              <strong class="advantage-card__footer-title">
-                {% if current_language == 'ru' and advantage.footer_title_ru %}{{ advantage.footer_title_ru }}{% else %}{{ advantage.footer_title_uk }}{% endif %}
-              </strong>
-              {% if advantage.footer_text_uk %}
-              <span class="advantage-card__footer-text">
-                {% if current_language == 'ru' and advantage.footer_text_ru %}{{ advantage.footer_text_ru }}{% else %}{{ advantage.footer_text_uk }}{% endif %}
-              </span>
+              {% if advantage.footer_title_uk %}
+              <div class="advantage-card__footer">
+                <strong class="advantage-card__footer-title">
+                  {% if current_language == 'ru' and advantage.footer_title_ru %}{{ advantage.footer_title_ru }}{% else %}{{ advantage.footer_title_uk }}{% endif %}
+                </strong>
+                {% if advantage.footer_text_uk %}
+                <span class="advantage-card__footer-text">
+                  {% if current_language == 'ru' and advantage.footer_text_ru %}{{ advantage.footer_text_ru }}{% else %}{{ advantage.footer_text_uk }}{% endif %}
+                </span>
+                {% endif %}
+              </div>
               {% endif %}
             </div>
-            {% endif %}
+          </div>
+
+          <!-- ЗВОРОТНА СТОРОНА -->
+          <div class="advantage-card__back">
+            <ul class="advantage-card__items">
+              {% for item in advantage.items.all %}
+              <li class="advantage-item">
+                {% if item.icon_emoji %}<span class="advantage-item__icon">{{ item.icon_emoji }}</span>{% endif %}
+                <div class="advantage-item__content">
+                  {% if item.title_uk %}
+                  <strong class="advantage-item__title">{% if current_language == 'ru' and item.title_ru %}{{ item.title_ru }}{% else %}{{ item.title_uk }}{% endif %}:</strong>
+                  {% endif %}
+                  <span class="advantage-item__text">{% if current_language == 'ru' and item.text_ru %}{{ item.text_ru }}{% else %}{{ item.text_uk }}{% endif %}</span>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      <div class="advantages-carousel-nav-wrapper">
+        <button type="button" class="advantages-carousel-nav advantages-carousel-nav--prev" aria-label="Попередня перевага">
+          ‹
+        </button>
+        <button type="button" class="advantages-carousel-nav advantages-carousel-nav--next" aria-label="Наступна перевага">
+          ›
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Навчальні програми / Прайс-лист -->
+  {% if show_pricing_instead_of_courses %}
+    {% include 'core/components/pricing-section.html' %}
+  {% else %}
+    <section class="courses-section glass-section" id="courses">
+      <h2 class="section-title">Навчальні програми</h2>
+      <div class="courses-section__grid">
+        {% for category in course_categories %}
+        <div class="course-category" data-category-slug="{{ category.slug }}">
+          <h3 class="course-category__title">{{ category.name_uk }}</h3>
+          <div class="course-accordion" data-accordion-container>
+            {% for course in category.courses.all %}
+              {% if course.is_active %}
+              <div class="course-accordion__item" data-accordion-item>
+                <button class="course-accordion__header" data-accordion-header>
+                  <span class="course-accordion__title">
+                    {% if current_language == 'ru' and course.title_ru %}{{ course.title_ru }}{% else %}{{ course.title_uk }}{% endif %}
+                  </span>
+                  <span class="course-accordion__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="course-accordion__content glass-card" data-accordion-content>
+                  <p class="course-accordion__short-desc">
+                    {% if current_language == 'ru' and course.short_desc_ru %}{{ course.short_desc_ru }}{% else %}{{ course.short_desc_uk }}{% endif %}
+                  </p>
+                  <div class="course-accordion__detail">
+                    {% if current_language == 'ru' and course.detail_content_ru %}{{ course.detail_content_ru|safe }}{% else %}{{ course.detail_content_uk|safe }}{% endif %}
+                  </div>
+                  <a href="{{ course.get_absolute_url }}" class="button button--primary">Детальніше</a>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
-
-        <!-- ЗВОРОТНА СТОРОНА -->
-        <div class="advantage-card__back">
-          <ul class="advantage-card__items">
-            {% for item in advantage.items.all %}
-            <li class="advantage-item">
-              {% if item.icon_emoji %}<span class="advantage-item__icon">{{ item.icon_emoji }}</span>{% endif %}
-              <div class="advantage-item__content">
-                {% if item.title_uk %}
-                <strong class="advantage-item__title">{% if current_language == 'ru' and item.title_ru %}{{ item.title_ru }}{% else %}{{ item.title_uk }}{% endif %}:</strong>
-                {% endif %}
-                <span class="advantage-item__text">{% if current_language == 'ru' and item.text_ru %}{{ item.text_ru }}{% else %}{{ item.text_uk }}{% endif %}</span>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
-  </section>
-
-  <!-- 4. Навчальні програми -->
-  <section class="courses-section glass-section" id="courses">
-    <h2 class="section-title">Навчальні програми</h2>
-    <div class="courses-section__grid">
-      {% for category in course_categories %}
-      <div class="course-category" data-category-slug="{{ category.slug }}">
-        <h3 class="course-category__title">{{ category.name_uk }}</h3>
-        <div class="course-accordion" data-accordion-container>
-          {% for course in category.courses.all %}
-            {% if course.is_active %}
-            <div class="course-accordion__item" data-accordion-item>
-              <button class="course-accordion__header" data-accordion-header>
-                <span class="course-accordion__title">
-                  {% if current_language == 'ru' and course.title_ru %}{{ course.title_ru }}{% else %}{{ course.title_uk }}{% endif %}
-                </span>
-                <span class="course-accordion__icon" aria-hidden="true">+</span>
-              </button>
-              <div class="course-accordion__content glass-card" data-accordion-content>
-                <p class="course-accordion__short-desc">
-                  {% if current_language == 'ru' and course.short_desc_ru %}{{ course.short_desc_ru }}{% else %}{{ course.short_desc_uk }}{% endif %}
-                </p>
-                <div class="course-accordion__detail">
-                  {% if current_language == 'ru' and course.detail_content_ru %}{{ course.detail_content_ru|safe }}{% else %}{{ course.detail_content_uk|safe }}{% endif %}
-                </div>
-                <a href="{{ course.get_absolute_url }}" class="button button--primary">Детальніше</a>
-              </div>
-            </div>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
+    </section>
+  {% endif %}
 
   <!-- 5. Відгуки та FAQ -->
   <section class="testimonials-section glass-section" id="testimonials">
     <h2 class="section-title">Відгуки наших студентів</h2>
-    <div class="testimonials-carousel carousel-container">
-      {% for testimonial in testimonials %}
-      <div class="testimonial-card glass-card carousel-item">
-        <div class="testimonial-card__header">
-          <span class="testimonial-card__name">{{ testimonial.name }}</span>
-          <div class="testimonial-card__rating" aria-label="Рейтинг: {{ testimonial.rating }} з 5">
-            {% for i in "12345"|make_list %}
-              <span class="testimonial-card__star {% if forloop.counter <= testimonial.rating %}testimonial-card__star--active{% endif %}">★</span>
-            {% endfor %}
+    <div class="testimonials-carousel-wrapper">
+      <div class="testimonials-carousel carousel-container">
+        {% for testimonial in testimonials %}
+        <div class="testimonial-card glass-card carousel-item">
+          <div class="testimonial-card__overlay"></div>
+          <div class="testimonial-card__content">
+            <div class="testimonial-card__header">
+              <span class="testimonial-card__name">{{ testimonial.name }}</span>
+              <div class="testimonial-card__rating" aria-label="Рейтинг: {{ testimonial.rating }} з 5">
+                {% for i in "12345"|make_list %}
+                  <span class="testimonial-card__star {% if forloop.counter <= testimonial.rating %}testimonial-card__star--active{% endif %}">★</span>
+                {% endfor %}
+              </div>
+            </div>
+            <p class="testimonial-card__text">{{ testimonial.text }}</p>
+            <time class="testimonial-card__date" datetime="{{ testimonial.created_at|date:'Y-m-d' }}">
+              {{ testimonial.created_at|date:'d.m.Y' }}
+            </time>
           </div>
         </div>
-        <p class="testimonial-card__text">{{ testimonial.text }}</p>
-        <time class="testimonial-card__date" datetime="{{ testimonial.created_at|date:'Y-m-d' }}">
-          {{ testimonial.created_at|date:'d.m.Y' }}
-        </time>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <div class="testimonials-carousel-nav-wrapper">
+        <button type="button" class="testimonials-carousel-nav testimonials-carousel-nav--prev" aria-label="Попередній відгук">
+          ‹
+        </button>
+        <button type="button" class="testimonials-carousel-nav testimonials-carousel-nav--next" aria-label="Наступний відгук">
+          ›
+        </button>
+      </div>
     </div>
     <button class="button button--primary" id="testimonial-modal-trigger">Залишити відгук</button>
   </section>
 
   <section class="faq-section glass-section" id="faq">
     <h2 class="section-title">Часті питання</h2>
-    <div class="faq-accordion" data-accordion-container>
-      {% for faq in faqs %}
-      <div class="faq-item glass-card" data-accordion-item>
-        <button class="faq-item__header" data-accordion-header>
-          <span class="faq-item__question">
-            {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
-          </span>
-          <span class="faq-item__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-item__content" data-accordion-content>
-          <p>
-            {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
-          </p>
+    <div class="faq-grid">
+      <!-- Стовпчик 1: Питання 1-4 -->
+      <div class="faq-column">
+        <div class="faq-accordion" data-accordion-container>
+          {% for faq in faqs_column1 %}
+          <div class="faq-item" data-accordion-item>
+            <button class="faq-item__header" data-accordion-header>
+              <span class="faq-item__question">
+                {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
+              </span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__content" data-accordion-content>
+              <p>
+                {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
+
+      <!-- Стовпчик 2: Питання 5-8 -->
+      <div class="faq-column">
+        <div class="faq-accordion" data-accordion-container>
+          {% for faq in faqs_column2 %}
+          <div class="faq-item" data-accordion-item>
+            <button class="faq-item__header" data-accordion-header>
+              <span class="faq-item__question">
+                {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
+              </span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__content" data-accordion-content>
+              <p>
+                {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Стовпчик 3: Питання 9-12 -->
+      <div class="faq-column">
+        <div class="faq-accordion" data-accordion-container>
+          {% for faq in faqs_column3 %}
+          <div class="faq-item" data-accordion-item>
+            <button class="faq-item__header" data-accordion-header>
+              <span class="faq-item__question">
+                {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
+              </span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__content" data-accordion-content>
+              <p>
+                {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -255,7 +335,12 @@
 {% block extra_js %}
 <script type="module" src="{% static 'js/modules/counter-animation.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/advantages-carousel.js' %}" defer></script>
+{% if show_pricing_instead_of_courses %}
+<script type="module" src="{% static 'js/modules/pricing-accordion.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/pricing-analytics.js' %}" defer></script>
+{% else %}
 <script type="module" src="{% static 'js/modules/courses-accordion.js' %}" defer></script>
+{% endif %}
 <script type="module" src="{% static 'js/modules/testimonials-carousel.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/faq-accordion.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/consultation-form.js' %}" defer></script>

@@ -1,19 +1,21 @@
 <div class="mobile-nav-container">
   <header class="header" id="header">
     <nav class="header__nav">
+      <!-- Слайдер (червоний вовчок) -->
+      <div class="header__menu-slider" data-nav-slider></div>
       <ul class="header__menu">
-        <li><a href="{% url 'core:index' %}" class="header__link header__link--active">Головна</a></li>
-        <li><a href="#advantages" class="header__link">Програми</a></li>
+        <li><a href="{% url 'core:index' %}" class="header__link header__link--active" data-nav-tab><span class="header__link-text">Головна</span></a></li>
+        <li><a href="{% url 'core:programs_list' %}" class="header__link" data-nav-tab><span class="header__link-text">Програми</span></a></li>
         <li class="header__menu-item--mobile-hidden">
-          <a href="#corporate" class="header__link">Корпоративним клієнтам</a>
+          <a href="{% url 'core:program_detail' slug='corporate' %}" class="header__link" data-nav-tab><span class="header__link-text">Корпоративним клієнтам</span></a>
         </li>
         <li class="header__menu-item--mobile-hidden">
-          <a href="{% url 'core:news_list' %}" class="header__link">Блог</a>
+          <a href="{% url 'core:news_list' %}" class="header__link" data-nav-tab><span class="header__link-text">Блог</span></a>
         </li>
         <li class="header__menu-item--mobile-hidden">
-          <a href="#faq" class="header__link">FAQ</a>
+          <a href="{% url 'core:faq' %}" class="header__link" data-nav-tab><span class="header__link-text">FAQ</span></a>
         </li>
-        <li><a href="{% url 'core:contacts' %}" class="header__link">Контакти</a></li>
+        <li><a href="{% url 'core:contacts' %}" class="header__link" data-nav-tab><span class="header__link-text">Контакти</span></a></li>
       </ul>
     </nav>
   </header>
@@ -31,9 +33,9 @@
 
 <nav class="burger-menu__dropdown" data-burger-menu aria-hidden="true">
   <ul class="burger-menu__list">
-    <li><a href="#corporate" class="burger-menu__link header__dropdown-link">Корпоративним клієнтам</a></li>
+    <li><a href="{% url 'core:program_detail' slug='corporate' %}" class="burger-menu__link header__dropdown-link">Корпоративним клієнтам</a></li>
     <li><a href="{% url 'core:news_list' %}" class="burger-menu__link header__dropdown-link">Блог</a></li>
-    <li><a href="#faq" class="burger-menu__link header__dropdown-link">FAQ</a></li>
+    <li><a href="{% url 'core:faq' %}" class="burger-menu__link header__dropdown-link">FAQ</a></li>
   </ul>
 </nav>
 

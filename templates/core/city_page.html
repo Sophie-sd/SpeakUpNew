@@ -4,6 +4,28 @@
 {% block og_title %}Онлайн школа англійської - {{ city.name }} - SPEAK UP{% endblock %}
 {% block meta_description %}Онлайн курси англійської від SPEAK UP для жителів міста {{ city.name }}. Історія роботи в місті та досягнення.{% endblock %}
 
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "SPEAK UP - {{ city.name }}",
+  "description": "Онлайн школа англійської мови в місті {{ city.name }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ city.name }}",
+    "addressCountry": "UA"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "{{ city.name }}"
+  },
+  "url": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}"
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <main>
   <h1>Онлайн школа англійської - {{ city.name }}</h1>
@@ -24,6 +46,20 @@
       <li>{{ achievement }}</li>
       {% endfor %}
     </ul>
+  </section>
+  {% endif %}
+
+  <!-- Наші школи в місті -->
+  {% if city.locations %}
+  <section>
+    <h2>Наші школи в {{ city.name }}</h2>
+    <p>Раніше в {{ city.name }} працювали офісні школи Speak Up. Зараз всі студенти навчаються онлайн, але ви можете дізнатися більше про історію наших локацій:</p>
+    <ul>
+      {% for location in city.locations %}
+      <li><a href="{% url 'core:school_location' slug=location.slug %}">{{ location.district }}</a></li>
+      {% endfor %}
+    </ul>
+    <p><a href="{% url 'core:programs_list' %}">Переглянути всі програми навчання</a></p>
   </section>
   {% endif %}
 

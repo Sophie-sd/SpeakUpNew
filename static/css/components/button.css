@@ -19,7 +19,7 @@
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  border: 1px solid transparent;
+  border: 1px solid var(--color-white);
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
   color: #ffffff;
@@ -53,6 +53,7 @@
 /* Button variants */
 .button--primary {
   background-color: var(--color-primary);
+  border: 1px solid var(--color-white);
   color: #ffffff;
 }
 
@@ -68,6 +69,7 @@
 
 .button--error {
   background-color: var(--color-error);
+  border: 1px solid var(--color-white);
   color: #ffffff;
 }
 
@@ -80,6 +82,7 @@
 @media (hover: hover) and (pointer: fine) {
   .button--outline:hover:not(:disabled) {
     background-color: var(--color-primary);
+    border: 1px solid var(--color-white);
     color: #ffffff;
   }
 }

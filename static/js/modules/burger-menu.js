@@ -67,18 +67,21 @@ export class BurgerMenu {
     this.overlay.setAttribute('aria-hidden', 'true');
     this.dropdown.setAttribute('aria-hidden', 'true');
 
-    // Відновити скрол
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.paddingRight = '';
+    // Відновити скрол - використовуємо removeProperty для повного видалення
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('top');
+    document.body.style.removeProperty('width');
+    document.body.style.removeProperty('padding-right');
 
     // Відновити позицію скролу
     if (this.scrollPosition !== undefined && this.scrollPosition !== null && this.scrollPosition >= 0) {
-      window.scrollTo({
-        top: this.scrollPosition,
-        behavior: 'auto'
+      // Використовуємо requestAnimationFrame для забезпечення правильного порядку
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: this.scrollPosition,
+          behavior: 'auto'
+        });
       });
     }
 

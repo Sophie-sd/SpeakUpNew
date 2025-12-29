@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Всі програми навчання - SPEAK UP{% endblock %}
+{% block og_title %}Всі програми навчання - SPEAK UP{% endblock %}
+{% block meta_description %}Повний список всіх програм навчання англійської мови з детальними цінами та умовами{% endblock %}
+
+{% block content %}
+<!-- Фон (паралакс) -->
+<div class="programs-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/programsBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/programsBackmob.png' %}">
+    <img
+      src="{% static 'img/programsBack.png' %}"
+      alt=""
+      class="programs-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="programs-content" data-parallax-layer="content">
+<main class="programs-list-page">
+  <section class="programs-hero glass-section">
+    <h1 class="section-title">Всі програми навчання</h1>
+    <p class="programs-hero__subtitle">Оберіть програму, яка підходить саме вам</p>
+  </section>
+
+  <!-- Таб-навігація категорій -->
+  <section class="programs-tabs-section">
+    <div class="programs-tabs" data-tabs-container>
+      {% for category_key, category in categories.items %}
+      <button
+        class="programs-tab {% if forloop.first %}programs-tab--active{% endif %}"
+        data-tab="{{ category_key }}"
+        data-tabs-trigger
+      >
+        {{ category.title }}
+      </button>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Контент категорій -->
+  <section class="programs-content-section">
+    {% for category_key, category in categories.items %}
+    <div
+      class="programs-category {% if forloop.first %}programs-category--active{% endif %}"
+      data-tab-content="{{ category_key }}"
+    >
+      <h2 class="programs-category__title">{{ category.title }}</h2>
+
+      <div class="programs-grid">
+        {% for program in category.programs %}
+        <div class="program-card glass-card" data-accordion-item>
+          <button class="program-card__header" data-accordion-header>
+            <div class="program-card__header-content">
+              <h3 class="program-card__title">
+                {{ program.title }}
+                {% if program.badge %}
+                <span class="program-card__badge program-card__badge--{{ program.badge }}">
+                  {% if program.badge == 'popular' %}ПОПУЛЯРНО
+                  {% elif program.badge == 'premium' %}ПРЕМІУМ
+                  {% elif program.badge == 'sale' %}АКЦІЯ
+                  {% endif %}
+                </span>
+                {% endif %}
+              </h3>
+              <p class="program-card__description">{{ program.description }}</p>
+            </div>
+            <span class="program-card__icon" aria-hidden="true">+</span>
+          </button>
+
+          <div class="program-card__content" data-accordion-content>
+            <div class="program-card__body">
+              <!-- Ціна -->
+              <div class="program-card__price">
+                {% if program.price.type == 'fixed' %}
+                  <div class="program-price">
+                    <span class="program-price__value">{{ program.price.base }}</span>
+                    {% if program.price.discount %}
+                    <span class="program-price__discount">{{ program.price.discount }}</span>
+                    {% endif %}
+                    {% if program.price.note %}
+                    <span class="program-price__note">{{ program.price.note }}</span>
+                    {% endif %}
+                  </div>
+                {% elif program.price.type == 'per_lesson' %}
+                  <div class="program-price">
+                    <span class="program-price__value">{{ program.price.base }}</span>
+                    {% if program.price.note %}
+                    <span class="program-price__note">{{ program.price.note }}</span>
+                    {% endif %}
+                  </div>
+                {% elif program.price.type == 'custom' %}
+                  <div class="program-price">
+                    <span class="program-price__value">{{ program.price.base }}</span>
+                    {% if program.price.note %}
+                    <span class="program-price__note">{{ program.price.note }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if program.price.old %}
+                <span class="program-price__old">{{ program.price.old }}</span>
+                {% endif %}
+              </div>
+
+              <!-- Тривалість -->
+              {% if program.duration %}
+              <div class="program-card__duration">
+                <strong>Тривалість:</strong> {{ program.duration }}
+              </div>
+              {% endif %}
+
+              <!-- Що входить -->
+              {% if program.includes %}
+              <div class="program-card__includes">
+                <h4 class="program-card__subtitle">У програмі:</h4>
+                <ul class="program-card__list">
+                  {% for item in program.includes %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+
+              <!-- Переваги -->
+              {% if program.benefits %}
+              <div class="program-card__benefits">
+                <h4 class="program-card__subtitle">Переваги:</h4>
+                <ul class="program-card__list">
+                  {% for benefit in program.benefits %}
+                  <li>{{ benefit }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+
+              <!-- Кнопки дій -->
+              <div class="program-card__actions">
+                <a href="{{ program.url }}" class="button button--secondary">Детальніше</a>
+                <button class="button button--primary" data-consultation-btn>Залишити заявку</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</main>
+</div>
+{% endblock %}
+

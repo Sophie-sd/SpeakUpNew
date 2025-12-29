@@ -100,3 +100,4 @@ exec(open('add_advantages_full.py').read())
 3. Спробуйте на реальному пристрої (Safari Desktop != Safari iOS)
 
 
+

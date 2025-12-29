@@ -2,7 +2,7 @@
 
 /**
  * Consultation Form - форма консультації з месенджерами
- * Slide transition при виборі "консультація в переписці"
+ * Кнопки месенджерів з'являються під чекбоксом при виборі "консультація в переписці"
  */
 function initConsultationForm() {
   const formContainer = document.querySelector('.consultation-form');
@@ -10,13 +10,12 @@ function initConsultationForm() {
   if (!form) return;
 
   const checkbox = form.querySelector('input[name="prefers_messenger"]');
-  const phoneSection = form.querySelector('.consultation-form__phone-section');
   const messengerButtons = form.querySelector('.consultation-form__messenger-buttons');
   const messengerChoiceInputs = form.querySelectorAll('input[name="messenger_choice"]');
 
-  if (!checkbox || !phoneSection || !messengerButtons) return;
+  if (!checkbox || !messengerButtons) return;
 
-  // Обробка checkbox
+  // Обробка checkbox - показуємо/ховаємо кнопки месенджерів
   checkbox.addEventListener('change', function() {
     if (this.checked) {
       formContainer.classList.add('consultation-form--messenger-mode');
@@ -63,8 +62,8 @@ function initConsultationForm() {
         case 'whatsapp':
           url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}`;
           break;
-        case 'viber':
-          url = `viber://chat?number=${phone.replace(/[^0-9]/g, '')}`;
+        case 'instagram':
+          url = 'https://www.instagram.com/speakup_ukraine/';
           break;
         case 'telegram':
           url = 'https://t.me/speakup_bot';

@@ -5,20 +5,26 @@
 .testimonials-section {
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  contain: layout style paint; /* Ізоляція для продуктивності */
-  content-visibility: auto; /* Оптимізація для секцій поза viewport */
+  contain: layout style paint;
+  content-visibility: auto;
   width: 100%;
   max-width: min(var(--content-width-desktop), var(--content-max-width));
   margin-left: auto;
   margin-right: auto;
 }
 
-.testimonials-carousel {
+.testimonials-carousel-wrapper {
+  position: relative;
   margin: 0 auto var(--spacing-xl);
+}
+
+.testimonials-carousel {
+  margin: 0 auto;
   padding: var(--spacing-md) 0;
 }
 
 .testimonial-card {
+  position: relative;
   min-width: 300px;
   width: 100%;
   max-width: 380px;
@@ -27,9 +33,47 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+.testimonial-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.testimonial-card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-card:hover {
+    background: var(--glass-bg-light);
+  }
+
+  .testimonial-card:hover .testimonial-card__overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 
 .testimonial-card__header {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,13 +94,16 @@
 
 .testimonial-card__star {
   color: var(--color-border);
+  transition: color var(--transition-fast);
 }
 
 .testimonial-card__star--active {
-  color: #FFD700; /* Gold */
+  color: var(--color-primary);
 }
 
 .testimonial-card__text {
+  position: relative;
+  z-index: 3;
   font-size: var(--font-size-base);
   color: var(--color-white);
   line-height: 1.6;
@@ -64,27 +111,98 @@
 }
 
 .testimonial-card__date {
+  position: relative;
+  z-index: 3;
   font-size: var(--font-size-sm);
-  color: var(--color-white);
+  color: var(--color-text-muted);
 }
 
-/* Десктоп: 3 картки */
+/* Кнопки навігації каруселі */
+.testimonials-carousel-nav-wrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.testimonials-carousel-nav {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(231, 30, 20, 0.3);
+}
+
+.testimonials-carousel-nav:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonials-carousel-nav:hover {
+    background: var(--color-primary-hover);
+    border: 1px solid var(--color-white);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(231, 30, 20, 0.4);
+  }
+}
+
+.testimonials-carousel-nav:active {
+  transform: scale(0.95);
+}
+
+.testimonials-carousel-nav:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+
+/* Десктоп: горизонтальна карусель з кнопками навігації */
 @media (width >= 768px) {
+  .testimonials-carousel-wrapper {
+    position: relative;
+  }
+
   .testimonials-carousel {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    overflow: visible;
-    scroll-snap-type: none;
+    display: flex;
+    gap: var(--spacing-xl);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .testimonials-carousel::-webkit-scrollbar {
+    display: none;
   }
 
   .testimonial-card {
+    flex: 0 0 calc(33.333% - var(--spacing-xl) * 0.666);
+    min-width: 300px;
+    max-width: 380px;
     margin: 0;
-    max-width: 100%;
+    scroll-snap-align: start;
+  }
+
+  .testimonials-carousel-nav-wrapper {
+    display: flex;
   }
 }
 
-/* Мобільний: scroll-snap */
+/* Мобільний: scroll-snap без кнопок */
 @media (width <= 767px) {
   .testimonials-section {
     padding: var(--section-padding-mobile);
@@ -102,6 +220,10 @@
   .testimonial-card {
     flex: 0 0 calc(100% - var(--spacing-md) * 2);
     scroll-snap-align: center;
+  }
+
+  .testimonials-carousel-nav {
+    display: none;
   }
 }
 

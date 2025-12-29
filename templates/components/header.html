@@ -13,6 +13,8 @@
 
 {# Хедер з логотипом та формою #}
 <div class="header-wrapper">
+  <div class="header__spacer--left" aria-hidden="true"></div>
+
   <nav class="header__nav header__nav--top">
     <div class="header__menu header__menu--top" data-header-dynamic>
       <a href="{% url 'core:index' %}" class="header__logo" aria-label="SpeakUp - головна">
@@ -80,6 +82,15 @@
       </button>
     </div>
   </nav>
+
+  <button class="header__student-zone" aria-label="Student Zone">
+    <span class="header__student-zone-text">
+      <span>Student</span>
+      <span>Zone</span>
+    </span>
+  </button>
+
+  <div class="header__spacer--right" aria-hidden="true"></div>
 </div>
 
 {# Модальна форма для мобільних #}

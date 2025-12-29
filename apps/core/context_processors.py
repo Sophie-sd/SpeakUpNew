@@ -16,14 +16,17 @@ def seo_context(request):
     if cached:
         return cached
 
-    # Генерувати canonical URL
-    canonical_url = request.build_absolute_uri(request.path)
+    # Генерувати canonical URL (нормалізувати trailing slash)
+    path = request.path.rstrip('/') if request.path != '/' else '/'
+    canonical_url = request.build_absolute_uri(path)
 
-    # Генерувати hreflang URLs
+    # Генерувати hreflang URLs (нормалізувати trailing slash)
     hreflang_urls = []
     for lang_code in ['uk', 'ru']:
         try:
-            translated_path = translate_url(request.path, lang_code)
+            translated_path = translate_url(path, lang_code)
+            # Нормалізувати trailing slash
+            translated_path = translated_path.rstrip('/') if translated_path != '/' else '/'
             hreflang_urls.append({
                 'lang': lang_code,
                 'url': request.build_absolute_uri(translated_path)
@@ -52,3 +55,10 @@ def seo_context(request):
 
     return result
 
+
+def feature_flags(request):
+    """Feature flags для A/B тестування."""
+    return {
+        'show_pricing_instead_of_courses': True,  # Перемикач pricing/courses
+        'pricing_variant': 'v1',  # v1, v2 для різних варіантів (майбутнє)
+    }

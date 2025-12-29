@@ -31,6 +31,13 @@ export class ParallaxBackground {
     this.resizeTimeout = null;
     this.minFrameTime = 1000 / 60; // 60fps throttling
 
+    // Динамічна висота контенту
+    this.contentElement = document.querySelector('.hero-content');
+    this.contentHeight = 0;
+    this.resizeObserver = null;
+    this.resizeObserverTimeout = null;
+    this.cachedAdaptiveSpeed = new Map(); // Кеш адаптивних швидкостей
+
     this.init();
   }
 
@@ -49,6 +56,9 @@ export class ParallaxBackground {
 
     // iOS vh fix (окрема змінна для уникнення конфлікту)
     this.setVhVariable();
+
+    // ResizeObserver для відстеження змін висоти контенту (для адаптивної швидкості)
+    this.setupResizeObserver();
 
     // Intersection Observer для економії ресурсів
     this.setupIntersectionObserver();
@@ -85,6 +95,27 @@ export class ParallaxBackground {
         layer.element.style.webkitTransform = `translate3d(-50%, ${initialOffset}px, 0)`;
       }
     });
+  }
+
+  setupResizeObserver() {
+    if (!this.contentElement) return;
+
+    this.resizeObserver = new ResizeObserver(() => {
+      // Debounce для продуктивності (150ms, як для resize listener)
+      if (this.resizeObserverTimeout) {
+        clearTimeout(this.resizeObserverTimeout);
+      }
+      this.resizeObserverTimeout = setTimeout(() => {
+        // Оновити висоту контенту для адаптивної швидкості
+        this.contentHeight = this.contentElement.offsetHeight;
+        // Очистити кеш адаптивних швидкостей при зміні висоти
+        this.cachedAdaptiveSpeed.clear();
+      }, 150);
+    });
+
+    this.resizeObserver.observe(this.contentElement);
+    // Початкова висота контенту
+    this.contentHeight = this.contentElement.offsetHeight;
   }
 
   setupIntersectionObserver() {
@@ -140,16 +171,54 @@ export class ParallaxBackground {
     this.ticking = false;
   }
 
+  calculateAdaptiveSpeed(baseSpeed) {
+    if (!this.contentHeight) return baseSpeed;
+
+    const viewportHeight = window.innerHeight;
+    const contentHeightVh = this.contentHeight / viewportHeight;
+    const thresholdVh = 3; // 300vh = 3 viewport heights
+
+    // Якщо контент ≤ 300vh, використовуємо оригінальну швидкість
+    if (contentHeightVh <= thresholdVh) {
+      return baseSpeed;
+    }
+
+    // Лінійне зменшення: для кожних 100vh понад 300vh зменшуємо на 10%
+    const excessVh = contentHeightVh - thresholdVh;
+    const reductionFactor = Math.min(excessVh * 0.1, 0.7); // Максимум 70% зменшення (мінімум 30%)
+    const adaptiveSpeed = baseSpeed * (1 - reductionFactor);
+
+    return Math.max(adaptiveSpeed, baseSpeed * 0.3); // Мінімум 30% від базової
+  }
+
   update() {
-    // Використовуємо pageYOffset як у running-line.js
-    this.scrollY = window.pageYOffset || window.scrollY;
+    // Використовуємо правильне обчислення скролу
+    this.scrollY = Math.max(
+      window.pageYOffset || window.scrollY || 0,
+      document.documentElement.scrollTop || 0
+    );
+
+    // НЕ обмежуємо scrollY - дозволяємо браузеру самому визначати максимальний скрол
+    // Це запобігає створенню зайвого простору через неправильне обчислення висоти
 
     this.layers.forEach(layer => {
       if (!layer.isActive) return;
 
+      // Адаптивна швидкість на основі висоти контенту
+      let adaptiveSpeed = layer.speed;
+      if (this.contentHeight > 0) {
+        // Кешування адаптивної швидкості
+        if (!this.cachedAdaptiveSpeed.has(layer.element)) {
+          adaptiveSpeed = this.calculateAdaptiveSpeed(layer.speed);
+          this.cachedAdaptiveSpeed.set(layer.element, adaptiveSpeed);
+        } else {
+          adaptiveSpeed = this.cachedAdaptiveSpeed.get(layer.element);
+        }
+      }
+
       // Мобільні пристрої: зменшити швидкість на 50%
       const speedMultiplier = this.isMobile ? 0.5 : 1;
-      const effectiveSpeed = layer.speed * speedMultiplier;
+      const effectiveSpeed = adaptiveSpeed * speedMultiplier;
 
       const translateY = -(this.scrollY * effectiveSpeed);
 
@@ -184,6 +253,13 @@ export class ParallaxBackground {
   destroy() {
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
+    }
+    if (this.resizeObserverTimeout) {
+      clearTimeout(this.resizeObserverTimeout);
+    }
+    if (this.resizeObserver && this.contentElement) {
+      this.resizeObserver.unobserve(this.contentElement);
+      this.resizeObserver.disconnect();
     }
     this.layers.forEach(layer => {
       if (layer.element) {

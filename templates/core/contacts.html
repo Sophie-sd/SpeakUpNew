@@ -1,13 +1,86 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Контакти - SPEAK UP{% endblock %}
 {% block og_title %}Контакти - SPEAK UP{% endblock %}
-{% block meta_description %}Контакти школи SPEAK UP: телефон, email, адреси філій.{% endblock %}
+{% block meta_description %}Контакти школи SPEAK UP: гаряча лінія +380 93 170 78 67, графік роботи 8:00-20:00. Онлайн підтримка, консультації, запис на курси.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/contacts.css' %}">
+{% endblock %}
 
 {% block content %}
-<main>
-  <h1>Контакти</h1>
-  <p>SpeakUp тепер де завгодно. Ми переосмислили вивчення англійської.</p>
+<main class="contacts-page">
+  <section class="contacts-hero glass-section">
+    <h1 class="section-title">Контакти</h1>
+    <p class="contacts-hero__subtitle">SpeakUp тепер де завгодно. Ми переосмислили вивчення англійської.</p>
+  </section>
+
+  {% if contact_info %}
+  <section class="contacts-content glass-section">
+    <!-- Гаряча лінія -->
+    <div class="contacts-section">
+      <h2 class="contacts-section__title">Гаряча лінія</h2>
+      <div class="contacts-section__content">
+        <div class="contact-item">
+          <a href="tel:{{ contact_info.phone_uk|slugify }}" class="contact-item__link">
+            {{ contact_info.phone_uk }}
+          </a>
+        </div>
+        {% if contact_info.phone_international %}
+        <div class="contact-item">
+          <a href="tel:{{ contact_info.phone_international|slugify }}" class="contact-item__link">
+            {{ contact_info.phone_international }}
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Графік роботи -->
+    <div class="contacts-section">
+      <h2 class="contacts-section__title">Графік роботи</h2>
+      <div class="contacts-section__content">
+        <div class="schedule-item">
+          <span class="schedule-item__label">Будні дні:</span>
+          <span class="schedule-item__value">
+            {% if current_language == 'ru' and contact_info.schedule_weekdays_ru %}
+              {{ contact_info.schedule_weekdays_ru }}
+            {% else %}
+              {{ contact_info.schedule_weekdays_uk }}
+            {% endif %}
+          </span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-item__label">Вихідні:</span>
+          <span class="schedule-item__value">
+            {% if current_language == 'ru' and contact_info.schedule_weekend_ru %}
+              {{ contact_info.schedule_weekend_ru }}
+            {% else %}
+              {{ contact_info.schedule_weekend_uk }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Онлайн підтримка -->
+    <div class="contacts-section">
+      <h2 class="contacts-section__title">Онлайн підтримка</h2>
+      <div class="contacts-section__content">
+        <div class="contact-item">
+          <strong>Email:</strong>
+          <a href="mailto:feedback@speak-up.com.ua" class="contact-item__link">feedback@speak-up.com.ua</a>
+        </div>
+        <p class="contact-note">Напишіть нам на email, і ми відповімо найближчим часом. Зазвичай відповідаємо протягом 2-4 годин в робочий час.</p>
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <section class="contacts-content glass-section">
+    <p>Контактна інформація наразі недоступна.</p>
+  </section>
+  {% endif %}
 </main>
 {% endblock %}
 

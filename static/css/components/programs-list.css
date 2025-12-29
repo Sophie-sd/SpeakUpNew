@@ -1,0 +1,887 @@
+/* ==========================================================================
+   Programs List Page - Сторінка всіх програм
+   ========================================================================== */
+
+/* Фон (паралакс) */
+.programs-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh; /* Fallback */
+  height: 120dvh; /* iOS Dynamic Viewport */
+  z-index: var(--z-background, -1);
+  overflow: hidden;
+  pointer-events: none; /* Важливо: не блокує кліки */
+  contain: layout style paint; /* Ізоляція для продуктивності */
+
+  /* Hardware acceleration - використовуємо наявний паттерн з header.css */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* Явно вимикаємо blur якщо він застосовується через глобальні стилі */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+
+  /* will-change тільки коли активний - додається через JS */
+}
+
+/* Активний стан (додається через JS) */
+.programs-background--active {
+  will-change: transform;
+}
+
+.programs-background__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+
+  /* Запобігає мерехтінню на iOS - використовуємо наявний паттерн */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* Явно вимикаємо blur */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+}
+
+/* Контент над фоном */
+.programs-content {
+  position: relative;
+  z-index: var(--z-content, 1);
+  contain: layout style;
+}
+
+/* iOS Safari специфічні фікси */
+@supports (-webkit-touch-callout: none) {
+  .programs-background {
+    height: 120dvh;
+
+    /* Fallback для iOS < 15 */
+    height: calc(var(--parallax-vh, 1vh) * 120);
+  }
+
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .programs-background {
+    position: absolute;
+  }
+}
+
+.programs-list-page {
+  padding: var(--section-padding-desktop);
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin: 0 auto;
+}
+
+/* Темні стилі тільки для сторінки програм */
+.programs-content .glass-section {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.programs-content .glass-card {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Fallback для браузерів без backdrop-filter на сторінці програм */
+@supports not (backdrop-filter: blur(8px)) {
+  .programs-content .glass-card {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .programs-content .glass-section {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Hero секція */
+.programs-hero {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.programs-hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-sm);
+}
+
+/* Таб-навігація */
+.programs-tabs-section {
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.programs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  padding-bottom: var(--spacing-md);
+}
+
+.programs-tab {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.programs-tab:hover {
+  border-color: var(--color-primary);
+}
+
+.programs-tab--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Контент категорій */
+.programs-content-section {
+  position: relative;
+  min-height: 400px;
+}
+
+.programs-category {
+  display: none;
+}
+
+.programs-category--active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.programs-category__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Сітка програм */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Картка програми */
+.program-card {
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow);
+}
+
+.program-card__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-fast);
+}
+
+.program-card__header:hover {
+  border: 1px solid var(--color-primary);
+}
+
+.program-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.program-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.program-card__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.program-card__icon {
+  font-size: var(--font-size-xl);
+  font-weight: 300;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+  line-height: 1;
+}
+
+.program-card.accordion-item--open .program-card__icon {
+  transform: rotate(45deg);
+}
+
+/* Бейджі */
+.program-card__badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.program-card__badge--popular {
+  background: rgba(100, 149, 237, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.program-card__badge--premium {
+  background: rgba(255, 193, 7, 0.8);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.program-card__badge--sale {
+  background: rgba(76, 175, 80, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Контент картки */
+.program-card__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+}
+
+.program-card.accordion-item--open .program-card__content {
+  max-height: 2000px;
+}
+
+.program-card__body {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+}
+
+/* Ціна */
+.program-card__price {
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.program-price {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.program-price__value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.program-price__discount {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: rgba(76, 175, 80, 0.9);
+}
+
+.program-price__note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.program-price__old {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  margin-left: var(--spacing-xs);
+}
+
+/* Тривалість */
+.program-card__duration {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Списки */
+.program-card__includes,
+.program-card__benefits {
+  margin-bottom: var(--spacing-md);
+}
+
+.program-card__subtitle {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-xs);
+}
+
+.program-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.program-card__list li {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--spacing-xs) 0;
+  padding-left: var(--spacing-md);
+  position: relative;
+  line-height: 1.5;
+}
+
+.program-card__list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* Дії */
+.program-card__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--glass-border);
+}
+
+.program-card__actions .button {
+  flex: 1;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .programs-list-page {
+    padding: var(--section-padding-mobile);
+  }
+
+  .programs-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .programs-tab {
+    width: 100%;
+    text-align: center;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .program-card__actions {
+    flex-direction: column;
+  }
+
+  .program-card__actions .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .programs-category__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .program-card__title {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ==========================================================================
+   Corporate Program Page - Сторінка корпоративної програми
+   ========================================================================== */
+
+/* Фон (паралакс) */
+.corporate-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh; /* Fallback */
+  height: 120dvh; /* iOS Dynamic Viewport */
+  z-index: var(--z-background, -1);
+  overflow: hidden;
+  pointer-events: none; /* Важливо: не блокує кліки */
+  contain: layout style paint; /* Ізоляція для продуктивності */
+
+  /* Hardware acceleration - використовуємо наявний паттерн з header.css */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* Явно вимикаємо blur якщо він застосовується через глобальні стилі */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+
+  /* will-change тільки коли активний - додається через JS */
+}
+
+/* Активний стан (додається через JS) */
+.corporate-background--active {
+  will-change: transform;
+}
+
+.corporate-background__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+
+  /* Запобігає мерехтінню на iOS - використовуємо наявний паттерн */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* Явно вимикаємо blur */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+}
+
+/* Контент над фоном */
+.corporate-content {
+  position: relative;
+  z-index: var(--z-content, 1);
+  contain: layout style;
+}
+
+/* iOS Safari специфічні фікси */
+@supports (-webkit-touch-callout: none) {
+  .corporate-background {
+    height: 120dvh;
+
+    /* Fallback для iOS < 15 */
+    height: calc(var(--parallax-vh, 1vh) * 120);
+  }
+
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .corporate-background {
+    position: absolute;
+  }
+}
+
+/* Темні стилі тільки для сторінки корпоративних програм */
+.corporate-content .glass-section {
+  background: rgba(0, 0, 0, 0.7);
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+}
+
+/* Прибрати margin-bottom у останньої секції перед footer */
+.corporate-content > section:last-child,
+.corporate-content .glass-section:last-child,
+.corporate-content .corporate-training:last-child,
+.corporate-content .corporate-testing:last-child,
+.corporate-content .corporate-consultation:last-child,
+.corporate-content .corporate-guarantee:last-child,
+.corporate-content .corporate-components:last-child {
+  margin-bottom: 0 !important;
+}
+
+.corporate-content .glass-card {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Fallback для браузерів без backdrop-filter на сторінці корпоративних програм */
+@supports not (backdrop-filter: blur(8px)) {
+  .corporate-content .glass-card {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .corporate-content .glass-section {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Контейнер сторінки корпоративних програм */
+.corporate-program-page {
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin: 0 auto;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  margin-bottom: 0;
+  padding: var(--spacing-md) 0;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbs__list li {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.breadcrumbs__list li:not(:last-child)::after {
+  content: '/';
+  margin-left: var(--spacing-xs);
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.breadcrumbs__list a {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumbs__list a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.breadcrumbs__list a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Hero секція */
+.corporate-hero {
+  text-align: center;
+  margin-top: 9vh; /* Fallback */
+  margin-top: 9dvh; /* iOS Dynamic Viewport */
+}
+
+.corporate-hero__title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-md);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.corporate-hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+.corporate-hero__cta {
+  margin-top: var(--spacing-lg);
+}
+
+.corporate-hero__cta p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+/* Grid для секцій корпоративної сторінки */
+.corporate-details__grid,
+.corporate-programs__grid,
+.corporate-why__grid,
+.corporate-components__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Інтро секція */
+.corporate-intro {
+  /* margin-bottom та padding через загальне правило .corporate-content .glass-section */
+}
+
+.corporate-intro__content {
+  margin-top: var(--spacing-md);
+}
+
+.corporate-intro__content p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Програми навчання */
+.corporate-programs {
+  /* margin-bottom та padding через загальне правило .corporate-content .glass-section */
+}
+
+.corporate-programs__intro {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Стилі для blockquote в деталях */
+.corporate-details__quote {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.corporate-details__quote p {
+  margin: 0;
+  color: var(--color-white);
+  font-style: italic;
+}
+
+/* Consultation секція */
+.corporate-consultation {
+  text-align: center;
+}
+
+.corporate-consultation__title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-md);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.corporate-consultation__description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.corporate-consultation__form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.corporate-consultation .form-group__note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+  text-align: left;
+}
+
+/* Guarantee секція */
+.corporate-guarantee {
+  text-align: center;
+}
+
+.corporate-guarantee__title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.corporate-guarantee__content {
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+
+.corporate-guarantee__content p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.corporate-guarantee .button {
+  margin-top: var(--spacing-md);
+}
+
+/* Testing секція */
+.corporate-testing {
+  text-align: center;
+}
+
+.corporate-testing p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.corporate-testing .button {
+  margin-top: var(--spacing-md);
+}
+
+/* Training секція */
+.corporate-training__content {
+  text-align: left;
+}
+
+.corporate-training__content p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.corporate-training__skills {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+}
+
+.corporate-training__skills li {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-xs) 0;
+  padding-left: var(--spacing-md);
+  position: relative;
+  line-height: 1.6;
+}
+
+.corporate-training__skills li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.corporate-training__stages-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-white);
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.corporate-training__stages {
+  list-style: decimal;
+  padding-left: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+  color: var(--color-text-muted);
+}
+
+.corporate-training__stages li {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-xs) 0;
+  line-height: 1.6;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .corporate-content .glass-section {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+  }
+
+  /* Прибрати margin-bottom у останньої секції перед footer на мобільних */
+  .corporate-content > section:last-child,
+  .corporate-content .glass-section:last-child,
+  .corporate-content .corporate-training:last-child,
+  .corporate-content .corporate-testing:last-child,
+  .corporate-content .corporate-consultation:last-child,
+  .corporate-content .corporate-guarantee:last-child,
+  .corporate-content .corporate-components:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 0;
+    padding: var(--spacing-sm) 0;
+  }
+
+  .corporate-details__grid,
+  .corporate-programs__grid,
+  .corporate-why__grid,
+  .corporate-components__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .corporate-consultation__title,
+  .corporate-guarantee__title {
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
+  }
+
+  .corporate-consultation__form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .corporate-hero__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .corporate-consultation__title,
+  .corporate-guarantee__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .corporate-training__stages-title {
+    font-size: var(--font-size-base);
+  }
+}
+

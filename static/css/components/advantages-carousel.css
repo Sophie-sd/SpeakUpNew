@@ -419,6 +419,77 @@
   }
 }
 
+/* Обгортка для каруселі з стрілками */
+.advantages-carousel-wrapper {
+  position: relative;
+}
+
+/* Кнопки навігації каруселі переваг */
+.advantages-carousel-nav-wrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.advantages-carousel-nav {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(231, 30, 20, 0.3);
+}
+
+.advantages-carousel-nav:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .advantages-carousel-nav:hover {
+    background: var(--color-primary-hover);
+    border: 1px solid var(--color-white);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(231, 30, 20, 0.4);
+  }
+}
+
+.advantages-carousel-nav:active {
+  transform: scale(0.95);
+}
+
+.advantages-carousel-nav:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+
+/* Десктоп: показуємо стрілки */
+@media (width >= 768px) {
+  .advantages-carousel-nav-wrapper {
+    display: flex;
+  }
+}
+
+/* Мобільний: приховуємо стрілки */
+@media (width <= 767px) {
+  .advantages-carousel-nav-wrapper {
+    display: none;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .advantage-card__front,

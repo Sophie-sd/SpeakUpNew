@@ -4,6 +4,28 @@
 {% block og_title %}Онлайн курси англійської для жителів {{ location.district }} - SPEAK UP{% endblock %}
 {% block meta_description %}Онлайн курси англійської від SPEAK UP для жителів {{ location.district }}. Раніше працювали офлайн, тепер онлайн зручніше.{% endblock %}
 
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "SPEAK UP - {{ location.district }}",
+  "description": "Онлайн курси англійської мови для жителів {{ location.district }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ location.city }}",
+    "addressCountry": "UA"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "{{ location.city }}"
+  },
+  "url": "{% if canonical_url %}{{ canonical_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}"
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <main>
   <h1>Онлайн курси англійської для жителів {{ location.district }}</h1>
@@ -26,6 +48,24 @@
     </ul>
   </section>
   {% endif %}
+
+  <!-- Відгуки студентів з цього району -->
+  <section>
+    <h2>Відгуки студентів</h2>
+    <p>Дізнайтеся, що кажуть наші студенти про навчання в Speak Up:</p>
+    <a href="{% url 'core:feedback' %}" class="button button--secondary">Переглянути всі відгуки</a>
+  </section>
+
+  <!-- Програми навчання -->
+  <section>
+    <h2>Програми навчання</h2>
+    <p>Обирайте з широкого спектру програм навчання:</p>
+    <ul>
+      <li><a href="{% url 'core:program_detail' slug='individual' %}">Індивідуальні заняття</a></li>
+      <li><a href="{% url 'core:program_detail' slug='group' %}">Групові заняття</a></li>
+      <li><a href="{% url 'core:programs_list' %}">Всі програми</a></li>
+    </ul>
+  </section>
 
   <!-- CTA -->
   <section class="cta">

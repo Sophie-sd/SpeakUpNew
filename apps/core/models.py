@@ -253,7 +253,7 @@ class ConsultationRequest(BaseModel):
         max_length=20,
         choices=[
             ('whatsapp', 'WhatsApp'),
-            ('viber', 'Viber'),
+            ('instagram', 'Instagram'),
             ('telegram', 'Telegram')
         ],
         blank=True,
@@ -277,4 +277,67 @@ class ConsultationRequest(BaseModel):
 
     def __str__(self):
         return f"{self.phone} - {self.created_at.strftime('%d.%m.%Y')}"
+
+
+class ContactInfo(BaseModel):
+    """Контактна інформація школи (синглтон)"""
+    phone_uk = models.CharField(
+        max_length=20,
+        verbose_name="Телефон (UA)",
+        help_text="Наприклад: +38 (093) 170-78-67"
+    )
+    phone_international = models.CharField(
+        max_length=20,
+        blank=True,
+        verbose_name="Міжнародний телефон",
+        help_text="Наприклад: +48 (459) 567-884"
+    )
+    schedule_weekdays_uk = models.CharField(
+        max_length=50,
+        verbose_name="Графік роботи будні (UK)",
+        help_text="Наприклад: Пн-Пт: 10:00-21:30"
+    )
+    schedule_weekdays_ru = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name="Графік роботи будні (RU)",
+        help_text="Наприклад: Пн-Пт: 10:00-21:30"
+    )
+    schedule_weekend_uk = models.CharField(
+        max_length=50,
+        verbose_name="Графік роботи вихідні (UK)",
+        help_text="Наприклад: Сб: 11:00-15:00"
+    )
+    schedule_weekend_ru = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name="Графік роботи вихідні (RU)",
+        help_text="Наприклад: Сб: 11:00-15:00"
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name="Активний",
+        db_index=True,
+        help_text="Тільки один активний запис може існувати"
+    )
+
+    class Meta:
+        verbose_name = "Контактна інформація"
+        verbose_name_plural = "Контактна інформація"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['is_active'],
+                condition=models.Q(is_active=True),
+                name='unique_active_contact_info'
+            )
+        ]
+
+    def __str__(self):
+        return f"Контакти - {self.phone_uk}"
+
+    def save(self, *args, **kwargs):
+        """Переконатися, що тільки один активний запис"""
+        if self.is_active:
+            ContactInfo.objects.filter(is_active=True).exclude(pk=self.pk).update(is_active=False)
+        super().save(*args, **kwargs)
 

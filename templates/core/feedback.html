@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Відгуки та рекомендації наших клієнтів - SPEAK UP{% endblock %}
+{% block og_title %}Відгуки та рекомендації наших клієнтів - SPEAK UP{% endblock %}
+{% block meta_description %}Відгуки та рекомендації студентів школи Speak Up. Понад 5000+ позитивних відгуків про навчання англійської мови. Середній рейтинг 4.8/5.{% endblock %}
+
+{% block content %}
+<main class="feedback-page">
+  <section class="feedback-hero glass-section">
+    <h1>Відгуки наших студентів</h1>
+    {% if total_count %}
+    <div class="feedback-stats">
+      <p class="feedback-stats__text">
+        <strong>{{ total_count }}+</strong> відгуків від наших студентів
+        {% if avg_rating %}
+        | Середній рейтинг: <strong>{{ avg_rating }}/5</strong>
+        {% endif %}
+      </p>
+      <p>Реальні історії успіху та враження від навчання англійської мови в школі Speak Up. Кожен відгук проходить модерацію для забезпечення автентичності.</p>
+    </div>
+    {% endif %}
+  </section>
+
+  {% if page_obj %}
+    <section class="testimonials-list">
+      {% for testimonial in page_obj %}
+        <article class="testimonial-item">
+          <div class="testimonial-item__header">
+            <h3>{{ testimonial.name }}</h3>
+            <div class="testimonial-item__rating">
+              {% for i in "12345" %}
+                {% if forloop.counter <= testimonial.rating %}
+                  <span class="star">★</span>
+                {% else %}
+                  <span class="star star--empty">☆</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <time datetime="{{ testimonial.created_at|date:'Y-m-d' }}" class="testimonial-item__date">
+              {{ testimonial.created_at|date:"d.m.Y" }}
+            </time>
+          </div>
+          <p class="testimonial-item__text">{{ testimonial.text }}</p>
+        </article>
+      {% endfor %}
+    </section>
+
+    <!-- Пагінація -->
+    {% if page_obj.has_other_pages %}
+      <nav class="pagination" aria-label="Навігація по сторінкам">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link">← Попередня</a>
+        {% endif %}
+
+        <span class="pagination__current">
+          Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="pagination__link">Наступна →</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <section class="feedback-empty glass-section">
+      <p>Відгуки будуть опубліковані найближчим часом.</p>
+      <p>Хочете залишити свій відгук? <a href="{% url 'core:contacts' %}">Зв'яжіться з нами</a></p>
+    </section>
+  {% endif %}
+
+  <section class="feedback-cta glass-section">
+    <h2>Поділіться своїм досвідом</h2>
+    <p>Навчалися в Speak Up? Залиште свій відгук та допоможіть іншим зробити правильний вибір!</p>
+    <a href="{% url 'core:contacts' %}" class="button button--primary">Залишити відгук</a>
+  </section>
+</main>
+{% endblock %}
+

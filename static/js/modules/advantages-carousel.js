@@ -1,10 +1,13 @@
 'use strict';
 
+import { BaseCarousel } from './base-carousel.js';
+
 /**
- * Advantages Carousel - flip картки з snap scroll
+ * Advantages Carousel - flip картки з snap scroll та навігацією
  */
 function initAdvantagesCarousel() {
   const cards = document.querySelectorAll('.advantage-card');
+  const container = document.querySelector('.advantages-carousel__container');
 
   if (!cards.length) return;
 
@@ -85,6 +88,17 @@ function initAdvantagesCarousel() {
     card.setAttribute('role', 'button');
     card.setAttribute('aria-label', `Картка переваги ${index + 1}. Натисніть для деталей`);
 
+    const handleFlip = function() {
+      // Додати will-change для оптимізації анімації
+      card.classList.add('advantage-card--animating');
+      card.classList.toggle('flipped');
+
+      // Видалити will-change після завершення анімації (0.6s)
+      setTimeout(() => {
+        card.classList.remove('advantage-card--animating');
+      }, 600);
+    };
+
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -93,9 +107,59 @@ function initAdvantagesCarousel() {
     });
   });
 
-  // Snap scroll indicator (опціонально)
-  const container = document.querySelector('.advantages-carousel__container');
+  // Ініціалізація BaseCarousel для навігації стрілками
   if (container) {
+    const isMobile = window.innerWidth <= 767;
+    const prevButton = document.querySelector('.advantages-carousel-nav--prev');
+    const nextButton = document.querySelector('.advantages-carousel-nav--next');
+    const navWrapper = document.querySelector('.advantages-carousel-nav-wrapper');
+
+    // Додаємо класи для BaseCarousel
+    container.classList.add('carousel-container');
+    cards.forEach(card => card.classList.add('carousel-item'));
+
+    if (prevButton && nextButton) {
+      const carousel = new BaseCarousel(container, {
+        itemsPerView: isMobile ? 1 : 2,
+        gap: 24,
+        prevButton: prevButton,
+        nextButton: nextButton,
+        lazyLoad: false,
+        keyboardNav: true
+      });
+
+      // Оновлюємо кнопки при зміні розміру вікна
+      let resizeTimeout;
+      const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          const newIsMobile = window.innerWidth <= 767;
+          carousel.options.itemsPerView = newIsMobile ? 1 : 2;
+
+          // Оновлюємо кнопки
+          if (navWrapper) {
+            if (newIsMobile) {
+              navWrapper.style.display = 'none';
+            } else {
+              navWrapper.style.display = 'flex';
+            }
+          }
+
+          // Оновлюємо стан кнопок після зміни розміру
+          if (carousel.updateButtons) {
+            carousel.updateButtons();
+          }
+        }, 150);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      // Ініціалізуємо стан кнопок
+      if (carousel.updateButtons) {
+        carousel.updateButtons();
+      }
+    }
+
     // Smooth scroll на desktop при кліку по індикатору (якщо буде додано)
     container.addEventListener('scroll', () => {
       // Можна додати логіку для індикаторів прогресу

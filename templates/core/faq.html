@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Часті питання - SPEAK UP{% endblock %}
+{% block og_title %}Часті питання - SPEAK UP{% endblock %}
+{% block meta_description %}Відповіді на найчастіші запитання про навчання, вартість, методику, графік занять та гарантії в школі Speak Up.{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+{% if faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in faqs %}
+    {
+      "@type": "Question",
+      "name": "{% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru|escapejs }}{% else %}{{ faq.question_uk|escapejs }}{% endif %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru|striptags|escapejs }}{% else %}{{ faq.answer_uk|striptags|escapejs }}{% endif %}"
+      }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="faq-page">
+  <section class="faq-hero glass-section">
+    <h1 class="section-title">Часті питання</h1>
+    <p class="faq-hero__subtitle">Знайдіть відповіді на найпоширеніші запитання про навчання, вартість, методику, графік занять та гарантії в Speak Up</p>
+  </section>
+
+  <section class="faq-content glass-section">
+    {% if faqs %}
+    <div class="faq-accordion" data-accordion-container>
+      {% for faq in faqs %}
+      <div class="faq-item" data-accordion-item>
+        <button class="faq-item__header" data-accordion-header>
+          <span class="faq-item__question">
+            {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
+          </span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__content" data-accordion-content>
+          <div class="faq-item__answer">
+            {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru|linebreaks }}{% else %}{{ faq.answer_uk|linebreaks }}{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="faq-empty">Наразі немає доступних питань.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}
+
