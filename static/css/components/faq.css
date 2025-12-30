@@ -394,7 +394,7 @@
 }
 
 /* Мобільна версія для FAQ сторінки */
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .faq-page {
     padding: var(--section-padding-mobile);
   }
