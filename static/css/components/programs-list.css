@@ -172,6 +172,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -403,7 +404,7 @@
 }
 
 /* Адаптивність */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .programs-list-page {
     padding: var(--section-padding-mobile);
   }
@@ -432,7 +433,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .programs-category__title {
     font-size: var(--font-size-xl);
   }
@@ -830,7 +831,7 @@
 }
 
 /* Адаптивність */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .corporate-content .glass-section {
     padding: var(--section-padding-mobile);
     margin-bottom: var(--section-spacing-mobile);
@@ -870,7 +871,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .corporate-hero__title {
     font-size: var(--font-size-xl);
   }

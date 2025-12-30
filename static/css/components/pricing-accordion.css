@@ -134,7 +134,7 @@
   color: rgba(255, 255, 255, 0.95);
 }
 
-.pricing-section .pricing-accordion__badge:not(.pricing-accordion__badge--premium):not(.pricing-accordion__badge--sale) {
+.pricing-section .pricing-accordion__badge:not(.pricing-accordion__badge--premium, .pricing-accordion__badge--sale) {
   background: rgba(100, 149, 237, 0.8);
   color: rgba(255, 255, 255, 0.95);
 }

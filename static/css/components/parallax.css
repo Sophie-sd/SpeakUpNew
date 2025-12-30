@@ -12,6 +12,7 @@
   z-index: var(--z-parallax-container, -1);
   overflow: hidden;
   pointer-events: none;
+
   /* Видалено contain для уникнення проблем з відображенням інших елементів */
 }
 
@@ -36,6 +37,7 @@
 @media (width <= 767px) {
   .parallax-layer__background {
     background-image: url('../../img/mainBackground_mob.png');
+
     /* На мобільних background-attachment: fixed може не працювати */
     background-attachment: scroll;
   }

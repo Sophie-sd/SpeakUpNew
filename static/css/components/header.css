@@ -662,6 +662,7 @@
   .header-wrapper {
     padding-left: max(10px, env(safe-area-inset-left, 10px));
     padding-right: max(10px, env(safe-area-inset-right, 10px));
+
     /* Гарантуємо, що header завжди вище паралакс-контейнера */
     z-index: var(--z-header);
     position: fixed;
