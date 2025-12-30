@@ -427,6 +427,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Прибрати margin-bottom у останньої секції перед footer */
+
 /* Загальні правила для всіх секцій */
 .main-content > *:last-child > section:last-child,
 .main-content section:last-child,
