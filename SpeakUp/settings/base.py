@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'apps.core.middleware.HealthCheckMiddleware',  # Healthcheck ДО перевірки ALLOWED_HOSTS
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'apps.core.middleware.NewsRedirectMiddleware',

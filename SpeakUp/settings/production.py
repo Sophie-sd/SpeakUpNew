@@ -8,7 +8,11 @@ DEBUG = False
 
 # Allowed hosts - filter out empty strings
 # Fallback to ['*'] if not set (for Render healthcheck and initial deployment)
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',') if host.strip()]
+allowed_hosts_env = os.getenv('ALLOWED_HOSTS', '').strip()
+if allowed_hosts_env:
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
+else:
+    ALLOWED_HOSTS = []
 if not ALLOWED_HOSTS:
     ALLOWED_HOSTS = ['*']  # Allow all hosts if not configured (Render will set proper host)
 
@@ -41,6 +45,7 @@ else:
     }
 
 # Security settings for production
+# SECURE_SSL_REDIRECT enabled - healthcheck обробляється через HealthCheckMiddleware
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True

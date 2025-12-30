@@ -2,9 +2,36 @@
 Middleware для обробки 301 редиректів зі старих URL.
 """
 from django.shortcuts import redirect
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from .models import NewsArticle
 from .redirects import REDIRECTS
+
+
+class HealthCheckMiddleware:
+    """
+    Middleware для обробки healthcheck запитів від Render.
+    Обробляє запити до / та /healthz до перевірки ALLOWED_HOSTS.
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        path = request.path
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+
+        # Перевірка чи це healthcheck від Render
+        is_render_healthcheck = (
+            user_agent.startswith('Render/') or
+            user_agent.startswith('Go-http-client/') or
+            request.META.get('REMOTE_ADDR', '').startswith('10.228.')
+        )
+
+        # Обробка healthcheck запитів
+        if is_render_healthcheck and (path == '/' or path == '/healthz'):
+            return HttpResponse('OK', content_type='text/plain', status=200)
+
+        response = self.get_response(request)
+        return response
 
 
 class NewsRedirectMiddleware:
