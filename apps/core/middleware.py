@@ -2,9 +2,34 @@
 Middleware для обробки 301 редиректів зі старих URL.
 """
 from django.shortcuts import redirect
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseBadRequest
+from django.conf import settings
 from .models import NewsArticle
 from .redirects import REDIRECTS
+
+
+class AllowedHostsMiddleware:
+    """
+    Middleware для обробки ALLOWED_HOSTS.
+    Обходить перевірку SecurityMiddleware, якщо ALLOWED_HOSTS не налаштований або містить '*'.
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        allowed_hosts = getattr(settings, 'ALLOWED_HOSTS', [])
+        host = request.get_host().split(':')[0]  # Без порту
+
+        # Якщо ALLOWED_HOSTS порожній або містить '*', дозволяємо всі хости
+        allow_all = not allowed_hosts or '*' in allowed_hosts
+
+        if allow_all:
+            # Додаємо хост до ALLOWED_HOSTS динамічно, щоб SecurityMiddleware не блокував
+            if host not in settings.ALLOWED_HOSTS:
+                settings.ALLOWED_HOSTS.append(host)
+
+        response = self.get_response(request)
+        return response
 
 
 class HealthCheckMiddleware:

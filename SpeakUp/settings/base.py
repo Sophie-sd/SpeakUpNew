@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'apps.core.middleware.AllowedHostsMiddleware',  # Обробка ALLOWED_HOSTS ПЕРЕД SecurityMiddleware
     'django.middleware.security.SecurityMiddleware',
     'apps.core.middleware.HealthCheckMiddleware',  # Healthcheck ДО перевірки ALLOWED_HOSTS
     'django.contrib.sessions.middleware.SessionMiddleware',

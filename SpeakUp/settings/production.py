@@ -8,13 +8,13 @@ DEBUG = False
 
 # Allowed hosts - filter out empty strings
 # Fallback to ['*'] if not set (for Render healthcheck and initial deployment)
+# '*' не працює як wildcard в Django, тому middleware обробляє це автоматично
 allowed_hosts_env = os.getenv('ALLOWED_HOSTS', '').strip()
 if allowed_hosts_env:
     ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
 else:
-    ALLOWED_HOSTS = []
-if not ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ['*']  # Allow all hosts if not configured (Render will set proper host)
+    # Якщо не встановлено, дозволяємо всі хости через middleware
+    ALLOWED_HOSTS = ['*']  # Middleware обробляє '*' як "дозволити всі"
 
 # CSRF trusted origins - filter out empty strings
 CSRF_TRUSTED_ORIGINS = [
