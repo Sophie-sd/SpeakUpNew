@@ -106,7 +106,7 @@
 }
 
 .pricing-section .pricing-accordion__title {
-  flex: 1;
+  flex: 1 0 0;
   line-height: 1.4;
   min-width: 0;
   word-wrap: break-word;

@@ -6,7 +6,18 @@ import dj_database_url
 
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+# Allowed hosts - filter out empty strings
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',') if host.strip()]
+
+# CSRF trusted origins - filter out empty strings
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip() for origin in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if origin.strip()
+]
+# Add https:// prefix if not present
+CSRF_TRUSTED_ORIGINS = [
+    origin if origin.startswith('http') else f'https://{origin}'
+    for origin in CSRF_TRUSTED_ORIGINS
+]
 
 # Database
 DATABASE_URL = os.getenv('DATABASE_URL')

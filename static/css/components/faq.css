@@ -83,7 +83,7 @@
 }
 
 .faq-section .faq-item__question {
-  flex: 1;
+  flex: 1 0 0;
   line-height: 1.4;
   min-width: 0;
   word-wrap: break-word;
@@ -191,6 +191,81 @@
    FAQ Page - Окрема сторінка FAQ
    ========================================================================== */
 
+/* Фон (паралакс) */
+.faq-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Fallback */
+  height: 100dvh; /* iOS Dynamic Viewport */
+  z-index: var(--z-background, -1);
+  overflow: hidden;
+  pointer-events: none; /* Важливо: не блокує кліки */
+  contain: layout style paint; /* Ізоляція для продуктивності */
+
+  /* Hardware acceleration - використовуємо наявний паттерн з header.css */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* Явно вимикаємо blur якщо він застосовується через глобальні стилі */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+
+  /* will-change тільки коли активний - додається через JS */
+}
+
+/* Активний стан (додається через JS) */
+.faq-background--active {
+  will-change: transform;
+}
+
+.faq-background__image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+
+  /* Запобігає мерехтінню на iOS - використовуємо наявний паттерн */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* Явно вимикаємо blur */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  filter: none;
+}
+
+/* Контент над фоном */
+.faq-content[data-parallax-layer="content"] {
+  position: relative;
+  z-index: var(--z-content, 1);
+  contain: layout style;
+}
+
+/* iOS Safari специфічні фікси */
+@supports (-webkit-touch-callout: none) {
+  .faq-background {
+    height: 100dvh;
+
+    /* Fallback для iOS < 15 */
+    height: calc(var(--parallax-vh, 1vh) * 100);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .faq-background {
+    position: absolute;
+  }
+}
+
 .faq-page {
   padding: var(--section-padding-desktop);
   width: 100%;
@@ -209,7 +284,7 @@
   margin-top: var(--spacing-sm);
 }
 
-.faq-content {
+.faq-content.glass-section {
   margin-bottom: var(--spacing-xl);
 }
 
@@ -264,7 +339,7 @@
 }
 
 .faq-content .faq-item__question {
-  flex: 1;
+  flex: 1 0 0;
   line-height: 1.5;
 }
 

@@ -34,6 +34,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- Фон (паралакс) -->
+<div class="faq-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/faqBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/faqBackmob.png' %}">
+    <img
+      src="{% static 'img/faqBack.png' %}"
+      alt=""
+      class="faq-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="faq-content" data-parallax-layer="content">
 <main class="faq-page">
   <section class="faq-hero glass-section">
     <h1 class="section-title">Часті питання</h1>
@@ -64,5 +84,6 @@
     {% endif %}
   </section>
 </main>
+</div>
 {% endblock %}
 

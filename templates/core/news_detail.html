@@ -42,6 +42,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- Фон (паралакс) -->
+<div class="news-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/blogBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/blogBackmob.png' %}">
+    <img
+      src="{% static 'img/blogBack.png' %}"
+      alt=""
+      class="news-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="news-content" data-parallax-layer="content">
 <article class="news-article">
   <header class="news-article__header">
     <h1>{{ title }}</h1>
@@ -76,6 +96,7 @@
     </section>
   </footer>
 </article>
+</div>
 {% endblock %}
 
 

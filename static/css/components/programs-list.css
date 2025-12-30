@@ -232,7 +232,7 @@
 }
 
 .program-card__header-content {
-  flex: 1;
+  flex: 1 0 0;
   min-width: 0;
 }
 
@@ -399,7 +399,7 @@
 }
 
 .program-card__actions .button {
-  flex: 1;
+  flex: 1 0 0;
 }
 
 /* Адаптивність */

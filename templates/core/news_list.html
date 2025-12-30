@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Новини та статті - SPEAK UP{% endblock %}
 {% block og_title %}Новини та статті - SPEAK UP{% endblock %}
@@ -18,6 +19,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- Фон (паралакс) -->
+<div class="news-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/blogBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/blogBackmob.png' %}">
+    <img
+      src="{% static 'img/blogBack.png' %}"
+      alt=""
+      class="news-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="news-content" data-parallax-layer="content">
 <main class="news-list-page">
   <section class="news-hero glass-section">
     <h1>Новини та статті</h1>
@@ -71,6 +92,7 @@
     <p>Статті будуть опубліковані найближчим часом.</p>
   {% endif %}
 </main>
+</div>
 {% endblock %}
 
 

@@ -10,6 +10,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- Фон (паралакс) -->
+<div class="contacts-background" data-parallax-layer="background" aria-hidden="true">
+  <picture>
+    <source
+      media="(min-width: 768px)"
+      srcset="{% static 'img/contactBack.png' %}">
+    <source
+      media="(max-width: 767px)"
+      srcset="{% static 'img/contactBackmob.png' %}">
+    <img
+      src="{% static 'img/contactBack.png' %}"
+      alt=""
+      class="contacts-background__image"
+      loading="eager"
+      decoding="async">
+  </picture>
+</div>
+
+<!-- Контент (паралакс) -->
+<div class="contacts-content-wrapper" data-parallax-layer="content">
 <main class="contacts-page">
   <section class="contacts-hero glass-section">
     <h1 class="section-title">Контакти</h1>
@@ -82,5 +102,6 @@
   </section>
   {% endif %}
 </main>
+</div>
 {% endblock %}
 
