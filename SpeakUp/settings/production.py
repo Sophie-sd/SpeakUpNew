@@ -7,7 +7,10 @@ import dj_database_url
 DEBUG = False
 
 # Allowed hosts - filter out empty strings
+# Fallback to ['*'] if not set (for Render healthcheck and initial deployment)
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',') if host.strip()]
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ['*']  # Allow all hosts if not configured (Render will set proper host)
 
 # CSRF trusted origins - filter out empty strings
 CSRF_TRUSTED_ORIGINS = [
