@@ -115,8 +115,7 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
   /* Z-index */
-  --z-background: -1;        /* НОВИЙ: для паралакс фону */
-  --z-speaky-layer: 0;       /* Speaky персонаж */
+  --z-parallax-container: -1; /* Паралакс-контейнер (за контентом) */
   --z-content: 1;            /* Контент */
   --z-section-content: 2;    /* Вище за hero-content (1) */
   --z-running-line: 998;
@@ -202,10 +201,13 @@ html {
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-  
+
   /* Запобігає зайвому скролу через fixed елементи */
   height: auto;
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -237,9 +239,10 @@ body {
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-  
+
   /* Запобігає зайвому скролу через fixed елементи */
-  min-height: auto;
+  min-height: 0;
+  height: auto;
 }
 
 /* Rule 33: touch-action для інтерактивних елементів */
@@ -429,17 +432,17 @@ h1, h2, h3, h4, h5, h6 {
 .main-content > *:last-child > section:last-child,
 .main-content section:last-child,
 .main-content .glass-section:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
-/* Специфічно для hero-content (головна сторінка) */
+/* Специфічно для hero-content (головна сторінка) - 4rem відстань перед footer */
 .hero-content > section:last-child,
 .hero-content .glass-section:last-child,
 .hero-content > section.consultation-section:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 4rem;
 }
 
-/* Специфічні правила для різних типів секцій з підвищеною специфічністю */
+/* Специфічні правила для різних типів секцій */
 .main-content .consultation-section:last-child,
 .hero-content .consultation-section:last-child,
 .main-content .faq-section:last-child,
@@ -454,6 +457,17 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content .courses-section:last-child,
 .main-content .pricing-section:last-child,
 .hero-content .pricing-section:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
+}
+
+/* Перевизначення для hero-content - завжди 4rem для останньої секції */
+.hero-content .consultation-section:last-child,
+.hero-content .faq-section:last-child,
+.hero-content .testimonials-section:last-child,
+.hero-content .achievements:last-child,
+.hero-content .advantages-carousel:last-child,
+.hero-content .courses-section:last-child,
+.hero-content .pricing-section:last-child {
+  margin-bottom: 4rem;
 }
 

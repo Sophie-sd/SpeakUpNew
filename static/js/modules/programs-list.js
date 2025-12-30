@@ -1,7 +1,5 @@
 'use strict';
 
-import { BaseAccordion } from './base-accordion.js';
-
 /**
  * Programs List - таб-навігація та акордеони для сторінки всіх програм
  */

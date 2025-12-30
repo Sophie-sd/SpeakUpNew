@@ -14,10 +14,10 @@
   z-index: 100; /* Під меню (--z-nav: 1000), але над контентом (--z-content: 1) */
 }
 
-/* Зменшити margin-top, якщо перед footer остання секція без margin-bottom */
+/* Встановити margin-top для footer після контенту */
 .main-content + .footer,
-.hero-content + .footer,
-.corporate-content + .footer {
+.corporate-content + .footer,
+.hero-content + .footer {
   margin-top: 0;
 }
 

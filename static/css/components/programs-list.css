@@ -527,7 +527,7 @@
   margin-bottom: var(--section-spacing-desktop);
 }
 
-/* Прибрати margin-bottom у останньої секції перед footer */
+/* Встановити 4rem відстань між останньою секцією та footer */
 .corporate-content > section:last-child,
 .corporate-content .glass-section:last-child,
 .corporate-content .corporate-training:last-child,
@@ -535,7 +535,7 @@
 .corporate-content .corporate-consultation:last-child,
 .corporate-content .corporate-guarantee:last-child,
 .corporate-content .corporate-components:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 4rem;
 }
 
 .corporate-content .glass-card {
@@ -836,7 +836,7 @@
     margin-bottom: var(--section-spacing-mobile);
   }
 
-  /* Прибрати margin-bottom у останньої секції перед footer на мобільних */
+  /* Встановити 4rem відстань між останньою секцією та footer на мобільних */
   .corporate-content > section:last-child,
   .corporate-content .glass-section:last-child,
   .corporate-content .corporate-training:last-child,
@@ -844,7 +844,7 @@
   .corporate-content .corporate-consultation:last-child,
   .corporate-content .corporate-guarantee:last-child,
   .corporate-content .corporate-components:last-child {
-    margin-bottom: 0 !important;
+    margin-bottom: 4rem;
   }
 
   .breadcrumbs {

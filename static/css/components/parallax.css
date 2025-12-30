@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Static Background - Статичний фон для головної сторінки
+   ========================================================================== */
+
+.parallax-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  z-index: var(--z-parallax-container, -1);
+  overflow: hidden;
+  pointer-events: none;
+  /* Видалено contain для уникнення проблем з відображенням інших елементів */
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax-layer__background {
+  z-index: 0;
+  background-image: url('../../img/mainBackground.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Мобільна версія фону */
+@media (width <= 767px) {
+  .parallax-layer__background {
+    background-image: url('../../img/mainBackground_mob.png');
+    /* На мобільних background-attachment: fixed може не працювати */
+    background-attachment: scroll;
+  }
+}
+
+/* Оптимізація для iOS */
+@supports (-webkit-touch-callout: none) {
+  .parallax-layer {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+

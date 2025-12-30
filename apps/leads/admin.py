@@ -38,3 +38,4 @@ class RunningLineTextAdmin(admin.ModelAdmin):
 
 
 
+

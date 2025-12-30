@@ -251,8 +251,10 @@
   }
 
   /* Кнопка Student Zone на десктопі - висота 1в1 з навігацією */
-  .header-wrapper {
-    align-items: stretch;
+  @media (width >= 768px) {
+    .header-wrapper {
+      align-items: stretch;
+    }
   }
 
   .header__student-zone {
@@ -285,7 +287,7 @@
 
   /* Гарантуємо, що бургер-меню не впливає на центрування на десктопі */
   .mobile-nav-container .burger-menu {
-    display: none !important;
+    display: none;
   }
 
   /* Виправлення відступу праворуч - обмежуємо ширину .header__nav та вирівнюємо padding */
@@ -660,6 +662,10 @@
   .header-wrapper {
     padding-left: max(10px, env(safe-area-inset-left, 10px));
     padding-right: max(10px, env(safe-area-inset-right, 10px));
+    /* Гарантуємо, що header завжди вище паралакс-контейнера */
+    z-index: var(--z-header);
+    position: fixed;
+    display: flex;
   }
 
   /* Приховати невидимі секції та кнопку Student Zone на мобільних */

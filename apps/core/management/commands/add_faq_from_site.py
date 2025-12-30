@@ -112,3 +112,4 @@ class Command(BaseCommand):
             f'Всього активних FAQ: {FAQ.objects.filter(is_active=True).count()}'
         )
 
+

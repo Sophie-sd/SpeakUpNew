@@ -3,7 +3,6 @@
 import { BurgerMenu } from './modules/burger-menu.js';
 import { initRunningLine } from './modules/running-line.js';
 import { initTrialForm } from './modules/trial-form.js';
-import { ParallaxBackground } from './modules/parallax-background.js';
 import { initHeaderDynamicForm } from './modules/header-dynamic-form.js';
 import { initTabSlider } from './shared/tab-slider.js';
 import programsListModule from './modules/programs-list.js';
@@ -28,37 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     rightOffset: 10     // Додатковий відступ для останньої кнопки
   });
 
-  // Паралакс ефект (головна сторінка)
-  if (document.querySelector('[data-parallax-layer="speaky"]')) {
-    new ParallaxBackground([
-      { selector: '[data-parallax-layer="background"]', speed: 0.05 },
-      { selector: '[data-parallax-layer="speaky"]', speed: 0.15 },
-      { selector: '[data-parallax-layer="content"]', speed: 0.5 }
-    ]);
-  }
-
   // Програми - таб-навігація та акордеони (тільки на сторінці programs)
   if (document.querySelector('.programs-list-page')) {
     programsListModule.initProgramsList();
-
-    // Паралакс ефект для сторінки програм
-    if (document.querySelector('.programs-background[data-parallax-layer="background"]')) {
-      new ParallaxBackground([
-        { selector: '[data-parallax-layer="background"]', speed: 0.05 },
-        { selector: '[data-parallax-layer="content"]', speed: 0.5 }
-      ]);
-    }
   }
 
-  // Корпоративна сторінка - паралакс ефект та акордеони
+  // Корпоративна сторінка - акордеони
   if (document.querySelector('.corporate-program-page')) {
-    if (document.querySelector('.corporate-background[data-parallax-layer="background"]')) {
-      new ParallaxBackground([
-        { selector: '[data-parallax-layer="background"]', speed: 0.05 },
-        { selector: '[data-parallax-layer="content"]', speed: 0.5 }
-      ]);
-    }
-
     // Ініціалізація акордеонів для корпоративної сторінки через BaseAccordion
     const corporateGrids = document.querySelectorAll('.corporate-program-page .programs-grid');
     corporateGrids.forEach(grid => {

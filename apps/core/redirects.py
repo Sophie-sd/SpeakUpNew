@@ -27,3 +27,4 @@ REDIRECTS = {
     '/5-rivni-anglijskoji-movi-prodovgennya': '/programs/group',
 }
 
+

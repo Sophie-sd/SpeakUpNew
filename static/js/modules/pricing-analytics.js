@@ -50,3 +50,4 @@ document.addEventListener('DOMContentLoaded', initPricingAnalytics);
 export { initPricingAnalytics, trackPricingEvent };
 
 
+
