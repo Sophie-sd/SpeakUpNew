@@ -55,8 +55,10 @@
   max-height: 420px;
 }
 
-.advantage-card:hover {
-  transform: scale(1.02);
+@media (hover: hover) and (pointer: fine) {
+  .advantage-card:hover {
+    transform: scale(1.02);
+  }
 }
 
 /* Оптимізація анімації - will-change тільки під час flip */
@@ -203,8 +205,10 @@
   margin-bottom: 0.75rem;
 }
 
-.advantage-card:hover .advantage-card__hint {
-  background: rgba(255, 255, 255, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .advantage-card:hover .advantage-card__hint {
+    background: rgba(255, 255, 255, 0.3);
+  }
 }
 
 /* Footer на передній стороні */

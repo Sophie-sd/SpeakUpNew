@@ -256,16 +256,25 @@
   .contact-item {
     padding-bottom: var(--spacing-xs);
     min-height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-item strong {
+    min-width: auto;
   }
 
   .contact-item__link {
     word-break: break-word;
     overflow-wrap: break-word;
     padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+    width: 100%;
+    text-align: center;
   }
 
   .schedule-item {
-    padding-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
     min-height: auto;
   }
 
@@ -288,25 +297,6 @@
 
   .contacts-section__title {
     font-size: 1.25rem;
-  }
-
-  .contact-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .contact-item strong {
-    min-width: auto;
-  }
-
-  .contact-item__link {
-    font-size: var(--font-size-base);
-    width: 100%;
-    text-align: center;
-  }
-
-  .schedule-item {
-    padding: var(--spacing-sm);
   }
 
   .schedule-item__value {
