@@ -174,8 +174,8 @@
     padding: var(--section-padding-mobile);
     margin-bottom: var(--section-spacing-mobile);
     max-width: var(--content-width-mobile);
-    max-height: 50vh; /* Fallback */
-    max-height: 50dvh;
+    max-height: 58vh; /* Fallback - збільшено для вміщення всіх елементів */
+    max-height: 58dvh;
   }
 
   .hero-section__cta {
