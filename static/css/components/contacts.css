@@ -89,7 +89,8 @@
 
 .contacts-page {
   width: 100%;
-  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  max-width: 99vw;
+  max-width: 99dvw;
   margin: 0 auto;
   padding: var(--section-padding-desktop);
 }
@@ -269,7 +270,7 @@
     overflow-wrap: break-word;
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-base);
-    width: 100%;
+    width: 85%;
     text-align: center;
   }
 

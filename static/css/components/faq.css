@@ -267,9 +267,10 @@
 }
 
 .faq-page {
-  padding: var(--section-padding-desktop);
+
   width: 100%;
-  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  max-width: 95vw;
+  max-width: 95dvw;
   margin: 0 auto;
 }
 
