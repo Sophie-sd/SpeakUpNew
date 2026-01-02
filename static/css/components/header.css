@@ -210,6 +210,15 @@
   border-radius: var(--menu-radius-md);
 }
 
+/* Кнопка "Детальніше" (десктоп) */
+.header__expand-btn {
+  flex-shrink: 0;
+  min-height: var(--menu-size-lg);
+  padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
+  font-size: var(--menu-font-base);
+  border-radius: var(--menu-radius-md);
+}
+
 /* Кнопка на мобільних: */
 .trial-form__trigger--mobile {
   display: none;
@@ -612,6 +621,11 @@
     display: none;
   }
 
+  /* Кнопка "Детальніше" прихована на мобільних */
+  .header__expand-btn {
+    display: none;
+  }
+
   /* Мобільна кнопка прихована (використовуємо динамічну форму замість неї) */
   .trial-form__trigger--mobile {
     display: none;
@@ -730,7 +744,7 @@
     background: rgba(0, 0, 0, 0.8);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-pill);
-    padding: var(--menu-spacing-sm) var(--menu-spacing-lg);
+    padding: 1rem;
     box-sizing: border-box;
     box-shadow: none;
   }
@@ -957,6 +971,10 @@
   display: flex;
 }
 
+.header__dynamic-element--visible[data-header-expand] {
+  display: flex;
+}
+
 .header__dynamic-element--visible[data-header-dynamic-form] {
   display: flex;
 }
@@ -968,7 +986,25 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Дочірні елементи бігучеї стрічки не повинні блокувати кліки */
+[data-header-running-line] * {
+  pointer-events: none;
+}
+
+/* Клікабельна бігуча стрічка тільки на мобільних */
+@media (width <= 767px) {
+  [data-header-running-line] {
+    cursor: pointer;
+  }
 }
 
 /* Анімація бігучої стрічки в хедері */

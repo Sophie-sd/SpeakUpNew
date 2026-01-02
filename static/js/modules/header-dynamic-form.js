@@ -2,7 +2,7 @@
 
 /**
  * Динамічна форма в хедері
- * Стани: initial (бігуча стрічка) → expanded (форма) → success → initial
+ * Стани: initial (бігуча стрічка + кнопка на десктопі / тільки бігуча стрічка на мобільних) → expanded (форма) → success → initial
  * Таймер бездіяльності: 10 секунд
  */
 
@@ -30,12 +30,16 @@ class HeaderDynamicForm {
 
     this.elements = {
       runningLine: this.container.querySelector('[data-header-running-line]'),
+      expandBtn: this.container.querySelector('[data-header-expand]'),
       form: this.container.querySelector('[data-header-dynamic-form]'),
       successMsg: this.container.querySelector('[data-header-success]'),
       nameField: this.container.querySelector('[data-header-field="name"]'),
       phoneField: this.container.querySelector('[data-header-field="phone"]'),
       submitBtn: this.container.querySelector('[data-header-submit]')
     };
+
+    // Визначаємо, чи це мобільний пристрій
+    this.isMobile = window.innerWidth <= 767;
 
     this.init();
   }
@@ -53,14 +57,42 @@ class HeaderDynamicForm {
     this.setState(STATE.INITIAL);
 
     // Респонсивність: оновлюємо стан при зміні розміру
-    // Не вимикаємо на мобільних, форма працює на всіх пристроях
+    window.addEventListener('resize', () => {
+      const wasMobile = this.isMobile;
+      this.isMobile = window.innerWidth <= 767;
+      // Якщо змінився тип пристрою, оновити стан
+      if (wasMobile !== this.isMobile && this.state === STATE.INITIAL) {
+        this.setState(STATE.INITIAL);
+      }
+    });
   }
 
   bindEvents() {
-    // Клік на бігучу стрічку
-    this.elements.runningLine?.addEventListener('click', () => {
+    const handleExpand = () => {
       this.setState(STATE.EXPANDED);
-    });
+    };
+
+    // На десктопі - клік по кнопці "Детальніше"
+    if (this.elements.expandBtn) {
+      this.elements.expandBtn.addEventListener('click', handleExpand);
+    }
+
+    // На мобільних - клік по бігучій стрічці
+    if (this.elements.runningLine) {
+      // Завжди додаємо обробник, але перевіряємо isMobile всередині
+      this.elements.runningLine.addEventListener('click', () => {
+        if (this.isMobile) {
+          handleExpand();
+        }
+      });
+      // Touch для мобільних
+      this.elements.runningLine.addEventListener('touchend', (e) => {
+        if (this.isMobile) {
+          e.preventDefault();
+          handleExpand();
+        }
+      }, { passive: false });
+    }
 
     // Submit форми
     this.elements.form?.addEventListener('submit', (e) => {
@@ -92,18 +124,30 @@ class HeaderDynamicForm {
 
     switch (newState) {
       case STATE.INITIAL:
-        this.showElements([this.elements.runningLine]);
+        // На десктопі показуємо бігучу стрічку + кнопку, на мобільних - тільки бігучу стрічку
+        if (this.isMobile) {
+          this.showElements([this.elements.runningLine]);
+        } else {
+          this.showElements([this.elements.runningLine, this.elements.expandBtn]);
+        }
         this.clearForm();
         break;
 
       case STATE.EXPANDED:
         this.showElements([this.elements.form]);
         this.startInactivityTimer();
+        // Додаткова перевірка для мобільних - переконатися, що форма видима
+        if (this.elements.form) {
+          this.elements.form.style.display = 'flex';
+          this.elements.form.style.visibility = 'visible';
+          this.elements.form.style.opacity = '1';
+        }
         // Фокус на перше поле
         setTimeout(() => this.elements.nameField?.focus(), 100);
         break;
 
       case STATE.SUCCESS:
+        // Показуємо бігучу стрічку та повідомлення успіху
         this.showElements([this.elements.runningLine, this.elements.successMsg]);
         setTimeout(() => this.setState(STATE.INITIAL), CONFIG.SUCCESS_DISPLAY_TIME);
         break;
@@ -125,6 +169,9 @@ class HeaderDynamicForm {
         // Відновити display для flex елементів
         if (el.tagName === 'FORM' || el.classList.contains('header__success')) {
           el.style.display = 'flex';
+          // Додатково для мобільних - переконатися, що форма видима
+          el.style.visibility = 'visible';
+          el.style.opacity = '1';
         } else {
           el.style.display = '';
         }
