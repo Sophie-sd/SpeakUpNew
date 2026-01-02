@@ -848,12 +848,14 @@
   }
 
   [data-header-running-line] .running-line__text {
-    font-size: var(--menu-font-sm);
+    font-size: calc(var(--menu-font-sm) * 1.15);
     padding: 0 1.5rem;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
   [data-header-running-line] .running-line__content {
-    animation-duration: 12s;
+    animation-duration: 25s;
   }
 
   /* Форма на мобільних */
@@ -1011,15 +1013,31 @@
 [data-header-running-line] .running-line__content {
   display: flex;
   width: max-content;
-  animation: scroll-line 20s linear infinite;
+  animation: scroll-line-header 30s linear infinite;
+  align-items: center;
+}
+
+/* Анімація для бігучеї стрічки в хедері (прокрутка всіх текстів) */
+@keyframes scroll-line-header {
+  0% {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
+  }
 }
 
 [data-header-running-line] .running-line__text {
   padding: 0 2rem;
   white-space: nowrap;
-  font-size: var(--menu-font-base);
-  font-weight: 500;
+  font-size: calc(var(--menu-font-base) * 1.2);
+  font-weight: 600;
   color: var(--color-white);
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

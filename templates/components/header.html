@@ -1,16 +1,5 @@
 {% load static %}
 
-{# Бігуча стрічка #}
-{% if running_line_text %}
-<div class="running-line" data-running-line>
-  <div class="running-line__content">
-    <span class="running-line__text">{{ running_line_text }}</span>
-    <span class="running-line__text">{{ running_line_text }}</span>
-    <span class="running-line__text">{{ running_line_text }}</span>
-  </div>
-</div>
-{% endif %}
-
 {# Хедер з логотипом та формою #}
 <div class="header-wrapper">
   <div class="header__spacer--left" aria-hidden="true"></div>
@@ -22,12 +11,16 @@
       </a>
 
       {# Wrapper для бігучої стрічки в хедері #}
-      {% if running_line_text %}
+      {% if running_line_texts %}
       <div data-header-running-line class="header__dynamic-element header__dynamic-element--visible">
         <div class="running-line__content">
-          <span class="running-line__text">{{ running_line_text }}</span>
-          <span class="running-line__text">{{ running_line_text }}</span>
-          <span class="running-line__text">{{ running_line_text }}</span>
+          {% for text in running_line_texts %}
+            <span class="running-line__text">{{ text }}</span>
+          {% endfor %}
+          {# Дублюємо для безперервної анімації #}
+          {% for text in running_line_texts %}
+            <span class="running-line__text">{{ text }}</span>
+          {% endfor %}
         </div>
       </div>
       {% endif %}
