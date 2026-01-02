@@ -315,6 +315,11 @@
 
 /* Десктоп - двоколонковий layout */
 @media (width >= 1024px) {
+  .contacts-page {
+    max-width: min(var(--content-width-desktop), var(--content-max-width));
+    padding: var(--section-padding-desktop);
+  }
+
   .contacts-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -83,6 +83,13 @@
   margin: 0 auto;
 }
 
+@media (width >= 1024px) {
+  .programs-list-page {
+    max-width: min(var(--content-width-desktop), var(--content-max-width));
+    padding: var(--section-padding-desktop);
+  }
+}
+
 /* Темні стилі тільки для сторінки програм */
 .programs-content .glass-section {
   background: rgba(0, 0, 0, 0.7);
@@ -560,6 +567,12 @@
   max-width: 95vw;
   max-width: 95dvw;
   margin: 0 auto;
+}
+
+@media (width >= 1024px) {
+  .corporate-program-page {
+    max-width: min(var(--content-width-desktop), var(--content-max-width));
+  }
 }
 
 /* Breadcrumbs */
