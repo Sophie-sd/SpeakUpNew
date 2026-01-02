@@ -31,6 +31,9 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/components/faq.css' %}">
+<!-- Preload фонові зображення (desktop + mobile) -->
+<link rel="preload" as="image" href="{% static 'img/faqBack.png' %}" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{% static 'img/faqBackmob.png' %}" media="(max-width: 767px)">
 {% endblock %}
 
 {% block content %}
@@ -48,7 +51,8 @@
       alt=""
       class="faq-background__image"
       loading="eager"
-      decoding="async">
+      decoding="async"
+      fetchpriority="high">
   </picture>
 </div>
 

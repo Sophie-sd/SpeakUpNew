@@ -77,7 +77,6 @@
 }
 
 .programs-list-page {
-  padding: var(--section-padding-desktop);
   width: 100%;
   max-width: 95vw;
   max-width: 95dvw;
@@ -412,9 +411,7 @@
 
 /* Адаптивність */
 @media (width <= 768px) {
-  .programs-list-page {
-    padding: var(--section-padding-mobile);
-  }
+
 
   .programs-tabs {
     flex-direction: column;
@@ -435,7 +432,7 @@
     flex-direction: column;
   }
 
-  
+
 }
 
 @media (width <= 480px) {
@@ -562,7 +559,8 @@
 /* Контейнер сторінки корпоративних програм */
 .corporate-program-page {
   width: 100%;
-  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  max-width: 95vw;
+  max-width: 95dvw;
   margin: 0 auto;
 }
 

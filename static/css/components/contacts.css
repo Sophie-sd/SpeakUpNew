@@ -92,7 +92,6 @@
   max-width: 99vw;
   max-width: 99dvw;
   margin: 0 auto;
-  padding: var(--section-padding-desktop);
 }
 
 /* Hero секція */
@@ -245,9 +244,6 @@
     margin-bottom: var(--section-spacing-mobile);
   }
 
-  .contacts-page {
-    padding: var(--section-padding-mobile);
-  }
 
   /* Додати достатній padding для контактних елементів, щоб текст не обрізався */
   .contacts-section__content {

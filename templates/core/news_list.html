@@ -5,6 +5,12 @@
 {% block og_title %}Новини та статті - SPEAK UP{% endblock %}
 {% block meta_description %}Актуальні новини школи Speak Up, корисні статті про вивчення англійської, методики навчання та поради від наших експертів.{% endblock %}
 
+{% block extra_css %}
+<!-- Preload фонові зображення (desktop + mobile) -->
+<link rel="preload" as="image" href="{% static 'img/blogBack.png' %}" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{% static 'img/blogBackmob.png' %}" media="(max-width: 767px)">
+{% endblock %}
+
 {% block structured_data %}
 {{ block.super }}
 <script type="application/ld+json">
@@ -33,7 +39,8 @@
       alt=""
       class="news-background__image"
       loading="eager"
-      decoding="async">
+      decoding="async"
+      fetchpriority="high">
   </picture>
 </div>
 

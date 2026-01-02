@@ -5,6 +5,12 @@
 {% block og_title %}Всі програми навчання - SPEAK UP{% endblock %}
 {% block meta_description %}Повний список всіх програм навчання англійської мови з детальними цінами та умовами{% endblock %}
 
+{% block extra_css %}
+<!-- Preload фонові зображення (desktop + mobile) -->
+<link rel="preload" as="image" href="{% static 'img/programsBack.png' %}" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{% static 'img/programsBackmob.png' %}" media="(max-width: 767px)">
+{% endblock %}
+
 {% block content %}
 <!-- Фон (паралакс) -->
 <div class="programs-background" data-parallax-layer="background" aria-hidden="true">
@@ -20,7 +26,8 @@
       alt=""
       class="programs-background__image"
       loading="eager"
-      decoding="async">
+      decoding="async"
+      fetchpriority="high">
   </picture>
 </div>
 

@@ -21,8 +21,9 @@
 <!-- Preload фонові зображення карток (перші 2 видно одразу на desktop) -->
 <link rel="preload" as="image" href="{% static 'img/1card.png' %}">
 <link rel="preload" as="image" href="{% static 'img/2card.png' %}">
-<!-- Preload паралакс зображення -->
-<link rel="preload" as="image" href="{% static 'img/mainBackground.png' %}">
+<!-- Preload паралакс зображення (desktop + mobile) -->
+<link rel="preload" as="image" href="{% static 'img/mainBackground.png' %}" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{% static 'img/mainBackground_mob.png' %}" media="(max-width: 767px)">
 {% endblock %}
 
 {% block content %}

@@ -56,6 +56,20 @@
   <!-- Rule 23: Preconnect для CDN -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
 
+  <!-- Prefetch для найбільш ймовірних переходів (обмежено для оптимізації) -->
+  {% if request.path == '/' %}
+    <link rel="prefetch" href="{% url 'core:programs_list' %}">
+    <link rel="prefetch" href="{% url 'core:news_list' %}">
+  {% elif '/programs/' in request.path %}
+    <link rel="prefetch" href="{% url 'core:index' %}">
+    <link rel="prefetch" href="{% url 'core:news_list' %}">
+  {% elif '/news/' in request.path %}
+    <link rel="prefetch" href="{% url 'core:index' %}">
+    <link rel="prefetch" href="{% url 'core:programs_list' %}">
+  {% else %}
+    <link rel="prefetch" href="{% url 'core:index' %}">
+  {% endif %}
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
 

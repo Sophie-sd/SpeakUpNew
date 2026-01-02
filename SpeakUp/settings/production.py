@@ -66,3 +66,11 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 # WhiteNoise configuration for static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+# WhiteNoise cache settings
+# MAX_AGE: максимальний час кешування статичних файлів (1 рік)
+WHITENOISE_MAX_AGE = 31536000  # 1 рік в секундах
+
+# Не встановлюємо IMMUTABLE_FILE_TEST = True, щоб уникнути проблем
+# з оновленням файлів після деплою. WhiteNoise сам визначає immutable файли
+# на основі їх назв (наприклад, файли з хешем у назві).
+

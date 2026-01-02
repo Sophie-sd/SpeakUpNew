@@ -7,6 +7,9 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/components/contacts.css' %}">
+<!-- Preload фонові зображення (desktop + mobile) -->
+<link rel="preload" as="image" href="{% static 'img/contactBack.png' %}" media="(min-width: 768px)">
+<link rel="preload" as="image" href="{% static 'img/contactBackmob.png' %}" media="(max-width: 767px)">
 {% endblock %}
 
 {% block content %}
@@ -24,7 +27,8 @@
       alt=""
       class="contacts-background__image"
       loading="eager"
-      decoding="async">
+      decoding="async"
+      fetchpriority="high">
   </picture>
 </div>
 
