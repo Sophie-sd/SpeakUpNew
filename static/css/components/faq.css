@@ -395,8 +395,6 @@
 
 /* Мобільна версія для FAQ сторінки */
 @media (width <= 767px) {
- 
-
   .faq-hero {
     margin-bottom: var(--spacing-lg);
   }
