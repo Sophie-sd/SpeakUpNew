@@ -244,6 +244,13 @@ body {
   height: auto;
 }
 
+/* На мобільних робимо body прозорим, щоб фонове зображення було видиме */
+@media (width <= 767px) {
+  body {
+    background-color: transparent;
+  }
+}
+
 /* Rule 33: touch-action для інтерактивних елементів */
 button,
 a,
