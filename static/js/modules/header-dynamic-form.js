@@ -2,7 +2,7 @@
 
 /**
  * Динамічна форма в хедері
- * Стани: initial (бігуча стрічка + кнопка) → expanded (форма) → success → initial
+ * Стани: initial (бігуча стрічка) → expanded (форма) → success → initial
  * Таймер бездіяльності: 10 секунд
  */
 
@@ -30,7 +30,6 @@ class HeaderDynamicForm {
 
     this.elements = {
       runningLine: this.container.querySelector('[data-header-running-line]'),
-      expandBtn: this.container.querySelector('[data-header-expand]'),
       form: this.container.querySelector('[data-header-dynamic-form]'),
       successMsg: this.container.querySelector('[data-header-success]'),
       nameField: this.container.querySelector('[data-header-field="name"]'),
@@ -58,8 +57,8 @@ class HeaderDynamicForm {
   }
 
   bindEvents() {
-    // Клік на "Детальніше"
-    this.elements.expandBtn?.addEventListener('click', () => {
+    // Клік на бігучу стрічку
+    this.elements.runningLine?.addEventListener('click', () => {
       this.setState(STATE.EXPANDED);
     });
 
@@ -93,7 +92,7 @@ class HeaderDynamicForm {
 
     switch (newState) {
       case STATE.INITIAL:
-        this.showElements([this.elements.runningLine, this.elements.expandBtn]);
+        this.showElements([this.elements.runningLine]);
         this.clearForm();
         break;
 

@@ -210,14 +210,6 @@
   border-radius: var(--menu-radius-md);
 }
 
-.header__menu--top [data-header-expand].button--primary {
-  flex-shrink: 0;
-  min-height: var(--menu-size-lg);
-  padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
-  font-size: var(--menu-font-base);
-  border-radius: var(--menu-radius-md);
-}
-
 /* Кнопка на мобільних: */
 .trial-form__trigger--mobile {
   display: none;
@@ -804,14 +796,16 @@
     display: flex;
     width: var(--menu-size-xl);
     height: auto;
-    min-width: var(--menu-size-xl);
-    max-width: var(--menu-size-xl);
+    min-width: 3.7rem;
+    max-width: 3.7rem;
+    min-height: 3.7rem;
+    max-height: 3.7rem;
     padding: var(--menu-size-xs) 0;
     position: static;
     align-self: center;
     flex-shrink: 0;
     flex-grow: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.55);
     border: 1px solid var(--color-border-light);
     box-sizing: border-box;
   }
@@ -846,18 +840,6 @@
 
   [data-header-running-line] .running-line__content {
     animation-duration: 12s;
-  }
-
-  /* Кнопка "Детальніше" на мобільних */
-  .header-wrapper [data-header-expand],
-  .header__dynamic-element--visible[data-header-expand] {
-    display: flex;
-    flex-shrink: 0;
-    min-height: var(--menu-size-lg);
-    padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
-    font-size: var(--menu-font-base);
-    border-radius: var(--menu-radius-md);
-    white-space: nowrap;
   }
 
   /* Форма на мобільних */
@@ -975,7 +957,6 @@
   display: flex;
 }
 
-.header__dynamic-element--visible[data-header-expand],
 .header__dynamic-element--visible[data-header-dynamic-form] {
   display: flex;
 }
@@ -987,6 +968,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 /* Анімація бігучої стрічки в хедері */
