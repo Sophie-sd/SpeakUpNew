@@ -195,6 +195,10 @@
     padding-top: var(--spacing-xs);
   }
 
+  .footer__logo-image {
+    height: 24px;
+  }
+
   .footer__nav {
     flex: 1 0 0;
     justify-content: center;
@@ -225,7 +229,7 @@
   }
 
   .footer__logo-image {
-    height: 28px;
+    height: 78px;
   }
 
   .footer__nav {
