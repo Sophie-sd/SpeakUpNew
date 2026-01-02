@@ -24,9 +24,7 @@ class HeaderDynamicForm {
     this.container = document.querySelector('[data-header-dynamic]');
     if (!this.container) return;
 
-    // Працюємо тільки на десктопі
-    if (window.innerWidth < CONFIG.MIN_DESKTOP_WIDTH) return;
-
+    // Працюємо на всіх пристроях (мобільних та десктопі)
     this.state = STATE.INITIAL;
     this.inactivityTimer = null;
 
@@ -55,12 +53,8 @@ class HeaderDynamicForm {
     this.bindEvents();
     this.setState(STATE.INITIAL);
 
-    // Респонсивність: вимкнути на мобільних
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < CONFIG.MIN_DESKTOP_WIDTH) {
-        this.destroy();
-      }
-    });
+    // Респонсивність: оновлюємо стан при зміні розміру
+    // Не вимикаємо на мобільних, форма працює на всіх пристроях
   }
 
   bindEvents() {
@@ -321,8 +315,8 @@ class HeaderDynamicForm {
 
 // Експорт
 export function initHeaderDynamicForm() {
-  // Ініціалізувати тільки якщо елемент існує та десктоп
-  if (document.querySelector('[data-header-dynamic]') && window.innerWidth >= CONFIG.MIN_DESKTOP_WIDTH) {
+  // Ініціалізувати якщо елемент існує (працює на всіх пристроях)
+  if (document.querySelector('[data-header-dynamic]')) {
     new HeaderDynamicForm();
   }
 }

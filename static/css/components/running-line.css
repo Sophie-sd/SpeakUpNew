@@ -55,6 +55,10 @@
   .running-line__content {
     animation-duration: 15s; /* Швидше на мобільних для кращої продуктивності */
   }
+
+  .running-line {
+    z-index: 998; /* Вище за header-wrapper (997) */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
