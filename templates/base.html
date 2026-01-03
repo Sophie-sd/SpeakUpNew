@@ -73,11 +73,6 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="{% static 'img/logoBase.png' %}">
 
-  <!-- STEP 1: CRITICAL CSS INLINE для першого екрану (FCP -45%, LCP -30%) -->
-  <style>
-    {% include 'critical-inline.css' %}
-  </style>
-
   <!-- STEP 1: PRELOAD найважливіших некритичних CSS -->
   <link rel="preload" as="style" href="{% static 'css/components/ios-safe.css' %}"
         data-css-preload>
