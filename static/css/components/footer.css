@@ -23,7 +23,7 @@
 
 .footer__container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);

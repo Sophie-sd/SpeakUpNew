@@ -385,7 +385,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--spacing-md);
@@ -411,6 +411,39 @@ h1, h2, h3, h4, h5, h6 {
 @media (width <= 767px) {
   .content-constrained {
     max-width: var(--content-width-mobile);
+  }
+}
+
+/* Large desktop (1920px+) */
+@media (width >= 1920px) {
+  :root {
+    --content-max-width: 1600px;
+  }
+
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* 2K monitors (2560px+) */
+@media (width >= 2560px) {
+  :root {
+    --content-max-width: 2000px;
+  }
+
+  .container {
+    max-width: 2000px;
+  }
+}
+
+/* 4K monitors (3840px+) */
+@media (width >= 3840px) {
+  :root {
+    --content-max-width: 2800px;
+  }
+
+  .container {
+    max-width: 2800px;
   }
 }
 

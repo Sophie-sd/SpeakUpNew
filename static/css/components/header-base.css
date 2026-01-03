@@ -237,7 +237,7 @@
 /* Десктоп: обмежити ширину header-wrapper */
 @media (width >= 768px) {
   .header-wrapper {
-    max-width: 1200px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
 
     /* Кнопка Student Zone на десктопі - висота 1в1 з навігацією */
