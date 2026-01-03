@@ -1,30 +1,131 @@
 """
 Mapping старих URL на нові для 301 редиректів.
+Всі URL мають варіанти з trailing slash та без (обробляється в middleware).
 """
 
 REDIRECTS = {
-    # WooCommerce продукти → програми
+    # ===== WOOCOMMERCE ПРОДУКТИ → ПРОГРАМИ =====
     '/pidgotovka-do-ispitu-ielts': '/programs/ielts',
     '/pidgotovka-do-zno-z-anglijskoi-movi': '/programs/pidgotovka-zno',
     '/pidgotovka-do-ispitu-toefl': '/programs/toefl',
     '/anglijska-dlya-ditej-kids-30': '/programs/kids',
     '/product/misyacz-bezlimitu/': '/programs/bezlimitnij-onlajn-kurs-anglijskoyi-movi',
-
-    # Старі WordPress сторінки
-    '/contact/': '/contacts',
-    '/faqs/': '/faq',
-    '/blog/': '/news/',
-
-    # URL з trailing slash на без слеша
-    '/about/': '/about',
-    '/programs/toefl/': '/programs/toefl',
-
-    # Інші можливі редиректи
     '/2-rivni-anglijskoji-movi': '/programs/english-for-beginners',
     '/4-rivni-anglijskoji-movi-10-12-misyacziv-navchannya': '/programs/group',
     '/2-rivni-6-misyacziv-navchannya': '/programs/group',
     '/3-rivni-anglijskoji-movi_prodovzhennya': '/programs/group',
     '/5-rivni-anglijskoji-movi-prodovgennya': '/programs/group',
+
+    # ===== ОСНОВНІ СТОРІНКИ (з trailing slash) =====
+    '/home/': '/',
+    '/about/': '/about',
+    '/contact/': '/contacts',
+    '/faqs/': '/faq',
+    '/blog/': '/news/',
+    '/pro-shkolu/': '/about',
+
+    # ===== ОСНОВНІ СТОРІНКИ (без trailing slash) =====
+    '/home': '/',
+    '/contact': '/contacts',
+    '/faqs': '/faq',
+    '/blog': '/news/',
+    '/pro-shkolu': '/about',
+
+    # ===== ПРОГРАМИ (trailing slash) =====
+    '/programs/toefl/': '/programs/toefl',
+    '/programs/ielts/': '/programs/ielts',
+    '/programs/group/': '/programs/group',
+    '/programs/individual/': '/programs/individual',
+    '/courses/': '/programs/',
+    '/courses': '/programs/',
+    '/shop1/': '/programs/',
+    '/shop1': '/programs/',
+
+    # ===== ВАКАНСІЇ =====
+    '/become-a-teacher/': '/job',
+    '/become-a-teacher': '/job',
+
+    # ===== ЗАСТАРІЛІ СТОРІНКИ → ГОЛОВНА =====
+    '/members/': '/',
+    '/members': '/',
+    '/profile/': '/',
+    '/profile': '/',
+    '/portfolio-grid/': '/',
+    '/portfolio-grid': '/',
+    '/portfolio-masonry/': '/',
+    '/portfolio-masonry': '/',
+    '/portfolio-multigrid/': '/',
+    '/portfolio-multigrid': '/',
+    '/gallery/': '/',
+    '/gallery': '/',
+    '/booked-events/': '/',
+    '/booked-events': '/',
+    '/sample-page/': '/',
+    '/sample-page': '/',
+    '/test-home-page/': '/',
+    '/test-home-page': '/',
+    '/test-main-ssv': '/',
+    '/test-main-ssv/': '/',
+    '/result': '/testing',
+    '/result/': '/testing',
+    '/1': '/',
+    '/1/': '/',
+
+    # ===== LANDING PAGES (застарілі) =====
+    '/lp-checkout/': '/',
+    '/lp-checkout': '/',
+    '/lp-courses/': '/',
+    '/lp-courses': '/',
+    '/lp-profile/': '/',
+    '/lp-profile': '/',
+
+    # ===== MEMBERSHIP ACCOUNT (застарілі) =====
+    '/membership-account/': '/',
+    '/membership-account': '/',
+    '/membership-account/membership-billing/': '/',
+    '/membership-account/membership-billing': '/',
+    '/membership-account/membership-cancel/': '/',
+    '/membership-account/membership-cancel': '/',
+    '/membership-account/membership-checkout/': '/',
+    '/membership-account/membership-checkout': '/',
+    '/membership-account/membership-confirmation/': '/',
+    '/membership-account/membership-confirmation': '/',
+    '/membership-account/membership-invoice/': '/',
+    '/membership-account/membership-invoice': '/',
+    '/membership-account/membership-levels/': '/',
+    '/membership-account/membership-levels': '/',
+
+    # ===== СТАРІ ГОЛОВНІ СТОРІНКИ (застарілі) =====
+    '/golovna-3/': '/',
+    '/golovna-3': '/',
+    '/golovna-dnipro/': '/',
+    '/golovna-dnipro': '/',
+    '/golovna-kharkiv/': '/',
+    '/golovna-kharkiv': '/',
+    '/golovna-kriviy-rig/': '/',
+    '/golovna-kriviy-rig': '/',
+    '/golovna-lviv/': '/',
+    '/golovna-lviv': '/',
+    '/golovna-odesa/': '/',
+    '/golovna-odesa': '/',
+
+    # ===== КИРИЛИЧНІ URL (застарілі) =====
+    '/активность/': '/',
+    '/активность': '/',
+    '/пользователи/': '/',
+    '/пользователи': '/',
+
+    # ===== СПЕЦІАЛЬНІ СТОРІНКИ =====
+    '/camp-learning': '/programs/camp',
+    '/camp-learning/': '/programs/camp',
+    '/sertyfikat/': '/',
+    '/sertyfikat': '/',
+    '/programa-loyalnosti/': '/',
+    '/programa-loyalnosti': '/',
+
+    # ===== SHARES (спеціальні сторінки) =====
+    # /shares/black-friday-znyzhky-na-onlajn-kursy-z-anglijskoji/ - це має працювати через /shares/
+    # але якщо сторінка не існує, редирект на /shares/
 }
 
 

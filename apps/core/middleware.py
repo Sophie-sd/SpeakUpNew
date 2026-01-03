@@ -73,35 +73,47 @@ class HealthCheckMiddleware:
 class NewsRedirectMiddleware:
     """
     Middleware для автоматичних 301 редиректів зі старих news URL та інших старих URL.
+    Обробляє trailing slashes автоматично.
     """
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
         path = request.path
+        # Нормалізуємо шлях для перевірки (без trailing slash, крім кореня)
+        path_normalized = path.rstrip('/') if path != '/' else '/'
 
-        # Перевірка статичних редиректів
+        # Перевірка статичних редиректів (спочатку точне співпадіння)
         if path in REDIRECTS:
             new_url = REDIRECTS[path]
             return redirect(new_url, permanent=True)
 
-        # Перевірка чи це старий news URL
-        if path.startswith('/news/') and path != '/news/':
-            # Шукаємо статтю за old_url_uk або old_url_ru
-            article = NewsArticle.objects.filter(
-                old_url_uk=path
-            ).first()
+        # Перевірка нормалізованого шляху (для обробки trailing slash)
+        if path_normalized in REDIRECTS and path_normalized != path:
+            new_url = REDIRECTS[path_normalized]
+            return redirect(new_url, permanent=True)
 
-            if not article:
+        # Перевірка чи це старий news URL
+        # Перевіряємо обидва варіанти (з trailing slash та без)
+        news_paths_to_check = [path, path_normalized] if path != path_normalized else [path]
+
+        for check_path in news_paths_to_check:
+            if check_path.startswith('/news/') and check_path != '/news/':
+                # Шукаємо статтю за old_url_uk або old_url_ru
                 article = NewsArticle.objects.filter(
-                    old_url_ru=path
+                    old_url_uk=check_path
                 ).first()
 
-            if article:
-                # 301 редирект на новий URL ТІЛЬКИ якщо URL відрізняється
-                new_url = article.get_absolute_url()
-                if new_url != path:
-                    return redirect(new_url, permanent=True)
+                if not article:
+                    article = NewsArticle.objects.filter(
+                        old_url_ru=check_path
+                    ).first()
+
+                if article:
+                    # 301 редирект на новий URL ТІЛЬКИ якщо URL відрізняється
+                    new_url = article.get_absolute_url()
+                    if new_url != path:
+                        return redirect(new_url, permanent=True)
 
         response = self.get_response(request)
         return response
