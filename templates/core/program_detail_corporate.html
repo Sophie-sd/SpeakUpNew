@@ -5,6 +5,11 @@
 {% block og_title %}{{ program.title }} - SPEAK UP{% endblock %}
 {% block meta_description %}{{ program.description }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/programs-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
+{% endblock %}
+
 {% block content %}
 <!-- Фон (паралакс) -->
 <div class="corporate-background" data-parallax-layer="background" aria-hidden="true">

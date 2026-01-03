@@ -6,6 +6,8 @@
 {% block meta_description %}Повний список всіх програм навчання англійської мови з детальними цінами та умовами{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/programs-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
 <!-- Preload фонові зображення (desktop + mobile) -->
 <link rel="preload" as="image" href="{% static 'img/programsBack.png' %}" media="(min-width: 768px)">
 <link rel="preload" as="image" href="{% static 'img/programsBackmob.png' %}" media="(max-width: 767px)">
