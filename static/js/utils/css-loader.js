@@ -49,11 +49,3 @@ export function initCssLoader() {
   });
 }
 
-// Автоматична ініціалізація, якщо DOM вже готовий
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCssLoader);
-} else {
-  // DOM вже готовий, виконуємо одразу
-  initCssLoader();
-}
-

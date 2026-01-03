@@ -69,7 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('[SpeakUp] Initializing modules...');
 
   // Ініціалізуємо CSS loader для асинхронного завантаження стилів
-  initCssLoader();
+  try {
+    initCssLoader();
+  } catch (error) {
+    console.warn('[SpeakUp] CSS Loader initialization failed:', error);
+  }
 
   // Спочатку встановлюємо активне посилання на основі поточного URL
   setActiveNavigationLink();
