@@ -10,7 +10,6 @@
   top: var(--menu-spacing-sm);
   left: var(--menu-spacing-sm);
   width: 0;
-  height: calc(100% - var(--menu-spacing-sm) * 2);
   background: var(--color-primary);
   border-radius: var(--radius-pill);
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -51,7 +50,6 @@
 @media (width <= 767px) {
   .header__menu-slider {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    height: calc(100% - var(--menu-spacing-sm) * 2);
   }
 
   /* На мобільних слайдер менше анімується */
