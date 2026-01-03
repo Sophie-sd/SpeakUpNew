@@ -4,11 +4,8 @@ import { observe } from './global-observer.js';
 
 /**
  * Counter Animation - анімація лічильників для досягнень
- * Оптимізовано: використовує CSS @property коли можливо, JS fallback для старих браузерів
+ * Використовує JavaScript анімацію для надійності та контролю фінального значення
  */
-
-// Перевірка підтримки CSS @property
-const supportsCSSCounter = CSS.supports('counter-reset', 'name var(--value)');
 
 const MAX_CONCURRENT_ANIMATIONS = 3;
 let activeAnimations = 0;
@@ -72,9 +69,16 @@ function animateCounter(element, target, suffix = '', duration = 2000) {
     if (progress < 1) {
       animationFrameId = requestAnimationFrame(update);
     } else {
+      // Фінальне значення гарантовано встановлюється
       element.textContent = formatNumber(target) + suffix;
       activeAnimations--;
       processQueue();
+
+      // Видалити клас animating після завершення анімації
+      const card = element.closest('.achievement-card');
+      if (card) {
+        card.classList.remove('animating');
+      }
     }
   }
 
@@ -110,29 +114,19 @@ function startAnimation(card, numberElement, targetNumber, suffix) {
 
   card.dataset.animated = 'true';
 
-  if (supportsCSSCounter) {
-    // CSS Native анімація (для сучасних браузерів)
-    // Встановити CSS змінні для анімації
-    numberElement.style.setProperty('--achievement-target', targetNumber);
+  // Завжди використовуємо JS анімацію для надійності
+  // Встановлюємо початкове значення 0
+  numberElement.textContent = formatNumber(0) + suffix;
 
-    // Додати клас для запуску CSS анімації
-    card.classList.add('animating');
+  // Додаємо клас для CSS анімації (якщо потрібно для візуальних ефектів)
+  card.classList.add('animating');
 
-    // Видалити клас після закінчення анімації (2s)
-    setTimeout(() => {
-      card.classList.remove('animating');
-    }, 2000);
+  if (activeAnimations >= MAX_CONCURRENT_ANIMATIONS) {
+    animationQueue.push({ element: numberElement, target: targetNumber, suffix });
   } else {
-    // JS Fallback для старих браузерів
-    numberElement.textContent = formatNumber(0) + suffix;
-
-    if (activeAnimations >= MAX_CONCURRENT_ANIMATIONS) {
-      animationQueue.push({ element: numberElement, target: targetNumber, suffix });
-    } else {
-      requestIdleCallback(() => {
-        animateCounter(numberElement, targetNumber, suffix);
-      });
-    }
+    requestIdleCallback(() => {
+      animateCounter(numberElement, targetNumber, suffix);
+    });
   }
 }
 
