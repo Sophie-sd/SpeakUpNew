@@ -113,7 +113,7 @@ function initAchievements() {
     if (!numberElement) return;
 
     const targetNumber = parseInt(card.dataset.achievementNumber, 10);
-    const suffix = card.dataset.achievementSuffix || '';
+    const suffix = numberElement.dataset.achievementSuffix || '';
 
     // Спостереження через global-observer
     observe(card, (entry) => {

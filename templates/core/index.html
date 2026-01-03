@@ -62,8 +62,8 @@
           <h2 class="section-title">Наші досягнення</h2>
           <div class="achievements__grid">
             {% for achievement in achievements %}
-            <div class="achievement-card" data-achievement-number="{{ achievement.number }}" data-achievement-suffix="{{ achievement.suffix|default:'' }}">
-              <span class="achievement-card__number">0{{ achievement.suffix|default:'' }}</span>
+            <div class="achievement-card" data-achievement-number="{{ achievement.number }}">
+              <span class="achievement-card__number" data-achievement-suffix="{{ achievement.suffix|default:'' }}"></span>
               <span class="achievement-card__label">
                 {% if current_language == 'ru' and achievement.label_ru %}{{ achievement.label_ru }}{% else %}{{ achievement.label_uk }}{% endif %}
               </span>
