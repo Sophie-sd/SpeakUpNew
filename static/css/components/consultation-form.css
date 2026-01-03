@@ -47,8 +47,8 @@
   font-family: var(--font-family-base);
   min-height: 52px;
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   color: rgba(0, 0, 0, 0.9);
   transition: border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
   box-sizing: border-box;

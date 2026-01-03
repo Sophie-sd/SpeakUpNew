@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Tab Slider - Tab Slider Animation (171 рядків)
+   ========================================================================== */
+
+/* ===== TAB SLIDER ANIMATION ===== */
+
+/* Слайдер позиціонується абсолютно відносно .header__nav */
+.header__menu-slider {
+  position: absolute;
+  top: var(--menu-spacing-sm);
+  left: var(--menu-spacing-sm);
+  width: 0;
+  height: calc(100% - var(--menu-spacing-sm) * 2);
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+/* Показуємо слайдер коли є активна кнопка */
+.header__nav:has(.header__link--active) .header__menu-slider {
+  opacity: 1;
+}
+
+/* Active стан */
+.header__link--active {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .header__link:hover {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Слайдер йде за курсором на desktop */
+  .header__nav .header__menu-slider {
+    will-change: transform, width;
+  }
+}
+
+/* Mobile optimizations */
+@media (width <= 767px) {
+  .header__menu-slider {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: calc(100% - var(--menu-spacing-sm) * 2);
+  }
+
+  /* На мобільних слайдер менше анімується */
+  .header__nav .header__menu-slider {
+    will-change: auto;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header__menu-slider {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .header__menu-slider {
+    box-shadow: inset 0 0 0 2px var(--color-white);
+  }
+}
+
+/* Placeholder для майбутніх розширень */
+/* .header__menu-slider--smooth { ... } */
+

@@ -139,8 +139,8 @@
   overflow: hidden;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
 }
 
@@ -413,8 +413,8 @@
   text-align: center;
   border-radius: var(--radius-lg);
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
 }
 

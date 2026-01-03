@@ -26,20 +26,34 @@
 
 .parallax-layer__background {
   z-index: 0;
-  background-image: url('../../img/mainBackground.png');
+  /* WebP з fallback на PNG */
+  background-image: url('../../img/mainBackground.webp');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
+/* Fallback для браузерів без WebP */
+@supports not (background-image: url('data:image/webp;base64,')) {
+  .parallax-layer__background {
+    background-image: url('../../img/mainBackground.png');
+  }
+}
+
 /* Мобільна версія фону */
 @media (width <= 767px) {
   .parallax-layer__background {
-    background-image: url('../../img/mainBackground_mob.png');
-
-    /* На мобільних background-attachment: fixed може не працювати */
+    /* WebP для мобільних */
+    background-image: url('../../img/mainBackground_mob.webp');
     background-attachment: scroll;
+  }
+
+  /* Fallback для браузерів без WebP */
+  @supports not (background-image: url('data:image/webp;base64,')) {
+    .parallax-layer__background {
+      background-image: url('../../img/mainBackground_mob.png');
+    }
   }
 }
 

@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Counter Animation - CSS Native Animation + JS Fallback
+   Оптимізація: замість JavaScript reflows, використовуємо CSS @property
+   ========================================================================== */
+
+/* CSS Counter Property для сучасних браузерів */
+@supports (counter-reset: name var(--value)) {
+  @property --achievement-counter {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+  }
+
+  .achievement-card__number {
+    counter-reset: achievement-counter var(--achievement-counter);
+  }
+
+  .achievement-card__number::before {
+    content: counter(achievement-counter);
+  }
+
+  /* Suffix додається через ::after для більшої гнучкості */
+  .achievement-card__number[data-achievement-suffix]::after {
+    content: attr(data-achievement-suffix);
+  }
+
+  /* Анімація лічильника - CSS Native */
+  .achievement-card.animating .achievement-card__number {
+    animation: count-up 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes count-up {
+    from {
+      --achievement-counter: 0;
+    }
+    to {
+      --achievement-counter: var(--achievement-target);
+    }
+  }
+
+  /* Оптимізація: will-change тільки під час анімації */
+  .achievement-card.animating .achievement-card__number {
+    will-change: --achievement-counter;
+  }
+}
+
+/* Fallback для браузерів без @property підтримки */
+@supports not (counter-reset: name var(--value)) {
+  /* Використовується JS анімація (оригінальна реалізація) */
+  .achievement-card__number {
+    font-variant-numeric: tabular-nums; /* Стабілізувати ширину цифр */
+  }
+}
+
+/* Desktop медіа-запити */
+@media (width >= 768px) {
+  .achievement-card__number {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+}
+
+/* Mobile медіа-запити */
+@media (width <= 767px) {
+  .achievement-card__number {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  @supports (counter-reset: name var(--value)) {
+    .achievement-card.animating .achievement-card__number {
+      animation: none;
+      --achievement-counter: var(--achievement-target);
+    }
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .achievement-card__number {
+    font-weight: 700;
+    text-shadow: 0 0 0 1px currentColor;
+  }
+}
+

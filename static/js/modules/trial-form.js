@@ -1,5 +1,7 @@
 'use strict';
 
+import { initPhoneMask } from '../utils/form-helpers.js';
+
 export function initTrialForm() {
   const triggerMobile = document.querySelector('.trial-form__trigger--mobile');
   const modal = document.querySelector('.trial-form__modal');
@@ -31,7 +33,7 @@ export function initTrialForm() {
     form?.addEventListener('submit', handleSubmit);
   });
 
-  // Маска телефону:
+  // Маска телефону (використовуємо shared функцію):
   document.querySelectorAll('input[type="tel"]').forEach(input => {
     initPhoneMask(input);
   });
@@ -98,36 +100,4 @@ function handleSubmit(e) {
     submitBtn.textContent = 'Записатись';
   });
 }
-
-function initPhoneMask(input) {
-  input.addEventListener('input', (e) => {
-    let value = e.target.value.replace(/\D/g, '');
-
-    if (!value.startsWith('380')) {
-      value = '380' + value;
-    }
-
-    value = value.substring(0, 12);
-
-    let formatted = '+380';
-    if (value.length > 3) {
-      formatted += ' (' + value.substring(3, 5);
-    }
-    if (value.length > 5) {
-      formatted += ') ' + value.substring(5, 8);
-    }
-    if (value.length > 8) {
-      formatted += '-' + value.substring(8, 10);
-    }
-    if (value.length > 10) {
-      formatted += '-' + value.substring(10, 12);
-    }
-
-    e.target.value = formatted;
-  });
-}
-
-
-
-
 

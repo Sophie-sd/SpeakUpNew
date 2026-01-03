@@ -212,8 +212,8 @@
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   overflow: hidden;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -282,7 +282,7 @@
 
 /* Бейджі */
 .program-card__badge {
-  font-size: 9px;
+  font-size: 0.5625rem; /* 9px */
   font-weight: 600;
   padding: 3px 6px;
   border-radius: 3px;
@@ -611,9 +611,11 @@
   transition: color var(--transition-fast);
 }
 
-.breadcrumbs__list a:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
+@media (hover: hover) {
+  .breadcrumbs__list a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
 }
 
 .breadcrumbs__list a:focus-visible {

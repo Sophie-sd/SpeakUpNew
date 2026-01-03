@@ -4,6 +4,24 @@ export function initRunningLine() {
   const runningLine = document.querySelector('[data-running-line]');
   if (!runningLine) return;
 
+  // Intersection Observer для will-change оптимізації
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Видимий - додати will-change та показати
+        runningLine.classList.add('running-line--visible');
+        runningLine.classList.remove('running-line--hidden');
+      } else {
+        // Невидимий - видалити will-change
+        runningLine.classList.remove('running-line--visible');
+      }
+    });
+  }, {
+    rootMargin: '50px' // Почати оптимізацію трохи раніше
+  });
+
+  observer.observe(runningLine);
+
   let lastScroll = 0;
   let ticking = false;
 

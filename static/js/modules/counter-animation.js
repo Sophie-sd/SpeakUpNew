@@ -4,8 +4,12 @@ import { observe } from './global-observer.js';
 
 /**
  * Counter Animation - анімація лічильників для досягнень
- * Оптимізовано для продуктивності: обмеження одночасних анімацій, requestIdleCallback
+ * Оптимізовано: використовує CSS @property коли можливо, JS fallback для старих браузерів
  */
+
+// Перевірка підтримки CSS @property
+const supportsCSSCounter = CSS.supports('counter-reset', 'name var(--value)');
+
 const MAX_CONCURRENT_ANIMATIONS = 3;
 let activeAnimations = 0;
 const animationQueue = [];
@@ -116,17 +120,29 @@ function initAchievements() {
       if (entry.isIntersecting && !card.dataset.animated) {
         card.dataset.animated = 'true';
 
-        // Встановити початкове значення 0 з правильним форматуванням
-        numberElement.textContent = formatNumber(0) + suffix;
+        if (supportsCSSCounter) {
+          // CSS Native анімація (для сучасних браузерів)
+          // Встановити CSS змінні для анімації
+          numberElement.style.setProperty('--achievement-target', targetNumber);
 
-        // Якщо досягнуто максимум одночасних анімацій - додати в чергу
-        if (activeAnimations >= MAX_CONCURRENT_ANIMATIONS) {
-          animationQueue.push({ element: numberElement, target: targetNumber, suffix });
+          // Додати клас для запуску CSS анімації
+          card.classList.add('animating');
+
+          // Видалити клас після закінчення анімації (2s)
+          setTimeout(() => {
+            card.classList.remove('animating');
+          }, 2000);
         } else {
-          // Використати requestIdleCallback для неактивних лічильників
-          requestIdleCallback(() => {
-            animateCounter(numberElement, targetNumber, suffix);
-          });
+          // JS Fallback для старих браузерів
+          numberElement.textContent = formatNumber(0) + suffix;
+
+          if (activeAnimations >= MAX_CONCURRENT_ANIMATIONS) {
+            animationQueue.push({ element: numberElement, target: targetNumber, suffix });
+          } else {
+            requestIdleCallback(() => {
+              animateCounter(numberElement, targetNumber, suffix);
+            });
+          }
         }
       }
     });

@@ -7,6 +7,7 @@ import { initHeaderDynamicForm } from './modules/header-dynamic-form.js';
 import { initTabSlider } from './shared/tab-slider.js';
 import programsListModule from './modules/programs-list.js';
 import { BaseAccordion } from './modules/base-accordion.js';
+import { initCssLoader } from './utils/css-loader.js';
 
 /**
  * Автоматично визначає активне посилання в навігації на основі поточного URL
@@ -66,6 +67,9 @@ function setActiveNavigationLink() {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('[SpeakUp] Initializing modules...');
+
+  // Ініціалізуємо CSS loader для асинхронного завантаження стилів
+  initCssLoader();
 
   // Спочатку встановлюємо активне посилання на основі поточного URL
   setActiveNavigationLink();

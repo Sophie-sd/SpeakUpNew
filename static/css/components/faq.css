@@ -42,8 +42,8 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -307,14 +307,16 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   overflow: hidden;
   transition: box-shadow var(--transition-fast);
 }
 
-.faq-content .faq-item:hover {
-  box-shadow: var(--glass-shadow);
+@media (hover: hover) {
+  .faq-content .faq-item:hover {
+    box-shadow: var(--glass-shadow);
+  }
 }
 
 .faq-content .faq-item__header {

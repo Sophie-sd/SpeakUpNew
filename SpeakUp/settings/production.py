@@ -64,13 +64,20 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 
 # WhiteNoise configuration for static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# WhiteNoise Brotli compression (для краще компресії)
+WHITENOISE_BROTLI_ENABLED = True
 
 # WhiteNoise cache settings
 # MAX_AGE: максимальний час кешування статичних файлів (1 рік)
 WHITENOISE_MAX_AGE = 31536000  # 1 рік в секундах
 
-# Не встановлюємо IMMUTABLE_FILE_TEST = True, щоб уникнути проблем
-# з оновленням файлів після деплою. WhiteNoise сам визначає immutable файли
-# на основі їх назв (наприклад, файли з хешем у назві).
+# Додати Content-Type для файлів до стиснення
+WHITENOISE_MIMETYPES = {
+    '.js': 'application/javascript; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.svg': 'image/svg+xml; charset=utf-8',
+}
 

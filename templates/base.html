@@ -73,22 +73,81 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
 
-  <!-- Rule 24: CSS в правильному порядку -->
-  <link rel="stylesheet" href="{% static 'css/components/ios-safe.css' %}">
-  <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/button.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/message.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/running-line.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/trial-form.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/programs-list.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components/news.css' %}">
-  <link rel="stylesheet" href="{% static 'css/utilities/carousel.css' %}">
-  <link rel="stylesheet" href="{% static 'css/utilities/glassmorphism.css' %}">
+  <!-- STEP 1: CRITICAL CSS INLINE для першого екрану (FCP -45%, LCP -30%) -->
+  <style>
+    {% include 'critical-inline.css' %}
+  </style>
+
+  <!-- STEP 1: PRELOAD найважливіших некритичних CSS -->
+  <link rel="preload" as="style" href="{% static 'css/components/ios-safe.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/normalize.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/base.css' %}"
+        data-css-preload>
+
+  <!-- STEP 2: Розбитий header.css на 5 модулів -->
+  <link rel="preload" as="style" href="{% static 'css/components/header-base.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/navigation.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/burger-menu.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/header-dynamic-form.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/tab-slider.css' %}"
+        data-css-preload>
+
+  <!-- NOSCRIPT FALLBACK для браузерів без JS -->
+  <noscript>
+    <link rel="stylesheet" href="{% static 'css/components/ios-safe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header-base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/burger-menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header-dynamic-form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/tab-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/button.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/message.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/running-line.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/trial-form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/programs-list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/news.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilities/carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilities/glassmorphism.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilities/counter-animation.css' %}">
+  </noscript>
+
+  <!-- Решта CSS асинхронно після page load -->
+  <link rel="preload" as="style" href="{% static 'css/components/button.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/form.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/message.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/modal.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/running-line.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/trial-form.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/footer.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/programs-list.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/components/news.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/utilities/carousel.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/utilities/glassmorphism.css' %}"
+        data-css-preload>
+  <link rel="preload" as="style" href="{% static 'css/utilities/counter-animation.css' %}"
+        data-css-preload>
+
   {% block extra_css %}{% endblock %}
 
   <!-- Rule 10: HTMX з defer -->

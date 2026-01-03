@@ -1,0 +1,262 @@
+/* ==========================================================================
+   Header Dynamic Form - Динамічна форма в хедері (200 рядків)
+   ========================================================================== */
+
+/* ===== ДИНАМІЧНА ФОРМА В ХЕДЕРІ ===== */
+
+/* Базові стилі для динамічних елементів */
+.header__dynamic-element {
+  transition: opacity 0.3s ease,
+              visibility 0.3s ease,
+              max-width 0.3s ease,
+              transform 0.3s ease;
+}
+
+/* Приховані елементи */
+.header__dynamic-element:not(.header__dynamic-element--visible) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  max-width: 0;
+  overflow: hidden;
+  transform: scale(0.95);
+  display: none;
+}
+
+/* Видимі елементи */
+.header__dynamic-element--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  max-width: 100%;
+  transform: scale(1);
+}
+
+/* Специфічні display для різних типів елементів */
+.header__dynamic-element--visible[data-header-running-line],
+.header__dynamic-element--visible[data-header-success] {
+  display: flex;
+}
+
+.header__dynamic-element--visible[data-header-expand] {
+  display: flex;
+}
+
+.header__dynamic-element--visible[data-header-dynamic-form] {
+  display: flex;
+}
+
+/* Wrapper бігучої стрічки в хедері */
+[data-header-running-line] {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Дочірні елементи бігучеї стрічки не повинні блокувати кліки */
+[data-header-running-line] * {
+  pointer-events: none;
+}
+
+/* Клікабельна бігуча стрічка тільки на мобільних */
+@media (width <= 767px) {
+  [data-header-running-line] {
+    cursor: pointer;
+  }
+}
+
+/* Анімація бігучої стрічки в хедері */
+[data-header-running-line] .running-line__content {
+  display: flex;
+  width: max-content;
+  animation: scroll-line-header 30s linear infinite;
+  align-items: center;
+}
+
+/* Анімація для бігучеї стрічки в хедері */
+@keyframes scroll-line-header {
+  0% {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
+  }
+}
+
+[data-header-running-line] .running-line__text {
+  padding: 0 2rem;
+  white-space: nowrap;
+  font-size: calc(var(--menu-font-base) * 1.2);
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.4;
+}
+
+/* Success повідомлення */
+[data-header-success] {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  font-size: calc(var(--menu-font-base) * 0.95);
+  font-weight: 500;
+  color: var(--color-success);
+  animation: success-pulse 0.5s ease-out forwards;
+}
+
+@keyframes success-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Expand button */
+[data-header-expand] {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--menu-spacing-xs);
+}
+
+[data-header-expand] .button {
+  min-height: var(--menu-size-lg);
+  padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
+  font-size: var(--menu-font-base);
+  border-radius: var(--menu-radius-md);
+}
+
+/* Динамічна форма в хедері */
+[data-header-dynamic-form] {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  gap: var(--menu-spacing-xs);
+  align-items: center;
+}
+
+[data-header-dynamic-form] .form-group {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+}
+
+[data-header-dynamic-form] .form-group__input {
+  min-height: var(--menu-size-lg);
+  padding: calc(0.875rem * var(--menu-scale)) calc(1rem * var(--menu-scale));
+  font-size: var(--menu-font-base);
+  border-radius: var(--menu-radius-md);
+  box-sizing: border-box;
+}
+
+[data-header-dynamic-form] .button--primary {
+  flex-shrink: 0;
+  min-height: var(--menu-size-lg);
+  padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
+  font-size: var(--menu-font-base);
+  border-radius: var(--menu-radius-md);
+  white-space: nowrap;
+}
+
+/* Мобільна версія */
+@media (width <= 767px) {
+  /* Мобільні стилі для динамічних елементів */
+  [data-header-dynamic] {
+    display: flex;
+    align-items: center;
+    gap: var(--menu-spacing-xs);
+    flex: 1 0 0;
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Бігуча стрічка в хедері на мобільних */
+  .header-wrapper [data-header-running-line],
+  .header__dynamic-element--visible[data-header-running-line] {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    overflow: hidden;
+  }
+
+  [data-header-running-line] .running-line__text {
+    font-size: calc(var(--menu-font-sm) * 1.15);
+    padding: 0 1.5rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  [data-header-running-line] .running-line__content {
+    animation-duration: 25s;
+  }
+
+  /* Форма на мобільних */
+  .header-wrapper [data-header-dynamic-form],
+  .header__dynamic-element--visible[data-header-dynamic-form] {
+    display: flex;
+    flex: 1 0 0;
+    gap: var(--menu-spacing-xs);
+    align-items: center;
+    min-width: 0;
+  }
+
+  [data-header-dynamic-form] .form-group {
+    flex: 1 0 0;
+    min-width: 0;
+    margin: 0;
+  }
+
+  [data-header-dynamic-form] .form-group__input {
+    min-height: var(--menu-size-lg);
+    padding: calc(0.875rem * var(--menu-scale)) calc(1rem * var(--menu-scale));
+    font-size: var(--menu-font-base);
+    border-radius: var(--menu-radius-md);
+    box-sizing: border-box;
+  }
+
+  [data-header-dynamic-form] .button--primary {
+    flex-shrink: 0;
+    min-height: var(--menu-size-lg);
+    padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
+    font-size: var(--menu-font-base);
+    border-radius: var(--menu-radius-md);
+    white-space: nowrap;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header__dynamic-element {
+    transition: none;
+  }
+
+  [data-header-running-line] .running-line__content {
+    animation: none;
+  }
+
+  [data-header-success] {
+    animation: none;
+  }
+}
+
