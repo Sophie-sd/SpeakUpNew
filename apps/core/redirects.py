@@ -31,6 +31,10 @@ REDIRECTS = {
     '/blog': '/news/',
     '/pro-shkolu': '/about',
 
+    # ===== РОСІЙСЬКІ ВЕРСІЇ (з language prefix) =====
+    '/ru/contact/': '/ru/contacts',
+    '/ru/contact': '/ru/contacts',
+
     # ===== ПРОГРАМИ (trailing slash) =====
     '/programs/toefl/': '/programs/toefl',
     '/programs/ielts/': '/programs/ielts',

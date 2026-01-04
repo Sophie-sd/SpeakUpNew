@@ -652,3 +652,42 @@ def submit_consultation(request):
         'form': form
     }, status=400)
 
+
+# ===== SEO STUB PAGES =====
+
+def golovna_3_stub(request):
+    """SEO stub for /ru/golovna-3/."""
+    return render(request, 'core/stubs/golovna_3_stub.html')
+
+def glavnaya_stranicza_stub(request):
+    """SEO stub for /ru/glavnaya-stranicza/."""
+    return render(request, 'core/stubs/glavnaya_stranicza_stub.html')
+
+def summer_camp_2021_stub(request):
+    """SEO stub for /ru/programs/summer-camp-2021."""
+    return render(request, 'core/stubs/summer_camp_2021_stub.html')
+
+def sertyfikat_stub(request):
+    """SEO stub for /ru/sertyfikat/."""
+    return render(request, 'core/stubs/sertyfikat_stub.html')
+
+def shares_detail_stub(request):
+    """SEO stub for /ru/shares/kupy-2-urovnya-anglyjskogo-y-poluchy-eshhe-2-v-podarok/."""
+    return render(request, 'core/stubs/shares_detail_stub.html')
+
+def shares_page_stub(request, page):
+    """SEO stub for /ru/shares/page/<page>/."""
+    return render(request, 'core/stubs/shares_page_stub.html', {'page': page})
+
+def programma_loyalnosty_stub(request):
+    """SEO stub for /ru/programma-loyalnosty/."""
+    return render(request, 'core/stubs/programma_loyalnosty_stub.html')
+
+def buy_stub(request):
+    """SEO stub for /ru/buy/."""
+    return render(request, 'core/stubs/buy_stub.html')
+
+def dogovir_stub(request):
+    """SEO stub for /ru/dogovir-pro-nadannya-poslug-dostupu-do-elektronnogo-kabinetu-speak-up-2/."""
+    return render(request, 'core/stubs/dogovir_stub.html')
+
