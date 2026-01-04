@@ -224,7 +224,12 @@ class HeaderDynamicForm {
 
         this.setState(STATE.SUCCESS);
       } else {
-        this.showFieldError('phone', 'Помилка відправки');
+        // Обробка помилок валідації з сервера
+        if (data.errors) {
+          this.handleServerErrors(data.errors);
+        } else {
+          this.showFieldError('phone', 'Помилка відправки');
+        }
       }
     } catch (error) {
       console.error('Header form error:', error);
@@ -246,10 +251,18 @@ class HeaderDynamicForm {
       isValid = false;
     }
 
-    // Перевірка телефону: після видалення нецифрових символів має бути 12 цифр (+380XXXXXXXXX = 13 символів, але 12 цифр)
+    // Перевірка телефону: після видалення нецифрових символів має бути 12 цифр (+380XXXXXXXXX)
+    // Формат: +380 або 380 + 9 цифр = 12 цифр загалом
     const phoneDigits = phone ? phone.replace(/\D/g, '') : '';
     if (!phone || phoneDigits.length < 12) {
       this.showFieldError('phone', 'Введіть номер телефону');
+      isValid = false;
+    } else if (phoneDigits.length > 12) {
+      this.showFieldError('phone', 'Номер телефону занадто довгий');
+      isValid = false;
+    } else if (phoneDigits.length === 12 && !phoneDigits.startsWith('380')) {
+      // Якщо 12 цифр, але не починається з 380, це некоректний формат
+      this.showFieldError('phone', 'Номер має починатися з +380 або 380');
       isValid = false;
     }
 
@@ -268,23 +281,41 @@ class HeaderDynamicForm {
     // Приховати стандартні повідомлення про помилки валідації
     field.setCustomValidity('');
 
+    // Додати клас помилки до поля
     field.classList.add('field-error');
-    field.placeholder = message;
-    field.value = '';
 
-    // Видалити стандартні повідомлення про помилки під полем
+    // Відновити оригінальний placeholder (не використовуємо його для помилок)
+    field.placeholder = field.dataset.originalPlaceholder || '';
+
+    // Знайти або створити елемент для відображення помилки
     const formGroup = field.closest('.form-group');
     if (formGroup) {
+      // Видалити існуючу помилку, якщо є
       const existingError = formGroup.querySelector('.form-error');
       if (existingError) {
         existingError.remove();
       }
+
+      // Створити новий елемент для помилки
+      const errorElement = document.createElement('span');
+      errorElement.className = 'form-error';
+      errorElement.textContent = message;
+      errorElement.setAttribute('role', 'alert');
+
+      // Вставити помилку після поля (field знаходиться всередині form-group)
+      field.after(errorElement);
     }
 
     // Прибрати помилку при введенні
     const clearError = () => {
       field.classList.remove('field-error');
-      field.placeholder = field.dataset.originalPlaceholder || '';
+      const formGroup = field.closest('.form-group');
+      if (formGroup) {
+        const errorElement = formGroup.querySelector('.form-error');
+        if (errorElement) {
+          errorElement.remove();
+        }
+      }
       field.removeEventListener('input', clearError);
     };
 
@@ -307,6 +338,29 @@ class HeaderDynamicForm {
         }
       }
     });
+  }
+
+  handleServerErrors(errors) {
+    // Очистити попередні помилки
+    this.clearFieldErrors();
+
+    // Відобразити помилки для кожного поля
+    if (errors.name) {
+      const nameError = Array.isArray(errors.name) ? errors.name[0] : errors.name;
+      this.showFieldError('name', nameError);
+    }
+
+    if (errors.phone) {
+      const phoneError = Array.isArray(errors.phone) ? errors.phone[0] : errors.phone;
+      this.showFieldError('phone', phoneError);
+    }
+
+    // Якщо є інші помилки, показати їх для телефону
+    if (!errors.name && !errors.phone && Object.keys(errors).length > 0) {
+      const firstError = Object.values(errors)[0];
+      const errorMessage = Array.isArray(firstError) ? firstError[0] : firstError;
+      this.showFieldError('phone', errorMessage);
+    }
   }
 
   clearForm() {
