@@ -100,8 +100,7 @@ REDIRECTS = {
     '/membership-account/membership-levels': '/',
 
     # ===== СТАРІ ГОЛОВНІ СТОРІНКИ (застарілі) =====
-    '/golovna-3/': '/',
-    '/golovna-3': '/',
+    # /golovna-3/ removed - now has stub page
     '/golovna-dnipro/': '/',
     '/golovna-dnipro': '/',
     '/golovna-kharkiv/': '/',
@@ -122,10 +121,8 @@ REDIRECTS = {
     # ===== СПЕЦІАЛЬНІ СТОРІНКИ =====
     '/camp-learning': '/programs/camp',
     '/camp-learning/': '/programs/camp',
-    '/sertyfikat/': '/',
-    '/sertyfikat': '/',
-    '/programa-loyalnosti/': '/',
-    '/programa-loyalnosti': '/',
+    # /sertyfikat/ removed - now has stub page
+    # /programa-loyalnosti/ removed - now has stub page
 
     # ===== SHARES (спеціальні сторінки) =====
     # /shares/black-friday-znyzhky-na-onlajn-kursy-z-anglijskoji/ - це має працювати через /shares/
