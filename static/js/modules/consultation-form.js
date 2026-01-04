@@ -84,6 +84,16 @@ function initConsultationForm() {
       }
     });
   });
+
+  // Обробка відправки форми - нормалізувати телефон перед відправкою
+  form.addEventListener('submit', function() {
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      // Видалити всі пробіли з телефону перед відправкою
+      const phoneValue = phoneInput.value.replace(/\s/g, '');
+      phoneInput.value = phoneValue;
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initConsultationForm);

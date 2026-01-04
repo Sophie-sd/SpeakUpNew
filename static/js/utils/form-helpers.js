@@ -22,18 +22,20 @@ export function initPhoneMask(input) {
 
     // Видаліти префікс країни, якщо користувач ввів його
     // Перевіряємо в порядку від найдовшого до найкоротшого префіксу
-    if (value.startsWith('380') && value.length > 3) {
-      // Якщо починається з 380, видаляємо префікс
+    // Важливо: перевіряємо спочатку найдовший префікс (380), потім коротші (80, 0)
+    if (value.length >= 3 && value.startsWith('380')) {
+      // Якщо починається з 380, видаляємо префікс (залишається номер без 380)
       value = value.substring(3);
-    } else if (value.startsWith('80') && value.length > 2 && !value.startsWith('380')) {
+    } else if (value.length >= 2 && value.startsWith('80')) {
       // Якщо починається з 80 (але не 380), видаляємо префікс
       value = value.substring(2);
-    } else if (value.startsWith('0') && value.length > 1 && !value.startsWith('80') && !value.startsWith('380')) {
+    } else if (value.length >= 1 && value.startsWith('0')) {
       // Якщо починається з 0 (але не 80 або 380), видаляємо префікс
       value = value.substring(1);
     }
 
     // Обмежити до 9 цифр (український номер після +380)
+    // Це гарантує, що користувач не зможе ввести більше 9 цифр після префіксу
     if (value.length > 9) {
       value = value.substring(0, 9);
     }
@@ -46,6 +48,7 @@ export function initPhoneMask(input) {
     if (value.length > 7) parts.push(value.substring(7, 9));
 
     // Встановити значення з форматуванням
+    // Завжди додаємо +380 на початку
     e.target.value = '+380 ' + parts.join(' ');
   });
 }
