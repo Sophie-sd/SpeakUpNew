@@ -162,6 +162,7 @@
   flex: 1 0 0;
   min-width: 0;
   margin: 0;
+  position: relative;
 }
 
 [data-header-dynamic-form] .form-group__input {
@@ -182,10 +183,6 @@
 }
 
 /* Стилі для помилок валідації в динамічній формі */
-[data-header-dynamic-form] .form-group {
-  position: relative;
-}
-
 [data-header-dynamic-form] .form-error {
   display: block;
   margin-top: calc(0.25rem * var(--menu-scale));
