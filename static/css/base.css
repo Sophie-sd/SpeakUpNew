@@ -468,6 +468,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (width <= 767px) {
   .main-content {
     /* Mobile: top padding for header, bottom for nav */
+    margin-top: 4rem;
     padding-top: calc(var(--header-height, 80px) + env(safe-area-inset-top, 0px));
     padding-bottom: calc(var(--nav-height, 70px) + env(safe-area-inset-bottom, 0px));
   }
