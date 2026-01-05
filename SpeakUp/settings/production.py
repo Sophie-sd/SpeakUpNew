@@ -64,8 +64,9 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 
 # WhiteNoise configuration for static files (БЕЗ кешування)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_BROTLI_ENABLED = True
+WHITENOISE_MAX_AGE = 0  # Без кешування
 WHITENOISE_MIMETYPES = {
     '.js': 'application/javascript; charset=utf-8',
     '.css': 'text/css; charset=utf-8',
