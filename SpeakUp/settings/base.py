@@ -121,17 +121,6 @@ LANGUAGES = [
 ]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
-# Caching для SEO context processor
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'seo-cache',
-        'OPTIONS': {
-            'MAX_ENTRIES': 1000,
-        }
-    }
-}
-
 # SEO Verification codes (з env або залишити порожніми)
 GOOGLE_SITE_VERIFICATION = os.getenv('GOOGLE_SITE_VERIFICATION', '')
 FACEBOOK_DOMAIN_VERIFICATION = os.getenv('FACEBOOK_DOMAIN_VERIFICATION', '')

@@ -1,12 +1,10 @@
 from django.test import TestCase, Client
-from django.core.cache import cache
 
 class SEOTestCase(TestCase):
     """100% покриття SEO функціоналу."""
 
     def setUp(self):
         self.client = Client()
-        cache.clear()
 
     def test_homepage_canonical(self):
         """Canonical тег на головній."""
@@ -63,14 +61,6 @@ class SEOTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '<urlset')
         self.assertContains(response, '<loc>')
-
-    def test_context_processor_caching(self):
-        """Context processor використовує кеш."""
-        self.client.get('/')
-        cache_key = 'seo_ctx:/:uk'
-        cached = cache.get(cache_key)
-        self.assertIsNotNone(cached)
-        self.assertIn('canonical_url', cached)
 
     def test_all_54_pages_return_200(self):
         """Всі 54 сторінки (UK версії) доступні."""

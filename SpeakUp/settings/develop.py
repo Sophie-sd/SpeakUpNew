@@ -18,6 +18,3 @@ DATABASES = {
 # Email backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# WhiteNoise cache settings - відключено для розробки стилів
-WHITENOISE_MAX_AGE = 0  # Без кешування для зручної розробки
-

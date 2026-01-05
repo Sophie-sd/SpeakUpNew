@@ -1,13 +1,11 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from django.core.cache import cache
 from .seo_config import SITEMAP_URLS
 from .models import NewsArticle
 
 class SpeakUpSitemap(Sitemap):
     """
     Sitemap для всіх 54 сторінок x 2 мови = 108 URL.
-    З кешуванням для performance.
     """
 
     def items(self):
@@ -21,11 +19,6 @@ class SpeakUpSitemap(Sitemap):
         # Якщо є slug (4-й елемент tuple)
         if len(item) >= 4:
             slug = item[3]
-            cache_key = f'sitemap_url:{url_name}:{slug}'
-
-            cached = cache.get(cache_key)
-            if cached:
-                return cached
 
             # Для city_page використовується 'city', для інших 'slug'
             if url_name == 'core:city_page':
@@ -33,18 +26,10 @@ class SpeakUpSitemap(Sitemap):
             else:
                 url = reverse(url_name, kwargs={'slug': slug})
 
-            cache.set(cache_key, url, 3600)
             return url
         else:
             # Простий URL без параметрів
-            cache_key = f'sitemap_url:{url_name}'
-
-            cached = cache.get(cache_key)
-            if cached:
-                return cached
-
             url = reverse(url_name)
-            cache.set(cache_key, url, 3600)
             return url
 
     def priority(self, item):

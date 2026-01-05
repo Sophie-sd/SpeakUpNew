@@ -1,20 +1,12 @@
 from django.utils.translation import get_language
 from django.urls import translate_url
-from django.core.cache import cache
 from django.conf import settings
 
 def seo_context(request):
     """
     Додає SEO мета-дані у всі templates.
-    Кешується на 1 годину для performance.
     """
     current_lang = get_language()
-    cache_key = f'seo_ctx:{request.path}:{current_lang}'
-
-    # Спробувати взяти з кешу
-    cached = cache.get(cache_key)
-    if cached:
-        return cached
 
     # Генерувати canonical URL (нормалізувати trailing slash)
     path = request.path.rstrip('/') if request.path != '/' else '/'
@@ -50,9 +42,6 @@ def seo_context(request):
         'google_site_verification': getattr(settings, 'GOOGLE_SITE_VERIFICATION', ''),
         'facebook_domain_verification': getattr(settings, 'FACEBOOK_DOMAIN_VERIFICATION', ''),
     }
-
-    # Закешувати на 1 годину
-    cache.set(cache_key, result, 3600)
 
     return result
 
