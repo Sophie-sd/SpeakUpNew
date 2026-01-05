@@ -163,6 +163,7 @@
   min-width: 0;
   margin: 0;
   position: relative;
+  padding-bottom: calc(1.5rem * var(--menu-scale));
 }
 
 [data-header-dynamic-form] .form-group__input {
@@ -185,17 +186,20 @@
 /* Стилі для помилок валідації в динамічній формі */
 [data-header-dynamic-form] .form-error {
   display: block;
-  margin-top: calc(0.25rem * var(--menu-scale));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
   color: var(--color-error);
   font-size: calc(var(--menu-font-sm) * 0.9);
   line-height: 1.4;
-  position: relative;
-  z-index: 10;
   background-color: transparent;
   padding: 0;
   white-space: nowrap;
   overflow: visible;
   text-overflow: ellipsis;
+  z-index: 10;
 }
 
 /* Стилі для поля з помилкою */
@@ -255,6 +259,8 @@
     flex: 1 0 0;
     min-width: 0;
     margin: 0;
+    position: relative;
+    padding-bottom: calc(1.5rem * var(--menu-scale));
   }
 
   [data-header-dynamic-form] .form-group__input {

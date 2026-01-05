@@ -251,18 +251,22 @@ class HeaderDynamicForm {
       isValid = false;
     }
 
-    // Перевірка телефону: після видалення нецифрових символів має бути 12 цифр (+380XXXXXXXXX)
-    // Формат: +380 або 380 + 9 цифр = 12 цифр загалом
-    const phoneDigits = phone ? phone.replace(/\D/g, '') : '';
-    if (!phone || phoneDigits.length < 12) {
+    // Нормалізувати телефон ТАК САМО як у handleSubmit (видалити пробіли)
+    const normalizedPhone = phone ? phone.replace(/\s/g, '') : '';
+    const phoneDigits = normalizedPhone.replace(/\D/g, '');
+
+    // Дозволити різні формати: +380XXXXXXXXX (12 цифр), 380XXXXXXXXX (12 цифр), 0XXXXXXXXX (10 цифр)
+    if (!normalizedPhone) {
       this.showFieldError('phone', 'Введіть номер телефону');
       isValid = false;
-    } else if (phoneDigits.length > 12) {
-      this.showFieldError('phone', 'Номер телефону занадто довгий');
-      isValid = false;
-    } else if (phoneDigits.length === 12 && !phoneDigits.startsWith('380')) {
-      // Якщо 12 цифр, але не починається з 380, це некоректний формат
-      this.showFieldError('phone', 'Номер має починатися з +380 або 380');
+    } else if (phoneDigits.length === 10) {
+      // 0XXXXXXXXX - це нормально, додамо +380 при відправці
+      // Валідація OK
+    } else if (phoneDigits.length === 12 && phoneDigits.startsWith('380')) {
+      // 380XXXXXXXXX або +380XXXXXXXXX - це нормально
+      // Валідація OK
+    } else {
+      this.showFieldError('phone', 'Невірний формат номера');
       isValid = false;
     }
 
