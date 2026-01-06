@@ -149,12 +149,18 @@ export function initPhoneMask(input) {
     const cursorPos = input.selectionStart || 0;
     const value = input.value;
 
-    // Дозволити стандартну обробку для спеціальних клавіш
+    // Дозволити всі спеціальні клавіші та комбінації
     const allowedKeys = [
       'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
-      'Home', 'End', 'Tab', 'Escape'
+      'Home', 'End', 'Tab', 'Escape', 'Enter'
     ];
 
+    // Дозволити Ctrl/Cmd/Alt комбінації (копіювання, вставка тощо)
+    if (e.ctrlKey || e.metaKey || e.altKey) {
+      return; // Дозволити стандартну обробку
+    }
+
+    // Дозволити спеціальні клавіші
     if (allowedKeys.includes(e.key)) {
       // Для Backspace/Delete на позиції після пробілу - перемістити курсор
       if ((e.key === 'Backspace' || e.key === 'Delete') && cursorPos > 0) {
@@ -177,17 +183,19 @@ export function initPhoneMask(input) {
           }, 0);
         }
       }
-      return;
+      return; // Дозволити стандартну обробку інших спеціальних клавіш
     }
 
-    // Блокувати введення нецифрових символів (крім Ctrl/Cmd комбінацій)
-    if (!e.ctrlKey && !e.metaKey && !e.altKey) {
-      const isDigit = /^\d$/.test(e.key);
-      const isAllowedSpecial = ['+', '(', ')', '-', ' '].includes(e.key);
+    // Дозволити цифри завжди
+    const isDigit = /^\d$/.test(e.key);
+    if (isDigit) {
+      return; // Дозволити введення цифр
+    }
 
-      if (!isDigit && !isAllowedSpecial) {
-        e.preventDefault();
-      }
+    // Блокувати тільки нецифрові символи (крім дозволених)
+    const isAllowedSpecial = ['+', '(', ')', '-', ' '].includes(e.key);
+    if (!isAllowedSpecial) {
+      e.preventDefault();
     }
   }
 
