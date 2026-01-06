@@ -18,3 +18,4 @@ python manage.py add_promotions_to_running_line "$@"
 echo ""
 echo "✅ Готово! Перевірте результат на сайті."
 
+

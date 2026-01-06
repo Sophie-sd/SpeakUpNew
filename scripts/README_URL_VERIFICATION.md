@@ -98,3 +98,4 @@ python scripts/verify_all_urls.py --url-file /tmp/all_old_urls.txt --base-url ht
 - Якщо знайдено проблеми - виправити та повторити перевірку
 - Зберегти результати перевірки для документації
 
+

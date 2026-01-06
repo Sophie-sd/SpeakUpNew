@@ -58,3 +58,4 @@ echo "1. request.build_absolute_uri() викликає DisallowedHost"
 echo "2. Потрібно додати try-except в context_processors.py"
 echo ""
 
+
