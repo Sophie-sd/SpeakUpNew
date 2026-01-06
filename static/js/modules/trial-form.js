@@ -118,17 +118,32 @@ function handleSubmit(e) {
   // CSRF token:
   const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
   if (!csrfToken) {
-    console.error('CSRF token not found');
+    console.error('[TrialForm] CSRF token not found');
     showFormError(form, 'Помилка безпеки. Будь ласка, оновіть сторінку.');
     return;
   }
+
+  // Додати CSRF token в FormData (Django очікує обидва варіанти: header та FormData)
+  formData.append('csrfmiddlewaretoken', csrfToken);
+
+  // Отримати URL з data-атрибуту форми або використати за замовчуванням
+  const submitUrl = form.dataset.submitUrl || '/leads/api/trial-form/';
+
+  // Діагностичне логування
+  console.log('[TrialForm] Starting submission');
+  console.log('[TrialForm] URL:', submitUrl);
+  console.log('[TrialForm] CSRF token:', csrfToken ? 'present' : 'missing');
+  console.log('[TrialForm] Form data:', {
+    name: nameInput?.value,
+    phone: phoneInput?.value
+  });
 
   // Disabled кнопка:
   submitBtn.disabled = true;
   const originalText = submitBtn.textContent;
   submitBtn.textContent = 'Відправляємо...';
 
-  fetch('/leads/api/trial-form/', {
+  fetch(submitUrl, {
     method: 'POST',
     headers: {
       'X-CSRFToken': csrfToken
@@ -136,14 +151,28 @@ function handleSubmit(e) {
     body: formData
   })
   .then(response => {
+    console.log('[TrialForm] Response status:', response.status, response.statusText);
+
+    // Обробка CSRF помилки (403)
+    if (response.status === 403) {
+      console.error('[TrialForm] CSRF validation failed');
+      throw new Error('CSRF_ERROR');
+    }
+
     if (!response.ok) {
-      return response.json().then(data => {
-        throw new Error(data.errors || 'Помилка сервера');
+      // Спробувати отримати JSON з помилками
+      return response.json().catch(() => {
+        // Якщо не вдалося отримати JSON, повернути загальну помилку
+        throw new Error(`Помилка сервера (${response.status})`);
+      }).then(data => {
+        console.error('[TrialForm] Server error:', data);
+        throw new Error(data.errors || `Помилка сервера (${response.status})`);
       });
     }
     return response.json();
   })
   .then(data => {
+    console.log('[TrialForm] Response data:', data);
     if (data.success) {
       // Facebook Pixel:
       if (typeof fbq !== 'undefined') {
@@ -179,8 +208,41 @@ function handleSubmit(e) {
     }
   })
   .catch(error => {
-    console.error('Error:', error);
-    showFormError(form, 'Помилка відправки форми. Перевірте з\'єднання з інтернетом.');
+    console.error('[TrialForm] Fetch error:', error);
+    console.error('[TrialForm] Error details:', {
+      message: error.message,
+      stack: error.stack
+    });
+
+    // Спеціальна обробка CSRF помилки
+    if (error.message === 'CSRF_ERROR') {
+      showFormError(form, 'Помилка безпеки. Будь ласка, оновіть сторінку та спробуйте ще раз.');
+    } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+      showFormError(form, 'Помилка з\'єднання. Перевірте інтернет-з\'єднання та спробуйте ще раз.');
+    } else if (error.message.includes('500')) {
+      showFormError(form, 'Помилка сервера. Спробуйте пізніше або зв\'яжіться з нами безпосередньо.');
+    } else {
+      // Спробувати відобразити помилки валідації, якщо вони є
+      try {
+        const errorObj = JSON.parse(error.message);
+        if (errorObj && typeof errorObj === 'object') {
+          Object.keys(errorObj).forEach(fieldName => {
+            const field = form.querySelector(`[name="${fieldName}"]`);
+            if (field) {
+              const errorMessage = Array.isArray(errorObj[fieldName])
+                ? errorObj[fieldName][0]
+                : errorObj[fieldName];
+              showFieldError(field, errorMessage);
+            }
+          });
+        } else {
+          showFormError(form, error.message || 'Помилка відправки форми. Спробуйте ще раз.');
+        }
+      } catch {
+        showFormError(form, error.message || 'Помилка відправки форми. Спробуйте ще раз.');
+      }
+    }
+
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
   });
