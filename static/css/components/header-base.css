@@ -217,7 +217,7 @@
   min-height: var(--menu-size-lg);
   padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
   font-size: var(--menu-font-base);
-  border-radius: var(--menu-radius-md);
+  border-radius: var(--menu-radius-lg);
 }
 
 /* Кнопка "Детальніше" (десктоп) */
@@ -226,7 +226,7 @@
   min-height: var(--menu-size-lg);
   padding: calc(0.875rem * var(--menu-scale)) calc(1.5rem * var(--menu-scale));
   font-size: var(--menu-font-base);
-  border-radius: var(--menu-radius-md);
+  border-radius: var(--menu-radius-lg);
 }
 
 /* Кнопка на мобільних */
