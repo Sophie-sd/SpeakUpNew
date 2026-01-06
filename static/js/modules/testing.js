@@ -439,16 +439,37 @@ function handleTenseAnswer(index) {
       cards[index].classList.add('card-correct');
       cards[index].style.borderColor = '#22c55e';
       cards[index].style.background = 'linear-gradient(135deg, #dcfce7, #bbf7d0)';
+      // Ensure text remains visible
+      const textEl = cards[index].querySelector('.card-option__text');
+      const tenseEl = cards[index].querySelector('.card-option__tense');
+      const descEl = cards[index].querySelector('.card-option__desc');
+      if (textEl) textEl.style.color = '#1f2937';
+      if (tenseEl) tenseEl.style.color = '#16a34a';
+      if (descEl) descEl.style.color = '#374151';
     }
   } else {
     if (cards[index]) {
       cards[index].classList.add('card-wrong');
       cards[index].style.borderColor = '#ef4444';
       cards[index].style.background = 'linear-gradient(135deg, #fee2e2, #fecaca)';
+      // Ensure text remains visible
+      const textEl = cards[index].querySelector('.card-option__text');
+      const tenseEl = cards[index].querySelector('.card-option__tense');
+      const descEl = cards[index].querySelector('.card-option__desc');
+      if (textEl) textEl.style.color = '#1f2937';
+      if (tenseEl) tenseEl.style.color = '#dc2626';
+      if (descEl) descEl.style.color = '#374151';
     }
     if (cards[q.correct]) {
       cards[q.correct].style.borderColor = '#22c55e';
       cards[q.correct].style.background = 'linear-gradient(135deg, #dcfce7, #bbf7d0)';
+      // Ensure text remains visible
+      const textEl = cards[q.correct].querySelector('.card-option__text');
+      const tenseEl = cards[q.correct].querySelector('.card-option__tense');
+      const descEl = cards[q.correct].querySelector('.card-option__desc');
+      if (textEl) textEl.style.color = '#1f2937';
+      if (tenseEl) tenseEl.style.color = '#16a34a';
+      if (descEl) descEl.style.color = '#374151';
     }
   }
 
@@ -472,6 +493,13 @@ function skipQuestion() {
   if (cards[q.correct]) {
     cards[q.correct].style.borderColor = '#22c55e';
     cards[q.correct].style.background = 'linear-gradient(135deg, #dcfce7, #bbf7d0)';
+    // Ensure text remains visible
+    const textEl = cards[q.correct].querySelector('.card-option__text');
+    const tenseEl = cards[q.correct].querySelector('.card-option__tense');
+    const descEl = cards[q.correct].querySelector('.card-option__desc');
+    if (textEl) textEl.style.color = '#1f2937';
+    if (tenseEl) tenseEl.style.color = '#16a34a';
+    if (descEl) descEl.style.color = '#374151';
   }
   showFeedback(false, q.explanation);
 }
@@ -527,25 +555,17 @@ function showFinalResults() {
   const percent = (totalScore / maxScore) * 100;
 
   let level, desc, emoji;
-  if (percent >= 90) {
+  if (percent > 70) {
     emoji = '🏆';
-    level = 'Advanced (C1)';
+    level = 'ваш рівень вищий за середній';
     desc = 'Чудово! Ти маєш просунутий рівень англійської. Словниковий запас багатий, граматика на високому рівні!';
-  } else if (percent >= 75) {
-    emoji = '🥈';
-    level = 'Upper-Intermediate (B2)';
-    desc = 'Дуже добре! Ти впевнено володієш англійською на рівні вище середнього.';
-  } else if (percent >= 60) {
-    emoji = '🥉';
-    level = 'Intermediate (B1)';
-    desc = 'Непогано! Ти маєш середній рівень. Продовжуй вдосконалюватись!';
   } else if (percent >= 40) {
     emoji = '📚';
-    level = 'Pre-Intermediate (A2)';
-    desc = 'Є базові знання! Рекомендую більше практики зі словником та граматикою.';
+    level = 'ваш рівень достатній';
+    desc = 'Непогано! Ти маєш середній рівень. Продовжуй вдосконалюватись!';
   } else {
     emoji = '🌱';
-    level = 'Beginner (A1)';
+    level = 'ваш рівень початківець';
     desc = 'Початковий рівень. Час активно вивчати англійську! Почни з базових слів та простих часів.';
   }
 
