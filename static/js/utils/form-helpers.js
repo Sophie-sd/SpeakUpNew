@@ -21,21 +21,32 @@ export function initPhoneMask(input) {
   input.dataset.phoneMaskInitialized = 'true';
 
   input.addEventListener('input', (e) => {
-    // Отримати тільки цифри з введеного значення
-    let value = e.target.value.replace(/\D/g, '');
+    const inputValue = e.target.value;
 
-    // Видаліти префікс країни, якщо користувач ввів його
-    // Перевіряємо в порядку від найдовшого до найкоротшого префіксу
-    // Важливо: перевіряємо спочатку найдовший префікс (380), потім коротші (80, 0)
-    if (value.length >= 3 && value.startsWith('380')) {
-      // Якщо починається з 380, видаляємо префікс (залишається номер без 380)
-      value = value.substring(3);
-    } else if (value.length >= 2 && value.startsWith('80')) {
-      // Якщо починається з 80 (але не 380), видаляємо префікс
-      value = value.substring(2);
-    } else if (value.length >= 1 && value.startsWith('0')) {
-      // Якщо починається з 0 (але не 80 або 380), видаляємо префікс
-      value = value.substring(1);
+    // Перевірити, чи значення вже починається з "+380 "
+    // Якщо так - витягувати тільки цифри після "+380 " (не включаючи 380)
+    let value;
+    if (inputValue.startsWith('+380 ')) {
+      // Вже є префікс +380, витягуємо тільки цифри після нього
+      value = inputValue.substring(5).replace(/\D/g, '');
+    } else {
+      // Немає префіксу, обробляємо все значення
+      // Отримати тільки цифри з введеного значення
+      value = inputValue.replace(/\D/g, '');
+
+      // Видаліти префікс країни, якщо користувач ввів його
+      // Перевіряємо в порядку від найдовшого до найкоротшого префіксу
+      // Важливо: перевіряємо спочатку найдовший префікс (380), потім коротші (80, 0)
+      if (value.length >= 3 && value.startsWith('380')) {
+        // Якщо починається з 380, видаляємо префікс (залишається номер без 380)
+        value = value.substring(3);
+      } else if (value.length >= 2 && value.startsWith('80')) {
+        // Якщо починається з 80 (але не 380), видаляємо префікс
+        value = value.substring(2);
+      } else if (value.length >= 1 && value.startsWith('0')) {
+        // Якщо починається з 0 (але не 80 або 380), видаляємо префікс
+        value = value.substring(1);
+      }
     }
 
     // Обмежити до 9 цифр (український номер після +380)
@@ -53,7 +64,7 @@ export function initPhoneMask(input) {
 
     // Встановити значення з форматуванням
     // Завжди додаємо +380 на початку
-    e.target.value = `+380 ${  parts.join(' ')}`;
+    e.target.value = `+380 ${parts.join(' ')}`;
   });
 }
 
