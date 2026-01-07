@@ -30,11 +30,11 @@ def submit_trial_form(request):
             request.META.get('HTTP_USER_AGENT', 'unknown')[:100]
         )
         # Повертаємо SUCCESS щоб бот не знав що його виявили (silent reject)
-        # Редірект на testing як для звичайного користувача
+        # Редірект на thank-you як для звичайного користувача
         return JsonResponse({
             'success': True,
-            'redirect_url': reverse('core:testing'),
-            'message': 'Дякуємо! Перенаправляємо вас на тест.'
+            'redirect_url': reverse('core:thank_you'),
+            'message': 'Дякуємо! Перенаправляємо вас.'
         })
     # ===== END HONEYPOT CHECK =====
 
@@ -80,12 +80,12 @@ def submit_trial_form(request):
 
             logger.info('[TrialForm] Request processed successfully')
             # Використовуємо Django URL reverse для правильного URL
-            redirect_url = reverse('core:testing')
+            redirect_url = reverse('core:thank_you')
             return JsonResponse({
                 'success': True,
                 'redirect_url': redirect_url,
                 'lead_id': lead.id,  # Для GTM tracking
-                'message': 'Дякуємо! Перенаправляємо вас на тест.'
+                'message': 'Дякуємо! Перенаправляємо вас.'
             })
         except Exception as e:
             logger.error('[TrialForm] Unexpected error during processing: %s', e, exc_info=True)

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Дякуємо - SPEAK UP{% endblock %}
+{% block og_title %}Дякуємо - SPEAK UP{% endblock %}
+{% block meta_description %}Дякуємо за звернення до SPEAK UP! Ми зв'яжемося з вами найближчим часом.{% endblock %}
+{% block og_description %}Дякуємо за звернення до SPEAK UP! Ми зв'яжемося з вами найближчим часом.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/hero-section.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/thank-you.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Паралакс-контейнер для статичного фону -->
+<div class="parallax-container" aria-hidden="true">
+  <div class="parallax-layer parallax-layer__background"></div>
+</div>
+
+<div class="hero-content">
+  <!-- Thank You Секція -->
+  <section class="thank-you-section glass-section">
+    <div class="thank-you-section__content">
+      <h1 class="thank-you-section__title">Дякуємо!</h1>
+      <p class="thank-you-section__message">
+        Ми отримали вашу заявку та зв'яжемося з вами найближчим часом.
+      </p>
+      <p class="thank-you-section__subtitle">
+        Перш ніж ми вас контактуватимемо, ви можете перевірити свій рівень англійської.
+      </p>
+      <div class="thank-you-section__actions">
+        <a href="{% url 'core:index' %}" class="button button--primary">
+          Повернутись на головну
+        </a>
+        <a href="{% url 'core:testing' %}" class="button button--secondary">
+          Тест рівня англійської
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+

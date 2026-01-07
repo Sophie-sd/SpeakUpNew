@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404, JsonResponse
+from django.http import Http404, JsonResponse, HttpResponse
+from django.urls import reverse
 from django.utils.translation import get_language
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_http_methods
@@ -642,15 +643,21 @@ def submit_consultation(request):
 
         consultation.save()
 
-        # Повертаємо success message
-        return render(request, 'core/components/consultation_success.html', {
-            'message': 'Дякуємо! Ми зв\'яжемося з вами найближчим часом.'
-        })
+        # Повертаємо success message з HTMX redirect
+        response = HttpResponse(status=200)
+        response['HX-Redirect'] = reverse('core:thank_you')
+        return response
 
     # Якщо форма невалідна, повертаємо помилки
     return render(request, 'core/components/consultation_form.html', {
         'form': form
     }, status=400)
+
+
+@require_http_methods(["GET"])
+def thank_you(request):
+    """Thank you page після успішної відправки форми"""
+    return render(request, 'core/thank_you.html')
 
 
 # ===== SEO STUB PAGES =====

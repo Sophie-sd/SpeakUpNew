@@ -10,6 +10,7 @@ urlpatterns = [
     path('contacts', views.contacts, name='contacts'),
     path('faq', views.faq, name='faq'),
     path('testing', views.testing, name='testing'),
+    path('thank-you/', views.thank_you, name='thank_you'),
 
     # Homepage content forms
     path('submit-testimonial/', views.submit_testimonial, name='submit_testimonial'),
