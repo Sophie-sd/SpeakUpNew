@@ -1,35 +1,6 @@
 from django import forms
 from .models import Testimonial, ConsultationRequest
-
-
-class ExampleForm(forms.Form):
-    """Example form with proper validation."""
-    name = forms.CharField(
-        max_length=100,
-        required=True,
-        widget=forms.TextInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Enter your name',
-        })
-    )
-    email = forms.EmailField(
-        required=True,
-        widget=forms.EmailInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Enter your email',
-            'inputmode': 'email',
-        })
-    )
-    phone = forms.CharField(
-        max_length=20,
-        required=False,
-        widget=forms.TextInput(attrs={
-            'type': 'tel',
-            'class': 'form-input',
-            'placeholder': 'Enter your phone',
-            'inputmode': 'tel',
-        })
-    )
+from apps.leads.utils import normalize_phone_number
 
 
 # ============================================================================
@@ -95,32 +66,7 @@ class ConsultationForm(forms.ModelForm):
         self.fields['messenger_choice'].required = False
 
     def clean_phone(self):
-        """Нормалізувати телефон до +380XXXXXXXXX"""
-        phone = self.cleaned_data.get('phone', '').strip()
-        if not phone:
-            return phone
-
-        # Видалити всі пробіли, дужки, дефіси
-        phone = phone.replace(' ', '').replace('(', '').replace(')', '').replace('-', '')
-
-        # Витягти тільки цифри
-        digits = ''.join(filter(str.isdigit, phone))
-
-        # Нормалізація:
-        if phone.startswith('+380') and len(digits) == 12:
-            # +380XXXXXXXXX -> залишити як є
-            phone = '+' + digits
-        elif digits.startswith('0') and len(digits) == 10:
-            # 0XXXXXXXXX -> +380XXXXXXXXX
-            phone = '+380' + digits[1:]
-        elif digits.startswith('380') and len(digits) == 12:
-            # 380XXXXXXXXX -> +380XXXXXXXXX
-            phone = '+' + digits
-        elif digits.startswith('380') and len(digits) == 11:
-            # Помилка: 380XXXXXXXX (тільки 8 цифр після 380)
-            raise forms.ValidationError("Номер має містити 9 цифр після коду 380")
-        else:
-            raise forms.ValidationError("Введіть номер у форматі +380, 380 або 0")
-
-        return phone
+        """Нормалізувати телефон до +380XXXXXXXXX (формат моделі: ^\+380\d{9}$)"""
+        phone = self.cleaned_data.get('phone', '')
+        return normalize_phone_number(phone)
 

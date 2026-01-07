@@ -346,7 +346,12 @@
     <h3 class="corporate-consultation__title">Хочете отримати більше деталей щодо корпоративного навчання?</h3>
     <p class="corporate-consultation__description">Залиште ваші контакти та з вами зв'яжеться наш менеджер для більш детальної консультації</p>
     <div class="corporate-consultation__form glass-card">
-      <form method="post" action="{% url 'core:submit_consultation' %}" hx-post="{% url 'core:submit_consultation' %}" hx-swap="outerHTML">
+      <form method="post"
+            action="{% url 'core:submit_consultation' %}"
+            hx-post="{% url 'core:submit_consultation' %}"
+            hx-swap="outerHTML"
+            data-form-type="consultation"
+            data-form-location="corporate-page">
         {% csrf_token %}
         <div class="form-group">
           <input type="text" name="name" placeholder="Ваше ім'я*" required class="form-group__input">

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_protect
+from django_ratelimit.decorators import ratelimit
 from .forms import TrialLessonForm
 from .utils import send_trial_confirmation_email, get_client_ip
 
@@ -11,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 @require_http_methods(["POST"])
 @csrf_protect
+@ratelimit(key='ip', rate='3/h', method='POST', block=True)
 def submit_trial_form(request):
     """API endpoint для відправки форми запису на пробний урок"""
     logger.info('[TrialForm] Received POST request')
@@ -64,6 +66,7 @@ def submit_trial_form(request):
             return JsonResponse({
                 'success': True,
                 'redirect_url': redirect_url,
+                'lead_id': lead.id,  # Для GTM tracking
                 'message': 'Дякуємо! Перенаправляємо вас на тест.'
             })
         except Exception as e:

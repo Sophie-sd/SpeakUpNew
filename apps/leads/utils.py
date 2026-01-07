@@ -1,7 +1,54 @@
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.urls import reverse
+
+from django import forms
+
+
+def normalize_phone_number(phone):
+    """
+    Нормалізувати український номер телефону до формату +380XXXXXXXXX.
+
+    Підтримує формати:
+    - +380XXXXXXXXX
+    - 380XXXXXXXXX
+    - 0XXXXXXXXX
+    - XXXXXXXXX (9 цифр)
+
+    Raises:
+        forms.ValidationError: Якщо номер некоректний
+    """
+    if not phone:
+        return phone
+
+    phone = phone.strip()
+    if not phone:
+        return phone
+
+    # Видалити всі пробіли, дужки, дефіси та інші символи
+    phone_clean = phone.replace(' ', '').replace('(', '').replace(')', '').replace('-', '')
+
+    # Витягти тільки цифри
+    digits = ''.join(filter(str.isdigit, phone_clean))
+
+    # Нормалізація до формату +380XXXXXXXXX (12 цифр: 380 + 9 цифр номера)
+    if len(digits) == 12 and digits.startswith('380'):
+        # 380XXXXXXXXX -> +380XXXXXXXXX
+        phone = '+' + digits
+    elif len(digits) == 10 and digits.startswith('0'):
+        # 0XXXXXXXXX -> +380XXXXXXXXX
+        phone = '+380' + digits[1:]
+    elif len(digits) == 9:
+        # XXXXXXXXX (9 цифр без префіксу) -> +380XXXXXXXXX
+        phone = '+380' + digits
+    elif phone_clean.startswith('+380') and len(digits) == 12:
+        # +380XXXXXXXXX -> залишити як є
+        phone = '+' + digits
+    else:
+        raise forms.ValidationError("Введіть коректний український номер телефону у форматі +380, 380 або 0")
+
+    # Фінальна перевірка формату (модель очікує ^\+380\d{9}$)
+    if not phone.startswith('+380') or len(phone) != 13:
+        raise forms.ValidationError("Номер має містити 9 цифр після коду +380")
+
+    return phone
 
 
 def get_client_ip(request):
@@ -32,33 +79,6 @@ def send_trial_confirmation_email(lead, request):
     lead.email_sent = True
     lead.save(update_fields=['email_sent'])
     return True
-
-    # Майбутня реалізація, коли додадуть email поле:
-    # if not lead.email:
-    #     logger.warning(f'[TrialForm] Cannot send email to {lead.name}: no email address')
-    #     return False
-    #
-    # test_url = request.build_absolute_uri(reverse('core:testing'))
-    # html_message = render_to_string('leads/emails/trial_confirmation.html', {
-    #     'name': lead.name,
-    #     'test_url': test_url,
-    # })
-    #
-    # try:
-    #     send_mail(
-    #         subject='Запис на пробний урок - SpeakUp',
-    #         message=f"Вітаємо, {lead.name}! Перейдіть за посиланням: {test_url}",
-    #         from_email=settings.DEFAULT_FROM_EMAIL,
-    #         recipient_list=[lead.email],
-    #         html_message=html_message,
-    #         fail_silently=False,
-    #     )
-    #     lead.email_sent = True
-    #     lead.save(update_fields=['email_sent'])
-    #     return True
-    # except Exception as e:
-    #     logger.error(f'[TrialForm] Email sending failed: {e}', exc_info=True)
-    #     return False
 
 
 

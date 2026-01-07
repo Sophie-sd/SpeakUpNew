@@ -119,6 +119,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script src="{% static 'js/main.js' %}" defer></script>
   <!-- JS: ДОДАТИ новий app-init.js -->
   <script src="{% static 'js/app-init.js' %}" type="module" defer></script>
+  <!-- Form handling modules -->
+  <script src="{% static 'js/modules/gtm-events.js' %}" type="module" defer></script>
+  <script src="{% static 'js/modules/trial-form-handler.js' %}" type="module" defer></script>
+  <script src="{% static 'js/modules/htmx-gtm-integration.js' %}" type="module" defer></script>
   {% block extra_js %}{% endblock %}
 
   {# Structured Data (JSON-LD) #}

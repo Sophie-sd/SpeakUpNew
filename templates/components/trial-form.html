@@ -1,19 +1,45 @@
-<form class="trial-form trial-form--hero" method="post" action="{% url 'leads:submit_trial_form' %}" data-submit-url="{% url 'leads:submit_trial_form' %}" novalidate>
+{% load static %}
+{#
+  Параметри:
+  - variant: 'hero' (default) | 'header-desktop' | 'header-mobile'
+  - form: TrialLessonForm instance
+#}
+{% with variant=variant|default:"hero" %}
+
+<form class="trial-form trial-form--{{ variant }}"
+      method="post"
+      action="{% url 'leads:submit_trial_form' %}"
+      data-form-type="trial"
+      data-form-location="{{ variant }}"
+      novalidate>
   {% csrf_token %}
+
+  {# Honeypot поле (приховане CSS) #}
+  <div class="form-group form-group--honeypot" aria-hidden="true">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" class="form-group__input--honeypot">
+  </div>
+
   <div class="form-group">
     {{ form.name }}
     {% if form.name.errors %}
       <span class="form-error">{{ form.name.errors.0 }}</span>
     {% endif %}
   </div>
+
   <div class="form-group">
     {{ form.phone }}
     {% if form.phone.errors %}
       <span class="form-error">{{ form.phone.errors.0 }}</span>
     {% endif %}
   </div>
+
   <button type="submit" class="button button--primary button--full">
-    СПРОБУВАТИ
+    {% if variant == 'hero' %}СПРОБУВАТИ
+    {% elif variant == 'header-desktop' %}Відправити
+    {% elif variant == 'header-mobile' %}Записатись
+    {% else %}Відправити{% endif %}
   </button>
 </form>
+
+{% endwith %}
 

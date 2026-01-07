@@ -608,7 +608,10 @@ def get_testimonial_form(request):
     })
 
 
+from django_ratelimit.decorators import ratelimit
+
 @require_http_methods(["POST"])
+@ratelimit(key='ip', rate='5/h', method='POST', block=True)
 def submit_consultation(request):
     """Обробка форми консультації з HTMX."""
     form = ConsultationForm(request.POST)
@@ -634,11 +637,8 @@ def submit_consultation(request):
             consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
 
         # IP адреса
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            consultation.ip_address = x_forwarded_for.split(',')[0].strip()
-        else:
-            consultation.ip_address = request.META.get('REMOTE_ADDR')
+        from apps.leads.utils import get_client_ip
+        consultation.ip_address = get_client_ip(request)
 
         consultation.save()
 

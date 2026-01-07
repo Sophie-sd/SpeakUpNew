@@ -1,6 +1,11 @@
 {% load static %}
 <div class="consultation-form__form">
-  <form method="post" action="{% url 'core:submit_consultation' %}" hx-post="{% url 'core:submit_consultation' %}" hx-swap="outerHTML">
+  <form method="post"
+        action="{% url 'core:submit_consultation' %}"
+        hx-post="{% url 'core:submit_consultation' %}"
+        hx-swap="outerHTML"
+        data-form-type="consultation"
+        data-form-location="page">
     {% csrf_token %}
     <div class="consultation-form__phone-section">
       <div class="form-group">

@@ -87,3 +87,23 @@
   resize: vertical;
 }
 
+/* Honeypot поле - приховане від користувачів */
+.form-group--honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.form-group__input--honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+

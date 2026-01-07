@@ -1,6 +1,7 @@
 from django.utils.translation import get_language
 from django.urls import translate_url
 from django.conf import settings
+from apps.leads.forms import TrialLessonForm
 
 def seo_context(request):
     """
@@ -51,4 +52,11 @@ def feature_flags(request):
     return {
         'show_pricing_instead_of_courses': True,  # Перемикач pricing/courses
         'pricing_variant': 'v1',  # v1, v2 для різних варіантів (майбутнє)
+    }
+
+
+def forms_context(request):
+    """Додає форми у всі templates (для header та інших компонентів)."""
+    return {
+        'trial_form': TrialLessonForm(),
     }

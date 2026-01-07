@@ -7,7 +7,12 @@
       <button type="button" class="modal__close" aria-label="Закрити модальне вікно">×</button>
     </div>
     <div class="modal__body">
-      <form method="post" action="{% url 'core:submit_testimonial' %}" hx-post="{% url 'core:submit_testimonial' %}" hx-swap="outerHTML">
+      <form method="post"
+            action="{% url 'core:submit_testimonial' %}"
+            hx-post="{% url 'core:submit_testimonial' %}"
+            hx-swap="outerHTML"
+            data-form-type="testimonial"
+            data-form-location="modal">
         {% csrf_token %}
         <div class="form-group">
           {{ form.name }}

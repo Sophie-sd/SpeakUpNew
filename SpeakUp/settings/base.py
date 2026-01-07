@@ -53,6 +53,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'apps.core.context_processors.seo_context',
                 'apps.core.context_processors.feature_flags',
+                'apps.core.context_processors.forms_context',
                 'apps.leads.context_processors.running_line_context',
             ],
         },
