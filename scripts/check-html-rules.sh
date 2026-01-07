@@ -37,10 +37,25 @@ else
 fi
 
 # Правило 2: inline style="" заборонені (дублює HTMLHint, але для надійності)
-# Виняток: email шаблони можуть мати inline styles
+# Виняток: email шаблони та Google Tag Manager (GTM) можуть мати inline styles
 echo ""
 echo "🎨 [Rule 2] Checking for inline styles..."
-INLINE_STYLES=$(echo "$HTML_FILES" | grep -v '/emails/' | xargs grep -n 'style="' 2>/dev/null || echo "")
+INLINE_STYLES=""
+for file in $HTML_FILES; do
+  if [[ ! "$file" =~ /emails/ ]]; then
+    # Перевіряємо кожен файл окремо і виключаємо GTM блоки
+    grep -n 'style="' "$file" 2>/dev/null | while read -r line; do
+      line_num=$(echo "$line" | cut -d: -f1)
+      # Перевіряємо, чи не є це частиною GTM (перевіряємо 2 рядки до і після)
+      context=$(sed -n "$((line_num-2)),$((line_num+2))p" "$file" 2>/dev/null)
+      if ! echo "$context" | grep -q "Google Tag Manager\|googletagmanager"; then
+        INLINE_STYLES="${INLINE_STYLES}$file:$line
+"
+      fi
+    done
+  fi
+done
+
 if [ -n "$INLINE_STYLES" ]; then
   echo "❌ Inline styles found (forbidden):"
   echo "$INLINE_STYLES"
