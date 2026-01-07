@@ -126,16 +126,6 @@ if (typeof htmx !== 'undefined') {
       });
     }
 
-    // Ініціалізація нових елементів форм
-    initFormElements(target);
-
-    // Ініціалізація масок для телефонів після HTMX swap
-    // Використовуємо dynamic import для ES6 модуля
-    import('./utils/phone-mask.js').then(({ initPhoneMasks }) => {
-      initPhoneMasks(target);
-    }).catch(err => {
-      console.warn('[HTMX] Failed to initialize phone masks:', err);
-    });
   });
 
   // Rule 87: Обробка перед відправкою
@@ -168,58 +158,6 @@ if (typeof htmx !== 'undefined') {
   });
 }
 
-// ==========================================================================
-// Form Elements Initialization
-// ==========================================================================
-
-function initFormElements(container = document) {
-  // Ініціалізація всіх форм в контейнері
-  const forms = container.querySelectorAll('form');
-  forms.forEach(form => {
-    // Валідація в реальному часі
-    form.querySelectorAll('input, textarea, select').forEach(field => {
-      field.addEventListener('blur', function() {
-        validateField(this);
-      });
-    });
-  });
-
-  // Rule 51: Стилізація file inputs
-  const fileInputs = container.querySelectorAll('input[type="file"]');
-  fileInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      const label = this.nextElementSibling;
-      if (label && this.files.length > 0) {
-        label.textContent = this.files[0].name;
-      }
-    });
-  });
-}
-
-function validateField(field) {
-  const formGroup = field.closest('.form-group');
-  if (!formGroup) return;
-
-  // Видалити попередні помилки
-  const existingError = formGroup.querySelector('.form-error');
-  if (existingError) {
-    existingError.remove();
-  }
-
-  field.classList.remove('error');
-
-  // Перевірка validity
-  if (!field.validity.valid) {
-    field.classList.add('error');
-
-    const errorMsg = document.createElement('span');
-    errorMsg.className = 'form-error';
-    errorMsg.textContent = field.validationMessage;
-    errorMsg.setAttribute('role', 'alert');
-
-    formGroup.appendChild(errorMsg);
-  }
-}
 
 // ==========================================================================
 // Accessibility Helpers
@@ -263,9 +201,6 @@ function trapFocus(element) {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('[SpeakUp] Application initialized');
 
-  // Ініціалізація форм
-  initFormElements();
-
   // Закриття повідомлень
   document.querySelectorAll('.message__close').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -285,7 +220,6 @@ function sanitizeHTML(str) {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     sanitizeHTML,
-    validateField,
     trapFocus
   };
 }

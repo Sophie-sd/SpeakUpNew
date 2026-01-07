@@ -38,11 +38,6 @@ const lazyModules = [
     name: 'FAQ Accordion'
   },
   {
-    selector: '.consultation-section',
-    module: () => import('./modules/consultation-form.js'),
-    name: 'Consultation Form'
-  },
-  {
     selector: '.testimonials-section',
     module: () => import('./modules/testimonial-modal.js'),
     name: 'Testimonial Modal'
