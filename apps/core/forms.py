@@ -81,7 +81,6 @@ class ConsultationForm(forms.ModelForm):
                 'class': 'form-group__input',
                 'type': 'tel',
                 'inputmode': 'tel',
-                'pattern': r'(\+?380|0)\d{9}',
                 'required': True,
             }),
             'messenger_choice': forms.RadioSelect(attrs={

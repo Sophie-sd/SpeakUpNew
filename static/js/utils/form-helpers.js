@@ -178,4 +178,70 @@ export function resetFormWithErrors(form) {
   toggleFormState(form, false);
 }
 
+/**
+ * Extract raw digits from phone number (for validation)
+ * Removes all non-digit characters
+ *
+ * @param {string} phoneValue - Formatted phone value (e.g., "+380 (93) 123 45 67")
+ * @returns {string} - Only digits (e.g., "380931234567")
+ */
+export function getRawPhone(phoneValue) {
+  if (!phoneValue) return '';
+  return phoneValue.replace(/\D/g, '');
+}
+
+/**
+ * Validate Ukrainian phone number format
+ * Accepts formatted or unformatted input, validates against +380XXXXXXXXX pattern
+ *
+ * @param {string} phoneValue - Phone value (formatted or unformatted)
+ * @returns {Object} - { isValid: boolean, error: string|null, normalized: string|null }
+ */
+export function validatePhone(phoneValue) {
+  const raw = getRawPhone(phoneValue);
+
+  if (!raw) {
+    return {
+      isValid: false,
+      error: 'Введіть номер телефону',
+      normalized: null
+    };
+  }
+
+  // Normalize to +380XXXXXXXXX format
+  let normalized = raw;
+
+  // Handle different input formats
+  if (normalized.startsWith('0') && normalized.length === 10) {
+    // 0XXXXXXXXX -> +380XXXXXXXXX
+    normalized = '380' + normalized.substring(1);
+  } else if (!normalized.startsWith('380') && normalized.length >= 9) {
+    // 9+ digits without prefix -> assume 380 prefix
+    normalized = '380' + normalized;
+  }
+
+  // Ensure it starts with 380 and has exactly 12 digits
+  if (!normalized.startsWith('380')) {
+    return {
+      isValid: false,
+      error: 'Введіть коректний український номер телефону',
+      normalized: null
+    };
+  }
+
+  if (normalized.length !== 12) {
+    return {
+      isValid: false,
+      error: 'Номер має містити 9 цифр після коду +380',
+      normalized: null
+    };
+  }
+
+  return {
+    isValid: true,
+    error: null,
+    normalized: '+' + normalized
+  };
+}
+
 

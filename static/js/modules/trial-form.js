@@ -1,6 +1,6 @@
 'use strict';
 
-import { showFieldError, clearFieldError } from '../utils/form-helpers.js';
+import { showFieldError, clearFieldError, validatePhone } from '../utils/form-helpers.js';
 
 export function initTrialForm() {
   const triggerMobile = document.querySelector('.trial-form__trigger--mobile');
@@ -61,11 +61,12 @@ function handleSubmit(e) {
     if (nameInput) clearFieldError(nameInput);
   }
 
-  // Валідація телефону
+  // Валідація телефону (використовуємо уніфіковану функцію)
   const phone = phoneInput?.value.trim();
-  if (!phone) {
+  const phoneValidation = validatePhone(phone);
+  if (!phoneValidation.isValid) {
     isValid = false;
-    errors.phone = "Введіть номер телефону";
+    errors.phone = phoneValidation.error;
     if (phoneInput) {
       showFieldError(phoneInput, errors.phone);
       if (!nameInput || (name && name.length >= 2)) {
@@ -73,20 +74,7 @@ function handleSubmit(e) {
       }
     }
   } else {
-    // Перевірка формату телефону (мінімум 9 цифр після +380)
-    const phoneDigits = phone.replace(/\D/g, '');
-    if (phoneDigits.length < 9 || (phoneDigits.length === 12 && !phoneDigits.startsWith('380'))) {
-      isValid = false;
-      errors.phone = "Введіть коректний український номер телефону";
-      if (phoneInput) {
-        showFieldError(phoneInput, errors.phone);
-        if (!nameInput || (name && name.length >= 2)) {
-          phoneInput.focus();
-        }
-      }
-    } else {
-      if (phoneInput) clearFieldError(phoneInput);
-    }
+    if (phoneInput) clearFieldError(phoneInput);
   }
 
   if (!isValid) {

@@ -7,6 +7,7 @@ import { initHeaderDynamicForm } from './modules/header-dynamic-form.js';
 import { initTabSlider } from './shared/tab-slider.js';
 import programsListModule from './modules/programs-list.js';
 import { BaseAccordion } from './modules/base-accordion.js';
+import { initPhoneMasks } from './utils/phone-mask.js';
 
 /**
  * Автоматично визначає активне посилання в навігації на основі поточного URL
@@ -72,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Спочатку встановлюємо активне посилання на основі поточного URL
   setActiveNavigationLink();
+
+  // Ініціалізація масок для телефонів
+  initPhoneMasks();
 
   new BurgerMenu();
   initRunningLine();

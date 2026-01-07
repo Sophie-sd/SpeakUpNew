@@ -128,6 +128,14 @@ if (typeof htmx !== 'undefined') {
 
     // Ініціалізація нових елементів форм
     initFormElements(target);
+
+    // Ініціалізація масок для телефонів після HTMX swap
+    // Використовуємо dynamic import для ES6 модуля
+    import('./utils/phone-mask.js').then(({ initPhoneMasks }) => {
+      initPhoneMasks(target);
+    }).catch(err => {
+      console.warn('[HTMX] Failed to initialize phone masks:', err);
+    });
   });
 
   // Rule 87: Обробка перед відправкою

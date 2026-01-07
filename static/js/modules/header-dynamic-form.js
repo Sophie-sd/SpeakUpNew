@@ -1,5 +1,6 @@
 'use strict';
 
+import { validatePhone } from '../utils/form-helpers.js';
 
 /**
  * Динамічна форма в хедері
@@ -233,21 +234,10 @@ class HeaderDynamicForm {
       isValid = false;
     }
 
-    // Витягти тільки цифри з телефону
-    const phoneDigits = phone ? phone.replace(/\D/g, '') : '';
-
-    // Дозволити різні формати: +380XXXXXXXXX (12 цифр), 380XXXXXXXXX (12 цифр), 0XXXXXXXXX (10 цифр)
-    if (!phone || !phoneDigits) {
-      this.showFieldError('phone', 'Введіть номер телефону');
-      isValid = false;
-    } else if (phoneDigits.length === 10) {
-      // 0XXXXXXXXX - це нормально, додамо +380 при відправці
-      // Валідація OK
-    } else if (phoneDigits.length === 12 && phoneDigits.startsWith('380')) {
-      // 380XXXXXXXXX або +380XXXXXXXXX - це нормально
-      // Валідація OK
-    } else {
-      this.showFieldError('phone', 'Невірний формат номера');
+    // Валідація телефону (використовуємо уніфіковану функцію)
+    const phoneValidation = validatePhone(phone);
+    if (!phoneValidation.isValid) {
+      this.showFieldError('phone', phoneValidation.error);
       isValid = false;
     }
 

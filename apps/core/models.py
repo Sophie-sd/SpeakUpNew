@@ -244,7 +244,7 @@ class ConsultationRequest(BaseModel):
         message="Введіть коректний український номер телефону"
     )
     phone = models.CharField(
-        max_length=13,
+        max_length=25,
         validators=[phone_validator],
         verbose_name="Телефон"
     )
