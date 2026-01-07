@@ -31,6 +31,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'apps.core.middleware.NewsRedirectMiddleware',
+    'apps.core.middleware.WordPressBlockMiddleware',  # НОВИЙ: блокує WP шляхи з 410 Gone
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

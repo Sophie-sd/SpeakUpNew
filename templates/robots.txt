@@ -2,12 +2,23 @@ User-agent: *
 {% if debug %}
 Disallow: /
 {% else %}
+# Заборонити WordPress (сайт мігрував на Django)
+Disallow: /wp-content/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /wp-*.php
+Disallow: /xmlrpc.php
+
+# Адмін-панель Django
 Disallow: /admin/
+
+# Дозволити все інше
 Allow: /
 
+# Параметри сканування
 Crawl-delay: 1
 Clean-param: utm_source&utm_medium&utm_campaign&from
 
 Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
 {% endif %}
-

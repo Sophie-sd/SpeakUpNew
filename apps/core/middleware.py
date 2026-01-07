@@ -119,5 +119,60 @@ class NewsRedirectMiddleware:
         return response
 
 
+class WordPressBlockMiddleware:
+    """
+    Middleware для блокування WordPress шляхів з 410 Gone.
+    410 Gone каже пошуковим системам, що ресурси назавжди видалені.
+    Це прискорює видалення старих WordPress URL з індексів.
 
+    Порядок обробки:
+    1. Якщо URL починається з WordPress префіксу → 410 Gone
+    2. Якщо URL містить *.php після /wp- → 410 Gone
+    3. Інакше → дозволити подальшу обробку
+    """
+    # WordPress шляхи для блокування
+    WORDPRESS_PATHS = [
+        '/wp-content/',
+        '/wp-admin/',
+        '/wp-includes/',
+        '/wp-json/',
+        '/wp-login.php',
+        '/wp-cron.php',
+        '/xmlrpc.php',
+        '/readme.html',
+        '/license.txt',
+        '/wp-config.php',
+        '/wp-trackback.php',
+        '/wp-signup.php',
+        '/wp-activate.php',
+        '/wp-mail.php',
+        '/wp-links-opml.php',
+        '/wp-comments-post.php',
+        '/wp-settings.php',
+    ]
 
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        path = request.path
+
+        # Перевірка чи шлях починається з будь-якого WordPress префіксу
+        if any(path.startswith(wp_path) for wp_path in self.WORDPRESS_PATHS):
+            # 410 Gone - ресурс назавжди видалено
+            return HttpResponse(
+                'This WordPress resource has been permanently removed. The site now runs on Django.',
+                status=410,
+                content_type='text/plain'
+            )
+
+        # Також блокуємо загальний паттерн /wp-*.php
+        if path.startswith('/wp-') and path.endswith('.php'):
+            return HttpResponse(
+                'This WordPress resource has been permanently removed.',
+                status=410,
+                content_type='text/plain'
+            )
+
+        response = self.get_response(request)
+        return response

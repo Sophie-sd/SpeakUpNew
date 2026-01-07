@@ -127,6 +127,44 @@ REDIRECTS = {
     # ===== SHARES (спеціальні сторінки) =====
     # /shares/black-friday-znyzhky-na-onlajn-kursy-z-anglijskoji/ - це має працювати через /shares/
     # але якщо сторінка не існує, редирект на /shares/
+
+    # ===== НЕПРАВИЛЬНІ ПРЕФІКСИ МІСТ (мало бути без префіксу для UK) =====
+    '/ua/lvov': '/lvov',
+    '/ua/lvov/': '/lvov',
+    '/ua/harkov': '/harkov',
+    '/ua/harkov/': '/harkov',
+    '/ua/dnepr': '/dnepr',
+    '/ua/dnepr/': '/dnepr',
+    '/ua/odessa': '/odessa',
+    '/ua/odessa/': '/odessa',
+
+    # ===== НЕПРАВИЛЬНІ ПРЕФІКСИ ШКІЛ =====
+    '/ua/school/chervonoi-kalini': '/school/chervonoi-kalini',
+    '/ua/school/chervonoi-kalini/': '/school/chervonoi-kalini',
+    '/ua/school/minskaya': '/school/minskaya',
+    '/ua/school/minskaya/': '/school/minskaya',
+    '/ua/school/sumskaya': '/school/sumskaya',
+    '/ua/school/sumskaya/': '/school/sumskaya',
+    '/ua/school/poznyaki': '/school/poznyaki',
+    '/ua/school/poznyaki/': '/school/poznyaki',
+    '/ua/school/levoberezhnaya': '/school/levoberezhnaya',
+    '/ua/school/levoberezhnaya/': '/school/levoberezhnaya',
+    '/ua/school/universitet': '/school/universitet',
+    '/ua/school/universitet/': '/school/universitet',
+    '/ua/school/vokzalnaya': '/school/vokzalnaya',
+    '/ua/school/vokzalnaya/': '/school/vokzalnaya',
+    '/ua/school/jitomirskaya': '/school/jitomirskaya',
+    '/ua/school/jitomirskaya/': '/school/jitomirskaya',
+    '/ua/school/goloseevskaya': '/school/goloseevskaya',
+    '/ua/school/goloseevskaya/': '/school/goloseevskaya',
+    '/ua/school/monomakha': '/school/monomakha',
+    '/ua/school/monomakha/': '/school/monomakha',
+    '/ua/school/metallurgov': '/school/metallurgov',
+    '/ua/school/metallurgov/': '/school/metallurgov',
+    '/ua/school/chernovola': '/school/chernovola',
+    '/ua/school/chernovola/': '/school/chernovola',
+    '/ua/school/ekaterininskaya': '/school/ekaterininskaya',
+    '/ua/school/ekaterininskaya/': '/school/ekaterininskaya',
 }
 
 
