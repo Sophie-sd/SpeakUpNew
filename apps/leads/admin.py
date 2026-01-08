@@ -82,7 +82,7 @@ class TrialLessonAdmin(admin.ModelAdmin, UnifiedLeadAdminMixin):
 
     fieldsets = (
         ('Основна інформація', {
-            'fields': ('name', 'phone', 'created_at', 'ip_address')
+            'fields': ('name', 'phone', 'created_at')
         }),
         ('Джерело ліду', {
             'fields': ('utm_source', 'utm_medium', 'utm_campaign'),
@@ -120,7 +120,7 @@ class ConsultationRequestAdmin(admin.ModelAdmin, UnifiedLeadAdminMixin):
 
     fieldsets = (
         ('Основна інформація', {
-            'fields': ('phone', 'prefers_messenger', 'messenger_choice', 'created_at', 'ip_address')
+            'fields': ('phone', 'prefers_messenger', 'messenger_choice', 'created_at')
         }),
         ('Джерело ліду', {
             'fields': ('utm_source', 'utm_medium', 'utm_campaign'),
