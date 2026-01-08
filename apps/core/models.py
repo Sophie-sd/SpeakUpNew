@@ -274,7 +274,6 @@ class ConsultationRequest(BaseModel):
         ordering = ['-created_at']
         verbose_name = "Заявка на консультацію"
         verbose_name_plural = "Заявки на консультацію"
-        app_label = 'leads'  # Показувати в розділі "Ліди"
 
     def __str__(self):
         return f"{self.phone} - {self.created_at.strftime('%d.%m.%Y')}"

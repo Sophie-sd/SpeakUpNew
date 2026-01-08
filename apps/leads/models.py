@@ -56,8 +56,8 @@ class TrialLesson(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        verbose_name = "Заявка на пробний урок"
-        verbose_name_plural = "Заявки на пробні уроки"
+        verbose_name = "Заявка hero"
+        verbose_name_plural = "Заявки hero"
         app_label = 'leads'
 
     def __str__(self):
@@ -69,8 +69,8 @@ class ConsultationRequest(CoreConsultationRequest):
 
     class Meta:
         proxy = True
-        verbose_name = "Заявка на консультацію"
-        verbose_name_plural = "Заявки на консультацію"
+        verbose_name = "Заявка footer"
+        verbose_name_plural = "Заявки footer"
         app_label = 'leads'
 
 
