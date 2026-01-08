@@ -49,7 +49,7 @@
   background: rgba(255, 255, 255, 0.9);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  color: rgba(0, 0, 0, 0.9);
+  color: #000000;
   transition: border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
   box-sizing: border-box;
 }
@@ -58,7 +58,19 @@
   outline: none;
   border-color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.95);
+  color: #000000;
   box-shadow: 0 0 0 2px rgba(100, 149, 237, 0.3);
+}
+
+/* Виправлення autofill стилів - текст завжди чорний */
+.consultation-form .form-group__input:-webkit-autofill,
+.consultation-form .form-group__input:-webkit-autofill:hover,
+.consultation-form .form-group__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset;
+  -webkit-text-fill-color: #000000;
+  color: #000000;
+  border-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .consultation-form .form-group__input::placeholder {
@@ -83,13 +95,32 @@
 }
 
 .consultation-form__checkbox-wrapper input[type="checkbox"] {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
   accent-color: var(--color-primary);
   flex-shrink: 0;
+  border-radius: 4px;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.consultation-form__checkbox-wrapper input[type="checkbox"]:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(231, 30, 20, 0.2);
+}
+
+.consultation-form__checkbox-wrapper input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.consultation-form__checkbox-wrapper input[type="checkbox"]:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .consultation-form__checkbox-wrapper label {
@@ -256,10 +287,10 @@
   }
 
   .consultation-form__checkbox-wrapper input[type="checkbox"] {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
   }
 
   .consultation-form .button {
