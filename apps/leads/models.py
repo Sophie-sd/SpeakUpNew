@@ -72,6 +72,7 @@ class ConsultationRequest(CoreConsultationRequest):
         verbose_name = "Заявка footer"
         verbose_name_plural = "Заявки footer"
         app_label = 'leads'
+        default_permissions = ('add', 'change', 'delete', 'view')
 
 
 
