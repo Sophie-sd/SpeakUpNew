@@ -71,7 +71,9 @@
     </time>
 
     {% if article.featured_image %}
-      <img src="{{ article.featured_image.url }}" alt="{{ title }}" class="news-article__featured-image">
+      <img src="{{ article.featured_image.url }}" alt="{{ title }}" class="news-article__featured-image" loading="eager" decoding="async">
+    {% else %}
+      <img src="{% static 'img/news-placeholder.svg' %}" alt="{{ title }}" class="news-article__featured-image image-fallback" loading="eager" decoding="async">
     {% endif %}
   </header>
 
@@ -98,7 +100,5 @@
 </article>
 </div>
 {% endblock %}
-
-
 
 

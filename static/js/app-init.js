@@ -5,6 +5,7 @@ import { initRunningLine } from './modules/running-line.js';
 import { initTabSlider } from './shared/tab-slider.js';
 import programsListModule from './modules/programs-list.js';
 import { BaseAccordion } from './modules/base-accordion.js';
+import { initImageFallback } from './modules/image-fallback.js';
 
 /**
  * Автоматично визначає активне посилання в навігації на основі поточного URL
@@ -119,6 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       console.warn('[SpeakUp] No FAQ accordion containers found');
     }
+  }
+
+  // Сторінки новин - ініціалізація обробки помилок зображень
+  if (document.querySelector('.news-list-page') || document.querySelector('.news-article')) {
+    console.log('[SpeakUp] Initializing image fallback handler...');
+    initImageFallback();
   }
 });
 

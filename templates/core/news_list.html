@@ -59,7 +59,9 @@
       {% for article in page_obj %}
         <article class="news-item">
           {% if article.featured_image %}
-            <img src="{{ article.featured_image.url }}" alt="{{ article.title_uk }}" class="news-item__image">
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title_uk }}" class="news-item__image" loading="lazy" decoding="async">
+          {% else %}
+            <img src="{% static 'img/news-placeholder.svg' %}" alt="{{ article.title_uk }}" class="news-item__image image-fallback" loading="lazy" decoding="async">
           {% endif %}
 
           <div class="news-item__content">
@@ -103,7 +105,5 @@
 </main>
 </div>
 {% endblock %}
-
-
 
 
