@@ -70,6 +70,44 @@ class HealthCheckMiddleware:
         return response
 
 
+class GoogleAdsBotMiddleware:
+    """
+    Middleware для обробки запитів від Google Ads ботів.
+
+    Визначає запити від Google Ads ботів за User-Agent та передає їх
+    без редиректу SECURE_SSL_REDIRECT, щоб уникнути редирект-петель
+    або помилок 404.
+
+    Google Ads боти можуть надсилати нестандартні заголовки, які
+    викликають конфлікти з SecurityMiddleware.
+    """
+
+    # Google Ads bot User-Agent patterns
+    GOOGLE_ADS_BOT_PATTERNS: list[str] = [
+        'AdsBot-Google',
+        'Mediapartners-Google',
+        'Google-Ads-Markup-Crawler',
+        'Googlebot-Mobile',  # Mobile crawler
+    ]
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request) -> HttpResponse:
+        user_agent: str = request.META.get('HTTP_USER_AGENT', '')
+
+        # Перевіряємо чи це Google Ads бот
+        is_google_ads_bot: bool = any(
+            pattern in user_agent for pattern in self.GOOGLE_ADS_BOT_PATTERNS
+        )
+
+        # Встановлюємо атрибут на request для інших компонентів
+        request._google_ads_bot = is_google_ads_bot
+
+        response: HttpResponse = self.get_response(request)
+        return response
+
+
 class NewsRedirectMiddleware:
     """
     Middleware для автоматичних 301 редиректів зі старих news URL та інших старих URL.

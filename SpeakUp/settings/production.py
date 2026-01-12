@@ -73,4 +73,3 @@ WHITENOISE_MIMETYPES = {
     '.json': 'application/json; charset=utf-8',
     '.svg': 'image/svg+xml; charset=utf-8',
 }
-

@@ -28,6 +28,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Обслуговування статичних файлів
     'apps.core.middleware.HealthCheckMiddleware',  # Healthcheck ДО перевірки ALLOWED_HOSTS
+    'apps.core.middleware.GoogleAdsBotMiddleware',  # Обробка Google Ads ботів ДО SessionMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'apps.core.middleware.NewsRedirectMiddleware',
