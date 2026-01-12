@@ -298,10 +298,16 @@
     display: none;
   }
 
-  /* Приховати логотип на мобільних */
+  /* Виключити логотип з потоку flex на мобільних */
   .header__logo,
   .header__logo-image {
-    display: none;
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .header {

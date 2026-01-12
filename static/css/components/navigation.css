@@ -308,15 +308,6 @@
     box-sizing: border-box;
   }
 
-  .header__menu--top .header__logo {
-    height: 100%;
-    align-self: stretch;
-  }
-
-  .header__menu--top .header__logo-image {
-    height: 100%;
-  }
-
   .header__menu--top .trial-form--desktop {
     display: none;
   }
