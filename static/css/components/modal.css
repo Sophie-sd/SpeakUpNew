@@ -73,7 +73,6 @@
 
   .modal__content {
     width: 100%;
-    max-width: calc(100vw - 2 * max(var(--spacing-md), env(safe-area-inset-left, 0px)) - 2 * max(var(--spacing-md), env(safe-area-inset-right, 0px)));
     max-height: fit-content;
     overflow: hidden;
     margin: 0 auto;
@@ -166,9 +165,5 @@
     padding-bottom: var(--spacing-md);
     padding-left: max(var(--spacing-md), env(safe-area-inset-left, 0px));
     padding-right: max(var(--spacing-md), env(safe-area-inset-right, 0px));
-  }
-
-  .modal__content {
-    max-width: calc(100vw - 2 * max(var(--spacing-md), env(safe-area-inset-left, 0px)) - 2 * max(var(--spacing-md), env(safe-area-inset-right, 0px)));
   }
 }
