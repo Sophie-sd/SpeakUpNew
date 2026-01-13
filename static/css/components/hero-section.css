@@ -65,7 +65,7 @@
 /* Вимкнути деякі стилі на мобільних */
 @media (width <= 767px) {
   .hero-section__price-accent {
-    filter: brightness(1.1);
+    filter: brightness(1.1) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
   }
 }
 
