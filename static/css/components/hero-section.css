@@ -55,12 +55,12 @@
 /* Золотий текст з блистками та білим контуром для "180 грн" */
 .hero-section__price-accent {
   display: inline-block;
-  font-weight: 700;
+  font-weight: 900;
   background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 3px var(--color-white);
+  -webkit-text-stroke: 1px var(--color-white);
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   position: relative;
@@ -134,6 +134,7 @@
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+  -webkit-text-stroke: 0.4px var(--color-white);
 }
 
 .hero-section__header p {
@@ -286,7 +287,7 @@
   }
 
   .hero-section__price-accent {
-    font-size: clamp(3.5rem, 5vw, 2em);
+    font-size: clamp(2.5rem, 5vw, 2em);
   }
 
   /* На мобільних дозволяємо перенос заголовка форми */
