@@ -37,11 +37,6 @@
     0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Виключити тіні з золотого акценту, щоб не конфліктувало з градієнтом */
-.hero-section__header h1 .hero-section__price-accent {
-  text-shadow: none;
-}
-
 /* Загальний клас для червоних акцентів */
 .text-accent {
   display: inline-block;
@@ -74,11 +69,15 @@
   }
 }
 
-/* Золотий акцент для "БЕЗКОШТОВНО" */
+/* Золотий акцент для "БЕЗКОШТОВНО" з градієнтом */
 .hero-section__free-accent {
   display: inline-block;
-  color: #FFD700;
-  font-weight: 700;
+  font-weight: 900;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4), 0 9px 18px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .hero-section__header p {
