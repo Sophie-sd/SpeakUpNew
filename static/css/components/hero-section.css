@@ -48,18 +48,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Золотий текст для "180 грн" */
-.hero-section__price-accent {
-  display: inline-block;
-  font-weight: 900;
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
-}
-
-/* Золотий акцент для "БЕЗКОШТОВНО" з градієнтом */
+/* Спільні стилі для золотистих акцентів "180 грн" та "БЕЗКОШТОВНО" */
+.hero-section__price-accent,
 .hero-section__free-accent {
   display: inline-block;
   font-weight: 900;
@@ -67,7 +57,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
 }
 
 .hero-section__header p {
@@ -216,7 +206,6 @@
 
   .hero-section__price-accent {
     font-size: clamp(3.5rem, 5vw, 2em);
-    filter: brightness(1.1) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
   }
 
   /* На мобільних дозволяємо перенос заголовка форми */
