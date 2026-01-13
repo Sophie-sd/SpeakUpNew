@@ -29,6 +29,7 @@
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-white);
+  margin-bottom: 0.5rem;
   text-shadow:
     0 3px 6px rgba(0, 0, 0, 0.5),
     0 6px 12px rgba(0, 0, 0, 0.4),
@@ -52,72 +53,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Золотий текст з блистками для "180 грн" */
+/* Золотий текст для "180 грн" */
 .hero-section__price-accent {
   display: inline-block;
   font-weight: 900;
-  color: #FFD700;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   position: relative;
-
-  /* Анімація на opacity замість filter для краще продуктивності */
-  animation: glitter-glow 3s ease-in-out infinite;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4), 0 9px 18px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Glow ефект через ::after (заміст filter) */
-.hero-section__price-accent::after {
-  content: '';
-  position: absolute;
-  inset: -8px -5px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 215, 0, 0.3) 0%,
-    rgba(255, 165, 0, 0.15) 30%,
-    transparent 70%
-  );
-  border-radius: inherit;
-  opacity: 0;
-  pointer-events: none;
-  animation: glitter-glow-opacity 3s ease-in-out infinite;
-  z-index: -1;
-}
-
-/* Оптимізована анімація: тільки opacity, без filter */
-@keyframes glitter-glow {
-  0%, 100% {
-    text-shadow: 0 0 0 rgba(255, 215, 0, 0);
-  }
-
-  50% {
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-  }
-}
-
-@keyframes glitter-glow-opacity {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-/* Вимкнути анімацію на мобільних для продуктивності */
+/* Вимкнути деякі стилі на мобільних */
 @media (width <= 767px) {
   .hero-section__price-accent {
-    animation: none;
     filter: brightness(1.1);
-  }
-}
-
-/* Вимкнути анімацію при prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .hero-section__price-accent {
-    animation: none;
   }
 }
 
@@ -191,7 +144,8 @@
 
 .hero-section__form-title {
   margin: 0 0 1.5rem 0;
-  font-size: clamp(1rem, 2.2vw, 1.375rem);
+  margin-top: 2rem;
+  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
   font-weight: 600;
   color: var(--color-white);
   text-align: center;
