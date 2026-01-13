@@ -49,11 +49,11 @@
 
 .header__menu--top .header__logo {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  height: 100%;
-  align-self: stretch;
+  height: auto;
+  align-self: center;
 }
 
 .header__menu--top .header__logo-image {
@@ -256,7 +256,7 @@
     margin: 0 auto;
 
     /* Кнопка Student Zone на десктопі - висота 1в1 з навігацією */
-    align-items: stretch;
+    align-items: center;
   }
 
   .header {
@@ -267,7 +267,7 @@
   }
 
   .header__student-zone {
-    align-self: stretch;
+    align-self: center;
     height: 100%;
     width: 8.2%;
     aspect-ratio: 1 / 1;
@@ -314,7 +314,7 @@
     position: fixed;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
     gap: 0;
     height: auto;
@@ -361,8 +361,8 @@
   .header-wrapper .header__student-zone {
     display: flex;
     flex-shrink: 0;
-    align-self: stretch;
-    height: 100%;
+    align-self: center;
+    height: auto;
     width: auto;
     aspect-ratio: 1 / 1;
     min-width: 4.7rem;
