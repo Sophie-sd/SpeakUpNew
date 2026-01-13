@@ -85,7 +85,7 @@
 
   .hero-section__header p {
     /* Адаптивний розмір для параграфа */
-    font-size: clamp(0.875rem, 3vw, 1.125rem); /* 14-18px на мобільних */
+    font-size: clamp(1rem, 3vw, 1.125rem); /* 14-18px на мобільних */
     line-height: 1.5;
 
     /* Додаємо margin для spacing */
@@ -207,6 +207,7 @@
   /* На мобільних дозволяємо перенос заголовка форми */
   .hero-section__form-title {
     white-space: normal;
+    margin-top: 0;
   }
 }
 
