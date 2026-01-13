@@ -59,7 +59,7 @@
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   position: relative;
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4), 0 9px 18px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
 }
 
 /* Вимкнути деякі стилі на мобільних */
@@ -77,7 +77,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4), 0 9px 18px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 9px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
 }
 
 .hero-section__header p {
