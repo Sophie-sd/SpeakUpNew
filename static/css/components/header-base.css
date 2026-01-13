@@ -363,7 +363,7 @@
     display: flex;
     flex-shrink: 0;
     align-self: center;
-    height: auto;
+    height: 4rem;
     width: auto;
     aspect-ratio: 1 / 1;
     min-width: 3.5rem;
