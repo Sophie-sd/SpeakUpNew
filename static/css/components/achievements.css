@@ -3,6 +3,7 @@
    ========================================================================== */
 
 .achievements {
+  box-sizing: border-box;
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
   contain: layout style paint;
@@ -105,9 +106,12 @@
 /* Мобільна версія - 2 в ряд */
 @media (width <= 767px) {
   .achievements {
-    padding: var(--section-padding-mobile);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+    padding: 1rem;
     margin-bottom: var(--section-spacing-mobile);
-    max-width: var(--content-width-mobile);
+    overflow-x: hidden;
   }
 
   .achievements .section-title {
@@ -120,6 +124,9 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
   }
 
   /* Переупорядкування елементів у 2 стовпчики */
@@ -141,10 +148,12 @@
 
   .achievement-card:nth-child(5) {
     order: 3; /* 100+ шкіл */
+    grid-column: auto;
   }
 
   .achievement-card:nth-child(6) {
     order: 6; /* 500000+ студентів */
+    grid-column: auto;
   }
 
   .achievement-card {
