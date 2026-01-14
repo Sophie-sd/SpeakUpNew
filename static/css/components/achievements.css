@@ -109,8 +109,8 @@
 
 .achievements__cta .button {
   position: absolute;
-  bottom: 45px;
-  right: 95px;
+  bottom: 70px;
+  right: 150px;
   z-index: 10;
 }
 
@@ -139,7 +139,7 @@
     -webkit-grid-gap: 1rem;
     grid-gap: 1rem;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
     max-width: 100%;
     -webkit-justify-content: center;
@@ -207,7 +207,7 @@
   }
 
   .achievements__cta {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
     position: relative;
     width: 100%;
     max-width: 420px;
