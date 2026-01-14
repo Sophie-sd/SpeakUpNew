@@ -3,7 +3,6 @@
    ========================================================================== */
 
 .achievements {
-  box-sizing: border-box;
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
   contain: layout style paint;
