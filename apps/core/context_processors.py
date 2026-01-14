@@ -35,8 +35,15 @@ def seo_context(request):
     default_og_image_path = getattr(settings, 'DEFAULT_OG_IMAGE', '/static/img/logoBase.png')
     default_og_image = request.build_absolute_uri(default_og_image_path)
 
+    # Отримати основний домен для robots.txt (заповнено з env або settings)
+    canonical_domain = getattr(settings, 'CANONICAL_DOMAIN', '')
+    if not canonical_domain:
+        # Fallback на основний хост без порту
+        canonical_domain = f"{request.scheme}://{request.get_host().split(':')[0]}"
+
     result = {
         'canonical_url': canonical_url,
+        'canonical_domain': canonical_domain,
         'hreflang_urls': hreflang_urls,
         'current_language': current_lang,
         'default_og_image': default_og_image,

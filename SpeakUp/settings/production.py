@@ -63,6 +63,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 
+# SEO: Canonical domain для robots.txt та інших цілей
+# Повинна бути встановлена в .env або використовується перший ALLOWED_HOST
+CANONICAL_DOMAIN = os.getenv('CANONICAL_DOMAIN', '')
+if not CANONICAL_DOMAIN and ALLOWED_HOSTS and ALLOWED_HOSTS[0] != '*':
+    CANONICAL_DOMAIN = f"https://{ALLOWED_HOSTS[0]}"
+
 # WhiteNoise configuration for static files (БЕЗ кешування)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_BROTLI_ENABLED = True

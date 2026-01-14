@@ -18,3 +18,5 @@ DATABASES = {
 # Email backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# SEO: Canonical domain для robots.txt (в розробці)
+CANONICAL_DOMAIN = os.getenv('CANONICAL_DOMAIN', 'http://localhost:8000')

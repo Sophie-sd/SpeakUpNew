@@ -16,9 +16,18 @@ Disallow: /admin/
 # Дозволити все інше
 Allow: /
 
-# Параметри сканування
-Crawl-delay: 1
-Clean-param: utm_source&utm_medium&utm_campaign&from
+# Параметри для сканування (Google ігнорує Crawl-delay, але інші пошукові системи його додержуються)
+# Встановлюємо на 0, щоб дозволити швидке сканування
+Crawl-delay: 0
+Request-rate: 30/1s
 
-Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
+# Очистити параметри UTM і інші параметри, які не впливають на контент
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&from&fbclid&gclid
+
+# Sitemap URL (використовуємо основний домен з settings)
+{% if canonical_domain %}
+Sitemap: {{ canonical_domain }}/sitemap.xml
+{% else %}
+Sitemap: https://speak-up.com.ua/sitemap.xml
+{% endif %}
 {% endif %}
