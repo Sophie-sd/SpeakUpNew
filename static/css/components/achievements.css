@@ -17,11 +17,9 @@
 
 .achievements .section-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
   white-space: nowrap;
-  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Grid з 2 рядками: 4 в першому, 2 по центру в другому */
@@ -29,8 +27,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, auto);
-  gap: 2rem;
-  margin: 0 auto 3rem;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin: 0 auto clamp(2rem, 3vw, 3rem);
   align-items: center;
 }
 
@@ -50,7 +48,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1.5rem 0.75rem;
+  padding: clamp(1rem, 1.5vw, 1.5rem) clamp(0.5rem, 1vw, 0.75rem);
 }
 
 /* Об'ємні цифри з товстими тінями - менші для 4 в ряд */
@@ -59,7 +57,7 @@
   font-weight: 900;
   color: #ffffff;
   display: block;
-  margin-bottom: 0.875rem;
+  margin-bottom: clamp(0.5rem, 0.875vw, 0.875rem);
   line-height: 1;
   letter-spacing: -0.03em;
   text-shadow:
@@ -68,8 +66,6 @@
     0 9px 18px rgba(0, 0, 0, 0.3),
     0 12px 24px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Текст під цифрами - більш виразний, менший для 4 в ряд, фіксована висота для вирівнювання */
@@ -92,8 +88,8 @@
 
 /* Кнопка CTA */
 .achievements__cta {
+  position: relative;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: var(--spacing-xl);
@@ -101,7 +97,6 @@
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  gap: 1rem;
 }
 
 .achievements__cta-image {
@@ -109,14 +104,15 @@
   width: 100%;
   height: auto;
   object-fit: contain;
+  flex-shrink: 0;
   display: block;
-  margin: 0 auto;
 }
 
 .achievements__cta .button {
+  position: absolute;
+  bottom: clamp(20px, 8vw, 70px);
+  right: clamp(30px, 12vw, 150px);
   z-index: 10;
-  padding: 0.75rem 2rem;
-  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 /* Мобільна версія - 2 в ряд */
@@ -132,10 +128,10 @@
   }
 
   .achievements .section-title {
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
     margin-top: 0px;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     white-space: nowrap;
-    font-size: clamp(0.65rem, 3vw, 1.6rem);
   }
 
   .achievements__grid {
@@ -143,10 +139,10 @@
     display: grid;
     -webkit-grid-template-columns: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    -webkit-grid-gap: 1rem;
-    grid-gap: 1rem;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    -webkit-grid-gap: clamp(0.75rem, 1.5vw, 1rem);
+    grid-gap: clamp(0.75rem, 1.5vw, 1rem);
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
     width: 100%;
     max-width: 100%;
     -webkit-justify-content: center;
@@ -181,7 +177,7 @@
   }
 
   .achievement-card {
-    padding: 1rem 0.5rem;
+    padding: clamp(0.75rem, 1.2vw, 1rem) clamp(0.4rem, 0.8vw, 0.5rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,12 +187,10 @@
   }
 
   .achievement-card__number {
-    font-size: clamp(1.2rem, 6vw, 2rem);
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
     font-weight: 900;
-    margin-bottom: 0.5rem;
+    margin-bottom: clamp(0.4rem, 0.6vw, 0.5rem);
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-shadow:
       0 2px 4px rgba(0, 0, 0, 0.5),
       0 4px 8px rgba(0, 0, 0, 0.4),
@@ -216,13 +210,12 @@
   }
 
   .achievements__cta {
-    margin-top: var(--spacing-sm);
+    margin-top: clamp(var(--spacing-sm), 2vw, var(--spacing-xl));
+    position: relative;
     width: 100%;
     max-width: 420px;
     margin-left: auto;
     margin-right: auto;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   .achievements__cta-image {
@@ -234,9 +227,10 @@
   }
 
   .achievements__cta .button {
+    position: absolute;
+    bottom: clamp(15px, 4vw, 25px);
+    right: clamp(20px, 5vw, 35px);
     z-index: 10;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
   }
 }
 
@@ -244,19 +238,16 @@
 @media (width <= 1024px) {
   .achievements__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
   }
 
   .achievement-card {
-    padding: 1.5rem 1rem;
+    padding: clamp(1rem, 1.5vw, 1.5rem) clamp(0.75rem, 1vw, 1rem);
   }
 
   .achievement-card__number {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    margin-bottom: 0.875rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: clamp(2.0rem, 5vw, 3rem);
+    margin-bottom: clamp(0.7rem, 1vw, 0.875rem);
   }
 
   .achievement-card__label {
@@ -273,12 +264,11 @@
   }
 
   .achievements__cta {
+    position: relative;
     width: 100%;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   .achievements__cta-image {
@@ -290,9 +280,10 @@
   }
 
   .achievements__cta .button {
+    position: absolute;
+    bottom: clamp(20px, 5vw, 30px);
+    right: clamp(30px, 8vw, 45px);
     z-index: 10;
-    padding: 0.75rem 2rem;
-    font-size: clamp(0.875rem, 2vw, 1rem);
   }
 }
 
