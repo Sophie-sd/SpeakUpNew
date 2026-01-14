@@ -229,7 +229,7 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.5;
   color: var(--color-white);
-  background-color: transparent; /* На десктопі прозорий, щоб видно був паралакс-фон */
+  background-color: transparent; /* Прозорий фон для відображення паралаксу на десктопі */
 
   /* Rule 32: overscroll-behavior */
   overscroll-behavior: none;
@@ -257,10 +257,10 @@ body {
   height: auto;
 }
 
-/* На мобільних встановлюємо темний фон для запобігання білим смугам при overscroll */
+/* На мобільних робимо body прозорим, щоб фонове зображення було видиме */
 @media (width <= 767px) {
   body {
-    background-color: var(--color-bg-parallax);
+    background-color: transparent;
   }
 }
 
