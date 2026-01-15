@@ -82,6 +82,7 @@ export class BaseCarousel {
   handleTouchStart(e) {
     this.touchStartX = e.touches[0].clientX;
     this.touchStartY = e.touches[0].clientY;
+    this.isTouchActive = true;
   }
 
   handleTouchMove(e) {
@@ -93,18 +94,39 @@ export class BaseCarousel {
     const diffX = Math.abs(touchX - this.touchStartX);
     const diffY = Math.abs(touchY - this.touchStartY);
 
-    // Якщо вертикальний скрол переважає - не блокуємо
-    if (diffY > diffX) {
+    // Порог для визначення напрямку скролу (потрібен деякий рух перш ніж визначимо)
+    const threshold = 10;
+
+    // Якщо вертикальний скрол переважає - припиняємо відслідковування горизонтального жесту
+    // Це дозволить браузеру обробити вертикальний скрол правильно
+    if (diffY > threshold && diffY > diffX) {
+      this.isTouchActive = false;
       return;
     }
   }
 
   handleTouchEnd(e) {
-    if (!this.touchStartX) return;
+    if (!this.touchStartX || !this.isTouchActive) {
+      this.touchStartX = null;
+      this.touchStartY = null;
+      this.isTouchActive = false;
+      return;
+    }
 
     const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
     const diffX = this.touchStartX - touchEndX;
+    const diffY = Math.abs(touchEndY - this.touchStartY);
     const threshold = 50; // Мінімальна відстань для swipe
+    const verticalThreshold = 20; // Мінімальна вертикальна відстань для скролу
+
+    // Якщо був помітний вертикальний рух - не робимо swipe
+    if (diffY > verticalThreshold) {
+      this.touchStartX = null;
+      this.touchStartY = null;
+      this.isTouchActive = false;
+      return;
+    }
 
     if (Math.abs(diffX) > threshold) {
       if (diffX > 0) {
@@ -116,6 +138,7 @@ export class BaseCarousel {
 
     this.touchStartX = null;
     this.touchStartY = null;
+    this.isTouchActive = false;
   }
 
   handleKeyDown(e) {

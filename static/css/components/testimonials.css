@@ -16,11 +16,17 @@
 .testimonials-carousel-wrapper {
   position: relative;
   margin: 0 auto var(--spacing-xl);
+  /* Дозволяємо вертикальний скрол через wrapper для iOS Safari */
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .testimonials-carousel {
   margin: 0 auto;
   padding: var(--spacing-md) 0;
+  /* Явно визначаємо touch-action для горизонтального скролу каруселі */
+  touch-action: pan-x;
 }
 
 .testimonial-card {
@@ -168,6 +174,12 @@
   transform: none;
 }
 
+/* Центрування кнопки на всіх пристроях */
+#testimonial-modal-trigger {
+  display: block;
+  margin: 0 auto;
+}
+
 /* Десктоп: горизонтальна карусель з кнопками навігації */
 @media (width >= 768px) {
   .testimonials-carousel-wrapper {
@@ -213,6 +225,15 @@
     overflow-x: hidden;
   }
 
+  /* Зменшення заголовка для мобільних */
+  .testimonials-section .section-title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .testimonials-carousel {
     display: flex;
     scroll-snap-type: x mandatory;
@@ -227,6 +248,12 @@
 
   .testimonials-carousel-nav {
     display: none;
+  }
+
+  /* Центрування кнопки на мобільних */
+  #testimonial-modal-trigger {
+    display: block;
+    margin: 0 auto;
   }
 }
 
