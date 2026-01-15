@@ -133,17 +133,17 @@
 }
 
 .pricing-section .pricing-accordion__badge--premium {
-  background: rgba(255, 193, 7, 0.8);
+  background: rgba(255, 193, 7, 1);
   color: rgba(0, 0, 0, 0.9);
 }
 
 .pricing-section .pricing-accordion__badge--sale {
-  background: rgba(76, 175, 80, 0.8);
+  background: rgba(76, 175, 80, 1);
   color: rgba(255, 255, 255, 0.95);
 }
 
 .pricing-section .pricing-accordion__badge:not(.pricing-accordion__badge--premium, .pricing-accordion__badge--sale) {
-  background: rgba(100, 149, 237, 0.8);
+  background: rgba(100, 149, 237, 1);
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -169,6 +169,10 @@
   transition: max-height 0.3s ease, padding 0.3s ease;
   position: relative;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .pricing-section .pricing-accordion__item.accordion-item--open .pricing-accordion__content {
@@ -365,6 +369,10 @@
     overflow-x: hidden;
   }
 
+  .pricing-section .pricing-grid {
+    gap: 0;
+  }
+
   .pricing-section .section-title {
     font-size: clamp(1.5rem, 3.5vw, 2.2rem);
     margin-bottom: var(--spacing-lg);
@@ -377,16 +385,19 @@
   }
 
   .pricing-section .pricing-accordion {
-    gap: 0;
+    gap: var(--spacing-xs);
   }
 
   .pricing-section .pricing-accordion__item {
-    margin-bottom: -1px;
+    margin-bottom: 0;
   }
 
   .pricing-section .pricing-accordion__header {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.75rem; /* 12px */
+    min-height: 48px;
+    display: flex;
+    align-items: center;
   }
 
   .pricing-section .pricing-accordion__title {
