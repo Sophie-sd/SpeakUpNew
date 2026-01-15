@@ -104,6 +104,9 @@
   color: var(--color-white);
   font-family: var(--font-family-base);
   text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Fallback для старих браузерів без підтримки aspect-ratio (iOS Safari < 15) */
@@ -237,6 +240,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .header__expand-btn svg,
@@ -304,7 +310,10 @@
     aspect-ratio: 1 / 1;
     padding: 0;
     border-radius: 50%;
-    margin-left: calc(-1 * var(--menu-spacing-xs));
+    margin-left: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .header__expand-btn svg,
@@ -358,7 +367,7 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    overflow: hidden;
+    overflow: visible;
     margin: 0;
     padding: var(--spacing-sm) var(--spacing-md);
     box-shadow: none;
@@ -375,7 +384,8 @@
     display: flex;
     flex-shrink: 0;
     align-self: center;
-    width: clamp(3rem, 8vw, 4rem);
+    width: 60px;
+    height: 60px;
     border-width: calc(8px * var(--menu-scale));
     padding: calc(3px * var(--menu-scale));
     box-sizing: border-box;
@@ -388,7 +398,7 @@
   /* Fallback для старих браузерів */
   @supports not (aspect-ratio: 1 / 1) {
     .header-wrapper .header__student-zone {
-      height: clamp(3rem, 8vw, 4rem);
+      height: 60px;
     }
   }
 }
