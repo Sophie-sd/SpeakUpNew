@@ -52,12 +52,13 @@
 }
 
 .pricing-section .pricing-accordion__item {
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.5);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 }
 
 /* Варіанти */
@@ -84,19 +85,20 @@
   align-items: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-sm) var(--spacing-md);
+  padding-left: var(--spacing-md);
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   transition: background-color 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .pricing-section .pricing-accordion__header:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -116,12 +118,18 @@
 .pricing-section .pricing-accordion__badge {
   font-size: 0.5625rem; /* 9px */
   font-weight: 600;
-  padding: 3px 6px;
-  border-radius: 3px;
+  padding: 6px 10px;
+  border-radius: 2px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   flex-shrink: 0;
   white-space: nowrap;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: rotate(-8deg);
 }
 
 .pricing-section .pricing-accordion__badge--premium {
@@ -159,6 +167,8 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .pricing-section .pricing-accordion__item.accordion-item--open .pricing-accordion__content {
@@ -175,14 +185,14 @@
 
 .pricing-section .pricing-content__desc {
   font-size: var(--font-size-sm);
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
 }
 
 .pricing-section .pricing-content__subtitle {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   margin-top: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
 }
@@ -199,7 +209,7 @@
 
 .pricing-section .pricing-content__list li {
   font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   padding-left: var(--spacing-sm);
   position: relative;
   line-height: 1.5;
@@ -216,7 +226,7 @@
 
 .pricing-section .pricing-content__note {
   font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.4;
   margin-top: var(--spacing-xs);
 }
@@ -224,10 +234,10 @@
 /* Тривалість */
 .pricing-section .pricing-content__duration {
   font-size: var(--font-size-sm);
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   padding: var(--spacing-xs) 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Гарантія */
@@ -246,7 +256,7 @@
   gap: var(--spacing-xs);
   margin-top: var(--spacing-xs);
   padding-top: var(--spacing-xs);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pricing-section .pricing-price {
@@ -274,7 +284,7 @@
 
 .pricing-section .pricing-price__label {
   font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
 }
 
@@ -292,7 +302,7 @@
 
 .pricing-section .pricing-price__old {
   font-size: var(--font-size-xs);
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: line-through;
   margin-left: var(--spacing-xs);
   flex-shrink: 0;
@@ -312,22 +322,22 @@
 }
 
 .pricing-section .pricing-table thead {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pricing-section .pricing-table th {
   padding: 6px 8px;
   text-align: left;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.625rem; /* 10px */
   white-space: nowrap;
 }
 
 .pricing-section .pricing-table td {
   padding: 6px 8px;
-  color: rgba(0, 0, 0, 0.8);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.6875rem; /* 11px */
   white-space: nowrap;
 }
@@ -355,6 +365,11 @@
     overflow-x: hidden;
   }
 
+  .pricing-section .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    margin-bottom: var(--spacing-lg);
+  }
+
   .pricing-section .pricing-column__title {
     font-size: clamp(1.25rem, 4vw, 1.75rem);
     margin-bottom: var(--spacing-md);
@@ -362,7 +377,11 @@
   }
 
   .pricing-section .pricing-accordion {
-    gap: var(--spacing-xs);
+    gap: 0;
+  }
+
+  .pricing-section .pricing-accordion__item {
+    margin-bottom: -1px;
   }
 
   .pricing-section .pricing-accordion__header {
@@ -375,8 +394,10 @@
   }
 
   .pricing-section .pricing-accordion__badge {
-    font-size: 0.5rem; /* 8px */
-    padding: 2px 4px;
+    font-size: 0.45rem; /* 7px */
+    padding: 4px 8px;
+    top: -6px;
+    left: -6px;
   }
 
   .pricing-section .pricing-accordion__icon {
