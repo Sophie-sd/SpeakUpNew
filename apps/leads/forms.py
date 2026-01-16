@@ -27,8 +27,10 @@ class TrialLessonForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'placeholder': "Ім'я",
                 'class': 'form-group__input',
+                'autocomplete': 'given-name',
             }),
             'phone': forms.TextInput(attrs={
+                'value': '+38',
                 'placeholder': 'Введіть номер телефону',
                 'class': 'form-group__input',
                 'type': 'tel',

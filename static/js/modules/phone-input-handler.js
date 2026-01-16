@@ -20,10 +20,13 @@ class PhoneInputHandler {
   }
 
   init() {
-    // ЗАВЖДИ встановлювати +38 при ініціалізації
-    if (!this.input.value || this.input.value.length < 3) {
+    // ЗАВЖДИ встановлювати +38
+    if (!this.input.value || !this.input.value.startsWith('+38')) {
       this.input.value = this.prefix;
     }
+
+    // Зберігати оригінальне значення для submit
+    this.updateRawValue();
 
     // Events (в правильному порядку!)
     this.input.addEventListener('focus', this.handleFocus.bind(this));
@@ -33,6 +36,17 @@ class PhoneInputHandler {
     this.input.addEventListener('paste', this.handlePaste.bind(this));
     this.input.addEventListener('change', this.handleChange.bind(this)); // для autofill
     this.input.addEventListener('blur', this.handleBlur.bind(this)); // Додано blur
+  }
+
+  updateRawValue() {
+    // Зберігати +380XXXXXXXXX для submit в data-атрибут
+    const value = this.input.value;
+    const digits = value.replace(/\D/g, '').substring(2); // Видалити +38
+    if (digits.length === 10 && digits[0] === '0') {
+      this.input.dataset.rawValue = '+380' + digits.substring(1);
+    } else {
+      this.input.dataset.rawValue = this.prefix;
+    }
   }
 
   handleFocus(e) {
@@ -89,24 +103,39 @@ class PhoneInputHandler {
 
   handleKeydown(e) {
     const pos = this.input.selectionStart;
+    const value = this.input.value;
 
-    // Backspace/Delete на позиції префіксу — заборонити
-    if ((e.key === 'Backspace' && pos <= this.prefix.length) ||
-        (e.key === 'Delete' && pos < this.prefix.length)) {
+    // Заборонити видалення +38 (перші 3 символи)
+    // Backspace на позиції <= 3
+    if (e.key === 'Backspace' && pos <= 3) {
+      e.preventDefault();
+      return;
+    }
+
+    // Delete на позиції < 3
+    if (e.key === 'Delete' && pos < 3) {
       e.preventDefault();
       return;
     }
 
     // Arrow Left — не дозволити вийти за межи префіксу
-    if (e.key === 'ArrowLeft' && pos <= this.prefix.length) {
+    if (e.key === 'ArrowLeft' && pos <= 3) {
       e.preventDefault();
+      this.setCursorPosition();
       return;
     }
 
-    // Home — переміщує на початок префіксу
+    // Home — переміщує на початок префіксу (після +38)
     if (e.key === 'Home') {
       e.preventDefault();
       this.setCursorPosition();
+      return;
+    }
+
+    // Ctrl+A потім Delete/Backspace - запобігти видаленню +38
+    if ((e.key === 'Delete' || e.key === 'Backspace') &&
+        (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
       return;
     }
   }
@@ -114,14 +143,17 @@ class PhoneInputHandler {
   handleInput(e) {
     let value = this.input.value;
 
+    // ЗАВЖДИ переконатися що +38 на місці
+    if (!value.startsWith('+38')) {
+      value = this.prefix;
+    }
+
     // Видалити все крім цифр та +
     let cleaned = value.replace(/[^\d+]/g, '');
 
-    // ЗАВЖДИ переконатися що починається з +38
+    // ЗАВЖДИ +38 на початку
     if (!cleaned.startsWith('+38')) {
-      // Якщо користувач спробував видалити +38, повертаємо його
-      const digitsOnly = cleaned.replace(/\+/g, '');
-      cleaned = this.prefix + digitsOnly;
+      cleaned = this.prefix + cleaned.replace(/^\+?\d*/, '');
     }
 
     // Якщо довжина менше 3 символів (+38), встановити мінімум +38
@@ -130,18 +162,27 @@ class PhoneInputHandler {
     }
 
     // Витягти цифри після +38
-    const digitsAfterPrefix = cleaned.substring(3);
+    let digits = cleaned.substring(3);
 
-    // ВАЖЛИВА ПЕРЕВІРКА: перша цифра після +38 має бути 0
-    if (digitsAfterPrefix.length > 0 && digitsAfterPrefix[0] !== '0') {
-      // Якщо перша цифра не 0, видаляємо її або замінюємо
-      cleaned = this.prefix;
+    // ВАЖЛИВА ПЕРЕВІРКА: перша цифра має бути 0
+    if (digits.length > 0 && digits[0] !== '0') {
+      // Якщо перша цифра не 0, видаляємо її
+      digits = digits.substring(1);
     }
 
-    // Обмежити довжину до 13 символів (+38 + 10 цифр)
-    if (cleaned.length > this.maxLength) {
-      cleaned = cleaned.substring(0, this.maxLength);
+    // Якщо потрібна перша цифра 0 і її немає, добавляємо
+    if (digits.length > 0 && digits[0] !== '0') {
+      // Ніколи це не повинно трапитися, але на всяк випадок
+      digits = '0' + digits;
     }
+
+    // Обмежити до 10 цифр (0 + 9)
+    if (digits.length > 10) {
+      digits = digits.substring(0, 10);
+    }
+
+    // Зібрати фінальне значення
+    cleaned = this.prefix + digits;
 
     // Форматування для відображення: +38(0XX)XXX-XX-XX
     const formatted = this.formatPhoneForDisplay(cleaned);
@@ -150,6 +191,9 @@ class PhoneInputHandler {
     if (formatted !== value) {
       this.input.value = formatted;
     }
+
+    // Оновити raw value для submit
+    this.updateRawValue();
 
     // Курсор в кінець
     this.input.setSelectionRange(formatted.length, formatted.length);

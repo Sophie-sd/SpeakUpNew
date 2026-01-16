@@ -51,8 +51,10 @@ class ConsultationForm(forms.ModelForm):
                 'placeholder': "Ваше ім'я",
                 'class': 'form-group__input',
                 'required': False,
+                'autocomplete': 'given-name',
             }),
             'phone': forms.TextInput(attrs={
+                'value': '+38',
                 'placeholder': 'Введіть номер телефону',
                 'class': 'form-group__input',
                 'type': 'tel',
@@ -104,6 +106,7 @@ class CorporateConsultationForm(forms.ModelForm):
                 'placeholder': "Ваше ім'я",
                 'class': 'form-group__input',
                 'required': False,
+                'autocomplete': 'given-name',
             }),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'Електронна адреса',
@@ -112,6 +115,7 @@ class CorporateConsultationForm(forms.ModelForm):
                 'autocomplete': 'email',
             }),
             'phone': forms.TextInput(attrs={
+                'value': '+38',
                 'placeholder': 'Введіть номер телефону',
                 'class': 'form-group__input',
                 'type': 'tel',
