@@ -27,7 +27,6 @@ class TrialLessonForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'placeholder': "Ім'я",
                 'class': 'form-group__input',
-                'required': True,
             }),
             'phone': forms.TextInput(attrs={
                 'placeholder': '+38 (0XX) XXX XX XX',
@@ -40,7 +39,7 @@ class TrialLessonForm(forms.ModelForm):
         }
 
     def clean_name(self):
-        """Валідація імені: мінімум 2 символи"""
+        """Валідація імені: якщо введено, то мінімум 2 символи"""
         name = self.cleaned_data.get('name', '').strip()
         if name and len(name) < 2:
             raise forms.ValidationError("Ім'я має містити мінімум 2 символи")

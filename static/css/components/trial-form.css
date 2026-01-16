@@ -56,6 +56,26 @@
   opacity: 1;
 }
 
+/* Autofill стилі для header-mobile форми */
+.trial-form--header-mobile .form-group__input:-webkit-autofill,
+.trial-form--header-mobile input[type="text"]:-webkit-autofill,
+.trial-form--header-mobile input[type="tel"]:-webkit-autofill,
+.trial-form--header-mobile .form-group input:-webkit-autofill,
+.trial-form--header-mobile .form-group__input:-webkit-autofill:hover,
+.trial-form--header-mobile input[type="text"]:-webkit-autofill:hover,
+.trial-form--header-mobile input[type="tel"]:-webkit-autofill:hover,
+.trial-form--header-mobile .form-group input:-webkit-autofill:hover,
+.trial-form--header-mobile .form-group__input:-webkit-autofill:focus,
+.trial-form--header-mobile input[type="text"]:-webkit-autofill:focus,
+.trial-form--header-mobile input[type="tel"]:-webkit-autofill:focus,
+.trial-form--header-mobile .form-group input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-white) inset;
+  -webkit-text-fill-color: var(--color-black);
+  color: var(--color-black);
+  border-color: var(--color-white);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .trial-form--header-mobile .button--primary {
   min-height: 44px;
   padding: 0.75rem 1.5rem;
@@ -122,6 +142,26 @@
 .trial-form--hero .form-group input::placeholder {
   color: var(--input-placeholder-color);
   opacity: 1;
+}
+
+/* Autofill стилі для hero форми */
+.trial-form--hero .form-group input:-webkit-autofill,
+.trial-form--hero .form-group input[type="text"]:-webkit-autofill,
+.trial-form--hero .form-group input[type="tel"]:-webkit-autofill,
+.trial-form--hero .form-group input.form-group__input:-webkit-autofill,
+.trial-form--hero .form-group input:-webkit-autofill:hover,
+.trial-form--hero .form-group input[type="text"]:-webkit-autofill:hover,
+.trial-form--hero .form-group input[type="tel"]:-webkit-autofill:hover,
+.trial-form--hero .form-group input.form-group__input:-webkit-autofill:hover,
+.trial-form--hero .form-group input:-webkit-autofill:focus,
+.trial-form--hero .form-group input[type="text"]:-webkit-autofill:focus,
+.trial-form--hero .form-group input[type="tel"]:-webkit-autofill:focus,
+.trial-form--hero .form-group input.form-group__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.9) inset;
+  -webkit-text-fill-color: var(--color-black);
+  color: var(--color-black);
+  border-color: rgba(255, 255, 255, 1);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .trial-form--hero .button {

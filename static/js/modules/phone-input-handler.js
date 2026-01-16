@@ -41,6 +41,13 @@ class PhoneInputHandler {
     // 2. Встановити значення якщо порожнє
     if (!this.input.value) {
       this.input.value = this.prefix;
+    } else {
+      // Форматувати значення якщо воно не форматоване
+      const normalized = this.normalizePhoneNumber(this.input.value);
+      const formatted = this.formatPhoneForDisplay(normalized);
+      if (formatted !== this.input.value) {
+        this.input.value = formatted;
+      }
     }
 
     // 3. Перемістити курсор після префіксу
@@ -112,13 +119,53 @@ class PhoneInputHandler {
       cleaned = cleaned.substring(0, this.maxLength);
     }
 
+    // Форматування для відображення: +38(0XX)XXX-XX-XX
+    const formatted = this.formatPhoneForDisplay(cleaned);
+
     // Оновити значення
-    if (cleaned !== value) {
-      this.input.value = cleaned;
+    if (formatted !== value) {
+      this.input.value = formatted;
     }
 
     // Курсор в кінець
-    this.input.setSelectionRange(cleaned.length, cleaned.length);
+    this.input.setSelectionRange(formatted.length, formatted.length);
+  }
+
+  formatPhoneForDisplay(phone) {
+    // phone має бути у форматі +380XXXXXXXXX (13 символів)
+    // Відображення: +38(0XX)XXX-XX-XX
+    if (!phone || !phone.startsWith('+38')) {
+      return phone;
+    }
+
+    // Витягти цифри після +38
+    const digits = phone.substring(3); // 0XXXXXXXXX (10 цифр)
+
+    if (digits.length === 0) {
+      return this.prefix;
+    }
+
+    if (digits.length === 1) {
+      return `${this.prefix}(0${digits}`;
+    }
+
+    if (digits.length <= 4) {
+      // +38(0XX)
+      return `${this.prefix}(${digits}`;
+    }
+
+    if (digits.length <= 7) {
+      // +38(0XX)XXX
+      return `${this.prefix}(${digits.substring(0, 3)})${digits.substring(3)}`;
+    }
+
+    if (digits.length <= 9) {
+      // +38(0XX)XXX-XX
+      return `${this.prefix}(${digits.substring(0, 3)})${digits.substring(3, 6)}-${digits.substring(6)}`;
+    }
+
+    // Повна довжина: +38(0XX)XXX-XX-XX
+    return `${this.prefix}(${digits.substring(0, 3)})${digits.substring(3, 6)}-${digits.substring(6, 8)}-${digits.substring(8, 10)}`;
   }
 
   handlePaste(e) {
@@ -126,9 +173,10 @@ class PhoneInputHandler {
 
     const pastedText = e.clipboardData.getData('text');
     const normalized = this.normalizePhoneNumber(pastedText);
+    const formatted = this.formatPhoneForDisplay(normalized);
 
-    this.input.value = normalized;
-    this.input.setSelectionRange(normalized.length, normalized.length);
+    this.input.value = formatted;
+    this.input.setSelectionRange(formatted.length, formatted.length);
 
     // Trigger input event для валідації
     this.input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -137,13 +185,14 @@ class PhoneInputHandler {
   handleChange(e) {
     // Обробка autofill від браузера
     const normalized = this.normalizePhoneNumber(this.input.value);
-    if (normalized !== this.input.value) {
-      this.input.value = normalized;
+    const formatted = this.formatPhoneForDisplay(normalized);
+    if (formatted !== this.input.value) {
+      this.input.value = formatted;
     }
   }
 
   normalizePhoneNumber(value) {
-    // Витягти тільки цифри
+    // Видалити все крім цифр
     const digits = value.replace(/\D/g, '');
 
     // Конвертувати різні формати:

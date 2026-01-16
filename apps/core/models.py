@@ -239,6 +239,17 @@ class FAQ(BaseModel):
 
 class ConsultationRequest(BaseModel):
     """Заявка на консультацію"""
+    name = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name="Ім'я"
+    )
+    email = models.EmailField(
+        blank=True,
+        null=True,
+        verbose_name="Електронна пошта"
+    )
     phone_validator = RegexValidator(
         regex=r'^\+380\d{9}$',
         message="Введіть коректний український номер телефону"

@@ -54,7 +54,21 @@ services:
         sync: false
       - key: GA_MEASUREMENT_ID
         sync: false
+      - key: GTM_TRACKING_ENABLED
+        value: "False"
+      - key: GTM_SERVER_CONTAINER_URL
+        sync: false
+      - key: GTM_MEASUREMENT_ID
+        sync: false
+      - key: GTM_API_SECRET
+        sync: false
     healthCheckPath: /healthz
+
+  - type: cron
+    name: process-redirects
+    schedule: "*/5 * * * *"
+    command: python manage.py process_redirect_logs
+    runtime: python
 
 databases:
   - name: speakup-db

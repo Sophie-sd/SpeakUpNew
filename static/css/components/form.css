@@ -43,6 +43,17 @@
   box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
+/* Autofill стилі */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  -webkit-text-fill-color: var(--color-black);
+  color: var(--color-black);
+  border-color: var(--input-border);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .form-group input.error,
 .form-group select.error,
 .form-group textarea.error {

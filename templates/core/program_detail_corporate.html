@@ -351,20 +351,27 @@
             hx-post="{% url 'core:submit_consultation' %}"
             hx-swap="outerHTML"
             data-form-type="consultation"
-            data-form-location="corporate-page">
+            data-form-location="corporate-page"
+            novalidate>
         {% csrf_token %}
+        <input type="hidden" name="form_location" value="corporate-page">
         <div class="form-group">
-          <input type="text" name="name" placeholder="Ваше ім'я*" required class="form-group__input">
+          {{ consultation_form.name }}
+          {% if consultation_form.name.errors %}
+            <span class="form-error">{{ consultation_form.name.errors.0 }}</span>
+          {% endif %}
         </div>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Електронна адреса" class="form-group__input">
+          {{ consultation_form.email }}
+          {% if consultation_form.email.errors %}
+            <span class="form-error">{{ consultation_form.email.errors.0 }}</span>
+          {% endif %}
         </div>
         <div class="form-group">
-          <input type="tel" inputmode="tel" name="phone" placeholder="+380" required class="form-group__input">
-        </div>
-        <p class="form-group__note">Якщо у вас європейський номер:</p>
-        <div class="form-group">
-          <input type="tel" inputmode="tel" name="phone_eu" placeholder="+__ ___ ____ ___" class="form-group__input">
+          {{ consultation_form.phone }}
+          {% if consultation_form.phone.errors %}
+            <span class="form-error">{{ consultation_form.phone.errors.0 }}</span>
+          {% endif %}
         </div>
         <button type="submit" class="button button--primary button--full">Відправити заявку</button>
       </form>

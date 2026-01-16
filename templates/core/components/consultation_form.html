@@ -9,6 +9,12 @@
     {% csrf_token %}
     <div class="consultation-form__phone-section">
       <div class="form-group">
+        {{ form.name }}
+        {% if form.name.errors %}
+          <span class="form-error">{{ form.name.errors.0 }}</span>
+        {% endif %}
+      </div>
+      <div class="form-group">
         {{ form.phone }}
         {% if form.phone.errors %}
           <span class="form-error">{{ form.phone.errors.0 }}</span>

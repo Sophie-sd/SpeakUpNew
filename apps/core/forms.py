@@ -34,7 +34,7 @@ class TestimonialForm(forms.ModelForm):
 
 
 class ConsultationForm(forms.ModelForm):
-    """Форма для заявки на консультацію"""
+    """Форма для заявки на консультацію на головній сторінці"""
     prefers_messenger = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(attrs={
@@ -45,8 +45,13 @@ class ConsultationForm(forms.ModelForm):
 
     class Meta:
         model = ConsultationRequest
-        fields = ['phone', 'prefers_messenger', 'messenger_choice']
+        fields = ['name', 'phone', 'prefers_messenger', 'messenger_choice']
         widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': "Ваше ім'я",
+                'class': 'form-group__input',
+                'required': False,
+            }),
             'phone': forms.TextInput(attrs={
                 'placeholder': '+38 (0XX) XXX XX XX',
                 'class': 'form-group__input',
@@ -65,9 +70,77 @@ class ConsultationForm(forms.ModelForm):
         # Приховати messenger_choice за замовчуванням
         self.fields['messenger_choice'].widget.attrs['style'] = 'display: none;'
         self.fields['messenger_choice'].required = False
+        # Зробити name необов'язковим
+        self.fields['name'].required = False
 
     def clean_phone(self):
         """Нормалізувати телефон до +380XXXXXXXXX (формат моделі: ^\+380\d{9}$)"""
         phone = self.cleaned_data.get('phone', '')
         return normalize_phone_number(phone)
 
+    def clean_name(self):
+        """Валідація імені: якщо введено, то мінімум 2 символи"""
+        name = self.cleaned_data.get('name', '').strip()
+        if name and len(name) < 2:
+            raise forms.ValidationError("Ім'я має містити мінімум 2 символи")
+        return name if name else None
+
+
+class CorporateConsultationForm(forms.ModelForm):
+    """Форма для заявки на консультацію від корпоративних клієнтів"""
+    prefers_messenger = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={
+            'class': 'form-group__checkbox',
+        }),
+        label='Хочу консультацію в переписці'
+    )
+
+    class Meta:
+        model = ConsultationRequest
+        fields = ['name', 'email', 'phone', 'prefers_messenger', 'messenger_choice']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': "Ваше ім'я",
+                'class': 'form-group__input',
+                'required': False,
+            }),
+            'email': forms.EmailInput(attrs={
+                'placeholder': 'Електронна адреса',
+                'class': 'form-group__input',
+                'required': False,
+                'autocomplete': 'email',
+            }),
+            'phone': forms.TextInput(attrs={
+                'placeholder': '+38 (0XX) XXX XX XX',
+                'class': 'form-group__input',
+                'type': 'tel',
+                'inputmode': 'tel',
+                'required': True,
+                'autocomplete': 'tel',
+            }),
+            'messenger_choice': forms.RadioSelect(attrs={
+                'class': 'messenger-choice',
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Приховати messenger_choice за замовчуванням
+        self.fields['messenger_choice'].widget.attrs['style'] = 'display: none;'
+        self.fields['messenger_choice'].required = False
+        # Зробити name та email необов'язковими
+        self.fields['name'].required = False
+        self.fields['email'].required = False
+
+    def clean_phone(self):
+        """Нормалізувати телефон до +380XXXXXXXXX (формат моделі: ^\+380\d{9}$)"""
+        phone = self.cleaned_data.get('phone', '')
+        return normalize_phone_number(phone)
+
+    def clean_name(self):
+        """Валідація імені: якщо введено, то мінімум 2 символи"""
+        name = self.cleaned_data.get('name', '').strip()
+        if name and len(name) < 2:
+            raise forms.ValidationError("Ім'я має містити мінімум 2 символи")
+        return name if name else None

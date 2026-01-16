@@ -139,3 +139,30 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@speakup.com.ua')
 FACEBOOK_PIXEL_ID = os.getenv('FACEBOOK_PIXEL_ID', '')
 GA_MEASUREMENT_ID = os.getenv('GA_MEASUREMENT_ID', '')
 
+# ========== GTM SERVER-SIDE TRACKING ==========
+
+# GTM Tracking configuration
+GTM_TRACKING_ENABLED = os.getenv('GTM_TRACKING_ENABLED', 'False') == 'True'
+GTM_SERVER_CONTAINER_URL = os.getenv('GTM_SERVER_CONTAINER_URL', '')
+GTM_MEASUREMENT_ID = os.getenv('GTM_MEASUREMENT_ID', '')
+GTM_API_SECRET = os.getenv('GTM_API_SECRET', '')
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'encoding': 'utf-8',
+        },
+    },
+    'loggers': {
+        'apps.core.utils.redirect_logger': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+        },
+    },
+}

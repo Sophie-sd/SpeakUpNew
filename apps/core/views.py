@@ -12,7 +12,7 @@ from .models import (
     NewsArticle, Achievement, Advantage, CourseCategory, Course,
     Testimonial, FAQ, ConsultationRequest, ContactInfo
 )
-from .forms import TestimonialForm, ConsultationForm
+from .forms import TestimonialForm, ConsultationForm, CorporateConsultationForm
 from apps.leads.forms import TrialLessonForm
 
 def index(request):
@@ -243,7 +243,7 @@ def program_detail(request, slug):
             data['experience'] = experience_data.get(lang, experience_data.get('uk', ''))
 
         # Форма консультації
-        data['consultation_form'] = ConsultationForm()
+        data['consultation_form'] = CorporateConsultationForm()
 
         # Використовуємо спеціальний шаблон для корпоративної програми
         return render(request, 'core/program_detail_corporate.html', {'program': data})
@@ -609,13 +609,17 @@ def get_testimonial_form(request):
     })
 
 
-from django_ratelimit.decorators import ratelimit
-
 @require_http_methods(["POST"])
-@ratelimit(key='ip', rate='5/h', method='POST', block=True)
 def submit_consultation(request):
     """Обробка форми консультації з HTMX."""
-    form = ConsultationForm(request.POST)
+    # Визначити тип форми на основі data-form-location
+    form_location = request.POST.get('form_location', request.POST.get('data-form-location', ''))
+
+    # Визначити яку форму використовувати
+    if 'corporate' in str(form_location):
+        form = CorporateConsultationForm(request.POST)
+    else:
+        form = ConsultationForm(request.POST)
 
     if form.is_valid():
         consultation = form.save(commit=False)

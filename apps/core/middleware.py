@@ -6,6 +6,7 @@ from django.http import Http404, HttpResponse, HttpResponseBadRequest
 from django.conf import settings
 from .models import NewsArticle
 from .redirects import REDIRECTS
+from .utils.redirect_logger import redirect_logger
 
 
 class AllowedHostsMiddleware:
@@ -124,11 +125,29 @@ class NewsRedirectMiddleware:
         # Перевірка статичних редиректів (спочатку точне співпадіння)
         if path in REDIRECTS:
             new_url = REDIRECTS[path]
+
+            # ✅ Логування НЕ блокує (< 1ms)
+            redirect_logger.log_redirect(
+                request=request,
+                old_url=path,
+                new_url=new_url,
+                redirect_type='static'
+            )
+
             return redirect(new_url, permanent=True)
 
         # Перевірка нормалізованого шляху (для обробки trailing slash)
         if path_normalized in REDIRECTS and path_normalized != path:
             new_url = REDIRECTS[path_normalized]
+
+            # ✅ Логування НЕ блокує (< 1ms)
+            redirect_logger.log_redirect(
+                request=request,
+                old_url=path,
+                new_url=new_url,
+                redirect_type='static'
+            )
+
             return redirect(new_url, permanent=True)
 
         # Перевірка чи це старий news URL
@@ -151,6 +170,14 @@ class NewsRedirectMiddleware:
                     # 301 редирект на новий URL ТІЛЬКИ якщо URL відрізняється
                     new_url = article.get_absolute_url()
                     if new_url != path:
+                        # ✅ Логування НЕ блокує
+                        redirect_logger.log_redirect(
+                            request=request,
+                            old_url=path,
+                            new_url=new_url,
+                            redirect_type='news'
+                        )
+
                         return redirect(new_url, permanent=True)
 
         response = self.get_response(request)
