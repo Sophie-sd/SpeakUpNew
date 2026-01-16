@@ -89,7 +89,6 @@ LOGGING = {
         'console': {
             'level': 'ERROR',
             'class': 'logging.StreamHandler',
-            'encoding': 'utf-8',
         },
     },
     'loggers': {
