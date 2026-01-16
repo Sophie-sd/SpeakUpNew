@@ -297,15 +297,8 @@ input[type="range"] {
   accent-color: var(--color-primary);
 }
 
-/* Rule 50: input autofill styling */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px var(--color-bg) inset;
-  -webkit-text-fill-color: var(--color-text);
-  border-color: var(--color-primary);
-  transition: background-color 5000s ease-in-out 0s;
-}
+/* Rule 50: input autofill styling - MOVED TO components/form.css */
+/* Autofill стилі тепер в form.css для кращого контролю */
 
 /* Rule 113: Focus indicators */
 :focus-visible {

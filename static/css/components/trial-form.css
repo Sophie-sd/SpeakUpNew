@@ -69,11 +69,12 @@
 .trial-form--header-mobile input[type="text"]:-webkit-autofill:focus,
 .trial-form--header-mobile input[type="tel"]:-webkit-autofill:focus,
 .trial-form--header-mobile .form-group input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px var(--color-white) inset;
-  -webkit-text-fill-color: var(--color-black);
-  color: var(--color-black);
-  border-color: var(--color-white);
-  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 1000px var(--color-white) inset !important;
+  -webkit-text-fill-color: var(--color-black) !important;
+  color: var(--color-black) !important;
+  font-family: inherit !important;
+  border-color: var(--color-white) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .trial-form--header-mobile .button--primary {
@@ -159,11 +160,12 @@
 .trial-form--hero .form-group input[type="text"]:-webkit-autofill:focus,
 .trial-form--hero .form-group input[type="tel"]:-webkit-autofill:focus,
 .trial-form--hero .form-group input.form-group__input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.9) inset;
-  -webkit-text-fill-color: var(--color-black);
-  color: var(--color-black);
-  border-color: rgba(255, 255, 255, 1);
-  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.9) inset !important;
+  -webkit-text-fill-color: var(--color-black) !important;
+  color: var(--color-black) !important;
+  font-family: inherit !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .trial-form--hero .button {

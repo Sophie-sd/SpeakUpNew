@@ -3,11 +3,15 @@ from django.http import Http404, JsonResponse, HttpResponse
 from django.urls import reverse
 from django.utils.translation import get_language
 from django.core.paginator import Paginator
+from django.core.exceptions import ValidationError
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db import models
+import logging
 from .seo_config import PROGRAMS, LOCATIONS, CITIES
+
+logger = logging.getLogger(__name__)
 from .models import (
     NewsArticle, Achievement, Advantage, CourseCategory, Course,
     Testimonial, FAQ, ConsultationRequest, ContactInfo
@@ -585,14 +589,33 @@ def submit_testimonial(request):
     form = TestimonialForm(request.POST)
 
     if form.is_valid():
-        testimonial = form.save(commit=False)
-        testimonial.is_published = False  # Потребує модерації
-        testimonial.save()
+        try:
+            testimonial = form.save(commit=False)
+            testimonial.is_published = False  # Потребує модерації
 
-        # Повертаємо success message для HTMX
-        return render(request, 'core/components/testimonial_success.html', {
-            'message': 'Ваш відгук буде опубліковано після перевірки модератором'
-        })
+            try:
+                testimonial.save()
+            except ValidationError as e:
+                # ValidationError від model validators
+                if hasattr(e, 'error_dict'):
+                    for field, errors in e.error_dict.items():
+                        form.add_error(field, errors)
+                else:
+                    form.add_error(None, e)
+                return render(request, 'core/components/testimonial_form.html', {
+                    'form': form
+                }, status=400)
+
+            # Повертаємо success message для HTMX
+            return render(request, 'core/components/testimonial_success.html', {
+                'message': 'Ваш відгук буде опубліковано після перевірки модератором'
+            })
+        except Exception as e:
+            logger.error('[TestimonialForm] Unexpected error: %s', e, exc_info=True)
+            form.add_error(None, 'Помилка сервера. Спробуйте ще раз.')
+            return render(request, 'core/components/testimonial_form.html', {
+                'form': form
+            }, status=500)
 
     # Якщо форма невалідна, повертаємо форму з помилками
     return render(request, 'core/components/testimonial_form.html', {
@@ -622,35 +645,56 @@ def submit_consultation(request):
         form = ConsultationForm(request.POST)
 
     if form.is_valid():
-        consultation = form.save(commit=False)
+        try:
+            consultation = form.save(commit=False)
 
-        # Збираємо UTM параметри
-        consultation.utm_source = request.GET.get('utm_source', '') or request.POST.get('utm_source', '')
-        consultation.utm_medium = request.GET.get('utm_medium', '') or request.POST.get('utm_medium', '')
-        consultation.utm_campaign = request.GET.get('utm_campaign', '') or request.POST.get('utm_campaign', '')
-        consultation.utm_term = request.GET.get('utm_term', '') or request.POST.get('utm_term', '')
-        consultation.fbclid = request.GET.get('fbclid', '') or request.POST.get('fbclid', '')
-        consultation.gclid = request.GET.get('gclid', '') or request.POST.get('gclid', '')
-        consultation.referrer = request.META.get('HTTP_REFERER', '')
+            # Збираємо UTM параметри
+            consultation.utm_source = request.GET.get('utm_source', '') or request.POST.get('utm_source', '')
+            consultation.utm_medium = request.GET.get('utm_medium', '') or request.POST.get('utm_medium', '')
+            consultation.utm_campaign = request.GET.get('utm_campaign', '') or request.POST.get('utm_campaign', '')
+            consultation.utm_term = request.GET.get('utm_term', '') or request.POST.get('utm_term', '')
+            consultation.fbclid = request.GET.get('fbclid', '') or request.POST.get('fbclid', '')
+            consultation.gclid = request.GET.get('gclid', '') or request.POST.get('gclid', '')
+            consultation.referrer = request.META.get('HTTP_REFERER', '')
 
-        # НОВИЙ КОД: Зберегти вибраний прайс-пакет
-        selected_pricing = request.POST.get('selected_pricing', '')
-        if selected_pricing:
-            # Зберігаємо в utm_content для трекінгу
-            consultation.utm_content = f"pricing:{selected_pricing}"
-        else:
-            consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
+            # Зберегти вибраний прайс-пакет
+            selected_pricing = request.POST.get('selected_pricing', '')
+            if selected_pricing:
+                consultation.utm_content = f"pricing:{selected_pricing}"
+            else:
+                consultation.utm_content = request.GET.get('utm_content', '') or request.POST.get('utm_content', '')
 
-        # IP адреса
-        from apps.leads.utils import get_client_ip
-        consultation.ip_address = get_client_ip(request)
+            # IP адреса
+            from apps.leads.utils import get_client_ip
+            consultation.ip_address = get_client_ip(request)
 
-        consultation.save()
+            # КРИТИЧНО: Обробка ValidationError при збереженні
+            try:
+                consultation.save()
+            except ValidationError as e:
+                # ValidationError від model validators
+                if hasattr(e, 'error_dict'):
+                    for field, errors in e.error_dict.items():
+                        form.add_error(field, errors)
+                else:
+                    form.add_error(None, e)
 
-        # Повертаємо success message з HTMX redirect
-        response = HttpResponse(status=200)
-        response['HX-Redirect'] = reverse('core:thank_you')
-        return response
+                return render(request, 'core/components/consultation_form.html', {
+                    'form': form
+                }, status=400)
+
+            # Повертаємо success message з HTMX redirect
+            response = HttpResponse(status=200)
+            response['HX-Redirect'] = reverse('core:thank_you')
+            return response
+
+        except Exception as e:
+            # Інші несподівані помилки
+            logger.error('[ConsultationForm] Unexpected error: %s', e, exc_info=True)
+            form.add_error(None, 'Помилка сервера. Спробуйте ще раз.')
+            return render(request, 'core/components/consultation_form.html', {
+                'form': form
+            }, status=500)
 
     # Якщо форма невалідна, повертаємо помилки
     return render(request, 'core/components/consultation_form.html', {

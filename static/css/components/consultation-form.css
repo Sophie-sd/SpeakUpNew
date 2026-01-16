@@ -66,11 +66,12 @@
 .consultation-form .form-group__input:-webkit-autofill,
 .consultation-form .form-group__input:-webkit-autofill:hover,
 .consultation-form .form-group__input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset;
-  -webkit-text-fill-color: #000000;
-  color: #000000;
-  border-color: rgba(255, 255, 255, 0.5);
-  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+  font-family: inherit !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .consultation-form .form-group__input::placeholder {

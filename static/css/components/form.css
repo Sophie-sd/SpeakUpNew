@@ -2,6 +2,37 @@
    Form Component (BEM)
    ========================================================================== */
 
+/* ==========================================================================
+   Autofill Detection Animations
+   ========================================================================== */
+
+/* Animation для детекції autofill (Chrome, Safari, Edge) */
+@keyframes onAutoFillStart {
+  from { opacity: 0.99; }
+  to { opacity: 1; }
+}
+
+@keyframes onAutoFillCancel {
+  from { opacity: 1; }
+  to { opacity: 0.99; }
+}
+
+/* Тригер animation при autofill */
+input:-webkit-autofill {
+  animation-name: onAutoFillStart;
+  animation-duration: 0.001s;
+}
+
+/* Тригер animation при скасуванні autofill */
+input:not(:-webkit-autofill) {
+  animation-name: onAutoFillCancel;
+  animation-duration: 0.001s;
+}
+
+/* ==========================================================================
+   Form Groups
+   ========================================================================== */
+
 .form-group {
   margin-bottom: var(--spacing-md);
 }
@@ -43,15 +74,22 @@
   box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
-/* Autofill стилі */
+/* Autofill стилі - посилені з !important для пріоритету над браузерними */
 .form-group input:-webkit-autofill,
 .form-group input:-webkit-autofill:hover,
-.form-group input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
-  -webkit-text-fill-color: var(--color-black);
-  color: var(--color-black);
-  border-color: var(--input-border);
-  transition: background-color 5000s ease-in-out 0s;
+.form-group input:-webkit-autofill:focus,
+.form-group select:-webkit-autofill,
+.form-group select:-webkit-autofill:hover,
+.form-group select:-webkit-autofill:focus,
+input[type="text"]:-webkit-autofill,
+input[type="tel"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--color-black) !important;
+  color: var(--color-black) !important;
+  font-family: inherit !important;
+  border-color: var(--input-border) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .form-group input.error,

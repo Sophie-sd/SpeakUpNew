@@ -1,6 +1,7 @@
 import logging
 from django.http import JsonResponse
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_protect
 from .forms import TrialLessonForm
@@ -63,8 +64,26 @@ def submit_trial_form(request):
             lead.referrer = request.META.get('HTTP_REFERER', '')
             lead.ip_address = get_client_ip(request)
 
-            lead.save()
-            logger.info('[TrialForm] Lead saved successfully: %s - %s', lead.name, lead.phone)
+            # КРИТИЧНО: Обробка ValidationError при збереженні
+            try:
+                lead.save()
+                logger.info('[TrialForm] Lead saved successfully: %s - %s', lead.name, lead.phone)
+            except ValidationError as e:
+                # ValidationError від model validators
+                logger.warning('[TrialForm] Validation error on save: %s', e)
+
+                # Конвертуємо ValidationError в form errors
+                errors = {}
+                if hasattr(e, 'error_dict'):
+                    for field, field_errors in e.error_dict.items():
+                        errors[field] = [str(err) for err in field_errors]
+                else:
+                    errors['__all__'] = [str(e)]
+
+                return JsonResponse({
+                    'success': False,
+                    'errors': errors
+                }, status=400)
 
             # Відправити email (не критично, якщо не вдасться):
             try:
@@ -74,18 +93,16 @@ def submit_trial_form(request):
                 logger.error('[TrialForm] Email sending failed: %s', email_error, exc_info=True)
                 # Не блокуємо успішну відправку форми
 
-            # TODO: Telegram notification (заглушка)
-
             logger.info('[TrialForm] Request processed successfully')
-            # Використовуємо Django URL reverse для правильного URL
             redirect_url = reverse('core:thank_you')
             return JsonResponse({
                 'success': True,
                 'redirect_url': redirect_url,
-                'lead_id': lead.id,  # Для GTM tracking
+                'lead_id': lead.id,
                 'message': 'Дякуємо! Перенаправляємо вас.'
             })
         except Exception as e:
+            # Інші несподівані помилки (не ValidationError)
             logger.error('[TrialForm] Unexpected error during processing: %s', e, exc_info=True)
             return JsonResponse({
                 'success': False,
