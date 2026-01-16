@@ -55,7 +55,7 @@ class ConsultationForm(forms.ModelForm):
             }),
             'phone': forms.TextInput(attrs={
                 'value': '+38',
-                'placeholder': 'Введіть номер телефону',
+                'placeholder': 'Номер телефону +38',
                 'class': 'form-group__input',
                 'type': 'tel',
                 'inputmode': 'tel',
@@ -116,7 +116,7 @@ class CorporateConsultationForm(forms.ModelForm):
             }),
             'phone': forms.TextInput(attrs={
                 'value': '+38',
-                'placeholder': 'Введіть номер телефону',
+                'placeholder': 'Номер телефону +38',
                 'class': 'form-group__input',
                 'type': 'tel',
                 'inputmode': 'tel',
