@@ -189,7 +189,6 @@
   }
 }
 
-/* Помилки валідації для hero форми - показувати знизу поля */
 .trial-form--hero .form-error {
   display: block;
   margin-top: var(--spacing-xs);
@@ -198,6 +197,155 @@
   font-weight: 500;
   position: relative;
   z-index: 1;
+}
+
+/* ===== VARIANT: adults-advantages (форма в блоці переваг дорослих) ===== */
+
+.trial-form--adults-advantages {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.trial-form--adults-advantages .form-group {
+  position: relative;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.trial-form--adults-advantages .form-group:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.trial-form--adults-advantages .form-group input,
+.trial-form--adults-advantages .form-group input[type="text"],
+.trial-form--adults-advantages .form-group input[type="tel"],
+.trial-form--adults-advantages .form-group input.form-group__input {
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-family-base);
+  color: var(--color-black);
+  min-height: 52px;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.trial-form--adults-advantages .form-group input:hover {
+  border-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.trial-form--adults-advantages .form-group input:focus,
+.trial-form--adults-advantages .form-group input[type="text"]:focus,
+.trial-form--adults-advantages .form-group input[type="tel"]:focus,
+.trial-form--adults-advantages .form-group input.form-group__input:focus {
+  border-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+.trial-form--adults-advantages .form-group input::placeholder {
+  color: var(--input-placeholder-color);
+  opacity: 1;
+}
+
+/* Autofill стилі для adults-advantages форми */
+.trial-form--adults-advantages .form-group input:-webkit-autofill,
+.trial-form--adults-advantages .form-group input[type="text"]:-webkit-autofill,
+.trial-form--adults-advantages .form-group input[type="tel"]:-webkit-autofill,
+.trial-form--adults-advantages .form-group input.form-group__input:-webkit-autofill,
+.trial-form--adults-advantages .form-group input:-webkit-autofill:hover,
+.trial-form--adults-advantages .form-group input[type="text"]:-webkit-autofill:hover,
+.trial-form--adults-advantages .form-group input[type="tel"]:-webkit-autofill:hover,
+.trial-form--adults-advantages .form-group input.form-group__input:-webkit-autofill:hover,
+.trial-form--adults-advantages .form-group input:-webkit-autofill:focus,
+.trial-form--adults-advantages .form-group input[type="text"]:-webkit-autofill:focus,
+.trial-form--adults-advantages .form-group input[type="tel"]:-webkit-autofill:focus,
+.trial-form--adults-advantages .form-group input.form-group__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.9) inset !important;
+  -webkit-text-fill-color: var(--color-black) !important;
+  color: var(--color-black) !important;
+  font-family: inherit !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.trial-form--adults-advantages .button {
+  min-height: 52px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0.5rem;
+  padding: 0.875rem 2rem;
+  box-shadow: 0 4px 12px rgba(231, 30, 20, 0.3);
+  transition: all 0.2s ease;
+  display: block;
+  box-sizing: border-box;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trial-form--adults-advantages .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(231, 30, 20, 0.4);
+  }
+}
+
+/* Помилки валідації для adults-advantages форми */
+.trial-form--adults-advantages .form-error {
+  display: block;
+  margin-top: var(--spacing-xs);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Мобільна оптимізація adults-advantages форми */
+@media (width <= 767px) {
+  .trial-form--adults-advantages {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .trial-form--adults-advantages .form-group {
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .trial-form--adults-advantages .form-group:last-of-type {
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .trial-form--adults-advantages .form-group input,
+  .trial-form--adults-advantages .form-group input[type="text"],
+  .trial-form--adults-advantages .form-group input[type="tel"],
+  .trial-form--adults-advantages .form-group input.form-group__input {
+    padding: clamp(0.75rem, 2vw, 0.875rem) clamp(0.875rem, 3vw, 1rem);
+    font-size: clamp(0.9375rem, 3vw, 1rem);
+    min-height: clamp(48px, 12vw, 52px);
+  }
+
+  .trial-form--adults-advantages .button {
+    min-height: clamp(48px, 12vw, 52px);
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 5vw, 2rem);
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .trial-form--adults-advantages .form-error {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding-left: clamp(0.875rem, 3vw, 1rem);
+  }
 }
 
 /* Мобільна оптимізація hero форми */
