@@ -164,8 +164,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary);
-  border-radius: 50%;
   transition: transform var(--transition-normal) ease;
   flex-shrink: 0;
   z-index: 10;
@@ -205,7 +203,7 @@
 /* === ЗАГОЛОВОК === */
 
 .advantages-section .advantage-card__title {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-white);
   margin: 0;
@@ -215,7 +213,7 @@
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -250,20 +248,19 @@
 /* === КОНТЕНТ (ЗГОРТАЄМИЙ) === */
 
 .advantages-section .advantage-card__content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--transition-normal) ease;
-  width: 100%;
+  max-height: 0;
   overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: max-height var(--transition-normal) ease, padding-top var(--transition-normal) ease, padding-bottom var(--transition-normal) ease;
+  width: 100%;
   box-sizing: border-box;
 }
 
-.advantages-section .advantage-card__content > * {
-  min-height: 0;
-}
-
 .advantages-section .advantage-card.expanded .advantage-card__content {
-  grid-template-rows: 1fr;
+  max-height: 1000px;
+  padding-top: 0.75rem;
+  padding-bottom: 0;
 }
 
 /* === ОСНОВНИЙ ТЕКСТ === */
