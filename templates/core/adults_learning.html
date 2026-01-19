@@ -26,18 +26,17 @@
       <!-- Картка 1: Гнучкість -->
       <div class="advantage-card">
         <div class="advantage-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-            <line x1="7" y1="14" x2="7" y2="18"></line>
-            <line x1="11" y1="14" x2="11" y2="18"></line>
-            <line x1="15" y1="14" x2="15" y2="18"></line>
-          </svg>
+          <img src="{% static 'img/kalendar.svg' %}" alt="Календар" class="advantage-card__icon-img">
+        </div>
+        <div class="advantage-card__header">
+          <h3 class="advantage-card__title">Навчайся де завгодно і коли завгодно</h3>
+          <button class="advantage-card__toggle" aria-label="Розгорнути" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="advantage-card__toggle-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
         </div>
         <div class="advantage-card__content">
-          <h3 class="advantage-card__title">Навчайся де завгодно і коли завгодно</h3>
           <p class="advantage-card__text">Твій графік — це твоя справа. Міксуй ранкові розмовні клуби з вечірніми заняттями. Бронюй уроки в один клік у будь-який день тижня.</p>
           <div class="advantage-card__divider"></div>
           <p class="advantage-card__accent">Повна синхронізація з твоїм ритмом життя.</p>
@@ -47,17 +46,17 @@
       <!-- Картка 2: Blended Learning -->
       <div class="advantage-card">
         <div class="advantage-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            <line x1="10" y1="5" x2="16" y2="5"></line>
-            <line x1="10" y1="8" x2="16" y2="8"></line>
-            <line x1="10" y1="11" x2="16" y2="11"></line>
-            <line x1="10" y1="14" x2="14" y2="14"></line>
-          </svg>
+          <img src="{% static 'img/books.svg' %}" alt="Книги" class="advantage-card__icon-img">
+        </div>
+        <div class="advantage-card__header">
+          <h3 class="advantage-card__title">Розумне поєднання практики та теорії</h3>
+          <button class="advantage-card__toggle" aria-label="Розгорнути" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="advantage-card__toggle-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
         </div>
         <div class="advantage-card__content">
-          <h3 class="advantage-card__title">Розумне поєднання практики та теорії</h3>
           <p class="advantage-card__text">Ми використовуємо методику комплексного вивчення: інтерактивні мультимедійні уроки для бази + інтенсивні заняття з викладачем для живої практики.</p>
           <div class="advantage-card__divider"></div>
           <p class="advantage-card__accent">Ти не просто вчиш правила, ти починаєш говорити з першого тижня.</p>
@@ -67,18 +66,17 @@
       <!-- Картка 3: Екосистема підтримки -->
       <div class="advantage-card">
         <div class="advantage-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="7" cy="12" r="1"></circle>
-            <circle cx="17" cy="12" r="1"></circle>
-          </svg>
+          <img src="{% static 'img/people.svg' %}" alt="Люди" class="advantage-card__icon-img">
+        </div>
+        <div class="advantage-card__header">
+          <h3 class="advantage-card__title">Ти не один у цьому процесі</h3>
+          <button class="advantage-card__toggle" aria-label="Розгорнути" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="advantage-card__toggle-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
         </div>
         <div class="advantage-card__content">
-          <h3 class="advantage-card__title">Ти не один у цьому процесі</h3>
           <p class="advantage-card__text">За тобою закріплений особистий освітній консультант, який допоможе з мотивацією та графіком. Технічна підтримка 24/7 вирішить будь-яке питання з доступом.</p>
           <div class="advantage-card__divider"></div>
           <p class="advantage-card__accent">Персональний супровід від реєстрації до отримання сертифіката.</p>
@@ -88,65 +86,27 @@
       <!-- Картка 4: Тверда Гарантія -->
       <div class="advantage-card">
         <div class="advantage-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <polyline points="9 12 12 15 15 9"></polyline>
-            <line x1="12" y1="17" x2="12" y2="19"></line>
-          </svg>
+          <img src="{% static 'img/garant.svg' %}" alt="Гарантія" class="advantage-card__icon-img">
+        </div>
+        <div class="advantage-card__header">
+          <h3 class="advantage-card__title">Результат, підтверджений договором</h3>
+          <button class="advantage-card__toggle" aria-label="Розгорнути" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="advantage-card__toggle-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
         </div>
         <div class="advantage-card__content">
-          <h3 class="advantage-card__title">Результат, підтверджений договором</h3>
           <p class="advantage-card__text">Ми на 100% впевнені у своїй системі. Якщо ти не засвоїв рівень, ми надаємо повторне навчання безкоштовно. Після завершення — офіційний сертифікат.</p>
           <div class="advantage-card__divider"></div>
           <p class="advantage-card__accent">Безпечне інвестування у свою освіту.</p>
         </div>
       </div>
     </div>
-
-    <!-- БЛОК "ЩО ТИ ОТРИМАЄШ КРІМ ЗНАНЬ?" -->
-    <div class="benefits-section">
-      <h3 class="benefits-section__title">Що ти отримаєш крім знань?</h3>
-
-      <ul class="benefits-list">
-        <!-- Бенефіт 1: Student Zone -->
-        <li class="benefit-item">
-          <div class="benefit-item__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10"></path>
-              <polyline points="23 5 12 1 1 5"></polyline>
-              <line x1="12" y1="12" x2="12" y2="22"></line>
-              <polyline points="5 9 12 6 19 9"></polyline>
-            </svg>
-          </div>
-          <div class="benefit-item__title">Student Zone</div>
-          <p class="benefit-item__text">Твій персональний «центр керування» знаннями. Весь твій матеріал в одному місці, завжди доступний.</p>
-        </li>
-
-        <!-- Бенефіт 2: Phone Conversation Clubs -->
-        <li class="benefit-item">
-          <div class="benefit-item__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              <circle cx="12" cy="13" r="2"></circle>
-            </svg>
-          </div>
-          <div class="benefit-item__title">Phone Conversation Clubs</div>
-          <p class="benefit-item__text">Унікальна можливість тренувати англійську короткими дзвінками — долаємо страх телефонних розмов іноземною мовою.</p>
-        </li>
-
-        <!-- Бенефіт 3: Тематичні Shot Courses -->
-        <li class="benefit-item">
-          <div class="benefit-item__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
-              <line x1="9" y1="14" x2="15" y2="14"></line>
-            </svg>
-          </div>
-          <div class="benefit-item__title">Тематичні Shot Courses</div>
-          <p class="benefit-item__text">Короткі онлайн-інтенсиви під твої конкретні потреби: бізнес, подорожі, інтерв'ю.</p>
-        </li>
-      </ul>
-    </div>
   </section>
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{% static 'js/modules/adults-advantages-accordion.js' %}" defer></script>
 {% endblock %}

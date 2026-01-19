@@ -8,7 +8,7 @@
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
   width: 100%;
-  max-width: 1400px; /* Збільшено для 4 карток */
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
@@ -28,7 +28,7 @@
 .advantages-section .advantages-grid {
   display: grid;
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 0;
   justify-items: center;
   align-items: start;
   padding: 0;
@@ -101,7 +101,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding: 2rem 1.8rem 1.5rem 1.8rem;
+  padding: 1.8rem;
   background: rgba(0, 0, 0, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
@@ -110,7 +110,7 @@
   contain: layout style;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  min-height: 300px;
+  min-height: auto;
   width: 100%;
   max-width: 280px;
   overflow: visible;
@@ -130,8 +130,7 @@
   .advantages-section .advantage-card {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    min-height: 280px;
-    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    padding: 1.5rem;
     max-width: 100%;
   }
 }
@@ -154,12 +153,12 @@
   }
 }
 
-/* === ІКОНКА В ЛІВОМУ ВЕРХНЬОМУ КУТІ (НА ПОЛОВИНУ ВИЛАЗИТЬ) === */
+/* === ІКОНКА В ПРАВОМУ ВЕРХНЬОМУ КУТІ (НА ПОЛОВИНУ ВИЛАЗИТЬ) === */
 
 .advantages-section .advantage-card__icon {
   position: absolute;
   top: -24px;
-  left: -24px;
+  right: -24px;
   width: 56px;
   height: 56px;
   display: flex;
@@ -172,36 +171,35 @@
   z-index: 10;
 }
 
-.advantages-section .advantage-card__icon svg {
+.advantages-section .advantage-card__icon-img {
   width: 28px;
   height: 28px;
-  color: white;
-  stroke-width: 1.5;
+  filter: brightness(0) invert(1);
 }
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__icon {
     top: -20px;
-    left: -20px;
+    right: -20px;
     width: 48px;
     height: 48px;
   }
 
-  .advantages-section .advantage-card__icon svg {
+  .advantages-section .advantage-card__icon-img {
     width: 24px;
     height: 24px;
   }
 }
 
-/* === КОНТЕНТ КАРТКИ - СТРУКТУРА: ЗАГОЛОВОК → ТЕКСТ → ЛІНІЯ → АКЦЕНТ === */
+/* === HEADER З ЗАГОЛОВКОМ І КНОПКОЮ TOGGLE === */
 
-.advantages-section .advantage-card__content {
-  padding-top: 0;
+.advantages-section .advantage-card__header {
   display: flex;
-  flex-direction: column;
-  gap: 0;
   width: 100%;
-  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0;
 }
 
 /* === ЗАГОЛОВОК === */
@@ -210,16 +208,62 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-white);
-  margin-bottom: 0.75rem;
-  margin-top: 0;
+  margin: 0;
   line-height: 1.3;
+  flex: 1;
 }
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__title {
     font-size: 1rem;
-    margin-bottom: 0.6rem;
   }
+}
+
+/* === КНОПКА TOGGLE === */
+
+.advantages-section .advantage-card__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  flex-shrink: 0;
+  transition: transform var(--transition-normal) ease;
+}
+
+.advantages-section .advantage-card__toggle-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+  stroke-width: 2;
+}
+
+.advantages-section .advantage-card__toggle[aria-expanded="true"] {
+  transform: rotate(180deg);
+}
+
+/* === КОНТЕНТ (ЗГОРТАЄМИЙ) === */
+
+.advantages-section .advantage-card__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-normal) ease;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.advantages-section .advantage-card__content > * {
+  min-height: 0;
+}
+
+.advantages-section .advantage-card.expanded .advantage-card__content {
+  grid-template-rows: 1fr;
 }
 
 /* === ОСНОВНИЙ ТЕКСТ === */
@@ -228,14 +272,12 @@
   font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.5;
-  margin-bottom: 0.75rem;
-  flex-grow: 1;
+  margin: 0.75rem 0 0 0;
 }
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__text {
     font-size: 0.85rem;
-    margin-bottom: 0.6rem;
   }
 }
 
@@ -245,7 +287,7 @@
   width: 100%;
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
-  margin-bottom: 0.75rem;
+  margin: 0.75rem 0;
 }
 
 /* === ЧЕРВОНИЙ ТЕКСТ - АКЦЕНТ === */
@@ -258,146 +300,6 @@
   line-height: 1.4;
   margin: 0;
   padding: 0;
-}
-
-/* === БЛОК "ЩО ТИ ОТРИМАЄШ КРІМ ЗНАНЬ?" === */
-
-.advantages-section .benefits-section {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  padding: 2.5rem 2rem;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  contain: layout style paint;
-}
-
-/* Адаптивний blur для различных пристроїв */
-@supports (-webkit-touch-callout: none) {
-  /* iOS */
-  .advantages-section .benefits-section {
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-  }
-}
-
-@media (width <= 767px) {
-  .advantages-section .benefits-section {
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    padding: 1.5rem;
-  }
-}
-
-/* === ЗАГОЛОВОК БЛОКУ ПРЕМІУМ === */
-
-.advantages-section .benefits-section__title {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--color-white);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-@media (width <= 767px) {
-  .advantages-section .benefits-section__title {
-    font-size: var(--font-size-lg);
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* === СПИСОК БЕНЕФІТІВ === */
-
-.advantages-section .benefits-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Desktop: 3 в ряд */
-@media (width >= 1024px) {
-  .advantages-section .benefits-list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-}
-
-/* Tablet: 2 в ряд */
-@media (width >= 768px) and (width < 1024px) {
-  .advantages-section .benefits-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-/* Mobile: 1 колонка */
-@media (width < 768px) {
-  .advantages-section .benefits-list {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-/* === ЕЛЕМЕНТ СПИСКУ === */
-
-.advantages-section .benefit-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-}
-
-/* === ІКОНКА БЕНЕФІТУ === */
-
-.advantages-section .benefit-item__icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-}
-
-.advantages-section .benefit-item__icon svg {
-  width: 100%;
-  height: 100%;
-  color: var(--color-primary);
-  stroke-width: 1.5;
-}
-
-@media (width <= 767px) {
-  .advantages-section .benefit-item__icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-  }
-}
-
-/* === ЗАГОЛОВОК БЕНЕФІТУ === */
-
-.advantages-section .benefit-item__title {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: var(--color-white);
-}
-
-/* === ТЕКСТ БЕНЕФІТУ === */
-
-.advantages-section .benefit-item__text {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-@media (width <= 767px) {
-  .advantages-section .benefit-item__text {
-    font-size: 0.85rem;
-  }
 }
 
 /* === RESPONSIVE ЗАГАЛЬНЕ === */
@@ -418,7 +320,6 @@
 
   .advantages-section .advantage-card {
     padding: 1.6rem;
-    min-height: 280px;
   }
 }
 
@@ -427,7 +328,7 @@
 @media (prefers-reduced-motion: reduce) {
   .advantages-section .advantage-card,
   .advantages-section .advantage-card__icon,
-  .advantages-section .benefits-section {
+  .advantages-section .advantage-card__toggle {
     transition: none;
   }
 
@@ -438,12 +339,16 @@
   .advantages-section .advantage-card:hover .advantage-card__icon {
     transform: none;
   }
+
+  .advantages-section .advantage-card__content {
+    transition: none;
+  }
 }
 
 /* === FOCUS STATES ДЛЯ ACCESSIBILITY === */
 
 .advantages-section .advantage-card:focus-visible,
-.advantages-section .benefit-item:focus-visible {
+.advantages-section .advantage-card__toggle:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -451,15 +356,10 @@
 /* === ПОПРАВКА НА GLASSMORPHISM ДЛЯ БРАУЗЕРІВ БЕЗ ПІДТРИМКИ === */
 
 @supports not (backdrop-filter: blur(8px)) {
-  .advantages-section .advantage-card,
-  .advantages-section .benefits-section {
+  .advantages-section .advantage-card {
     background: rgba(0, 0, 0, 0.7);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-  }
-
-  .advantages-section .benefits-section {
-    background: rgba(255, 255, 255, 0.05);
   }
 }
 
