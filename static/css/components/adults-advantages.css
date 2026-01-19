@@ -157,10 +157,10 @@
 
 .advantages-section .advantage-card__icon {
   position: absolute;
-  top: -24px;
-  right: -24px;
-  width: 56px;
-  height: 56px;
+  top: -8px;
+  right: -16px;
+  width: 72px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,33 +170,32 @@
 }
 
 .advantages-section .advantage-card__icon-img {
-  width: 28px;
-  height: 28px;
+  width: 56px;
+  height: 56px;
   filter: brightness(0) invert(1);
 }
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__icon {
-    top: -20px;
-    right: -20px;
-    width: 48px;
-    height: 48px;
+    top: -6px;
+    right: -12px;
+    width: 64px;
+    height: 64px;
   }
 
   .advantages-section .advantage-card__icon-img {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
   }
 }
 
-/* === HEADER З ЗАГОЛОВКОМ І КНОПКОЮ TOGGLE === */
+/* === HEADER З ЗАГОЛОВКОМ === */
 
 .advantages-section .advantage-card__header {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: 1rem;
   margin-bottom: 0;
 }
 
@@ -215,6 +214,23 @@
   .advantages-section .advantage-card__title {
     font-size: 0.9rem;
   }
+}
+
+/* === ТОНКА ЛІНІЯ ПІД ЗАГОЛОВКОМ === */
+
+.advantages-section .advantage-card__divider-header {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0.75rem 0;
+}
+
+/* === ОБГОРТКА ДЛЯ ЦЕНТРУВАННЯ КНОПКИ TOGGLE === */
+
+.advantages-section .advantage-card__toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /* === КНОПКА TOGGLE === */
