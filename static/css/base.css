@@ -595,7 +595,3 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4rem;
 }
 
-/* Дозволити overflow для hero-content, щоб зображення в картках програм могли виходити за межі */
-.hero-content {
-  overflow: visible;
-}
