@@ -84,7 +84,7 @@
   flex-direction: column;
   gap: 6px;
   padding: var(--spacing-md);
-  padding-top: var(--spacing-lg);
+  padding-top: 220px;
   position: relative;
   z-index: 3;
   flex: 1;
@@ -122,17 +122,27 @@
   margin-top: 16px;
 }
 
+/* Підзаголовок картки */
+.programs-section .program-card__subtitle {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Золотистий заголовок для Premium картки */
+.programs-section .program-card--premium .program-card__title {
+  color: rgba(255, 193, 7, 0.95);
+}
+
 /* Опис */
 .programs-section .program-card__description {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin: 0;
 }
 
 /* Список переваг */
