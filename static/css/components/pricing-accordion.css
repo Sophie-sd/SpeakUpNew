@@ -9,6 +9,7 @@
   max-width: min(var(--content-width-desktop), var(--content-max-width));
   margin-left: auto;
   margin-right: auto;
+  overflow: visible;
 }
 
 /* Сітка 3 колонки */
@@ -17,6 +18,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-lg);
   margin-top: var(--spacing-lg);
+  overflow: visible;
+  padding-right: 60px;
 }
 
 /* Картка програми */
@@ -58,7 +61,7 @@
   right: -40px;
   width: 200px;
   height: 280px;
-  z-index: 2;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -540,9 +543,15 @@
 
 /* Мобільна версія для Programs Section */
 @media (width <= 1024px) {
+  .programs-section {
+    overflow: visible;
+  }
+
   .programs-section .programs-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
+    overflow: visible;
+    padding-right: 40px;
   }
 
   .programs-section .program-card {
@@ -565,11 +574,14 @@
     padding: 1rem;
     margin-bottom: var(--section-spacing-mobile);
     overflow-x: hidden;
+    overflow-y: visible;
   }
 
   .programs-section .programs-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    overflow: visible;
+    padding-right: 60px;
   }
 
   .programs-section .program-card {
