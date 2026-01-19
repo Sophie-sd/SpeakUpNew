@@ -569,8 +569,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Специфічні правила для різних типів секцій */
 .main-content .consultation-section:last-child,
 .hero-content .consultation-section:last-child,
-.main-content .faq-section:last-child,
-.hero-content .faq-section:last-child,
 .main-content .testimonials-section:last-child,
 .hero-content .testimonials-section:last-child,
 .main-content .achievements:last-child,
@@ -586,7 +584,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Перевизначення для hero-content - завжди 4rem для останньої секції */
 .hero-content .consultation-section:last-child,
-.hero-content .faq-section:last-child,
 .hero-content .testimonials-section:last-child,
 .hero-content .achievements:last-child,
 .hero-content .advantages-carousel:last-child,

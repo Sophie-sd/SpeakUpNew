@@ -31,7 +31,6 @@ def index(request):
                 return value
         return getattr(obj, f'{field}_uk', '')
 
-    faqs_list = list(FAQ.objects.filter(is_active=True).order_by('order'))
     context = {
         'achievements': Achievement.objects.filter(is_active=True).order_by('order'),
         'advantages': Advantage.objects.prefetch_related('items').filter(is_active=True).order_by('order'),
@@ -39,10 +38,6 @@ def index(request):
             'courses'
         ).filter(courses__is_active=True).distinct().order_by('order'),
         'testimonials': Testimonial.objects.filter(is_published=True).order_by('-created_at')[:10],
-        'faqs': faqs_list,
-        'faqs_column1': faqs_list[:4],
-        'faqs_column2': faqs_list[4:8],
-        'faqs_column3': faqs_list[8:12],
         'trial_form': TrialLessonForm(),
         'consultation_form': ConsultationForm(),
         'testimonial_form': TestimonialForm(),

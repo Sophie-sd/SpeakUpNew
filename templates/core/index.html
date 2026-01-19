@@ -17,7 +17,6 @@
 <link rel="stylesheet" href="{% static 'css/components/courses-accordion.css' %}">
 {% endif %}
 <link rel="stylesheet" href="{% static 'css/components/testimonials.css' %}">
-<link rel="stylesheet" href="{% static 'css/components/faq.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/consultation-form.css' %}">
 
 <!-- STEP 8: Preload фонові зображення карток (перші 2 видно одразу на desktop) -->
@@ -207,7 +206,7 @@
           </section>
         {% endif %}
 
-        <!-- 5. Відгуки та FAQ -->
+        <!-- 5. Відгуки -->
         <section class="testimonials-section glass-section" id="testimonials">
           <h2 class="section-title">Відгуки наших студентів</h2>
           <div class="testimonials-carousel-wrapper">
@@ -244,74 +243,6 @@
           <button class="button button--primary" id="testimonial-modal-trigger">Залишити відгук</button>
         </section>
 
-        <section class="faq-section glass-section" id="faq">
-          <h2 class="section-title">Часті питання</h2>
-          <div class="faq-grid">
-            <!-- Стовпчик 1: Питання 1-4 -->
-            <div class="faq-column">
-              <div class="faq-accordion" data-accordion-container>
-                {% for faq in faqs_column1 %}
-                <div class="faq-item" data-accordion-item>
-                  <button class="faq-item__header" data-accordion-header>
-                    <span class="faq-item__question">
-                      {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
-                    </span>
-                    <span class="faq-item__icon" aria-hidden="true">+</span>
-                  </button>
-                  <div class="faq-item__content" data-accordion-content>
-                    <p>
-                      {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
-                    </p>
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Стовпчик 2: Питання 5-8 -->
-            <div class="faq-column">
-              <div class="faq-accordion" data-accordion-container>
-                {% for faq in faqs_column2 %}
-                <div class="faq-item" data-accordion-item>
-                  <button class="faq-item__header" data-accordion-header>
-                    <span class="faq-item__question">
-                      {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
-                    </span>
-                    <span class="faq-item__icon" aria-hidden="true">+</span>
-                  </button>
-                  <div class="faq-item__content" data-accordion-content>
-                    <p>
-                      {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
-                    </p>
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Стовпчик 3: Питання 9-12 -->
-            <div class="faq-column">
-              <div class="faq-accordion" data-accordion-container>
-                {% for faq in faqs_column3 %}
-                <div class="faq-item" data-accordion-item>
-                  <button class="faq-item__header" data-accordion-header>
-                    <span class="faq-item__question">
-                      {% if current_language == 'ru' and faq.question_ru %}{{ faq.question_ru }}{% else %}{{ faq.question_uk }}{% endif %}
-                    </span>
-                    <span class="faq-item__icon" aria-hidden="true">+</span>
-                  </button>
-                  <div class="faq-item__content" data-accordion-content>
-                    <p>
-                      {% if current_language == 'ru' and faq.answer_ru %}{{ faq.answer_ru }}{% else %}{{ faq.answer_uk }}{% endif %}
-                    </p>
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        </section>
-
         <!-- 6. Консультація -->
         <section class="consultation-section glass-section" id="consultation">
           <h2 class="section-title">Замовити консультацію</h2>
@@ -332,7 +263,6 @@
 <script type="module" src="{% static 'js/modules/courses-accordion.js' %}" defer></script>
 {% endif %}
 <script type="module" src="{% static 'js/modules/testimonials-carousel.js' %}" defer></script>
-<script type="module" src="{% static 'js/modules/faq-accordion.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/consultation-form.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/testimonial-modal.js' %}" defer></script>
 {% endblock %}
