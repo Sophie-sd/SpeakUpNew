@@ -119,7 +119,7 @@
   font-weight: 700;
   line-height: 1.3;
   color: rgba(255, 255, 255, 0.95);
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 /* Підзаголовок картки */
@@ -147,7 +147,7 @@
   line-height: 1.6;
   text-align: left;
   margin: 0;
-  margin-top: 1px;
+  margin-top: 265px;
 }
 
 /* Список переваг */
