@@ -34,11 +34,28 @@
   box-sizing: border-box;
 }
 
+/* Desktop-only елементи */
+.desktop-only {
+  display: none;
+}
+
+@media (width >= 1200px) {
+  .desktop-only {
+    display: inline;
+  }
+}
+
 /* Ліва колонка з картками */
 .advantages-section__cards {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media (width >= 1200px) {
+  .advantages-section__cards {
+    padding-left: 2rem;
+  }
 }
 
 /* === GRID З 4 КАРТОК - ЦЕНТРОВАНІ, НЕ ОБРІЗУЮТЬСЯ === */
@@ -58,7 +75,7 @@
 @media (width >= 1400px) {
   .advantages-section .advantages-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
     justify-content: center;
   }
 
@@ -71,7 +88,7 @@
 @media (width >= 1200px) and (width < 1400px) {
   .advantages-section .advantages-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
   }
 
@@ -161,6 +178,12 @@
   backdrop-filter: none;
   box-sizing: border-box;
   width: 100%;
+}
+
+@media (width >= 1200px) {
+  .advantages-section__form {
+    padding-right: 2rem;
+  }
 }
 
 .advantages-section__form-title {
