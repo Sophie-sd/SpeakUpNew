@@ -82,7 +82,7 @@
 .programs-section .program-card__content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   padding: var(--spacing-md);
   padding-top: var(--spacing-lg);
   position: relative;
@@ -126,8 +126,8 @@
 .programs-section .program-card__subtitle {
   font-size: var(--font-size-sm);
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-top: 0;
+  margin-bottom: 0;
   font-weight: 500;
   max-width: 60%;
   word-wrap: break-word;
@@ -147,7 +147,7 @@
   line-height: 1.6;
   text-align: left;
   margin: 0;
-  margin-top: 180px;
+  margin-top: 1px;
 }
 
 /* Список переваг */
