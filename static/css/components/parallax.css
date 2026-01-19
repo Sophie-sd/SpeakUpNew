@@ -88,3 +88,94 @@
   }
 }
 
+/* ==========================================================================
+   Модифікатори для різних сторінок навчання
+   Перевизначають тільки background-image, решта стилів від базового класу
+   ========================================================================== */
+
+/* ==================== ADULTS (Дорослі) ==================== */
+.parallax-container--adults .parallax-layer__background::before {
+  background-image: url('../../img/adult_backg_desc.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Fallback для браузерів без WebP */
+@supports not (background-image: url('data:image/webp;base64,')) {
+  .parallax-container--adults .parallax-layer__background::before {
+    background-image: url('../../img/adult_backg_desc.png');
+  }
+}
+
+/* Мобільна версія для дорослих */
+@media (width <= 767px) {
+  .parallax-container--adults .parallax-layer__background::before {
+    background-image: url('../../img/adult_backg_mb.webp');
+  }
+
+  /* Fallback для браузерів без WebP на мобільних */
+  @supports not (background-image: url('data:image/webp;base64,')) {
+    .parallax-container--adults .parallax-layer__background::before {
+      background-image: url('../../img/adult_backg_mb.png');
+    }
+  }
+}
+
+/* ==================== KIDS (Діти) ==================== */
+.parallax-container--kids .parallax-layer__background::before {
+  background-image: url('../../img/kids_backg_desc.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Fallback для браузерів без WebP */
+@supports not (background-image: url('data:image/webp;base64,')) {
+  .parallax-container--kids .parallax-layer__background::before {
+    background-image: url('../../img/kids_backg_desc.png');
+  }
+}
+
+/* Мобільна версія для дітей */
+@media (width <= 767px) {
+  .parallax-container--kids .parallax-layer__background::before {
+    background-image: url('../../img/kids_backg_mb.webp');
+  }
+
+  /* Fallback для браузерів без WebP на мобільних */
+  @supports not (background-image: url('data:image/webp;base64,')) {
+    .parallax-container--kids .parallax-layer__background::before {
+      background-image: url('../../img/kids_backg_mb.png');
+    }
+  }
+}
+
+/* ==================== PREMIUM (Преміум) ==================== */
+.parallax-container--premium .parallax-layer__background::before {
+  background-image: url('../../img/premium_backg_desc.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Fallback для браузерів без WebP */
+@supports not (background-image: url('data:image/webp;base64,')) {
+  .parallax-container--premium .parallax-layer__background::before {
+    background-image: url('../../img/premium_backg_desc.png');
+  }
+}
+
+/* Мобільна версія для преміум */
+@media (width <= 767px) {
+  .parallax-container--premium .parallax-layer__background::before {
+    background-image: url('../../img/premium_backg_mb.webp');
+  }
+
+  /* Fallback для браузерів без WebP на мобільних */
+  @supports not (background-image: url('data:image/webp;base64,')) {
+    .parallax-container--premium .parallax-layer__background::before {
+      background-image: url('../../img/premium_backg_mb.png');
+    }
+  }
+}

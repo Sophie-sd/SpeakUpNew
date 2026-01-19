@@ -5,97 +5,21 @@
 {% block og_title %}Speak Up Premium - Преміум програма навчання англійської{% endblock %}
 {% block meta_description %}Speak Up Premium - ваш індивідуальний шлях до досконалої англійської. Максимум привілеїв у одному курсі: персональні заняття, розмовні групи та мультимедійні тренінги.{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
+{% endblock %}
+
 {% block content %}
-<main class="landing-page landing-page--premium">
-  <!-- Hero Section -->
-  <section class="landing-hero glass-section">
-    <div class="landing-hero__content">
-      <h1 class="landing-hero__title">Speak Up Premium</h1>
-      <p class="landing-hero__subtitle">Ваш індивідуальний шлях до досконалої англійської: максимум привілеїв у одному курсі. Унікальна система персональних занять з викладачем, розмовних груп та мультимедійних тренінгів для комплексного прориву.</p>
-      <div class="landing-hero__cta">
-        <a href="{% url 'core:testing' %}?from=premium-learning" class="button button--premium">Записатися на безкоштовне тестування</a>
-      </div>
-    </div>
-    <div class="landing-hero__image">
-      <img src="{% static 'img/speak_premium.png' %}" alt="Speak Up Premium" loading="eager" decoding="async">
-    </div>
-  </section>
+<!-- Паралакс-контейнер для статичного фону -->
+<div class="parallax-container parallax-container--premium" aria-hidden="true">
+  <div class="parallax-layer parallax-layer__background"></div>
+</div>
 
-  <!-- Features Section -->
-  <section class="landing-features glass-section">
-    <h2 class="section-title">Переваги Premium програми</h2>
-    <div class="features-grid">
-      <div class="feature-card glass-card">
-        <h3>Абсолютна гнучкість</h3>
-        <p>Ваш особистий графік, який підлаштовується під ваше життя, а не навпаки</p>
-      </div>
-      <div class="feature-card glass-card">
-        <h3>Подвійна підтримка</h3>
-        <p>Робота з викладачем тет-а-тет для розбору складних тем та практика в групах для комунікації</p>
-      </div>
-      <div class="feature-card glass-card">
-        <h3>Контроль прогресу</h3>
-        <p>Регулярні тестування та гарантований результат (Level test = 65% і вище)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Program Details -->
-  {% if premium_program %}
-  <section class="landing-program glass-section">
-    <h2 class="section-title">{{ premium_program.title }}</h2>
-    <div class="program-content">
-      {% if premium_program.full_content %}
-      <div class="program-description">
-        <p>{{ premium_program.full_content|linebreaks }}</p>
-      </div>
-      {% endif %}
-
-      {% if premium_program.includes %}
-      <div class="program-includes">
-        <h3>Що входить в програму</h3>
-        <ul>
-          {% for item in premium_program.includes %}
-          <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if premium_program.benefits %}
-      <div class="program-benefits">
-        <h3>Переваги навчання</h3>
-        <ul>
-          {% for benefit in premium_program.benefits %}
-          <li>{{ benefit }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if premium_program.price %}
-      <div class="program-pricing">
-        <h3>Вартість</h3>
-        <p class="price-amount">{{ premium_program.price.base }}</p>
-        {% if premium_program.duration %}
-        <p class="price-duration">Тривалість: {{ premium_program.duration }}</p>
-        {% endif %}
-      </div>
-      {% endif %}
-
-      <div class="program-cta">
-        <a href="{{ premium_program.url }}" class="button button--premium">Детальніше про Premium</a>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Consultation Form -->
-  <section class="landing-consultation glass-section">
-    <h2 class="section-title">Залишити заявку на консультацію</h2>
-    <div class="consultation-form glass-card">
-      {% include 'core/components/consultation_form.html' with form=consultation_form %}
-    </div>
-  </section>
+<main class="hero-content">
+  <!-- Контент буде додано пізніше -->
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{% static 'js/modules/parallax-scroll.js' %}" defer></script>
 {% endblock %}

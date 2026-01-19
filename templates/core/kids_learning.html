@@ -5,107 +5,21 @@
 {% block og_title %}Англійська для дітей - Школа англійської мови SPEAK UP{% endblock %}
 {% block meta_description %}Англійська для дітей та підлітків у школі SPEAK UP. Програми для дітей від 6 до 17 років з ігровою формою навчання, роботою з носіями мови та підготовкою до іспитів.{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
+{% endblock %}
+
 {% block content %}
-<main class="landing-page landing-page--kids">
-  <!-- Hero Section -->
-  <section class="landing-hero glass-section">
-    <div class="landing-hero__content">
-      <h1 class="landing-hero__title">Англійська для дітей та підлітків</h1>
-      <p class="landing-hero__subtitle">Програми для дітей від 6 до 17 років, що поєднують ігрову форму, роботу з носіями мови та ґрунтовну підготовку до іспитів</p>
-      <div class="landing-hero__cta">
-        <a href="{% url 'core:testing' %}?from=kids-learning" class="button button--primary">Записатися на безкоштовне тестування</a>
-      </div>
-    </div>
-    <div class="landing-hero__image">
-      <img src="{% static 'img/speak_kid.png' %}" alt="Англійська для дітей" loading="eager" decoding="async">
-    </div>
-  </section>
+<!-- Паралакс-контейнер для статичного фону -->
+<div class="parallax-container parallax-container--kids" aria-hidden="true">
+  <div class="parallax-layer parallax-layer__background"></div>
+</div>
 
-  <!-- Features Section -->
-  <section class="landing-features glass-section">
-    <h2 class="section-title">Чому обирають навчання для дітей у Speak Up</h2>
-    <div class="features-grid">
-      <div class="feature-card glass-card">
-        <h3>Вікові категорії</h3>
-        <p>Окремі програми для Kids (6-10 років) та Teens (11-17 років) з урахуванням психології дитини</p>
-      </div>
-      <div class="feature-card glass-card">
-        <h3>Малі групи</h3>
-        <p>Навчання в групах від 3 до 8 осіб, де кожна дитина отримує максимум уваги</p>
-      </div>
-      <div class="feature-card glass-card">
-        <h3>Підготовка до іспитів</h3>
-        <p>Спеціалізовані курси для успішного складання НМТ та ЄВІ (від рівня B1+)</p>
-      </div>
-      <div class="feature-card glass-card">
-        <h3>Інтенсивна практика</h3>
-        <p>Розмовні заняття з носіями мови навіть на базових рівнях</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Program Details -->
-  {% if kids_program %}
-  <section class="landing-program glass-section">
-    <h2 class="section-title">{{ kids_program.title }}</h2>
-    <div class="program-content">
-      {% if kids_program.full_content %}
-      <div class="program-description">
-        <p>{{ kids_program.full_content|linebreaks }}</p>
-      </div>
-      {% endif %}
-
-      {% if kids_program.includes %}
-      <div class="program-includes">
-        <h3>Що входить в програму</h3>
-        <ul>
-          {% for item in kids_program.includes %}
-          <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if kids_program.benefits %}
-      <div class="program-benefits">
-        <h3>Переваги навчання</h3>
-        <ul>
-          {% for benefit in kids_program.benefits %}
-          <li>{{ benefit }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      <div class="program-cta">
-        <a href="{{ kids_program.url }}" class="button button--primary">Детальніше про програму</a>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Other Kids Programs -->
-  {% if other_kids_programs %}
-  <section class="landing-other-programs glass-section">
-    <h2 class="section-title">Інші програми для дітей</h2>
-    <div class="programs-grid">
-      {% for program in other_kids_programs %}
-      <div class="program-card glass-card">
-        <h3>{{ program.title }}</h3>
-        <p>{{ program.description }}</p>
-        <a href="{{ program.url }}" class="button button--secondary">Детальніше</a>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Consultation Form -->
-  <section class="landing-consultation glass-section">
-    <h2 class="section-title">Залишити заявку на консультацію</h2>
-    <div class="consultation-form glass-card">
-      {% include 'core/components/consultation_form.html' with form=consultation_form %}
-    </div>
-  </section>
+<main class="hero-content">
+  <!-- Контент буде додано пізніше -->
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{% static 'js/modules/parallax-scroll.js' %}" defer></script>
 {% endblock %}
