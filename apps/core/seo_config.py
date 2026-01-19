@@ -69,6 +69,11 @@ SITEMAP_URLS = [
     ('core:feedback', 0.7, 'weekly'),
     ('core:job', 0.6, 'monthly'),
     ('core:shares', 0.7, 'weekly'),
+
+    # Landing pages для програм навчання
+    ('core:kids_learning_page', 0.9, 'weekly'),
+    ('core:buy_stub', 0.9, 'weekly'),
+    ('core:premium_learning_page', 0.9, 'weekly'),
 ]
 
 # ===== ДАНІ ДЛЯ VIEWS =====

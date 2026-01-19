@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Навчання для дорослих - Школа англійської мови SPEAK UP{% endblock %}
+{% block og_title %}Навчання для дорослих - Школа англійської мови SPEAK UP{% endblock %}
+{% block meta_description %}Навчання англійської для дорослих у школі SPEAK UP. Обирайте свій темп: від базових рівнів до повного безліміту на рік. Програми для швидкого подолання мовного бар'єру.{% endblock %}
+
+{% block content %}
+<main class="landing-page landing-page--adults">
+  <!-- Hero Section -->
+  <section class="landing-hero glass-section">
+    <div class="landing-hero__content">
+      <h1 class="landing-hero__title">Навчання для дорослих</h1>
+      <p class="landing-hero__subtitle">Обирайте свій темп: від базових рівнів до повного безліміту на рік. Програми розроблені для швидкого подолання мовного бар'єру з акцентом на розмовну практику.</p>
+      <div class="landing-hero__cta">
+        <a href="{% url 'core:testing' %}?from=adults-learning" class="button button--primary">Записатися на безкоштовне тестування</a>
+      </div>
+    </div>
+    <div class="landing-hero__image">
+      <img src="{% static 'img/speak_man.png' %}" alt="Навчання для дорослих" loading="eager" decoding="async">
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="landing-features glass-section">
+    <h2 class="section-title">Переваги навчання для дорослих</h2>
+    <div class="features-grid">
+      <div class="feature-card glass-card">
+        <h3>Персональний конструктор</h3>
+        <p>Обирайте тип англійської (загальна або спеціалізована) та тривалість занять (50 або 90 хв)</p>
+      </div>
+      <div class="feature-card glass-card">
+        <h3>Повне занурення</h3>
+        <p>Можливість отримати річний безліміт та пройти від 5 рівнів за шкалою CEFR</p>
+      </div>
+      <div class="feature-card glass-card">
+        <h3>Долання бар'єрів</h3>
+        <p>8 розмовних клубів на кожному рівні та заняття з носіями мови</p>
+      </div>
+      <div class="feature-card glass-card">
+        <h3>Зручний формат</h3>
+        <p>Доступ до особистого кабінету та інтерактивного підручника 24/7</p>
+      </div>
+      <div class="feature-card glass-card">
+        <h3>Гарантова практика</h3>
+        <p>Розмовна практика на кожному занятті</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs List -->
+  {% if adult_programs %}
+  <section class="landing-programs glass-section">
+    <h2 class="section-title">Програми навчання для дорослих</h2>
+    <div class="programs-grid">
+      {% for program in adult_programs %}
+      <div class="program-card glass-card">
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+        <a href="{{ program.url }}" class="button button--secondary">Детальніше</a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="programs-cta">
+      <a href="{% url 'core:programs_list' %}" class="button button--primary">Переглянути всі програми</a>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Consultation Form -->
+  <section class="landing-consultation glass-section">
+    <h2 class="section-title">Залишити заявку на консультацію</h2>
+    <div class="consultation-form glass-card">
+      {% include 'core/components/consultation_form.html' with form=consultation_form %}
+    </div>
+  </section>
+</main>
+{% endblock %}

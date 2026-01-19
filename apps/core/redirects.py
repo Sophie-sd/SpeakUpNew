@@ -8,8 +8,8 @@ REDIRECTS = {
     '/pidgotovka-do-ispitu-ielts': '/programs/ielts',
     '/pidgotovka-do-zno-z-anglijskoi-movi': '/programs/pidgotovka-zno',
     '/pidgotovka-do-ispitu-toefl': '/programs/toefl',
-    '/anglijska-dlya-ditej-kids-30': '/programs/kids',
-    '/product/misyacz-bezlimitu/': '/programs/bezlimitnij-onlajn-kurs-anglijskoyi-movi',
+    # /anglijska-dlya-ditej-kids-30 removed - now has landing page
+    # /product/misyacz-bezlimitu/ removed - now has landing page
     '/2-rivni-anglijskoji-movi': '/programs/english-for-beginners',
     '/4-rivni-anglijskoji-movi-10-12-misyacziv-navchannya': '/programs/group',
     '/2-rivni-6-misyacziv-navchannya': '/programs/group',

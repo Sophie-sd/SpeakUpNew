@@ -739,8 +739,83 @@ def programma_loyalnosty_stub(request):
     return render(request, 'core/stubs/programma_loyalnosty_stub.html')
 
 def buy_stub(request):
-    """SEO stub for /ru/buy/."""
-    return render(request, 'core/stubs/buy_stub.html')
+    """Landing page for adults learning programs."""
+    lang = get_language()
+
+    # Отримуємо програми для дорослих з PROGRAMS
+    adult_programs = []
+    for slug, program in PROGRAMS.items():
+        category = program.get('category', '')
+        if category in ['group', 'individual', 'professional', 'exams', 'beginners']:
+            adult_programs.append({
+                'slug': slug,
+                'title': program.get(f'title_{lang}', program['title']),
+                'description': program.get(f'description_{lang}', program['description']),
+                'url': f'/programs/{slug}',
+            })
+
+    context = {
+        'current_language': lang,
+        'adult_programs': adult_programs[:6],  # Перші 6 програм
+        'consultation_form': ConsultationForm(),
+    }
+    return render(request, 'core/adults_learning.html', context)
+
+def kids_learning_page(request):
+    """Landing page for kids learning programs."""
+    lang = get_language()
+
+    # Отримуємо дані програми kids
+    kids_program = PROGRAMS.get('kids', {})
+
+    # Отримуємо інші дитячі програми
+    kids_programs = []
+    for slug, program in PROGRAMS.items():
+        if program.get('category') == 'kids' and slug != 'kids':
+            kids_programs.append({
+                'slug': slug,
+                'title': program.get(f'title_{lang}', program['title']),
+                'description': program.get(f'description_{lang}', program['description']),
+                'url': f'/programs/{slug}',
+            })
+
+    context = {
+        'current_language': lang,
+        'kids_program': {
+            'title': kids_program.get(f'title_{lang}', kids_program.get('title', '')),
+            'description': kids_program.get(f'description_{lang}', kids_program.get('description', '')),
+            'full_content': kids_program.get(f'full_content_{lang}', kids_program.get('full_content', '')),
+            'includes': kids_program.get(f'includes_{lang}', kids_program.get('includes', [])),
+            'benefits': kids_program.get(f'benefits_{lang}', kids_program.get('benefits', [])),
+            'url': '/programs/kids',
+        },
+        'other_kids_programs': kids_programs,
+        'consultation_form': ConsultationForm(),
+    }
+    return render(request, 'core/kids_learning.html', context)
+
+def premium_learning_page(request):
+    """Landing page for Premium learning program."""
+    lang = get_language()
+
+    # Отримуємо дані програми premium
+    premium_program = PROGRAMS.get('premium', {})
+
+    context = {
+        'current_language': lang,
+        'premium_program': {
+            'title': premium_program.get(f'title_{lang}', premium_program.get('title', '')),
+            'description': premium_program.get(f'description_{lang}', premium_program.get('description', '')),
+            'full_content': premium_program.get(f'full_content_{lang}', premium_program.get('full_content', '')),
+            'includes': premium_program.get(f'includes_{lang}', premium_program.get('includes', [])),
+            'benefits': premium_program.get(f'benefits_{lang}', premium_program.get('benefits', [])),
+            'price': premium_program.get('price', {}),
+            'duration': premium_program.get('duration', ''),
+            'url': '/programs/premium',
+        },
+        'consultation_form': ConsultationForm(),
+    }
+    return render(request, 'core/premium_learning.html', context)
 
 def dogovir_stub(request):
     """SEO stub for /ru/dogovir-pro-nadannya-poslug-dostupu-do-elektronnogo-kabinetu-speak-up-2/."""

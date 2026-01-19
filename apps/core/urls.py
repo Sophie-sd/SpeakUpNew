@@ -48,6 +48,10 @@ urlpatterns = [
     path('buy/', views.buy_stub, name='buy_stub'),
     path('dogovir-pro-nadannya-poslug-dostupu-do-elektronnogo-kabinetu-speak-up-2/', views.dogovir_stub, name='dogovir_stub'),
 
+    # Landing pages для програм навчання (ПЕРЕД catch-all!)
+    path('anglijska-dlya-ditej-kids-30', views.kids_learning_page, name='kids_learning_page'),
+    path('product/misyacz-bezlimitu/', views.premium_learning_page, name='premium_learning_page'),
+
     # Orphan: Міста (динамічний slug) - В КІНЦІ як catch-all
     path('<slug:city>', views.city_page, name='city_page'),
 ]
