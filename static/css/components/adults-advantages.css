@@ -54,10 +54,10 @@
   box-sizing: border-box;
 }
 
-/* Desktop: 4 картки в стовпчик (вертикально) */
+/* Desktop: 4 картки в 2 стовпчики */
 @media (width >= 1400px) {
   .advantages-section .advantages-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     justify-content: center;
   }
@@ -67,10 +67,10 @@
   }
 }
 
-/* Desktop medium: 4 картки в стовпчик (вертикально) */
+/* Desktop medium: 4 картки в 2 стовпчики */
 @media (width >= 1200px) and (width < 1400px) {
   .advantages-section .advantages-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     justify-content: center;
   }
@@ -187,11 +187,11 @@
   }
 
   .advantages-section__form-title {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   .advantages-section__form-subtitle {
-    font-size: 0.8125rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -204,7 +204,7 @@
   align-items: flex-start;
   text-align: left;
   padding: 1.1rem 1.6rem 0.3rem;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -314,7 +314,7 @@
 
 @media (width <= 767px) {
   .advantages-section .advantage-card__title {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
