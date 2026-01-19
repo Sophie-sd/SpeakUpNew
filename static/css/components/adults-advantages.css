@@ -1,0 +1,394 @@
+/* ==========================================================================
+   Adults Advantages Section - Блок "Speak Up. Твої можливості без кордонів"
+   ========================================================================== */
+
+/* === СЕКЦІЯ ПЕРЕВАГ === */
+
+.advantages-section {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  width: 100%;
+  max-width: min(var(--content-width-desktop), var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.advantages-section .section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+/* === GRID З 4 КАРТОК === */
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Desktop: 4 в ряд або 2x2 залежно від ширини */
+@media (width >= 1024px) {
+  .advantages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (width >= 1400px) {
+  .advantages-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Tablet: 2x2 */
+@media (width >= 768px) and (width < 1024px) {
+  .advantages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Mobile: 1 колонка */
+@media (width < 768px) {
+  .advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* === КАРТКА ПЕРЕВАГИ === */
+
+.advantage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border-elevated);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow-elevated);
+  transition: all var(--transition-normal) ease;
+  contain: layout style paint;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  min-height: 300px;
+}
+
+/* Адаптивний blur для різних пристроїв */
+@supports (-webkit-touch-callout: none) {
+  /* iOS */
+  .advantage-card {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (width <= 767px) {
+  .advantage-card {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    min-height: 280px;
+    padding: 1.5rem;
+  }
+}
+
+/* Hover ефект для desktop */
+@media (hover: hover) and (pointer: fine) {
+  .advantage-card {
+    cursor: pointer;
+  }
+
+  .advantage-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-primary-light);
+  }
+
+  .advantage-card:hover .advantage-card__icon {
+    transform: scale(1.1);
+  }
+}
+
+/* === ІКОНКА === */
+
+.advantage-card__icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  transition: transform var(--transition-normal) ease;
+}
+
+@media (width <= 767px) {
+  .advantage-card__icon {
+    width: 56px;
+    height: 56px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* === ЗАГОЛОВОК === */
+
+.advantage-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+@media (width <= 767px) {
+  .advantage-card__title {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* === ТЕКСТ === */
+
+.advantage-card__text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+@media (width <= 767px) {
+  .advantage-card__text {
+    font-size: 0.9rem;
+  }
+}
+
+/* === ВИДІЛЕНИЙ ТЕКСТ В КАРТЦІ === */
+
+.advantage-card__accent {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
+
+/* === БЛОК "ЩО ТИ ОТРИМАЄШ КРІМ ЗНАНЬ?" === */
+
+.benefits-section {
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-elevated);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow-elevated);
+  padding: 2.5rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  contain: layout style paint;
+}
+
+/* Адаптивний blur для различних пристроїв */
+@supports (-webkit-touch-callout: none) {
+  /* iOS */
+  .benefits-section {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (width <= 767px) {
+  .benefits-section {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+  }
+}
+
+/* === ЗАГОЛОВОК БЛОКУ ПРЕМІУМ === */
+
+.benefits-section__title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media (width <= 767px) {
+  .benefits-section__title {
+    font-size: var(--font-size-lg);
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* === СПИСОК БЕНЕФІТІВ === */
+
+.benefits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Desktop: 3 в ряд */
+@media (width >= 1024px) {
+  .benefits-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Tablet: 2 в ряд */
+@media (width >= 768px) and (width < 1024px) {
+  .benefits-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile: 1 колонка */
+@media (width < 768px) {
+  .benefits-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* === ЕЛЕМЕНТ СПИСКУ === */
+
+.benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+/* === ІКОНКА БЕНЕФІТУ === */
+
+.benefit-item__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+@media (width <= 767px) {
+  .benefit-item__icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+/* === ЗАГОЛОВОК БЕНЕФІТУ === */
+
+.benefit-item__title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+/* === ТЕКСТ БЕНЕФІТУ === */
+
+.benefit-item__text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+@media (width <= 767px) {
+  .benefit-item__text {
+    font-size: 0.85rem;
+  }
+}
+
+/* === RESPONSIVE ЗАГАЛЬНЕ === */
+
+/* Mobile-first адаптація */
+@media (width <= 767px) {
+  .advantages-section {
+    padding: var(--section-padding-mobile);
+    margin-bottom: var(--section-spacing-mobile);
+  }
+
+  .advantages-section .section-title {
+    margin-bottom: 2rem;
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Таблет оптимізація */
+@media (width >= 768px) and (width < 1024px) {
+  .advantages-grid {
+    gap: 1.8rem;
+  }
+
+  .advantage-card {
+    padding: 1.8rem;
+    min-height: 290px;
+  }
+}
+
+/* === ANIMATION: PREFERS-REDUCED-MOTION === */
+
+@media (prefers-reduced-motion: reduce) {
+  .advantage-card,
+  .advantage-card__icon,
+  .benefits-section {
+    transition: none;
+  }
+
+  .advantage-card:hover {
+    transform: none;
+  }
+
+  .advantage-card:hover .advantage-card__icon {
+    transform: none;
+  }
+}
+
+/* === FOCUS STATES ДЛЯ ACCESSIBILITY === */
+
+.advantage-card:focus-visible,
+.benefit-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* === ПОПРАВКА НА GLASSMORPHISM ДЛЯ БРАУЗЕРІВ БЕЗ ПІДТРИМКИ === */
+
+@supports not (backdrop-filter: blur(8px)) {
+  .advantage-card,
+  .benefits-section {
+    background: var(--glass-bg-light);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* === PERFORMANCE OPTIMIZATION === */
+
+.advantage-card {
+  will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .advantage-card:hover {
+    will-change: transform;
+  }
+
+  .advantage-card:not(:hover) {
+    will-change: auto;
+  }
+}
