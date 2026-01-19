@@ -27,7 +27,7 @@
 .advantages-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  gap: 2.5rem;
   margin-bottom: 4rem;
   justify-items: center;
   padding: 0 1rem;
@@ -37,7 +37,7 @@
 @media (width >= 1400px) {
   .advantages-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem;
     max-width: 100%;
   }
 }
@@ -46,7 +46,7 @@
 @media (width >= 1024px) and (width < 1400px) {
   .advantages-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.8rem;
+    gap: 2.5rem;
   }
 }
 
@@ -54,12 +54,21 @@
 @media (width >= 768px) and (width < 1024px) {
   .advantages-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
   }
 }
 
 /* Mobile: 1 колонка */
 @media (width < 768px) {
+  .advantages-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .advantages-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -87,6 +96,7 @@
   min-height: 320px;
   width: 100%;
   max-width: 280px;
+  overflow: visible;
 }
 
 /* Адаптивний blur для різних пристроїв */
@@ -126,32 +136,41 @@
   }
 }
 
-/* === ІКОНКА В ЛІВОМУ ВЕРХНЬОМУ КУТІ === */
+/* === ІКОНКА В ЛІВОМУ ВЕРХНЬОМУ КУТІ (НА ПОЛОВИНУ ВИЛАЗИТЬ) === */
 
 .advantage-card__icon {
   position: absolute;
-  top: 1.2rem;
-  left: 1.2rem;
-  width: 48px;
-  height: 48px;
+  top: -24px;
+  left: -24px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--color-primary);
+  border-radius: 50%;
   transition: transform var(--transition-normal) ease;
+  flex-shrink: 0;
 }
 
 .advantage-card__icon svg {
-  width: 100%;
-  height: 100%;
-  color: var(--color-primary);
+  width: 28px;
+  height: 28px;
+  color: white;
+  stroke-width: 1.5;
 }
 
 @media (width <= 767px) {
   .advantage-card__icon {
-    top: 1rem;
-    left: 1rem;
-    width: 40px;
-    height: 40px;
+    top: -20px;
+    left: -20px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .advantage-card__icon svg {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -327,6 +346,7 @@
   width: 100%;
   height: 100%;
   color: var(--color-primary);
+  stroke-width: 1.5;
 }
 
 @media (width <= 767px) {
@@ -363,11 +383,6 @@
 
 /* Mobile-first адаптація */
 @media (width <= 767px) {
-  .advantages-section {
-    padding: 2rem 1rem;
-    margin-top: 1.5rem;
-  }
-
   .advantages-section .section-title {
     margin-bottom: 2rem;
     font-size: var(--font-size-xl);
@@ -377,7 +392,7 @@
 /* Таблет оптимізація */
 @media (width >= 768px) and (width < 1024px) {
   .advantages-grid {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .advantage-card {
