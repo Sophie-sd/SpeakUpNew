@@ -102,7 +102,7 @@
 /* Мобільна версія для дорослих */
 @media (width <= 767px) {
   .parallax-container--adults .parallax-layer__background::before {
-    background-image: url('../../img/adult_backg_mb.png') !important;
+    background-image: url('../../img/adult_backg_mb.jpg') !important;
   }
 }
 

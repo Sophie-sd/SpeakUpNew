@@ -268,8 +268,8 @@
   }
 }
 
-/* Hover ефект для desktop */
-@media (hover: hover) and (pointer: fine) {
+/* Hover ефект тільки на справді hover-здатних пристроях (desktop) */
+@media (hover: hover) and (pointer: fine) and (width >= 1024px) {
   .advantages-section .advantage-card {
     cursor: pointer;
   }
@@ -349,67 +349,17 @@
   }
 }
 
-/* === ТОНКА ЛІНІЯ ПІД ЗАГОЛОВКОМ === */
 
-.advantages-section .advantage-card__divider-header {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 0.7rem 0 0;
-}
-
-/* === ОБГОРТКА ДЛЯ ЦЕНТРУВАННЯ КНОПКИ TOGGLE === */
-
-.advantages-section .advantage-card__toggle-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-/* === КНОПКА TOGGLE === */
-
-.advantages-section .advantage-card__toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  flex-shrink: 0;
-  transition: transform var(--transition-normal) ease;
-}
-
-.advantages-section .advantage-card__toggle-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-primary);
-  stroke-width: 2;
-}
-
-.advantages-section .advantage-card__toggle[aria-expanded="true"] {
-  transform: rotate(180deg);
-}
-
-/* === КОНТЕНТ (ЗГОРТАЄМИЙ) === */
+/* === КОНТЕНТ (ЗАВЖДИ ВИДИМИЙ) === */
 
 .advantages-section .advantage-card__content {
-  max-height: 0;
-  overflow: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: max-height var(--transition-normal) ease, padding-top var(--transition-normal) ease, padding-bottom var(--transition-normal) ease;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.advantages-section .advantage-card.expanded .advantage-card__content {
-  max-height: 1000px;
+  max-height: none;
+  overflow: visible;
   padding-top: 0.75rem;
   padding-bottom: 0;
+  transition: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* === ОСНОВНИЙ ТЕКСТ === */
@@ -425,15 +375,6 @@
   .advantages-section .advantage-card__text {
     font-size: 0.85rem;
   }
-}
-
-/* === РОЗДІЛЬНА ЛІНІЯ === */
-
-.advantages-section .advantage-card__divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 0.75rem 0;
 }
 
 /* === ЧЕРВОНИЙ ТЕКСТ - АКЦЕНТ === */
