@@ -119,7 +119,7 @@
   font-weight: 700;
   line-height: 1.3;
   color: rgba(255, 255, 255, 0.95);
-  margin-top: 15px;
+  margin-top: 21px;
 }
 
 /* Підзаголовок картки */
@@ -152,17 +152,17 @@
 
 /* Опис для дорослих - перша картка */
 .programs-section .program-card:first-child .program-card__description {
-  margin-top: 45px;
+  margin-top: 40px;
 }
 
 /* Опис для дітей - друга картка */
 .programs-section .program-card:nth-child(2) .program-card__description {
-  margin-top: 65px;
+  margin-top: 60px;
 }
 
 /* Опис для Premium - третя картка */
 .programs-section .program-card--premium .program-card__description {
-  margin-top: 45px;
+  margin-top: 40px;
 }
 
 /* Список переваг */
