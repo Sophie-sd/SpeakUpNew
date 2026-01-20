@@ -18,84 +18,35 @@
 </div>
 
 <main class="hero-content">
-  <!-- 1. БЛОК "SPEAK UP. ТВОЇ МОЖЛИВОСТІ БЕЗ КОРДОНІВ" -->
-  <section class="advantages-section glass-section">
-    <h2 class="section-title">Speak Up. Твої можливості без кордонів</h2>
+  <!-- 1. HERO-БЛОК З ЗОБРАЖЕННЯМ ТА КНОПКАМИ НАВІГАЦІЇ -->
+  <section class="advantages-section advantages-section--hero glass-section">
+    <div class="advantages-hero__image-wrapper">
+      <img src="{% static 'img/adults_hero.png' %}" alt="Навчання для дорослих" class="advantages-hero__image" loading="lazy" decoding="async">
+    </div>
 
-    <!-- LAYOUT З 2 КОЛОНКАМИ: КАРТКИ + ФОРМА -->
-    <div class="advantages-section__layout">
-      <!-- ЛІВА КОЛОНКА: GRID З 4 КАРТОК -->
-      <div class="advantages-section__cards">
-        <div class="advantages-grid">
-          <!-- Картка 1: Гнучкість -->
-          <div class="advantage-card">
-            <div class="advantage-card__icon">
-              <img src="{% static 'img/kalendar.svg' %}" alt="Календар" class="advantage-card__icon-img">
-            </div>
-            <div class="advantage-card__header">
-              <h3 class="advantage-card__title">Навчайся де завгодно і коли завгодно</h3>
-            </div>
-            <div class="advantage-card__content">
-              <p class="advantage-card__text">Твій графік — це твоя справа. Міксуй ранкові розмовні клуби з вечірніми заняттями. Бронюй уроки в один клік у будь-який день тижня.</p>
-              <p class="advantage-card__accent">Повна синхронізація з твоїм ритмом життя.</p>
-            </div>
-          </div>
+    <!-- КОНТЕЙНЕР З КНОПКАМИ У ЛІВОМУ ВЕРХНЬОМУ КУТІ -->
+    <div class="advantages-hero__buttons">
+      <a href="#levels-section" class="advantages-hero__button glass-card">
+        Навчання за рівнями
+      </a>
+      <a href="#individual-section" class="advantages-hero__button glass-card">
+        Індивідуальні заняття
+      </a>
+      <a href="#unlimited-section" class="advantages-hero__button glass-card">
+        Безлімітне навчання
+      </a>
+    </div>
 
-          <!-- Картка 2: Blended Learning -->
-          <div class="advantage-card">
-            <div class="advantage-card__icon">
-              <img src="{% static 'img/books.svg' %}" alt="Книги" class="advantage-card__icon-img">
-            </div>
-            <div class="advantage-card__header">
-              <h3 class="advantage-card__title">Розумне поєднання практики та теорії</h3>
-            </div>
-            <div class="advantage-card__content">
-              <p class="advantage-card__text">Ми використовуємо методику комплексного вивчення: інтерактивні мультимедійні уроки для бази + інтенсивні заняття з викладачем для живої практики.</p>
-              <p class="advantage-card__accent">Ти не просто вчиш правила, ти починаєш говорити з першого тижня.</p>
-            </div>
-          </div>
-
-          <!-- Картка 3: Екосистема підтримки -->
-          <div class="advantage-card">
-            <div class="advantage-card__icon">
-              <img src="{% static 'img/people.svg' %}" alt="Люди" class="advantage-card__icon-img">
-            </div>
-            <div class="advantage-card__header">
-              <h3 class="advantage-card__title">Ти не один у цьому процесі</h3>
-            </div>
-            <div class="advantage-card__content">
-              <p class="advantage-card__text">За тобою закріплений особистий освітній консультант, який допоможе з мотивацією та графіком. Технічна підтримка 24/7 вирішить будь-яке питання з доступом.</p>
-              <p class="advantage-card__accent">Персональний супровід від реєстрації до отримання сертифіката.</p>
-            </div>
-          </div>
-
-          <!-- Картка 4: Тверда Гарантія -->
-          <div class="advantage-card">
-            <div class="advantage-card__icon">
-              <img src="{% static 'img/garant.svg' %}" alt="Гарантія" class="advantage-card__icon-img">
-            </div>
-            <div class="advantage-card__header">
-              <h3 class="advantage-card__title">Результат, підтверджений договором</h3>
-            </div>
-            <div class="advantage-card__content">
-              <p class="advantage-card__text">Ми на 100% впевнені у своїй системі. Якщо ти не засвоїв рівень, ми надаємо повторне навчання безкоштовно. Після завершення — офіційний сертифікат.</p>
-              <p class="advantage-card__accent">Безпечне інвестування у свою освіту.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ПРАВА КОЛОНКА: ФОРМА -->
-      <div class="advantages-section__form glass-card">
-        <h3 class="advantages-section__form-title">Запишіться на безкоштовне пробне заняття</h3>
-        <p class="advantages-section__form-subtitle">Визначимо ваш рівень англійської та складемо персональний план навчання</p>
-        {% include 'components/trial-form.html' with form=trial_form variant="adults-advantages" %}
-      </div>
+    <!-- ФОРМА СПРАВА ВНИЗУ (ОПЦІОНАЛЬНО) -->
+    <div class="advantages-section__form glass-card advantages-section__form--overlay">
+      <h3 class="advantages-section__form-title">Запишіться на безкоштовне пробне заняття</h3>
+      <p class="advantages-section__form-subtitle">Визначимо ваш рівень англійської та складемо персональний план навчання</p>
+      {% include 'components/trial-form.html' with form=trial_form variant="adults-advantages" %}
     </div>
   </section>
 
   <!-- 2. БЛОК "НАВЧАННЯ ЗА РІВНЯМИ" -->
-  <section class="levels-section glass-section">
+  <section class="levels-section glass-section" id="levels-section">
     <!-- Заголовок і підзаголовок -->
     <h2 class="section-title">Навчання за рівнями</h2>
     <p class="section-subtitle">Твій шлях до вільної англійської: від рівня до рівня</p>
@@ -180,6 +131,10 @@
       <a href="#" class="button button--primary">Записатись на безкоштовне пробне заняття</a>
     </div>
   </section>
+
+  <!-- 3. ЯКОРІ ДЛЯ МАЙБУТНІХ СЕКЦІЙ (ЗАГЛУШКИ) -->
+  <section id="individual-section" style="display: none;"></section>
+  <section id="unlimited-section" style="display: none;"></section>
 </main>
 {% endblock %}
 
