@@ -27,7 +27,10 @@
 
 .section-title--hero {
   margin-bottom: 0.5rem;
-  margin-top: 0;
+  margin-top: 3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .section-subtitle--hero {
@@ -42,7 +45,7 @@
 
 .advantages-section--hero {
   position: relative;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   overflow: visible;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -67,6 +70,11 @@
   flex-direction: column;
   overflow: visible;
   border-radius: 12px;
+  align-items: stretch;
+}
+
+.advantages-hero__image-wrapper {
+  margin-top: auto;
 }
 
 /* === КОНТЕЙНЕР ЗІ ЗОБРАЖЕННЯМ === */
@@ -292,13 +300,13 @@
   }
 
   .advantages-hero__buttons {
-    top: 1rem;
+    top: 0.5rem;
     right: 1rem;
     gap: 0.6rem;
   }
 
   .advantages-hero__button {
-    padding: 0rem 0.9rem;
+    padding: 0rem 0.5rem;
     font-size: 0.8rem;
     width: auto;
   }
@@ -316,6 +324,15 @@
   .advantages-section__form-subtitle {
     font-size: 0.85rem;
   }
+
+  .section-title--hero {
+    margin-top: 2.5rem;
+    font-size: 1.4rem;
+  }
+
+  .section-subtitle--hero {
+    font-size: 1rem;
+  }
 }
 
 /* Дуже малі мобільні */
@@ -326,18 +343,27 @@
   }
 
   .advantages-hero__buttons {
-    top: 0.75rem;
+    top: 0.5rem;
     right: 0.75rem;
     gap: 0.5rem;
   }
 
   .advantages-hero__button {
-    padding: 0.6rem 0.8rem;
+    padding: 0rem 0.5rem;
     font-size: 0.75rem;
   }
 
   .advantages-section__form--hero {
     padding: 1rem;
+  }
+
+  .section-title--hero {
+    margin-top: 2.5rem;
+    font-size: 1.3rem;
+  }
+
+  .section-subtitle--hero {
+    font-size: 1rem;
   }
 }
 
