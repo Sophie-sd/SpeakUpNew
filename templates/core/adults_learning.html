@@ -118,8 +118,8 @@
       <div class="levels-info">
         <img src="{% static 'img/star-icon.svg' %}" alt="Зірочка" class="levels-info__star">
         <h3>{{ level_info.title_uk }}</h3>
-        <p>{{ level_info.main_text_uk }}</p>
-        <p>{{ level_info.guarantee_text_uk }}</p>
+        <p><strong>Один рівень — це 3 місяці інтенсивного прогресу.</strong></p>
+        <p>Кожен етап завершується фінальним тестуванням. Ми дбаємо про вашу якість знань: <strong>якщо результат тесту нижче 65 балів, ви проходите рівень повторно безкоштовно.</strong> Ми працюємо з вами до тих пір, поки ви не отримаєте впевнений результат.</p>
       </div>
     </div>
 
@@ -141,12 +141,18 @@
 
         <!-- Рядок 2: Кількість рівнів = Тривалість -->
         <p class="pricing-card__row-2">
-          <strong>{{ package.levels_count }} рівн{% if package.levels_count != 1 %}і{% else %}ень{% endif %} = {{ package.duration_uk }}</strong>
+          <strong>
+            {% if package.levels_count == 1 %}
+              1 рівень
+            {% else %}
+              {{ package.levels_count }} рівні
+            {% endif %}
+            = {{ package.duration_uk }}
+          </strong>
         </p>
 
         <!-- Рядок 3: Ціна за рівень -->
         <p class="pricing-card__row-3">
-          Ціна за рівень:
           {% if package.discount_percent != 0 %}
             {% if package.id == 'progress' %}
               <span class="price-old">19800 грн</span>
@@ -162,8 +168,6 @@
             <strong>{{ package.full_price }} грн</strong>
           {% endif %}
         </p>
-
-        <div class="pricing-card__divider"></div>
 
         <!-- Помісячна ціна (зберігаємо як є) -->
         <p class="price-per-month"><strong>{{ package.price_per_month }} грн/міс</strong></p>
