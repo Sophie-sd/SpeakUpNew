@@ -204,6 +204,9 @@ html {
   /* Rule 41: color-scheme */
   color-scheme: light dark;
 
+  /* Smooth scroll для якорних посилань */
+  scroll-behavior: smooth;
+
   /* Base font size for rem calculations */
   font-size: 16px;
 
@@ -325,8 +328,15 @@ input[type="range"] {
 
 /* Rule 31: Hover effects тільки для пристроїв з hover */
 @media (hover: hover) and (pointer: fine) {
-  a:hover {
+  a:not(.button):not([class*="button"]):hover {
     text-decoration: underline;
+  }
+
+  /* Забезпечуємо, що кнопки не мають підкреслення при hover */
+  .button:hover,
+  a.button:hover,
+  [class*="button"]:hover {
+    text-decoration: none;
   }
 
   button:hover {
