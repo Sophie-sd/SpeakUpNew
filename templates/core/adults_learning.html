@@ -18,30 +18,35 @@
 </div>
 
 <main class="hero-content">
-  <!-- 1. HERO-БЛОК З ЗОБРАЖЕННЯМ ТА КНОПКАМИ НАВІГАЦІЇ -->
+  <!-- 1. HERO-БЛОК З ЗОБРАЖЕННЯМ ТА КНОПКАМИ НАВІГАЦІЇ (2-КОЛОНКОВИЙ) -->
   <section class="advantages-section advantages-section--hero glass-section">
-    <div class="advantages-hero__image-wrapper">
-      <img src="{% static 'img/adults_hero.png' %}" alt="Навчання для дорослих" class="advantages-hero__image" loading="lazy" decoding="async">
+    <!-- ЛІВА КОЛОНКА: ЗОБРАЖЕННЯ З КНОПКАМИ -->
+    <div class="advantages-hero__left">
+      <div class="advantages-hero__image-wrapper">
+        <img src="{% static 'img/adults_hero.png' %}" alt="Навчання для дорослих" class="advantages-hero__image" loading="lazy" decoding="async">
+      </div>
+
+      <!-- КОНТЕЙНЕР З КНОПКАМИ У ПРАВОМУ ВЕРХНЬОМУ КУТІ -->
+      <div class="advantages-hero__buttons">
+        <a href="#levels-section" class="advantages-hero__button glass-card">
+          Навчання за рівнями
+        </a>
+        <a href="#individual-section" class="advantages-hero__button glass-card">
+          Індивідуальні заняття
+        </a>
+        <a href="#unlimited-section" class="advantages-hero__button glass-card">
+          Безлімітне навчання
+        </a>
+      </div>
     </div>
 
-    <!-- КОНТЕЙНЕР З КНОПКАМИ У ЛІВОМУ ВЕРХНЬОМУ КУТІ -->
-    <div class="advantages-hero__buttons">
-      <a href="#levels-section" class="advantages-hero__button glass-card">
-        Навчання за рівнями
-      </a>
-      <a href="#individual-section" class="advantages-hero__button glass-card">
-        Індивідуальні заняття
-      </a>
-      <a href="#unlimited-section" class="advantages-hero__button glass-card">
-        Безлімітне навчання
-      </a>
-    </div>
-
-    <!-- ФОРМА СПРАВА ВНИЗУ (ОПЦІОНАЛЬНО) -->
-    <div class="advantages-section__form glass-card advantages-section__form--overlay">
-      <h3 class="advantages-section__form-title">Запишіться на безкоштовне пробне заняття</h3>
-      <p class="advantages-section__form-subtitle">Визначимо ваш рівень англійської та складемо персональний план навчання</p>
-      {% include 'components/trial-form.html' with form=trial_form variant="adults-advantages" %}
+    <!-- ПРАВА КОЛОНКА: ФОРМА -->
+    <div class="advantages-hero__right">
+      <div class="advantages-section__form glass-card advantages-section__form--hero">
+        <h3 class="advantages-section__form-title">Запишіться на безкоштовне пробне заняття</h3>
+        <p class="advantages-section__form-subtitle">Визначимо ваш рівень англійської та складемо персональний план навчання</p>
+        {% include 'components/trial-form.html' with form=trial_form variant="adults-advantages" %}
+      </div>
     </div>
   </section>
 
