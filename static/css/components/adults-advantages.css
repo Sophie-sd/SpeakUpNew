@@ -178,7 +178,7 @@
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -279,8 +279,9 @@
 
   .advantages-section--hero {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0rem;
     padding: 1rem;
+    padding-top: 5rem;
     margin-bottom: var(--section-spacing-mobile);
     background: transparent;
     backdrop-filter: none;
@@ -300,7 +301,7 @@
   }
 
   .advantages-hero__buttons {
-    top: 0.5rem;
+    top: -4.5rem;
     right: 1rem;
     gap: 0.6rem;
   }
@@ -327,11 +328,12 @@
 
   .section-title--hero {
     margin-top: 2.5rem;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   .section-subtitle--hero {
     font-size: 1rem;
+    margin-bottom: 1rem;
   }
 }
 
