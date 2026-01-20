@@ -129,16 +129,43 @@
         {% if package.id == popular_package %}
         <span class="pricing-card__badge">Найпопулярніший</span>
         {% endif %}
+
+        <!-- Стікер зі знижкою -->
+        {% if package.discount_percent != 0 %}
+        <span class="pricing-card__discount-sticker">{{ package.discount_percent }}%</span>
+        {% endif %}
+
+        <!-- Рядок 1: Назва пакету -->
         <h4 class="pricing-card__title">{{ package.name_uk }}</h4>
-        <div class="pricing-card__details">
-          <p><strong>{{ package.levels_count }} рівні</strong></p>
-          <p>{{ package.duration_uk }}</p>
-          <p class="price-full">{{ package.full_price }} грн</p>
+
+        <!-- Рядок 2: Кількість рівнів = Тривалість -->
+        <p class="pricing-card__row-2">
+          <strong>{{ package.levels_count }} рівн{% if package.levels_count != 1 %}і{% else %}ень{% endif %} = {{ package.duration_uk }}</strong>
+        </p>
+
+        <!-- Рядок 3: Ціна за рівень -->
+        <p class="pricing-card__row-3">
+          Ціна за рівень:
           {% if package.discount_percent != 0 %}
-          <p class="discount">{{ package.discount_percent }}%</p>
+            {% if package.id == 'progress' %}
+              <span class="price-old">19800 грн</span>
+              <span class="price-new">{{ package.full_price }} грн</span>
+            {% elif package.id == 'confidence' %}
+              <span class="price-old">39600 грн</span>
+              <span class="price-new">{{ package.full_price }} грн</span>
+            {% elif package.id == 'maximum' %}
+              <span class="price-old">59400 грн</span>
+              <span class="price-new">{{ package.full_price }} грн</span>
+            {% endif %}
+          {% else %}
+            <strong>{{ package.full_price }} грн</strong>
           {% endif %}
-          <p class="price-per-month"><strong>{{ package.price_per_month }} грн/міс</strong></p>
-        </div>
+        </p>
+
+        <div class="pricing-card__divider"></div>
+
+        <!-- Помісячна ціна (зберігаємо як є) -->
+        <p class="price-per-month"><strong>{{ package.price_per_month }} грн/міс</strong></p>
       </div>
       {% endfor %}
     </div>
