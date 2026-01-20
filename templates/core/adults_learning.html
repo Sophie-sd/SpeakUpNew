@@ -100,26 +100,25 @@
     <h2 class="section-title">Навчання за рівнями</h2>
     <p class="section-subtitle">Твій шлях до вільної англійської: від рівня до рівня</p>
 
-    <!-- Інформаційний блок про рівні -->
-    <div class="levels-info">
-      <h3>{{ level_info.title_uk }}</h3>
-      <p>{{ level_info.main_text_uk }}</p>
-      <p>{{ level_info.guarantee_text_uk }}</p>
-    </div>
+    <!-- 2-КОЛОНКОВИЙ LAYOUT: Інформація + Склад рівня -->
+    <div class="levels-content-layout">
+      <!-- ЛІВА КОЛОНКА: Інформаційний блок про рівні -->
+      <div class="levels-info">
+        <h3>{{ level_info.title_uk }}</h3>
+        <p>{{ level_info.main_text_uk }}</p>
+        <p>{{ level_info.guarantee_text_uk }}</p>
+      </div>
 
-    <!-- Що входить у 1 рівень -->
-    <div class="level-composition">
-      <h3>{{ level_content.title_uk }}</h3>
-      <div class="level-composition__grid">
-        {% for item in level_content.items_uk %}
-        <div class="level-composition__item">
-          <div class="level-composition__item-icon">
-            <img src="{% static 'img/' %}{{ item.icon }}" alt="{{ item.title }}" loading="lazy" decoding="async">
-          </div>
-          <h4 class="level-composition__item-title">{{ item.title }}</h4>
-          <p class="level-composition__item-description">{{ item.description }}</p>
-        </div>
-        {% endfor %}
+      <!-- ПРАВА КОЛОНКА: Що входить у 1 рівень -->
+      <div class="level-composition">
+        <h3>{{ level_content.title_uk }}</h3>
+        <ul class="level-composition__list">
+          {% for item in level_content.items_uk %}
+          <li>
+            <strong>{{ item.title }}</strong> — {{ item.description }}
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
