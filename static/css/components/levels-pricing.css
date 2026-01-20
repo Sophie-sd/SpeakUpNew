@@ -1,0 +1,569 @@
+/* ==========================================================================
+   Levels Pricing Section - Навчання за рівнями
+   ========================================================================== */
+
+/* === СЕКЦІЯ LEVELS === */
+
+.levels-section {
+  padding: var(--section-padding-desktop);
+  margin-bottom: var(--section-spacing-desktop);
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* === MAIN TITLE === */
+
+.levels-section .section-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+/* === SUBTITLE === */
+
+.levels-section .section-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* === ІНФОРМАЦІЙНИЙ БЛОК === */
+
+.levels-info {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.levels-info h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.levels-info p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.levels-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* === РІВЕНЬ КОМПОЗИЦІЇ: СПИСОК КОМПОНЕНТІВ === */
+
+.level-composition {
+  margin-bottom: 3rem;
+}
+
+.level-composition h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-white);
+  text-align: center;
+  margin: 0 0 2rem 0;
+  line-height: 1.3;
+}
+
+/* Grid для компонентів рівня */
+.level-composition__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+/* Картка компоненту */
+.level-composition__item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all var(--transition-normal) ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .level-composition__item:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(100, 149, 237, 0.3);
+    transform: translateY(-4px);
+  }
+}
+
+/* Іконка компоненту */
+.level-composition__item-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.level-composition__item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Заголовок компоненту */
+.level-composition__item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+/* Опис компоненту */
+.level-composition__item-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* === ПРАЙС-КАРТКИ === */
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Картка прайсу */
+.pricing-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  transition: all var(--transition-normal) ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  min-height: 350px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+  }
+}
+
+/* Популярна картка */
+.pricing-card--popular {
+  border: 2px solid rgba(255, 193, 7, 0.6);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 193, 7, 0.05) 100%);
+  box-shadow: 0 8px 40px rgba(255, 193, 7, 0.3);
+  transform: scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card--popular:hover {
+    border-color: rgba(255, 193, 7, 0.9);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 193, 7, 0.1) 100%);
+    box-shadow: 0 12px 48px rgba(255, 193, 7, 0.4);
+  }
+}
+
+/* Badge "Найпопулярніший" */
+.pricing-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 193, 7, 1);
+  color: rgba(0, 0, 0, 0.95);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+/* Тільки на популярній картці */
+.pricing-card:not(.pricing-card--popular) .pricing-card__badge {
+  display: none;
+}
+
+/* Заголовок картки */
+.pricing-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0.5rem 0 0 0;
+  line-height: 1.3;
+}
+
+.pricing-card--popular .pricing-card__title {
+  color: rgba(255, 193, 7, 0.95);
+}
+
+/* Контент картки */
+.pricing-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex: 1;
+}
+
+.pricing-card__details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+/* Кількість рівнів та тривалість */
+.pricing-card__details p:nth-child(1),
+.pricing-card__details p:nth-child(2) {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Повна ціна (закреслена) */
+.pricing-card .price-full {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: line-through;
+  margin-top: 0.5rem;
+}
+
+/* Знижка */
+.pricing-card .discount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(76, 175, 80, 0.95);
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+/* Ціна за місяць */
+.pricing-card .price-per-month {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: rgba(100, 149, 237, 0.95);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.2;
+}
+
+.pricing-card--popular .price-per-month {
+  font-size: 2rem;
+  color: rgba(255, 193, 7, 0.95);
+}
+
+/* === CTA БЛОК === */
+
+.levels-cta {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+.levels-cta .button {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all var(--transition-normal) ease;
+}
+
+/* === RESPONSIVE: TABLET === */
+
+@media (width <= 1200px) and (width >= 768px) {
+  .levels-section {
+    padding: var(--section-padding-desktop);
+  }
+
+  .levels-section .section-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .levels-section .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .level-composition__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .pricing-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .pricing-card {
+    min-height: 320px;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .pricing-card--popular {
+    transform: scale(1.03);
+  }
+
+  .pricing-card__title {
+    font-size: 1.1rem;
+  }
+
+  .pricing-card .price-per-month {
+    font-size: 1.5rem;
+  }
+
+  .pricing-card--popular .price-per-month {
+    font-size: 1.75rem;
+  }
+}
+
+/* === RESPONSIVE: MOBILE === */
+
+@media (width < 768px) {
+  .levels-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+    padding: var(--section-padding-mobile);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--section-spacing-mobile);
+    overflow-x: hidden;
+  }
+
+  .levels-section .section-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: 0.35rem;
+  }
+
+  .levels-section .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .levels-info {
+    padding: 1.25rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+  }
+
+  .levels-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .levels-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .level-composition {
+    margin-bottom: 2rem;
+  }
+
+  .level-composition h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .level-composition__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .level-composition__item {
+    padding: 1.25rem 1rem;
+    border-radius: 10px;
+  }
+
+  .level-composition__item-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-composition__item-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .level-composition__item-description {
+    font-size: 0.75rem;
+  }
+
+  .pricing-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-card {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    transform: none;
+  }
+
+  .pricing-card--popular {
+    transform: none;
+    border-width: 2px;
+  }
+
+  .pricing-card__badge {
+    display: none;
+  }
+
+  .pricing-card__title {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  .pricing-card__details {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .pricing-card__details p {
+    font-size: 0.85rem;
+  }
+
+  .pricing-card .price-full {
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+  }
+
+  .pricing-card .discount {
+    font-size: 0.95rem;
+    margin: 0.2rem 0 0.4rem 0;
+  }
+
+  .pricing-card .price-per-month {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .pricing-card--popular .price-per-month {
+    font-size: 1.65rem;
+  }
+
+  .levels-cta {
+    margin-top: 2rem;
+  }
+
+  .levels-cta .button {
+    max-width: 100%;
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+/* === ACCESSIBILITY === */
+
+@media (prefers-reduced-motion: reduce) {
+  .levels-info,
+  .level-composition__item,
+  .pricing-card {
+    transition: none;
+  }
+
+  .level-composition__item:hover,
+  .pricing-card:hover {
+    transform: none;
+  }
+}
+
+/* === FOCUS STATES === */
+
+.pricing-card:focus-visible,
+.levels-cta .button:focus-visible {
+  outline: 2px solid rgba(100, 149, 237, 0.8);
+  outline-offset: 2px;
+}
+
+/* === FALLBACK FOR NO BACKDROP-FILTER SUPPORT === */
+
+@supports not (backdrop-filter: blur(10px)) {
+  .levels-info,
+  .level-composition__item,
+  .pricing-card {
+    background: rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* === PERFORMANCE OPTIMIZATION === */
+
+.level-composition__item {
+  will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .level-composition__item:hover {
+    will-change: transform;
+  }
+
+  .level-composition__item:not(:hover) {
+    will-change: auto;
+  }
+}
+
+.pricing-card {
+  will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card:hover {
+    will-change: transform;
+  }
+
+  .pricing-card:not(:hover) {
+    will-change: auto;
+  }
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+  <!-- Consultation Icon (Chat bubble with question mark) -->
+  <path d="M3 7c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2h-4l-4 3v-3H5c-1.1 0-2-.9-2-2V7z"/>
+  <text x="12" y="13" font-size="10" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill="white">?</text>
+</svg>

@@ -368,7 +368,8 @@
   font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.5;
-  margin: 0.75rem 0 0 0;
+  margin: 0;
+  margin-bottom: 5px;
 }
 
 @media (width <= 767px) {

@@ -8,6 +8,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/adults-advantages.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/levels-pricing.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -90,6 +91,62 @@
         <p class="advantages-section__form-subtitle">Визначимо ваш рівень англійської та складемо персональний план навчання</p>
         {% include 'components/trial-form.html' with form=trial_form variant="adults-advantages" %}
       </div>
+    </div>
+  </section>
+
+  <!-- 2. БЛОК "НАВЧАННЯ ЗА РІВНЯМИ" -->
+  <section class="levels-section glass-section">
+    <!-- Заголовок і підзаголовок -->
+    <h2 class="section-title">Навчання за рівнями</h2>
+    <p class="section-subtitle">Твій шлях до вільної англійської: від рівня до рівня</p>
+
+    <!-- Інформаційний блок про рівні -->
+    <div class="levels-info">
+      <h3>{{ level_info.title_uk }}</h3>
+      <p>{{ level_info.main_text_uk }}</p>
+      <p>{{ level_info.guarantee_text_uk }}</p>
+    </div>
+
+    <!-- Що входить у 1 рівень -->
+    <div class="level-composition">
+      <h3>{{ level_content.title_uk }}</h3>
+      <div class="level-composition__grid">
+        {% for item in level_content.items_uk %}
+        <div class="level-composition__item">
+          <div class="level-composition__item-icon">
+            <img src="{% static 'img/' %}{{ item.icon }}" alt="{{ item.title }}" loading="lazy" decoding="async">
+          </div>
+          <h4 class="level-composition__item-title">{{ item.title }}</h4>
+          <p class="level-composition__item-description">{{ item.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Прайс-картки пакетів -->
+    <div class="pricing-cards">
+      {% for package in level_packages %}
+      <div class="pricing-card {% if package.id == popular_package %}pricing-card--popular{% endif %}">
+        {% if package.id == popular_package %}
+        <span class="pricing-card__badge">Найпопулярніший</span>
+        {% endif %}
+        <h4 class="pricing-card__title">{{ package.name_uk }}</h4>
+        <div class="pricing-card__details">
+          <p><strong>{{ package.levels_count }} рівні</strong></p>
+          <p>{{ package.duration_uk }}</p>
+          <p class="price-full">{{ package.full_price }} грн</p>
+          {% if package.discount_percent != 0 %}
+          <p class="discount">{{ package.discount_percent }}%</p>
+          {% endif %}
+          <p class="price-per-month"><strong>{{ package.price_per_month }} грн/міс</strong></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- CTA кнопка -->
+    <div class="levels-cta">
+      <a href="#" class="button button--primary">Записатись на безкоштовне пробне заняття</a>
     </div>
   </section>
 </main>

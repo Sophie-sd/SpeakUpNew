@@ -1048,3 +1048,95 @@ CITIES = {
     },
 }
 
+# ===== РІВНІ НАВЧАННЯ: ПАКЕТИ ТА СТРУКТУРА =====
+
+LEVEL_PACKAGES = {
+    'start': {
+        'id': 'start',
+        'name_uk': 'Старт',
+        'levels_count': 1,
+        'duration_uk': '3 міс.',
+        'full_price': 9900,
+        'discount_percent': 0,
+        'price_per_month': 3300,
+        'order': 1,
+    },
+    'progress': {
+        'id': 'progress',
+        'name_uk': 'Прогрес',
+        'levels_count': 2,
+        'duration_uk': '6 міс.',
+        'full_price': 15840,
+        'discount_percent': -20,
+        'price_per_month': 2640,
+        'order': 2,
+    },
+    'confidence': {
+        'id': 'confidence',
+        'name_uk': 'Впевненість',
+        'levels_count': 4,
+        'duration_uk': '12 міс.',
+        'full_price': 29700,
+        'discount_percent': -25,
+        'price_per_month': 2475,
+        'order': 3,
+        'is_popular': True,
+    },
+    'maximum': {
+        'id': 'maximum',
+        'name_uk': 'Максимум',
+        'levels_count': 6,
+        'duration_uk': '18 міс.',
+        'full_price': 38610,
+        'discount_percent': -35,
+        'price_per_month': 2145,
+        'order': 4,
+    },
+}
+
+LEVEL_CONTENT = {
+    'title_uk': 'Що входить у 1 рівень',
+    'items_uk': [
+        {
+            'icon': 'lessons-icon.svg',
+            'title': '40 основних занять',
+            'description': 'Фундаментальна база (граматика + лексика)',
+        },
+        {
+            'icon': 'speaking-club-icon.svg',
+            'title': '8 розмовних клубів',
+            'description': 'Практика живої мови в групі',
+        },
+        {
+            'icon': 'native-speaker-icon.svg',
+            'title': 'Групові заняття з носіями мови',
+            'description': 'Занурення в середовище (доступно з рівня Intermediate)',
+        },
+        {
+            'icon': 'consultation-icon.svg',
+            'title': '3 індивідуальні консультації',
+            'description': 'Персональний розбір ваших питань (по 15 хв)',
+        },
+        {
+            'icon': 'online-cabinet-icon.svg',
+            'title': 'Особистий Online-кабінет',
+            'description': 'Доступ до навчання 24/7',
+        },
+        {
+            'icon': 'textbook-icon.svg',
+            'title': 'Інтерактивний підручник (PDF)',
+            'description': 'Сучасні матеріали завжди під рукою',
+        },
+        {
+            'icon': 'guarantee-icon.svg',
+            'title': 'Гарантія результату',
+            'description': 'Закріплена договором',
+        },
+    ],
+}
+
+LEVEL_INFO = {
+    'title_uk': 'Що таке рівень у Speak Up?',
+    'main_text_uk': 'Один рівень — це 3 місяці інтенсивного прогресу.',
+    'guarantee_text_uk': 'Кожен етап завершується фінальним тестуванням (Level Test). Ми дбаємо про вашу якість знань: якщо результат тесту нижче 65 балів, ви проходите рівень повторно безкоштовно. Ми працюємо з вами до тих пір, поки ви не отримаєте впевнений результат.',
+}

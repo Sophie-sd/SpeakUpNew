@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db import models
 import logging
-from .seo_config import PROGRAMS, LOCATIONS, CITIES
+from .seo_config import PROGRAMS, LOCATIONS, CITIES, LEVEL_PACKAGES, LEVEL_CONTENT, LEVEL_INFO
 
 logger = logging.getLogger(__name__)
 from .models import (
@@ -749,10 +749,17 @@ def buy_stub(request):
                 'url': f'/programs/{slug}',
             })
 
+    # Сортуємо пакети за порядком
+    level_packages = sorted(LEVEL_PACKAGES.values(), key=lambda x: x.get('order', 0))
+
     context = {
         'current_language': lang,
         'adult_programs': adult_programs[:6],  # Перші 6 програм
         'consultation_form': ConsultationForm(),
+        'level_packages': level_packages,
+        'level_content': LEVEL_CONTENT,
+        'level_info': LEVEL_INFO,
+        'popular_package': 'confidence',
     }
     return render(request, 'core/adults_learning.html', context)
 
