@@ -1115,7 +1115,7 @@ LEVEL_CONTENT = {
         {
             'icon': 'consultation-icon.svg',
             'title': '3 індивідуальні консультації',
-            'description': 'Персональний розбір ваших питань (по 15 хв)',
+            'description': 'Персональний розбір ваших питань',
         },
         {
             'icon': 'online-cabinet-icon.svg',
@@ -1124,7 +1124,7 @@ LEVEL_CONTENT = {
         },
         {
             'icon': 'textbook-icon.svg',
-            'title': 'Інтерактивний підручник (PDF)',
+            'title': 'Інтерактивний підручник',
             'description': 'Сучасні матеріали завжди під рукою',
         },
         {

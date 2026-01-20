@@ -49,18 +49,19 @@
 /* === ІНФОРМАЦІЙНИЙ БЛОК === */
 
 .levels-info {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 193, 7, 0.1) 100%);
+  border: 2px solid rgba(255, 193, 7, 0.6);
   border-radius: 16px;
   padding: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .levels-info h3 {
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-white);
   margin: 0 0 1rem 0;
@@ -68,7 +69,7 @@
 }
 
 .levels-info p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0 0 1rem 0;
@@ -78,10 +79,29 @@
   margin-bottom: 0;
 }
 
+/* SVG зірочка у правому верхньому куті */
+.levels-info__star {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+  opacity: 0.9;
+  z-index: 10;
+}
+
 /* === РІВЕНЬ КОМПОЗИЦІЇ: СПИСОК КОМПОНЕНТІВ === */
 
 .level-composition {
-  margin-bottom: 3rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .level-composition h3 {
@@ -95,17 +115,18 @@
 
 /* Grid для компонентів рівня */
 .level-composition__list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding: 0 0 0 1.5rem;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
+  color: rgba(100, 149, 237, 0.95);
 }
 
 /* Елементи списку */
 .level-composition__list li {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   padding: 0;
@@ -144,7 +165,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  min-height: 280px;
+  min-height: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -263,7 +284,7 @@
 
 /* Ціна за місяць */
 .pricing-card .price-per-month {
-  font-size: 1.75rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: rgba(100, 149, 237, 0.95);
   margin: 0.5rem 0 0 0;
@@ -273,7 +294,6 @@
 }
 
 .pricing-card--popular .price-per-month {
-  font-size: 2rem;
   color: rgba(255, 193, 7, 0.95);
 }
 
@@ -475,13 +495,9 @@
   }
 
   .pricing-card .price-per-month {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-  }
-
-  .pricing-card--popular .price-per-month {
-    font-size: 1.65rem;
   }
 
   .levels-cta {
