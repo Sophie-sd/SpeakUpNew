@@ -5,9 +5,9 @@
 /* ВЕЛИКІ елементи (секції) - з обмеженим blur та виразнішими тінями */
 .glass-section {
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--glass-border-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow-elevated);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   contain: layout style paint; /* Ізоляція для продуктивності */
 
   /* Обмежений blur для великих секцій */
@@ -88,8 +88,8 @@
   }
 
   .glass-section {
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
 }
 

@@ -91,10 +91,6 @@
 }
 
 /* Темні стилі тільки для сторінки програм */
-.programs-content .glass-section {
-  background: rgba(0, 0, 0, 0.2);
-}
-
 .programs-content .glass-card {
   background: rgba(0, 0, 0, 0.8);
 }
@@ -103,10 +99,6 @@
 @supports not (backdrop-filter: blur(8px)) {
   .programs-content .glass-card {
     background: rgba(0, 0, 0, 0.8);
-  }
-
-  .programs-content .glass-section {
-    background: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -532,7 +524,6 @@
 
 /* Темні стилі тільки для сторінки корпоративних програм */
 .corporate-content .glass-section {
-  background: rgba(0, 0, 0, 0.2);
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
 }
@@ -556,10 +547,6 @@
 @supports not (backdrop-filter: blur(8px)) {
   .corporate-content .glass-card {
     background: rgba(0, 0, 0, 0.8);
-  }
-
-  .corporate-content .glass-section {
-    background: rgba(0, 0, 0, 0.5);
   }
 }
 

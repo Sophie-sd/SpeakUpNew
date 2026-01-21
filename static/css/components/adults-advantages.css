@@ -283,11 +283,6 @@
     padding: 1rem;
     padding-top: 5rem;
     margin-bottom: var(--section-spacing-mobile);
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    border: none;
   }
 
   .advantages-hero__image-wrapper {

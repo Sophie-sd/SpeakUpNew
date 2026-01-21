@@ -14,11 +14,6 @@
   box-sizing: border-box;
 }
 
-/* Явний background для .levels-section.glass-section */
-.levels-section.glass-section {
-  background: rgba(0, 0, 0, 0.2);
-}
-
 /* === MAIN TITLE === */
 
 .levels-section .section-title {
@@ -525,10 +520,6 @@
 /* === FALLBACK FOR NO BACKDROP-FILTER SUPPORT === */
 
 @supports not (backdrop-filter: blur(10px)) {
-  .levels-section.glass-section {
-    background: rgba(0, 0, 0, 0.5);
-  }
-
   .levels-info,
   .level-composition__list li,
   .pricing-card {

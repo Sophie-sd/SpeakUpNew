@@ -81,7 +81,6 @@
 .news-list-page .glass-section {
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Контейнер сторінки списку новин */

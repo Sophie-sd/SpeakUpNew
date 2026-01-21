@@ -81,10 +81,6 @@
 .contacts-page .glass-section {
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
-  background: rgba(0, 0, 0, 0.2);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
 }
 
 .contacts-page {
