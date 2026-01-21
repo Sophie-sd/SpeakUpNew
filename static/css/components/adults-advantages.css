@@ -18,7 +18,7 @@
 .advantages-section .section-title {
   text-align: center;
   margin-bottom: 3rem;
-  font-size: 1.65rem;
+  font-size: 2.65rem;
   font-weight: 700;
   color: var(--color-white);
 }
@@ -321,6 +321,7 @@
 
   .advantages-section__header .section-title--hero {
     margin-bottom: 0.1rem;
+    font-size: 1.65rem;
   }
 
   .advantages-hero__image-wrapper {
