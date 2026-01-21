@@ -124,9 +124,9 @@
 
 .level-card {
   flex: 0 0 auto;
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -184,8 +184,8 @@
 .level-cards-nav {
   width: 40px;
   height: 40px;
-  background: rgba(100, 149, 237, 0.9);
-  border: 1px solid rgba(100, 149, 237, 0.6);
+  background: rgba(231, 30, 20, 0.9);
+  border: 1px solid rgba(231, 30, 20, 0.6);
   border-radius: 8px;
   color: var(--color-white);
   font-size: 1.5rem;
@@ -202,14 +202,14 @@
 
 @media (hover: hover) and (pointer: fine) {
   .level-cards-nav:hover:not(:disabled) {
-    background: rgba(100, 149, 237, 1);
-    border-color: rgba(100, 149, 237, 0.9);
+    background: rgba(231, 30, 20, 1);
+    border-color: rgba(231, 30, 20, 0.9);
     transform: scale(1.05);
   }
 }
 
 .level-cards-nav:focus-visible {
-  outline: 2px solid rgba(100, 149, 237, 0.8);
+  outline: 2px solid rgba(231, 30, 20, 0.8);
   outline-offset: 2px;
 }
 
@@ -421,9 +421,9 @@
   }
 
   .level-card {
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
   }
 
   .pricing-cards {

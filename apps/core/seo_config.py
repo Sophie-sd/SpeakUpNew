@@ -1110,7 +1110,7 @@ LEVEL_CONTENT = {
         {
             'icon': 'native-speaker-icon.svg',
             'title': 'Групові заняття з носіями мови',
-            'description': 'Занурення в середовище (доступно з рівня Intermediate)',
+            'description': 'Занурення в середовище',
         },
         {
             'icon': 'consultation-icon.svg',

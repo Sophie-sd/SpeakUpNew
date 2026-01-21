@@ -134,3 +134,20 @@
   }
 }
 
+/* === СПЕЦІАЛЬНІ СТИЛІ ДЛЯ КАТЕГОРІЙ === */
+
+/* Англійська для дорослих та Англійська для дітей - червоні hover стилі */
+.course-category[data-category-slug="adults-group"] .course-accordion__header:hover,
+.course-category[data-category-slug="kids"] .course-accordion__header:hover {
+  border-color: rgba(231, 30, 20, 0.6);
+}
+
+.course-category[data-category-slug="adults-group"] .course-accordion__header:focus-visible,
+.course-category[data-category-slug="kids"] .course-accordion__header:focus-visible {
+  outline: 2px solid rgba(231, 30, 20, 0.8);
+}
+
+.course-category[data-category-slug="adults-group"] .course-accordion__icon,
+.course-category[data-category-slug="kids"] .course-accordion__icon {
+  color: rgba(231, 30, 20, 0.9);
+}
