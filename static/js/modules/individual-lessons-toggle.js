@@ -69,8 +69,10 @@
     document.querySelectorAll('.individual-content').forEach(content => {
       const contentTime = content.dataset.timeContent;
       if (contentTime === timeMode) {
+        content.classList.remove('individual-content--hidden');
         content.classList.add('individual-content--active');
       } else {
+        content.classList.add('individual-content--hidden');
         content.classList.remove('individual-content--active');
       }
     });

@@ -120,6 +120,10 @@
   opacity: 1;
 }
 
+.individual-content.individual-content--active {
+  display: block;
+}
+
 .individual-content--hidden {
   display: none;
   opacity: 0;
