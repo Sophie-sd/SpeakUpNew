@@ -30,7 +30,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .section-subtitle--hero {
@@ -50,7 +52,7 @@
   grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
   max-width: 1400px;
-  margin-top: 0;
+  margin-top: calc(var(--header-height, 80px) + 1rem);
   margin-bottom: var(--section-spacing-desktop);
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.2);
@@ -59,7 +61,6 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   align-items: stretch;
-  scroll-margin-top: calc(var(--header-height, 80px) + 2rem);
 }
 
 /* === ЗАГОЛОВКИ HERO СЕКЦІЇ (ЗАЙМАЮТЬ ВСЮ ШИРИНУ) === */
@@ -71,7 +72,7 @@
 
 .advantages-section__header .section-title--hero {
   margin-top: 0;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .advantages-section__header .section-subtitle--hero {
@@ -305,23 +306,28 @@
   .advantages-section--hero {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1.5rem;
+    padding: 1rem 0.75rem;
     padding-top: 1rem;
-    margin: 0 auto;
+    margin: 0 0.75rem;
     margin-bottom: var(--section-spacing-mobile);
-    width: calc(100% - 3rem);
+    width: calc(100% - 1.5rem);
     max-width: 100%;
   }
 
   .advantages-section__header {
     grid-column: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .advantages-section__header .section-title--hero {
+    margin-bottom: 0.25rem;
   }
 
   .advantages-hero__image-wrapper {
     aspect-ratio: 16 / 9;
     max-width: 100%;
     border-radius: 12px;
+    margin-top: 2rem;
   }
 
   .advantages-hero__image {
@@ -329,7 +335,7 @@
   }
 
   .advantages-hero__buttons {
-    top: 3rem;
+    top: 2rem;
     right: 1rem;
     gap: 0.6rem;
   }
@@ -355,7 +361,7 @@
   }
 
   .section-title--hero {
-    font-size: 1.7rem;
+    font-size: clamp(2rem, 8vw, 2.5rem);
   }
 
   .section-subtitle--hero {
