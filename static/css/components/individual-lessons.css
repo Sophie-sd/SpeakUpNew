@@ -279,7 +279,7 @@
 }
 
 .individual-table__header-duration {
-  min-width: 70px;
+  min-width: 60px;
   text-align: left;
 }
 
@@ -311,16 +311,19 @@
   text-align: left;
   font-weight: 600;
   color: var(--color-white);
-  min-width: 70px;
+  min-width: 60px;
 }
 
 .individual-table__price-cell {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
+  display: table-cell;
+  text-align: center;
   min-width: 150px;
-  justify-content: center;
+  white-space: nowrap;
+}
+
+.individual-table__price-cell span {
+  display: inline-block;
+  margin: 0 0.25rem;
 }
 
 .individual-table .price-old {
@@ -728,12 +731,15 @@
 
   .individual-table__price-cell {
     display: table-cell;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.2rem;
+    text-align: center;
     min-width: auto;
-    justify-content: center;
     padding: 0.6rem 0.3rem;
+    white-space: nowrap;
+  }
+
+  .individual-table__price-cell span {
+    display: inline-block;
+    margin: 0 0.15rem;
   }
 
   .individual-table .price-old {

@@ -30,6 +30,7 @@
 
   function hideAllContent() {
     document.querySelectorAll('.individual-content').forEach(content => {
+      content.classList.add('individual-content--hidden');
       content.classList.remove('individual-content--active');
     });
   }

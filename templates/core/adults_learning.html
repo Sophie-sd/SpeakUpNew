@@ -162,7 +162,7 @@
 
     <!-- РІВЕНЬ 1: ПЕРЕМИКАЧ ДЕНЬ/ВЕЧІР -->
     <div class="individual-time-toggle">
-      <button type="button" class="individual-time-toggle__button individual-time-toggle__button--active" data-time="day" aria-pressed="true">
+      <button type="button" class="individual-time-toggle__button" data-time="day" aria-pressed="false">
         <span class="individual-time-toggle__icon" aria-hidden="true">☀️</span>
         <span class="individual-time-toggle__text">Денне навчання</span>
         <span class="individual-time-toggle__desc">до 16:00</span>
@@ -174,8 +174,8 @@
       </button>
     </div>
 
-    <!-- РЕЖИМ: ДЕНЬ -->
-    <div class="individual-content" data-time-content="day">
+      <!-- РЕЖИМ: ДЕНЬ -->
+    <div class="individual-content individual-content--hidden" data-time-content="day">
       <!-- РІВЕНЬ 2: ТАБСИ ЗАГАЛЬНА/СПЕЦІАЛІЗОВАНА -->
       <div class="individual-tabs" role="tablist" aria-label="Типи англійської мови">
         <button type="button" class="individual-tabs__tab individual-tabs__tab--active"
@@ -218,7 +218,7 @@
               <thead>
                 <tr>
                   <th class="individual-table__header-duration"></th>
-                  <th class="individual-table__header-teacher">Локальний викладач</th>
+                  <th class="individual-table__header-teacher">Локальний</th>
                   <th class="individual-table__header-teacher">Носій мови</th>
                 </tr>
               </thead>
@@ -404,7 +404,7 @@
               <thead>
                 <tr>
                   <th class="individual-table__header-duration"></th>
-                  <th class="individual-table__header-teacher">Локальний викладач</th>
+                  <th class="individual-table__header-teacher">Локальний</th>
                   <th class="individual-table__header-teacher">Носій мови</th>
                 </tr>
               </thead>
