@@ -92,7 +92,7 @@
 
 /* Темні стилі тільки для сторінки програм */
 .programs-content .glass-section {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .programs-content .glass-card {
@@ -106,7 +106,7 @@
   }
 
   .programs-content .glass-section {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -532,7 +532,7 @@
 
 /* Темні стилі тільки для сторінки корпоративних програм */
 .corporate-content .glass-section {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.2);
   padding: var(--section-padding-desktop);
   margin-bottom: var(--section-spacing-desktop);
 }
@@ -559,7 +559,7 @@
   }
 
   .corporate-content .glass-section {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
