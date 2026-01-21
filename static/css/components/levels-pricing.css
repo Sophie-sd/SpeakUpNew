@@ -241,7 +241,7 @@
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
-  padding: 1.5rem 1.25rem;
+  padding: 0.7rem 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -327,7 +327,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-white);
-  margin: 0.5rem 0 0.75rem 0;
+  margin: 0.3rem 0 0.3rem 0;
   line-height: 1.3;
 }
 
@@ -337,7 +337,7 @@
 
 /* Рядок 2: Кількість рівнів = Тривалість */
 .pricing-card__row-2 {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.4;
@@ -346,7 +346,7 @@
 /* Рядок 3: Ціна за рівень */
 .pricing-card__row-3 {
   margin: 0 0 0.75rem 0;
-  padding-bottom: 0.75rem;
+  padding-top: 0.5rem;
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
@@ -577,7 +577,7 @@
 
   .pricing-card__row-2 {
     font-size: 0.9rem;
-    margin: 0.5rem 0;
+    margin: 0;
   }
 
   .pricing-card__row-3 {
@@ -597,19 +597,24 @@
 
   .pricing-card .price-per-month {
     font-size: 1.2rem;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .levels-cta {
     margin-top: 2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
   .levels-cta .button {
     max-width: 100%;
     width: 100%;
-    padding: 12px 24px;
-    font-size: 0.95rem;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 1.4;
   }
 }
 
