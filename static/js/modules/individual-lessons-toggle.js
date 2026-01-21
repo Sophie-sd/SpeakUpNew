@@ -162,12 +162,14 @@
     });
 
     // Показ/приховування панелей
-    const dayContent = document.querySelector('[data-time-content="day"]');
-    if (!dayContent) {
+    // Шукаємо вмісний контейнер (день або вечір) від табів
+    const contentContainer = tabsContainer.closest('.individual-content');
+    if (!contentContainer) {
       return;
     }
 
-    dayContent.querySelectorAll('.individual-tabpanel').forEach(panel => {
+    // Шукаємо всі панелі в поточному вмісному контейнері
+    contentContainer.querySelectorAll('.individual-tabpanel').forEach(panel => {
       const panelCategory = panel.dataset.categoryPanel;
       if (panelCategory === category) {
         panel.classList.remove('individual-tabpanel--hidden');
