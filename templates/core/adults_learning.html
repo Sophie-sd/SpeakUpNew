@@ -62,26 +62,35 @@
     <h2 class="section-title">Навчання за рівнями</h2>
     <p class="section-subtitle">Твій шлях до вільної англійської: від рівня до рівня</p>
 
-    <!-- 2-КОЛОНКОВИЙ LAYOUT: Інформація + Склад рівня -->
-    <div class="levels-content-layout">
-      <!-- ЛІВА КОЛОНКА: Що входить у 1 рівень -->
-      <div class="level-composition">
-        <h3>{{ level_content.title_uk }}</h3>
-        <ul class="level-composition__list">
-          {% for item in level_content.items_uk %}
-          <li>
-            <strong>{{ item.title }}</strong> — {{ item.description }}
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+    <!-- ІНФОРМАЦІЙНИЙ БЛОК ПРО РІВЕНЬ (ЗВЕРХУ) -->
+    <div class="levels-info-top">
+      <img src="{% static 'img/star-icon.svg' %}" alt="Зірочка" class="levels-info-top__star">
+      <h3>{{ level_info.title_uk }}</h3>
+      <p><strong>Один рівень — це 3 місяці інтенсивного прогресу.</strong></p>
+      <p>Кожен етап завершується фінальним тестуванням. Ми дбаємо про вашу якість знань: <strong>якщо результат тесту нижче 65 балів, ви проходите рівень повторно безкоштовно.</strong> Ми працюємо з вами до тих пір, поки ви не отримаєте впевнений результат.</p>
+    </div>
 
-      <!-- ПРАВА КОЛОНКА: Інформаційний блок про рівні -->
-      <div class="levels-info">
-        <img src="{% static 'img/star-icon.svg' %}" alt="Зірочка" class="levels-info__star">
-        <h3>{{ level_info.title_uk }}</h3>
-        <p><strong>Один рівень — це 3 місяці інтенсивного прогресу.</strong></p>
-        <p>Кожен етап завершується фінальним тестуванням. Ми дбаємо про вашу якість знань: <strong>якщо результат тесту нижче 65 балів, ви проходите рівень повторно безкоштовно.</strong> Ми працюємо з вами до тих пір, поки ви не отримаєте впевнений результат.</p>
+    <!-- КОНТЕЙНЕР З КАРТКАМИ КОМПОНЕНТІВ РІВНЯ -->
+    <div class="level-composition">
+      <h3>{{ level_content.title_uk }}</h3>
+      
+      <div class="level-cards-wrapper">
+        <div class="level-cards-container">
+          {% for item in level_content.items_uk %}
+          <div class="level-card">
+            <h4 class="level-card__title">{{ item.title }}</h4>
+            <p class="level-card__description">{{ item.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <!-- СТРІЛОЧКИ НАВІГАЦІЇ -->
+        <button class="level-cards-nav level-cards-nav--prev" aria-label="Попередня картка">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="level-cards-nav level-cards-nav--next" aria-label="Наступна картка">
+          <span aria-hidden="true">›</span>
+        </button>
       </div>
     </div>
 
@@ -151,4 +160,5 @@
 
 {% block extra_js %}
 <script type="module" src="{% static 'js/modules/adults-advantages-accordion.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/level-cards-navigation.js' %}" defer></script>
 {% endblock %}

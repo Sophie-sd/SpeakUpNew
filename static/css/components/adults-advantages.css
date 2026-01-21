@@ -229,6 +229,7 @@
 @media (width >= 1200px) {
   .advantages-section__form {
     padding-right: 2rem;
+    padding-left: 1rem;
   }
 }
 

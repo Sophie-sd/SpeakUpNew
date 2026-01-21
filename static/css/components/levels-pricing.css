@@ -35,31 +35,21 @@
   line-height: 1.5;
 }
 
-/* === 2-КОЛОНКОВИЙ LAYOUT: Інформація + Склад рівня === */
+/* === ІНФОРМАЦІЙНИЙ БЛОК ЗВЕРХУ === */
 
-.levels-content-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* === ІНФОРМАЦІЙНИЙ БЛОК === */
-
-.levels-info {
+.levels-info-top {
   position: relative;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 193, 7, 0.1) 100%);
   border: 2px solid rgba(255, 193, 7, 0.6);
   border-radius: 16px;
   padding: 2rem;
+  margin-bottom: 3rem;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.levels-info h3 {
+.levels-info-top h3 {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-white);
@@ -67,19 +57,19 @@
   line-height: 1.3;
 }
 
-.levels-info p {
+.levels-info-top p {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0 0 1rem 0;
 }
 
-.levels-info p:last-child {
+.levels-info-top p:last-child {
   margin-bottom: 0;
 }
 
 /* SVG зірочка у правому верхньому куті */
-.levels-info__star {
+.levels-info-top__star {
   position: absolute;
   top: -12px;
   right: -12px;
@@ -90,7 +80,7 @@
   z-index: 10;
 }
 
-/* === РІВЕНЬ КОМПОЗИЦІЇ: СПИСОК КОМПОНЕНТІВ === */
+/* === РІВЕНЬ КОМПОЗИЦІЇ: КАРТКИ КОМПОНЕНТІВ === */
 
 .level-composition {
   background: rgba(0, 0, 0, 0.3);
@@ -112,29 +102,128 @@
   line-height: 1.3;
 }
 
-/* Grid для компонентів рівня */
-.level-composition__list {
-  list-style: disc;
-  padding: 0 0 0 1.5rem;
-  margin: 0;
+/* === КОНТЕЙНЕР ДЛЯ КАРТОК З ПРОКРУТКОЮ === */
+
+.level-cards-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.level-cards-container {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 3.5rem;
+  margin-bottom: -3.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+/* Приховування скролбара */
+.level-cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* === КАРТКА КОМПОНЕНТА === */
+
+.level-card {
+  flex: 0 0 auto;
+  min-width: 280px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  scroll-snap-align: start;
+  transition: all var(--transition-normal) ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  color: rgba(100, 149, 237, 0.95);
+  gap: 0.75rem;
 }
 
-/* Елементи списку */
-.level-composition__list li {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-  padding: 0;
-  margin: 0;
+@media (hover: hover) and (pointer: fine) {
+  .level-card:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
 }
 
-.level-composition__list li strong {
-  color: var(--color-white);
+.level-card:focus-visible {
+  outline: 2px solid rgba(100, 149, 237, 0.8);
+  outline-offset: 2px;
+}
+
+.level-card__title {
+  font-size: 0.95rem;
   font-weight: 700;
+  color: var(--color-white);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.level-card__description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* === НАВІГАЦІЙНІ СТРІЛОЧКИ === */
+
+.level-cards-nav {
+  position: absolute;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(100, 149, 237, 0.9);
+  border: 1px solid rgba(100, 149, 237, 0.6);
+  border-radius: 8px;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal) ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0;
+  z-index: 20;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .level-cards-nav:hover:not(:disabled) {
+    background: rgba(100, 149, 237, 1);
+    border-color: rgba(100, 149, 237, 0.9);
+    transform: scale(1.05);
+  }
+}
+
+.level-cards-nav:focus-visible {
+  outline: 2px solid rgba(100, 149, 237, 0.8);
+  outline-offset: 2px;
+}
+
+.level-cards-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.level-cards-nav--prev {
+  left: 0;
+}
+
+.level-cards-nav--next {
+  right: 0;
 }
 
 /* === ПРАЙС-КАРТКИ === */
@@ -326,14 +415,20 @@
     margin-bottom: 1.5rem;
   }
 
-  .levels-content-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .levels-info-top {
+    margin-bottom: 2rem;
   }
 
-  .level-composition__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .level-composition {
+    margin-bottom: 2rem;
+  }
+
+  .level-cards-container {
+    gap: 1.25rem;
+  }
+
+  .level-card {
+    min-width: 260px;
   }
 
   .pricing-cards {
@@ -378,36 +473,37 @@
   }
 
   .levels-section .section-title {
-    font-size: var(--font-size-xl);
+    font-size: 1.7rem;
     margin-bottom: 0.35rem;
   }
 
   .levels-section .section-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     margin-bottom: 1.25rem;
     line-height: 1.4;
   }
 
-  .levels-content-layout {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .levels-info {
+  .levels-info-top {
     padding: 1.25rem 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
     border-radius: 12px;
   }
 
-  .levels-info h3 {
+  .levels-info-top h3 {
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
   }
 
-  .levels-info p {
+  .levels-info-top p {
     font-size: 0.9rem;
     margin-bottom: 0.75rem;
+  }
+
+  .levels-info-top__star {
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    right: -10px;
   }
 
   .level-composition {
@@ -415,18 +511,43 @@
     padding: 1.25rem 1rem;
   }
 
-  .level-composition__list {
-    font-size: 0.85rem;
-    gap: 0.5rem;
-  }
-
-  .level-composition__list li {
-    font-size: 0.85rem;
-  }
-
   .level-composition h3 {
     font-size: 1.1rem;
     margin-bottom: 1.25rem;
+  }
+
+  .level-cards-container {
+    gap: 1rem;
+    padding-bottom: 4rem;
+    margin-bottom: -4rem;
+  }
+
+  .level-card {
+    min-width: calc(50% - 0.5rem);
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .level-card__title {
+    font-size: 0.9rem;
+  }
+
+  .level-card__description {
+    font-size: 0.75rem;
+  }
+
+  .level-cards-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .level-cards-nav--prev {
+    left: 0.5rem;
+  }
+
+  .level-cards-nav--next {
+    right: 0.5rem;
   }
 
   .pricing-cards {
@@ -497,13 +618,14 @@
 /* === ACCESSIBILITY === */
 
 @media (prefers-reduced-motion: reduce) {
-  .levels-info,
-  .level-composition__list li,
+  .levels-info-top,
+  .level-card,
+  .level-cards-nav,
   .pricing-card {
     transition: none;
   }
 
-  .level-composition__list li:hover,
+  .level-card:hover,
   .pricing-card:hover {
     transform: none;
   }
@@ -511,6 +633,8 @@
 
 /* === FOCUS STATES === */
 
+.level-card:focus-visible,
+.level-cards-nav:focus-visible,
 .pricing-card:focus-visible,
 .levels-cta .button:focus-visible {
   outline: 2px solid rgba(100, 149, 237, 0.8);
@@ -520,8 +644,8 @@
 /* === FALLBACK FOR NO BACKDROP-FILTER SUPPORT === */
 
 @supports not (backdrop-filter: blur(10px)) {
-  .levels-info,
-  .level-composition__list li,
+  .levels-info-top,
+  .level-card,
   .pricing-card {
     background: rgba(0, 0, 0, 0.7);
     -webkit-backdrop-filter: none;
@@ -531,16 +655,16 @@
 
 /* === PERFORMANCE OPTIMIZATION === */
 
-.level-composition__list li {
+.level-card {
   will-change: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .level-composition__list li:hover {
+  .level-card:hover {
     will-change: transform;
   }
 
-  .level-composition__list li:not(:hover) {
+  .level-card:not(:hover) {
     will-change: auto;
   }
 }
