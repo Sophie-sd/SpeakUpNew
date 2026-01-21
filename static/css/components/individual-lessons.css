@@ -419,6 +419,55 @@
   transform: rotate(15deg);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
   z-index: 10;
+  display: none; /* Hide discount sticker */
+}
+
+/* === КАРТКА ПАКЕТУ - НОСІЙ МОВИ === */
+
+.individual-package-card--native {
+  border-color: rgba(220, 38, 38, 0.6);
+}
+
+.individual-package-card--native:hover {
+  border-color: rgba(220, 38, 38, 0.8);
+}
+
+/* === КАРТКА ПАКЕТУ - ПОПУЛЯРНА === */
+
+.individual-package-card--popular {
+  border: 2px solid rgba(255, 193, 7, 0.6);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 193, 7, 0.05) 100%);
+  box-shadow: 0 8px 40px rgba(255, 193, 7, 0.3);
+}
+
+.individual-package-card--popular:hover {
+  border-color: rgba(255, 193, 7, 0.9);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 193, 7, 0.1) 100%);
+  box-shadow: 0 12px 48px rgba(255, 193, 7, 0.4);
+}
+
+/* Badge "Найпопулярніший" */
+.individual-package-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 193, 7, 1);
+  color: rgba(0, 0, 0, 0.95);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+/* Тільки на популярній картці */
+.individual-package-card:not(.individual-package-card--popular) .individual-package-card__badge {
+  display: none;
 }
 
 .individual-package-card__title {
