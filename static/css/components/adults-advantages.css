@@ -30,6 +30,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: clamp(2.5rem, 7vw, 5rem);
 }
 
 .section-subtitle--hero {
@@ -58,6 +59,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   align-items: stretch;
+  scroll-margin-top: calc(var(--header-height, 80px) + 2rem);
 }
 
 /* === ЗАГОЛОВКИ HERO СЕКЦІЇ (ЗАЙМАЮТЬ ВСЮ ШИРИНУ) === */
@@ -69,7 +71,7 @@
 
 .advantages-section__header .section-title--hero {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .advantages-section__header .section-subtitle--hero {
@@ -303,9 +305,12 @@
   .advantages-section--hero {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     padding-top: 1rem;
+    margin: 0 auto;
     margin-bottom: var(--section-spacing-mobile);
+    width: calc(100% - 3rem);
+    max-width: 100%;
   }
 
   .advantages-section__header {
@@ -324,7 +329,7 @@
   }
 
   .advantages-hero__buttons {
-    top: -4.5rem;
+    top: 3rem;
     right: 1rem;
     gap: 0.6rem;
   }
