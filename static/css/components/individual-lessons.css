@@ -252,17 +252,16 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  display: inline-flex;
+  display: block;
   margin: 0 auto;
-  width: fit-content;
+  width: 100%;
+  max-width: 900px;
 }
 
 .individual-table {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   border-collapse: collapse;
   color: var(--color-white);
-  min-width: 400px;
 }
 
 .individual-table thead {
@@ -656,79 +655,97 @@
     margin-bottom: 1rem;
   }
 
-  /* Таблиця - адаптивна */
+  /* Таблиця - адаптивна (зменшена але структура збереженаа) */
   .individual-single-table {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
   }
 
   .individual-table {
     width: 100%;
-    min-width: auto;
+    display: table;
   }
 
   .individual-table thead {
-    display: none;
+    display: table-header-group;
+    background: rgba(231, 30, 20, 0.2);
+    border-bottom: 2px solid rgba(231, 30, 20, 0.4);
+  }
+
+  .individual-table th {
+    display: table-cell;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+
+  .individual-table__header-duration {
+    min-width: auto;
+    width: 40px;
+  }
+
+  .individual-table__header-teacher {
+    min-width: auto;
+    flex: 1;
+  }
+
+  .individual-table tbody {
+    display: table-row-group;
   }
 
   .individual-table tbody tr {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.3);
-    margin-bottom: 1rem;
-    padding: 0;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    display: table-row;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .individual-table tbody tr:last-child {
+    border-bottom: none;
   }
 
   .individual-table tbody tr:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .individual-table td {
-    padding: 1rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: table-cell;
+    padding: 0.6rem 0.4rem;
     text-align: center;
-  }
-
-  .individual-table td:last-child {
-    border-right: none;
+    font-size: 0.8rem;
   }
 
   .individual-table__duration-cell {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    font-weight: 700;
-    font-size: 0.95rem;
-    grid-column: 1;
-  }
-
-  .individual-table__duration-cell::before {
-    content: '';
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-white);
+    min-width: auto;
+    width: 40px;
   }
 
   .individual-table__price-cell {
-    display: flex;
+    display: table-cell;
     flex-direction: row;
     align-items: center;
-    gap: 0.25rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 0.2rem;
+    min-width: auto;
     justify-content: center;
+    padding: 0.6rem 0.3rem;
   }
 
-  .individual-table__price-cell:last-child {
-    border-right: none;
+  .individual-table .price-old {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
   }
 
-  .individual-table .price-old,
   .individual-table .price-new {
-    font-size: 0.85rem;
+    color: rgba(76, 175, 80, 0.95);
+    font-weight: 700;
+    font-size: 0.8rem;
   }
 
   /* Пакети */
