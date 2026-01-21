@@ -16,6 +16,9 @@
       return;
     }
 
+    // Приховуємо контент на початку
+    hideAllContent();
+
     initTimeToggle();
     initCategoryTabs();
     initURLHash();
@@ -24,6 +27,12 @@
   // =============================================
   // РІВЕНЬ 1: ПЕРЕМИКАЧ ДЕНЬ/ВЕЧІР
   // =============================================
+
+  function hideAllContent() {
+    document.querySelectorAll('.individual-content').forEach(content => {
+      content.classList.remove('individual-content--active');
+    });
+  }
 
   function initTimeToggle() {
     const toggleButtons = document.querySelectorAll('.individual-time-toggle__button');
@@ -59,16 +68,9 @@
     document.querySelectorAll('.individual-content').forEach(content => {
       const contentTime = content.dataset.timeContent;
       if (contentTime === timeMode) {
-        content.classList.remove('individual-content--hidden');
-        // Плавна поява
-        setTimeout(() => {
-          content.style.opacity = '1';
-        }, 10);
+        content.classList.add('individual-content--active');
       } else {
-        content.style.opacity = '0';
-        setTimeout(() => {
-          content.classList.add('individual-content--hidden');
-        }, 300);
+        content.classList.remove('individual-content--active');
       }
     });
 
@@ -166,15 +168,8 @@
       const panelCategory = panel.dataset.categoryPanel;
       if (panelCategory === category) {
         panel.classList.remove('individual-tabpanel--hidden');
-        // Плавна поява
-        setTimeout(() => {
-          panel.style.opacity = '1';
-        }, 10);
       } else {
-        panel.style.opacity = '0';
-        setTimeout(() => {
-          panel.classList.add('individual-tabpanel--hidden');
-        }, 300);
+        panel.classList.add('individual-tabpanel--hidden');
       }
     });
   }

@@ -110,9 +110,14 @@
 /* === CONTENT КОНТЕЙНЕР === */
 
 .individual-content {
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal) ease;
+}
+
+.individual-content--active {
   display: block;
   opacity: 1;
-  transition: opacity var(--transition-normal) ease;
 }
 
 .individual-content--hidden {
@@ -249,52 +254,58 @@
   width: 100%;
   border-collapse: collapse;
   color: var(--color-white);
-}
-
-.individual-table thead {
-  background: rgba(231, 30, 20, 0.2);
-  border-bottom: 2px solid rgba(231, 30, 20, 0.4);
-}
-
-.individual-table th {
-  padding: 1rem;
-  text-align: left;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-white);
-  white-space: nowrap;
+  table-layout: fixed;
 }
 
 .individual-table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background var(--transition-fast) ease;
-}
-
-.individual-table tbody tr:last-child {
+  display: flex;
   border-bottom: none;
 }
 
-.individual-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.05);
+.individual-table__column {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.individual-table td {
-  padding: 1rem;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
+.individual-table__column:last-child {
+  border-right: none;
 }
 
-.individual-table__teacher {
+.individual-table__teacher-name {
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-white);
-  vertical-align: middle;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(231, 30, 20, 0.4);
+}
+
+.individual-table__row-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.individual-table__duration {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.individual-table__prices {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .individual-table .price-old {
   text-decoration: line-through;
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.9rem;
-  margin-right: 0.25rem;
 }
 
 .individual-table .price-new {
@@ -562,17 +573,19 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Toggle */
+  /* Toggle - ЗАЛИШАЮТЬСЯ ГОРИЗОНТАЛЬНО */
   .individual-time-toggle {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
     margin-bottom: 2rem;
+    justify-content: center;
   }
 
   .individual-time-toggle__button {
     padding: 1rem 1.5rem;
     min-width: auto;
-    width: 100%;
+    flex: 1;
+    max-width: 200px;
   }
 
   .individual-time-toggle__icon {
@@ -621,10 +634,10 @@
     margin-bottom: 1rem;
   }
 
-  /* Таблиця → картки на mobile */
+  /* Таблиця - адаптивна */
   .individual-single-table {
-    background: transparent;
-    box-shadow: none;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   }
 
   .individual-table {
@@ -632,71 +645,29 @@
     width: 100%;
   }
 
-  .individual-table thead {
-    display: none;
-  }
-
-  .individual-table tbody {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
   .individual-table tbody tr {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 1rem;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .individual-table tbody tr:hover {
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  .individual-table__teacher {
-    grid-column: 1 / -1;
-    padding: 0 0 0.5rem 0;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .individual-table td {
-    padding: 0.25rem 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+  }
+
+  .individual-table__column {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+  }
+
+  .individual-table__column:last-child {
+    border-bottom: none;
+  }
+
+  .individual-table__teacher-name {
+    font-size: 1rem;
+  }
+
+  .individual-table__duration {
     font-size: 0.85rem;
-  }
-
-  .individual-table td::before {
-    content: attr(data-label);
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 0.25rem;
-    font-weight: 500;
-  }
-
-  /* Для тривалості */
-  .individual-table tbody tr td:nth-child(2)::before {
-    content: "Тривалість";
-  }
-
-  /* Для старої ціни */
-  .individual-table tbody tr td:nth-child(3)::before {
-    content: "Ціна";
-  }
-
-  /* Для нової ціни */
-  .individual-table tbody tr td:nth-child(4)::before {
-    content: "Зі знижкою";
   }
 
   .individual-table .price-old,
