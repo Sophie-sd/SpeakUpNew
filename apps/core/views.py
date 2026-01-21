@@ -756,6 +756,7 @@ def buy_stub(request):
         'current_language': lang,
         'adult_programs': adult_programs[:6],  # Перші 6 програм
         'consultation_form': ConsultationForm(),
+        'trial_form': TrialLessonForm(),
         'level_packages': level_packages,
         'level_content': LEVEL_CONTENT,
         'level_info': LEVEL_INFO,

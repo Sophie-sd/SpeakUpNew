@@ -76,6 +76,7 @@
 }
 
 .advantages-section__header .section-subtitle--hero {
+  margin-top: 5px;
   margin-bottom: 0;
 }
 
@@ -195,12 +196,13 @@
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 1.75rem 1.5rem;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   width: 100%;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 /* iOS fallback для форми */
@@ -232,7 +234,7 @@
 
 .advantages-section__form-title {
   margin: 0 0 0.5rem 0;
-  font-size: 1.125rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-white);
   text-align: center;
@@ -348,13 +350,10 @@
   }
 
   .advantages-section__form--hero {
-    padding: 1.2rem;
+    padding: 1.2rem 1.2rem 1.5rem 1.2rem;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  .advantages-section__form-title {
-    font-size: 1.1rem;
+    overflow: visible;
   }
 
   .advantages-section__form-subtitle {
