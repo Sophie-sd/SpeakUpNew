@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{% static 'css/components/parallax.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/adults-advantages.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/levels-pricing.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/individual-lessons.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -153,8 +154,437 @@
     </div>
   </section>
 
-  <!-- 3. ЯКОРІ ДЛЯ МАЙБУТНІХ СЕКЦІЙ (ЗАГЛУШКИ) -->
-  <section id="individual-section" style="display: none;"></section>
+  <!-- 3. БЛОК "ІНДИВІДУАЛЬНІ ЗАНЯТТЯ" -->
+  <section class="individual-section glass-section" id="individual-section">
+    <!-- Заголовок і підзаголовок -->
+    <h2 class="section-title">Індивідуальні заняття</h2>
+    <p class="section-subtitle">Обирайте зручний час та формат навчання</p>
+
+    <!-- РІВЕНЬ 1: ПЕРЕМИКАЧ ДЕНЬ/ВЕЧІР -->
+    <div class="individual-time-toggle">
+      <button type="button" class="individual-time-toggle__button individual-time-toggle__button--active" data-time="day" aria-pressed="true">
+        <span class="individual-time-toggle__icon" aria-hidden="true">☀️</span>
+        <span class="individual-time-toggle__text">Денне навчання</span>
+        <span class="individual-time-toggle__desc">до 16:00</span>
+      </button>
+      <button type="button" class="individual-time-toggle__button" data-time="evening" aria-pressed="false">
+        <span class="individual-time-toggle__icon" aria-hidden="true">🌙</span>
+        <span class="individual-time-toggle__text">Вечірнє навчання</span>
+        <span class="individual-time-toggle__desc">16:00-21:00</span>
+      </button>
+    </div>
+
+    <!-- РЕЖИМ: ДЕНЬ -->
+    <div class="individual-content" data-time-content="day">
+      <!-- РІВЕНЬ 2: ТАБСИ ЗАГАЛЬНА/СПЕЦІАЛІЗОВАНА -->
+      <div class="individual-tabs" role="tablist" aria-label="Типи англійської мови">
+        <button type="button" class="individual-tabs__tab individual-tabs__tab--active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="general-panel"
+                id="general-tab"
+                data-category="general">
+          Загальна англійська
+        </button>
+        <button type="button" class="individual-tabs__tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="specialized-panel"
+                id="specialized-tab"
+                data-category="specialized">
+          Спеціалізована англійська + інші мови
+        </button>
+      </div>
+
+      <!-- ТАБС-ПАНЕЛЬ: ЗАГАЛЬНА АНГЛІЙСЬКА -->
+      <div class="individual-tabpanel"
+           role="tabpanel"
+           id="general-panel"
+           aria-labelledby="general-tab"
+           data-category-panel="general">
+
+        <!-- Опис категорії (завжди видимий) -->
+        <div class="individual-category-desc">
+          <p>Розмовна практика, граматика, рівні від A1 до C2, а також Бізнес-англійська.</p>
+        </div>
+
+        <!-- Таблиця поштучних занять -->
+        <div class="individual-single-wrapper">
+          <h3 class="individual-section-heading">Заняття поштучно</h3>
+          <p class="individual-section-subheading">Можна купити будь-яку кількість занять</p>
+
+          <div class="individual-single-table">
+            <table class="individual-table">
+              <thead>
+                <tr>
+                  <th>Викладач</th>
+                  <th>Тривалість</th>
+                  <th>Ціна</th>
+                  <th>Зі знижкою 10%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2" class="individual-table__teacher">Локальний викладач</td>
+                  <td>50 хв</td>
+                  <td><span class="price-old">665 грн</span></td>
+                  <td><span class="price-new">599 грн</span></td>
+                </tr>
+                <tr>
+                  <td>90 хв</td>
+                  <td><span class="price-old">990 грн</span></td>
+                  <td><span class="price-new">891 грн</span></td>
+                </tr>
+                <tr>
+                  <td rowspan="2" class="individual-table__teacher">Носій мови</td>
+                  <td>50 хв</td>
+                  <td><span class="price-old">950 грн</span></td>
+                  <td><span class="price-new">851 грн</span></td>
+                </tr>
+                <tr>
+                  <td>90 хв</td>
+                  <td><span class="price-old">1290 грн</span></td>
+                  <td><span class="price-new">1161 грн</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Пакети занять (картки) -->
+        <div class="individual-packages-wrapper">
+          <h3 class="individual-section-heading">Пакети занять</h3>
+          <p class="individual-section-subheading">Економте до 10% при покупці пакету</p>
+
+          <!-- Локальний викладач -->
+          <h4 class="individual-packages-group-title">Локальний викладач</h4>
+          <div class="individual-packages-grid">
+            <!-- 50 хв - 25 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">25 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">16 625 грн</span>
+                <span class="price-new">14 963 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 5 542 грн
+              </p>
+            </div>
+
+            <!-- 50 хв - 50 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">50 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">33 250 грн</span>
+                <span class="price-new">29 925 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 8 313 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 20 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">20 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">19 800 грн</span>
+                <span class="price-new">17 820 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 6 600 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 40 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">40 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">39 600 грн</span>
+                <span class="price-new">35 640 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 9 900 грн
+              </p>
+            </div>
+          </div>
+
+          <!-- Носій мови -->
+          <h4 class="individual-packages-group-title">Носій мови</h4>
+          <div class="individual-packages-grid">
+            <!-- 50 хв - 25 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">25 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">23 750 грн</span>
+                <span class="price-new">22 275 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 8 250 грн
+              </p>
+            </div>
+
+            <!-- 50 хв - 50 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">50 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">47 500 грн</span>
+                <span class="price-new">44 550 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 11 375 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 20 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">20 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">25 800 грн</span>
+                <span class="price-new">23 220 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 8 600 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 40 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">40 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">51 600 грн</span>
+                <span class="price-new">46 440 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 12 900 грн
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA кнопка -->
+        <div class="individual-cta">
+          <a href="#" class="button button--primary">Записатися на навчання</a>
+        </div>
+      </div>
+
+      <!-- ТАБС-ПАНЕЛЬ: СПЕЦІАЛІЗОВАНА АНГЛІЙСЬКА -->
+      <div class="individual-tabpanel individual-tabpanel--hidden"
+           role="tabpanel"
+           id="specialized-panel"
+           aria-labelledby="specialized-tab"
+           data-category-panel="specialized">
+
+        <!-- Опис категорії -->
+        <div class="individual-category-desc">
+          <p>Підготовка до іспитів (IELTS, TOEFL), вузька тематика (IT, медицина, фінанси) та інші іноземні мови.</p>
+        </div>
+
+        <!-- Таблиця поштучних занять -->
+        <div class="individual-single-wrapper">
+          <h3 class="individual-section-heading">Заняття поштучно</h3>
+          <p class="individual-section-subheading">Можна купити будь-яку кількість занять</p>
+
+          <div class="individual-single-table">
+            <table class="individual-table">
+              <thead>
+                <tr>
+                  <th>Викладач</th>
+                  <th>Тривалість</th>
+                  <th>Ціна</th>
+                  <th>Зі знижкою 10%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2" class="individual-table__teacher">Локальний викладач</td>
+                  <td>50 хв</td>
+                  <td><span class="price-old">950 грн</span></td>
+                  <td><span class="price-new">855 грн</span></td>
+                </tr>
+                <tr>
+                  <td>90 хв</td>
+                  <td><span class="price-old">1290 грн</span></td>
+                  <td><span class="price-new">1161 грн</span></td>
+                </tr>
+                <tr>
+                  <td rowspan="2" class="individual-table__teacher">Носій мови</td>
+                  <td>50 хв</td>
+                  <td><span class="price-old">1390 грн</span></td>
+                  <td><span class="price-new">1251 грн</span></td>
+                </tr>
+                <tr>
+                  <td>90 хв</td>
+                  <td><span class="price-old">1750 грн</span></td>
+                  <td><span class="price-new">1575 грн</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Пакети занять -->
+        <div class="individual-packages-wrapper">
+          <h3 class="individual-section-heading">Пакети занять</h3>
+          <p class="individual-section-subheading">Економте до 10% при покупці пакету</p>
+
+          <!-- Локальний викладач -->
+          <h4 class="individual-packages-group-title">Локальний викладач</h4>
+          <div class="individual-packages-grid">
+            <!-- 50 хв - 25 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">25 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">23 750 грн</span>
+                <span class="price-new">21 375 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 7 917 грн
+              </p>
+            </div>
+
+            <!-- 50 хв - 50 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">50 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">47 500 грн</span>
+                <span class="price-new">42 750 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 11 875 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 20 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">20 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">25 800 грн</span>
+                <span class="price-new">23 220 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 8 600 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 40 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">40 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">51 600 грн</span>
+                <span class="price-new">46 440 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 12 900 грн
+              </p>
+            </div>
+          </div>
+
+          <!-- Носій мови -->
+          <h4 class="individual-packages-group-title">Носій мови</h4>
+          <div class="individual-packages-grid">
+            <!-- 50 хв - 25 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">25 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">34 750 грн</span>
+                <span class="price-new">31 275 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 11 583 грн
+              </p>
+            </div>
+
+            <!-- 50 хв - 50 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">50 занять × 50 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">69 500 грн</span>
+                <span class="price-new">62 550 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 17 375 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 20 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">20 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">35 000 грн</span>
+                <span class="price-new">31 500 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                3 платежі по 11 667 грн
+              </p>
+            </div>
+
+            <!-- 90 хв - 40 занять -->
+            <div class="individual-package-card">
+              <span class="individual-package-card__discount">-10%</span>
+              <h5 class="individual-package-card__title">40 занять × 90 хв</h5>
+              <p class="individual-package-card__price">
+                <span class="price-old">70 000 грн</span>
+                <span class="price-new">63 000 грн</span>
+              </p>
+              <p class="individual-package-card__installment">
+                <span class="installment-icon" aria-hidden="true">💳</span>
+                4 платежі по 17 500 грн
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA кнопка -->
+        <div class="individual-cta">
+          <a href="#" class="button button--primary">Записатися на навчання</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- РЕЖИМ: ВЕЧІР (PLACEHOLDER) -->
+    <div class="individual-content individual-content--hidden" data-time-content="evening">
+      <div class="individual-placeholder">
+        <h3 class="individual-placeholder__title">Вечірня англійська</h3>
+        <p class="individual-placeholder__text">Заняття у прайм-тайм з 16:00 до 21:00</p>
+        <p class="individual-placeholder__text">Детальні ціни та пакети будуть додані найближчим часом. Залиште заявку, і ми зв'яжемося з вами!</p>
+        <div class="individual-cta">
+          <a href="#" class="button button--primary">Залишити заявку</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ЯКІР ДЛЯ МАЙБУТНЬОЇ СЕКЦІЇ -->
   <section id="unlimited-section" style="display: none;"></section>
 </main>
 {% endblock %}
@@ -162,4 +592,5 @@
 {% block extra_js %}
 <script type="module" src="{% static 'js/modules/adults-advantages-accordion.js' %}" defer></script>
 <script type="module" src="{% static 'js/modules/level-cards-navigation.js' %}" defer></script>
+<script type="module" src="{% static 'js/modules/individual-lessons-toggle.js' %}" defer></script>
 {% endblock %}
