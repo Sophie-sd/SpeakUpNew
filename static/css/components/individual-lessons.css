@@ -238,6 +238,10 @@
 
 .individual-single-wrapper {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .individual-single-table {
@@ -248,8 +252,9 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .individual-table {
@@ -312,10 +317,11 @@
 
 .individual-table__price-cell {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
   min-width: 150px;
+  justify-content: center;
 }
 
 .individual-table .price-old {
@@ -709,10 +715,11 @@
 
   .individual-table__price-cell {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 0.25rem;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
   }
 
   .individual-table__price-cell:last-child {
