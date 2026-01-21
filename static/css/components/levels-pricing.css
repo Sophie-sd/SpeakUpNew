@@ -83,14 +83,8 @@
 /* === РІВЕНЬ КОМПОЗИЦІЇ: КАРТКИ КОМПОНЕНТІВ === */
 
 .level-composition {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 2rem 0;
+  margin-bottom: 4rem;
 }
 
 .level-composition h3 {
@@ -112,12 +106,11 @@
 
 .level-cards-container {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  padding-bottom: 3.5rem;
-  margin-bottom: -3.5rem;
+  padding-bottom: 1rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -131,11 +124,13 @@
 
 .level-card {
   flex: 0 0 auto;
-  min-width: 280px;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
   scroll-snap-align: start;
   transition: all var(--transition-normal) ease;
   -webkit-backdrop-filter: blur(10px);
@@ -143,7 +138,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -178,9 +173,15 @@
 
 /* === НАВІГАЦІЙНІ СТРІЛОЧКИ === */
 
+.level-cards-nav-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 20;
+}
+
 .level-cards-nav {
-  position: absolute;
-  bottom: 0;
   width: 40px;
   height: 40px;
   background: rgba(100, 149, 237, 0.9);
@@ -197,7 +198,6 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 0;
-  z-index: 20;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -216,14 +216,6 @@
 .level-cards-nav:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-}
-
-.level-cards-nav--prev {
-  left: 0;
-}
-
-.level-cards-nav--next {
-  right: 0;
 }
 
 /* === ПРАЙС-КАРТКИ === */
@@ -420,15 +412,18 @@
   }
 
   .level-composition {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+    padding: 0;
   }
 
   .level-cards-container {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .level-card {
-    min-width: 260px;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
   }
 
   .pricing-cards {
@@ -507,8 +502,8 @@
   }
 
   .level-composition {
-    margin-bottom: 2rem;
-    padding: 1.25rem 1rem;
+    margin-bottom: 3rem;
+    padding: 0;
   }
 
   .level-composition h3 {
@@ -518,36 +513,33 @@
 
   .level-cards-container {
     gap: 1rem;
-    padding-bottom: 4rem;
-    margin-bottom: -4rem;
+    padding-bottom: 1rem;
   }
 
   .level-card {
+    width: calc(50% - 0.5rem);
     min-width: calc(50% - 0.5rem);
-    padding: 1.25rem;
+    max-width: calc(50% - 0.5rem);
+    padding: 1rem;
     border-radius: 10px;
   }
 
   .level-card__title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .level-card__description {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .level-cards-nav-wrapper {
+    margin-top: 0.75rem;
   }
 
   .level-cards-nav {
     width: 36px;
     height: 36px;
     font-size: 1.25rem;
-  }
-
-  .level-cards-nav--prev {
-    left: 0.5rem;
-  }
-
-  .level-cards-nav--next {
-    right: 0.5rem;
   }
 
   .pricing-cards {
