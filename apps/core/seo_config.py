@@ -39,7 +39,6 @@ SITEMAP_URLS = [
     ('core:program_detail', 0.8, 'weekly', 'litniy-intensyv'),
     ('core:program_detail', 0.8, 'weekly', 'vyhodnogo-dnya'),
     ('core:program_detail', 0.8, 'weekly', 'pidgotovka-zno'),
-    ('core:program_detail', 0.7, 'weekly', 'camp'),
     ('core:program_detail', 0.8, 'weekly', 'kids-intensive'),
     ('core:program_detail', 0.7, 'weekly', 'phone-conversation'),
 
@@ -74,6 +73,7 @@ SITEMAP_URLS = [
     ('core:kids_learning_page', 0.9, 'weekly'),
     ('core:buy_stub', 0.9, 'weekly'),
     ('core:premium_learning_page', 0.9, 'weekly'),
+    ('core:camp_landing_page', 0.95, 'weekly'),  # High priority - special grant offer
 ]
 
 # ===== ДАНІ ДЛЯ VIEWS =====

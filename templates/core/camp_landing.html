@@ -1,0 +1,334 @@
+{% load static %}<!DOCTYPE html>
+<html lang="{% if current_language %}{{ current_language }}{% else %}uk{% endif %}" class="h-full">
+<head>
+  <!-- Charset and viewport -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="{{ meta_description }}">
+  <meta name="author" content="SPEAK UP">
+  <meta name="keywords" content="англійська для дітей, грант, навчання, табір">
+
+  <!-- Canonical URL -->
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{ meta_description }}">
+  {% if request.build_absolute_uri %}
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  {% endif %}
+
+  <!-- Title -->
+  <title>{{ title }}</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/components/camp-landing.css' %}">
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "{{ title }}",
+    "description": "{{ meta_description }}",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "SPEAK UP",
+      "url": "{{ request.build_absolute_uri }}"
+    },
+    "courseCode": "camp-landing",
+    "offers": {
+      "@type": "Offer",
+      "price": "12990",
+      "priceCurrency": "UAH"
+    },
+    "duration": "PT2S",
+    "inLanguage": "{% if current_language == 'ru' %}ru{% else %}uk{% endif %}"
+  }
+  </script>
+</head>
+<body>
+  <!-- Decorative background shapes -->
+  <div class="decorative-shapes">
+    <div class="shape-bubble shape-bubble-1"></div>
+    <div class="shape-bubble shape-bubble-2"></div>
+    <div class="shape-bubble shape-bubble-3"></div>
+  </div>
+
+  <!-- Main content wrapper -->
+  <div class="page-container">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <header>
+        <div class="header-container">
+          <div class="logo-box">
+            <div class="logo-badge">
+              <span>S</span>
+            </div>
+            <div class="logo-text">
+              <h2>SPEAK UP</h2>
+              <p>🇪🇺 EUROPEAN PARTNERS</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-container">
+          <div class="card-white">
+            <div class="card-content">
+              <!-- Badge -->
+              <div class="badge">
+                <span>🎁</span>
+                <span>Спеціальна пропозиція</span>
+              </div>
+
+              <!-- Main Headline -->
+              <h1 class="hero-title display-font">
+                <span>Європейські партнери<br>видають </span>
+                <span class="highlight">ГРАНТ</span>
+                <span> на навчання<br>англійської для вашої дитини!</span>
+              </h1>
+
+              <!-- Subtitle -->
+              <p class="hero-subtitle">
+                Допоможіть дитині відкрити світ можливостей через вивчення англійської мови 🌍✨
+              </p>
+
+              <!-- Grant Info Grid -->
+              <div class="grant-grid">
+                <!-- Grant Amount -->
+                <div class="grant-card grant-card-amount">
+                  <div class="grant-card-emoji">💰</div>
+                  <div class="grant-card-content">
+                    <h3>Сума гранту</h3>
+                    <p class="grant-card-value display-font" id="grant-amount">{{ grant_amount }}</p>
+                    <p class="grant-card-note">на кожну дитину</p>
+                  </div>
+                </div>
+
+                <!-- Spots Left -->
+                <div class="grant-card grant-card-spots">
+                  <div class="grant-card-emoji">⏰</div>
+                  <div class="grant-card-content">
+                    <h3>Залишилось місць</h3>
+                    <p class="grant-card-value display-font" id="spots-left">{{ spots_left }}</p>
+                    <p class="grant-card-note">встигніть зареєструватися</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <button class="cta-button display-font" id="cta-button" data-action="open-modal">
+                <span class="button-emoji">🎓</span>
+                <span class="button-text" id="cta-text">Отримати грант</span>
+                <span class="button-arrow">→</span>
+              </button>
+
+              <!-- Trust Line -->
+              <p class="trust-line">
+                ✅ Безкоштовна консультація • 🔒 Безпечна реєстрація • ⭐ 5000+ щасливих учнів
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Course Info Section -->
+      <section class="program-section">
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title display-font">Програма навчання Kids Standard 📚</h2>
+            <p class="section-subtitle">Для дітей від 6 до 10 років</p>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="features-grid">
+            <div class="feature-card feature-card-1">
+              <div class="feature-card-header">
+                <div class="feature-emoji gentle-float">👩‍🏫</div>
+                <div>
+                  <h3>30 занять по 50 хвилин</h3>
+                  <p>З досвідченим вітчизняним викладачем у невеликих групах. Вивчення граматики, лексики, розмовної практики</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-card feature-card-2">
+              <div class="feature-card-header">
+                <div class="feature-emoji gentle-float">📝</div>
+                <div>
+                  <h3>Індивідуальне тестування</h3>
+                  <p>2 персоналізовані заняття: вступне для визначення рівня та фінальне для оцінки прогресу</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-card feature-card-3">
+              <div class="feature-card-header">
+                <div class="feature-emoji gentle-float">👨‍👩‍👧‍👦</div>
+                <div>
+                  <h3>Невеликі групи 3-8 дітей</h3>
+                  <p>Індивідуальний підхід до кожної дитини, увага викладача кожному учню</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-card feature-card-4">
+              <div class="feature-card-header">
+                <div class="feature-emoji gentle-float">💻</div>
+                <div>
+                  <h3>Онлайн формат</h3>
+                  <p>Навчання з дому 2-3 рази на тиждень за зручним фіксованим графіком</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Duration -->
+          <div class="duration-box">
+            <p>
+              <span>🎯</span>
+              <strong class="display-font">Повний курс:</strong> 2 семестри (один рівень, наприклад Elementary A2) – це як навчальний рік у школі
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="pricing-section">
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title display-font">Вартість з грантом 🔥</h2>
+            <p class="section-subtitle">Заощадьте 5000 грн на навчанні вашої дитини</p>
+          </div>
+
+          <!-- Pricing Grid -->
+          <div class="pricing-grid">
+            <!-- 1 Semester -->
+            <div class="pricing-card pricing-card-1 popular-badge with-badge">
+              <h3 class="pricing-title display-font">1 Семестр</h3>
+              <p class="pricing-subtitle">4 місяці навчання</p>
+
+              <div class="pricing-details">
+                <div class="pricing-row">
+                  <span class="pricing-label">Звичайна ціна:</span>
+                  <span class="pricing-old-price">17 990 грн</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="pricing-label">З грантом:</span>
+                  <span class="pricing-new-price display-font">12 990 грн</span>
+                </div>
+              </div>
+
+              <div class="pricing-savings">
+                <p>💰 Ви економите 5 000 грн!</p>
+              </div>
+            </div>
+
+            <!-- 2 Semesters -->
+            <div class="pricing-card pricing-card-2 best-badge with-badge">
+              <h3 class="pricing-title display-font">2 Семестри</h3>
+              <p class="pricing-subtitle">Повний навчальний рік (9 місяців)</p>
+
+              <div class="pricing-details">
+                <div class="pricing-row">
+                  <span class="pricing-label">Звичайна ціна:</span>
+                  <span class="pricing-old-price">25 980 грн</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="pricing-label">З грантом:</span>
+                  <span class="pricing-new-price display-font">20 980 грн</span>
+                </div>
+              </div>
+
+              <div class="pricing-savings">
+                <p>🎉 Максимальна економія + бонуси!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Info -->
+          <div class="payment-info">
+            <div class="payment-info-content">
+              <span class="payment-info-emoji">💳</span>
+              <p>
+                <strong class="display-font">Оплата частинами:</strong> через Приват або Моно на <strong>4 платежі</strong> без відсотків ✅
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="final-cta-section">
+        <div class="final-cta-container">
+          <div class="final-cta-card">
+            <h2 class="display-font">⚡ Не пропустіть можливість!</h2>
+            <p class="final-cta-description">
+              Гранти обмежені. Залишилось всього <span class="spots-highlight display-font" id="spots-left-2">{{ spots_left }}</span> місця
+            </p>
+
+            <button class="final-cta-button display-font" id="cta-button-2" data-action="open-modal">
+              <span class="button-emoji">🚀</span>
+              <span class="button-text" id="cta-text-2">Зареєструватися зараз</span>
+            </button>
+
+            <p class="final-cta-footer">
+              📞 Безкоштовна консультація • Відповімо на всі питання
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Section -->
+      <section class="trust-section">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-emoji">🇪🇺</div>
+            <h3>Європейські стандарти</h3>
+            <p>Навчальні програми за міжнародними методиками</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-emoji">👨‍🎓</div>
+            <h3>5000+ учнів</h3>
+            <p>Батьки довіряють нам навчання своїх дітей</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-emoji">🔒</div>
+            <h3>Безпека даних</h3>
+            <p>Захищена реєстрація та оплата</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-container">
+          <p>© 2024 Speak Up Kids. Всі права захищені.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Hidden modal trigger for form integration -->
+  <div id="modal-trigger" class="modal-trigger"></div>
+
+  <!-- Consultation modal (included from components) -->
+  {% include "components/modal.html" %}
+
+  <!-- Script -->
+  <script src="{% static 'js/modules/camp-landing.js' %}" defer></script>
+</body>
+</html>

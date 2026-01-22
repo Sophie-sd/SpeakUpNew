@@ -33,6 +33,8 @@ urlpatterns = [
     path('programs/', views.programs_list, name='programs_list'),
     # SEO Stub: Program (before dynamic pattern)
     path('programs/summer-camp-2021', views.summer_camp_2021_stub, name='summer_camp_2021_stub'),
+    # Landing page для дитячого табору з грантом (ПЕРЕД динамічним slug!)
+    path('programs/camp', views.camp_landing_page, name='camp_landing_page'),
     # Програми (динамічний slug)
     path('programs/<slug:slug>', views.program_detail, name='program_detail'),
 

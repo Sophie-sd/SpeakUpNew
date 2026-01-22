@@ -820,6 +820,34 @@ def premium_learning_page(request):
     }
     return render(request, 'core/premium_learning.html', context)
 
+def camp_landing_page(request):
+    """Landing page for Kids Camp with grant offer - standalone page independent from base styles."""
+    lang = get_language()
+
+    # SEO metadata for the landing page
+    if lang == 'ru':
+        title = "Speak Up Kids - Грант на обучение английскому"
+        meta_description = "Специальное предложение: грант на обучение английскому языку для вашего ребенка. Программа Kids Standard для детей 6-10 лет."
+        og_title = "Speak Up Kids - Грант на обучение английскому"
+    else:
+        title = "Speak Up Kids - Грант на навчання англійської"
+        meta_description = "Спеціальна пропозиція: грант 5000 грн на навчання англійської мови для вашої дитини. Програма Kids Standard для дітей 6-10 років."
+        og_title = "Speak Up Kids - Грант на навчання англійської"
+
+    context = {
+        'title': title,
+        'meta_description': meta_description,
+        'og_title': og_title,
+        'canonical_url': request.build_absolute_uri(),
+        'current_language': lang,
+        # Dynamic values that could be updated in admin
+        'grant_amount': '5000 грн',
+        'spots_left': '23',
+        'consultation_form': ConsultationForm(),
+    }
+
+    return render(request, 'core/camp_landing.html', context)
+
 def dogovir_stub(request):
     """SEO stub for /ru/dogovir-pro-nadannya-poslug-dostupu-do-elektronnogo-kabinetu-speak-up-2/."""
     return render(request, 'core/stubs/dogovir_stub.html')
